@@ -1,0 +1,1804 @@
+module purge
+module load cuda/10.1.243 gcc/7.4.0 netlib-lapack/3.8.0 cmake/3.18.2 spectrum-mpi/10.3.1.2-20200121 netcdf/4.6.2 netcdf-fortran/4.4.4 hdf5/1.10.4
+module load python/3.6.6-anaconda3-5.3.0
+
+export PAMI_ENABLE_STRIPING=1
+export PAMI_IBV_ADAPTER_AFFINITY=1
+export PAMI_IBV_DEVICE_NAME="mlx5_0:1,mlx5_3:1"
+export PAMI_IBV_DEVICE_NAME_1="mlx5_3:1,mlx5_0:1"
+export PAMI_CUDA_AWARE_THRESH=320000
+&ctl_nl
+vthreads          = 1
+NThreads          = 1
+partmethod        = 4
+topology          = "cube"
+test_case         = "jw_baroclinic"
+u_perturb         = 1
+rotate_grid       = 0
+ne                = 128
+qsize             = 40
+nmax              = 4096
+disable_diagnostics = .true.
+statefreq         = 99999999
+restartfreq       = 43200
+restartfile       = "./R0001"
+runtype           = 0
+mesh_file         = '/dev/null'
+tstep             = 80.0
+integration       = "explicit"
+smooth            = 0
+nu                = 1.28e+13
+nu_div            = 1.28e+13
+nu_p              = 1.28e+13
+nu_q              = 1.28e+13
+nu_s              =-1
+nu_top            = 0
+se_ftype          = 0
+limiter_option    = 9
+vert_remap_q_alg  = 10
+hypervis_scaling  = 0
+hypervis_order    = 2
+hypervis_subcycle = 3
+hypervis_subcycle_tom  = 0
+theta_hydrostatic_mode = false
+theta_advect_form = 1
+tstep_type        = 10
+dt_remap_factor     = 2
+dt_tracer_factor    = 8
+hypervis_subcycle_q = 8
+transport_alg       = 12
+semi_lagrange_hv_q  = 1
+semi_lagrange_cdr_check = .false.
+/
+&solver_nl
+precon_method = "identity"
+maxits        = 500
+tol           = 1.e-9
+/
+&filter_nl
+filter_type   = "taylor"
+transfer_type = "bv"
+filter_freq   = 0
+filter_mu     = 0.04D0
+p_bv          = 12.0D0
+s_bv          = .666666666666666666D0
+wght_fm       = 0.10D0
+kcut_fm       = 2
+/
+&vert_nl
+vform     = "ccm"
+vfile_mid = '/gpfs/alpine/scratch/ambradl/cli115/vcoord/sabm-128.ascii'
+vfile_int = '/gpfs/alpine/scratch/ambradl/cli115/vcoord/sabi-128.ascii'
+/
+
+&prof_inparm
+profile_outpe_num   = 100
+profile_single_file = .true.
+/
+
+!  timunits: 0= steps, 1=days, 2=hours
+&analysis_nl
+ interp_gridtype   = 2
+ output_timeunits  = 1,1
+ output_frequency  = 0,0
+ output_start_time = 0,0
+ output_end_time   = 30000,30000
+ output_varnames1  = 'ps','zeta','u','v','T'
+ output_varnames2  = 'Q','Q2','Q3','Q4'
+ io_stride         = 8
+ output_type       = 'netcdf'
+/
+&ctl_nl
+vthreads          = 1
+NThreads          = 1
+partmethod        = 4
+topology          = "cube"
+test_case         = "jw_baroclinic"
+u_perturb         = 1
+rotate_grid       = 0
+ne                = 128
+qsize             = 40
+nmax              = 4096
+disable_diagnostics = .true.
+statefreq         = 99999999
+restartfreq       = 43200
+restartfile       = "./R0001"
+runtype           = 0
+mesh_file         = '/dev/null'
+tstep             = 80.0
+integration       = "explicit"
+smooth            = 0
+nu                = 1.28e+13
+nu_div            = 1.28e+13
+nu_p              = 1.28e+13
+nu_q              = 1.28e+13
+nu_s              =-1
+nu_top            = 0
+se_ftype          = 0
+limiter_option    = 9
+vert_remap_q_alg  = 10
+hypervis_scaling  = 0
+hypervis_order    = 2
+hypervis_subcycle = 3
+hypervis_subcycle_tom  = 0
+theta_hydrostatic_mode = false
+theta_advect_form = 1
+tstep_type        = 10
+dt_remap_factor     = 2
+dt_tracer_factor    = 1
+hypervis_subcycle_q = 1
+transport_alg       = 0
+/
+&solver_nl
+precon_method = "identity"
+maxits        = 500
+tol           = 1.e-9
+/
+&filter_nl
+filter_type   = "taylor"
+transfer_type = "bv"
+filter_freq   = 0
+filter_mu     = 0.04D0
+p_bv          = 12.0D0
+s_bv          = .666666666666666666D0
+wght_fm       = 0.10D0
+kcut_fm       = 2
+/
+&vert_nl
+vform     = "ccm"
+vfile_mid = '/gpfs/alpine/scratch/ambradl/cli115/vcoord/sabm-128.ascii'
+vfile_int = '/gpfs/alpine/scratch/ambradl/cli115/vcoord/sabi-128.ascii'
+/
+
+&prof_inparm
+profile_outpe_num   = 100
+profile_single_file = .true.
+/
+
+!  timunits: 0= steps, 1=days, 2=hours
+&analysis_nl
+ interp_gridtype   = 2
+ output_timeunits  = 1,1
+ output_frequency  = 0,0
+ output_start_time = 0,0
+ output_end_time   = 30000,30000
+ output_varnames1  = 'ps','zeta','u','v','T'
+ output_varnames2  = 'Q','Q2','Q3','Q4'
+ io_stride         = 8
+ output_type       = 'netcdf'
+/
+ number of MPI processes:          768
+ MPI processors stride:            1
+ number of MPI processes per node: min,max=           6           6
+ Primitive Equation Init1...
+ (t_initf) Read in prof_inparm namelist from: input.nl
+ (t_initf) Using profile_disable=          F
+ (t_initf)       profile_timer=                      4
+ (t_initf)       profile_depth_limit=            99999
+ (t_initf)       profile_detail_limit=               1
+ (t_initf)       profile_barrier=          F
+ (t_initf)       profile_outpe_num=                  0
+ (t_initf)       profile_outpe_stride=               1
+ (t_initf)       profile_single_file=      F
+ (t_initf)       profile_global_stats=     T
+ (t_initf)       profile_ovhd_measurement= F
+ (t_initf)       profile_add_detail=       F
+ (t_initf)       profile_papi_enable=      F
+macro  KOKKOS_ENABLE_CUDA      : defined
+macro  CUDA_VERSION          = 10010 = version 10.1
+Kokkos::Cuda[ 0 ] Tesla V100-SXM2-16GB capability 7.0, Total Global Memory: 15.75 G, Shared Memory per Block: 48 K : Selected
+HOMMEXX SHA1: 09574f3030b7a5c1733746c0458ac75852f84206
+HOMMEXX VECTOR_SIZE: 1
+HOMMEXX vector tag: SIMD
+HOMMEXX active AVX set:
+HOMMEXX MPI_ON_DEVICE: 1
+HOMMEXX CUDA_SHARE_BUFFER: off
+HOMMEXX CUDA_(MIN/MAX)_WARP_PER_TEAM: 8 / 16
+HOMMEXX doesn't have vector pragmas
+HOMMEXX configured with CMake
+HOMMEXX has config.h.c
+ reading ctl namelist...
+ Reading namelist ctl_nl from standard input
+ reading physics namelist...
+ reading vertical namelist...
+   vform =ccm
+   vfile_mid=/gpfs/alpine/scratch/ambradl/cli115/vcoord/sabm-128.ascii
+   vfile_int=/gpfs/alpine/scratch/ambradl/cli115/vcoord/sabi-128.ascii
+   vanalytic=           0
+dt_remap_factor and dt_tracer_factor were specified; changing qsplit from  1 to  8 and rsplit from  0 to  1.
+ -DHORIZ_OPENMP disabled
+ -DCOLUMN_OPENMP disabled
+ Mesh File:/dev/null
+ Reference element projection: cubed_sphere_map=           2
+ done reading namelist...
+ readnl: topology      = cube
+ readnl: geometry      = sphere
+ readnl: test_case     = jw_baroclinic
+ readnl: omega         =    7.2920000000000000E-005
+ readnl: sub_case      =            1
+ readnl: ndays         =            0
+ readnl: nmax          =         4096
+ readnl: pertlim       =    0.0000000000000000     
+ readnl: qsize,qsize_d =           40          40
+ readnl: NThreads      =            1
+ readnl: ne,np         =          128           4
+ readnl: partmethod    =            4
+ readnl: COORD_TRANSFORM_METHOD    =            1
+ readnl: Z2_MAP_METHOD    =            1
+ readnl: nmpi_per_node =            6
+ readnl: vthreads      =            1
+ readnl: nnodes        =          128
+ readnl: npart         =          768
+
+ readnl: integration   = explicit
+ readnl: LF-trapazoidal freq=            0
+ readnl: theta_hydrostatic_mode =  F
+ readnl: transport_alg   =           12
+ readnl: semi_lagrange_cdr_alg   =            3
+ readnl: semi_lagrange_cdr_check   =  F
+ readnl: semi_lagrange_hv_q   =            1
+ readnl: semi_lagrange_nearest_point_lev   =          256
+ readnl: tstep_type    =           10
+ readnl: theta_advect_form =            1
+ readnl: vert_remap_q_alg  =           10
+ readnl: tstep          =    80.000000000000000     
+ readnl: ftype          =            0
+ readnl: limiter_option =            9
+ readnl: qsplit (deprecated) =            8
+ readnl: vertical remap frequency rsplit (0=disabled) (deprecated):            1
+ readnl: dt_tracer_factor =            8
+ readnl: vertical remap frequency dt_remap_factor (0=disabled):            2
+ readnl: runtype       =            0
+ readnl: se_fv_phys_remap_alg =            1
+ Constant (hyper)viscosity used.
+ hypervis_subcycle     =            3
+ hypervis_subcycle_tom =            0
+ hypervis_subcycle_q   =            8
+viscosity:  nu (vor/div) =  0.13E+14 0.13E+14
+viscosity:  nu_s      =  0.13E+14
+viscosity:  nu_q      =  0.13E+14
+viscosity:  nu_p      =  0.13E+14
+viscosity:  nu_top      =  0.00E+00
+ 
+ physconst: omega  =    7.2920000000000000E-005
+ physconst: rearth =    6376000.0000000000     
+ physconst: rrearth=    1.5683814303638645E-007
+ 
+  analysis interpolation =  T F F F F F F F
+  analysis interp nlat =         1024
+  analysis interp nlon =         2048
+  analysis interp lon0 =    0.0000000000000000     
+  analysis interp gridtype =            2
+  analysis interpolation type =            0
+ Running dycore: theta-l
+ Running tracer transport method: semi-Lagrangian
+ REPRO_SUM_SETOPTS: Using fixed-point-based (scalable) reproducible distributed sum algorithm
+                     and not comparing with floating point algorithms.
+ Initialized repro_sum
+ 
+  total simulated time =    327680.00000000000     
+ 
+
+ ============================================
+         Testing Gaussian Quadrature...
+
+           points              weights
+ ============================================
+           1 -0.86113631159405257522394648889280        0.34785484513745385737306394922199      
+           2 -0.33998104358485626480266575910324        0.65214515486254614262693605077798      
+           3  0.33998104358485626480266575910324        0.65214515486254614262693605077798      
+           4  0.86113631159405257522394648889280        0.34785484513745385737306394922199      
+ ============================================
+ sum of Gaussian weights=   2.0000000000000000     
+ ============================================
+
+ ============================================
+       Testing Gauss-Lobatto Quadrature...
+
+           points              weights
+ ============================================
+           1  -1.0000000000000000000000000000000        0.16666666666666666666666666666666      
+           2 -0.44721359549995793928183473374625        0.83333333333333333333333333333332      
+           3  0.44721359549995793928183473374625        0.83333333333333333333333333333332      
+           4   1.0000000000000000000000000000000        0.16666666666666666666666666666666      
+ ============================================
+ sum of Gauss-Lobatto weights=   2.0000000000000000     
+ ============================================
+ total number of elements nelem =        98304
+ getMetaSchedule: tmpP:            2           1           7          95         427          96           1         142         428        2418           8        2419         342        2465         341        2512         340        2559
+ prim_init1: total threads: nthreads =            1
+ threads across elements    hthreads =            1
+ threading within elements  vthreads =            1
+ init shared boundary_exchange buffers
+ initializing elements...
+ running mass_matrix
+Epsilon bubble correction: Corrected area - domain size  0.00000000000099654
+ re-running mass_matrix
+ running global_dof
+ PrintStateDescriptor:
+component   1 length=12288 displacement=      0
+component   2 length= 6192 displacement=  98304
+component   3 length= 6144 displacement= 147840
+component   4 length=   48 displacement= 196992
+component   5 length= 6192 displacement= 197376
+component   6 length=   16 displacement= 246912
+component   7 length=81920 displacement= 247040
+component   8 length=***** displacement= 902400
+component   9 length= 6144 displacement=2213120
+ creating sorted ghost cell neigbor map...
+ checking ghost cell neighbor buffer sorting...
+ passed.
+ COMPOSE> use HV; nu_q, all:   12800000000000.000                1
+process: 65 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 23 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  1 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 27 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 29 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 12 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 95 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 61 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 82 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 64 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 63 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 62 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 60 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 22 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 38 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 20 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 28 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 21 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 19 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 18 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 24 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 26 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 25 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 73 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+ end of prim_init1
+process:  0 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 77 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 72 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  5 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 75 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  3 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  2 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 15 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  4 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 37 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 40 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 36 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 41 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 14 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 39 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 17 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 93 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 94 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 71 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 45 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 66 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 42 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 69 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 44 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 67 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 47 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 88 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 68 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 46 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 89 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 70 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 43 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 74 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 76 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 52 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 48 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 49 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 51 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 53 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 50 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 99 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 98 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 96 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 97 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 84 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 85 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 87 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 86 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 92 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 91 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 90 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 13 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 16 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 56 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 31 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 10 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 55 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 30 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  6 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 59 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 34 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  7 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 58 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 35 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  8 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 54 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 33 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  9 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 57 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 11 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 32 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 78 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 79 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 83 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 81 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 80 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+1 Layer Locations (*1000) 
+   1    0.0000              0.0000              0.0000
+                  0.0000              3.9062              3.9062
+   2    0.0000              7.8125              7.8125
+                  0.0000             11.7188             11.7188
+   3    0.0000             15.6250             15.6250
+                  0.0000             19.5312             19.5312
+   4    0.0000             23.4375             23.4375
+                  0.0000             27.3438             27.3438
+   5    0.0000             31.2500             31.2500
+                  0.0000             35.1562             35.1562
+   6    0.0000             39.0625             39.0625
+                  0.0000             42.9688             42.9688
+   7    0.0000             46.8750             46.8750
+                  0.0000             50.7812             50.7812
+   8    0.0000             54.6875             54.6875
+                  0.0000             58.5938             58.5938
+   9    0.0000             62.5000             62.5000
+                  0.0000             66.4062             66.4062
+  10    0.0000             70.3125             70.3125
+                  0.0000             74.2188             74.2188
+  11    0.0000             78.1250             78.1250
+                  0.0000             82.0312             82.0312
+  12    0.0000             85.9375             85.9375
+                  0.0000             89.8438             89.8438
+  13    0.0000             93.7500             93.7500
+                  0.0000             97.6562             97.6562
+  14    0.0000            101.5625            101.5625
+                  0.0000            105.4688            105.4688
+  15    0.0000            109.3750            109.3750
+                  0.0000            113.2812            113.2812
+  16    0.0000            117.1875            117.1875
+                  0.0000            121.0938            121.0938
+  17    0.0000            125.0000            125.0000
+                  0.0000            128.9062            128.9062
+  18    0.0000            132.8125            132.8125
+                  0.0000            136.7188            136.7188
+  19    0.0000            140.6250            140.6250
+                  0.0000            144.5312            144.5312
+  20    0.0000            148.4375            148.4375
+                  0.0000            152.3438            152.3438
+  21    0.0000            156.2500            156.2500
+                  0.0000            160.1562            160.1562
+  22    0.0000            164.0625            164.0625
+                  0.0000            167.9688            167.9688
+  23    0.0000            171.8750            171.8750
+                  0.0000            175.7812            175.7812
+  24    0.0000            179.6875            179.6875
+                  0.0000            183.5938            183.5938
+  25    0.0000            187.5000            187.5000
+                  0.0000            191.4062            191.4062
+  26    0.0000            195.3125            195.3125
+                  0.0000            199.2188            199.2188
+  27    0.0000            203.1250            203.1250
+                  0.0000            207.0312            207.0312
+  28    0.0000            210.9375            210.9375
+                  0.0000            214.8438            214.8438
+  29    0.0000            218.7500            218.7500
+                  0.0000            222.6562            222.6562
+  30    0.0000            226.5625            226.5625
+                  0.0000            230.4688            230.4688
+  31    0.0000            234.3750            234.3750
+                  0.0000            238.2812            238.2812
+  32    0.0000            242.1875            242.1875
+                  0.0000            246.0938            246.0938
+  33    0.0000            250.0000            250.0000
+                  0.0000            253.9062            253.9062
+  34    0.0000            257.8125            257.8125
+                  0.0000            261.7188            261.7188
+  35    0.0000            265.6250            265.6250
+                  0.0000            269.5312            269.5312
+  36    0.0000            273.4375            273.4375
+                  0.0000            277.3438            277.3438
+  37    0.0000            281.2500            281.2500
+                  0.0000            285.1562            285.1562
+  38    0.0000            289.0625            289.0625
+                  0.0000            292.9688            292.9688
+  39    0.0000            296.8750            296.8750
+                  0.0000            300.7812            300.7812
+  40    0.0000            304.6875            304.6875
+                  0.0000            308.5938            308.5938
+  41    0.0000            312.5000            312.5000
+                  0.0000            316.4062            316.4062
+  42    0.0000            320.3125            320.3125
+                  0.0000            324.2188            324.2188
+  43    0.0000            328.1250            328.1250
+                  0.0000            332.0312            332.0312
+  44    0.0000            335.9375            335.9375
+                  0.0000            339.8438            339.8438
+  45    0.0000            343.7500            343.7500
+                  0.0000            347.6562            347.6562
+  46    0.0000            351.5625            351.5625
+                  0.0000            355.4688            355.4688
+  47    0.0000            359.3750            359.3750
+                  0.0000            363.2812            363.2812
+  48    0.0000            367.1875            367.1875
+                  0.0000            371.0938            371.0938
+  49    0.0000            375.0000            375.0000
+                  0.0000            378.9062            378.9062
+  50    0.0000            382.8125            382.8125
+                  0.0000            386.7188            386.7188
+  51    0.0000            390.6250            390.6250
+                  0.0000            394.5312            394.5312
+  52    0.0000            398.4375            398.4375
+                  0.0000            402.3438            402.3438
+  53    0.0000            406.2500            406.2500
+                  0.0000            410.1562            410.1562
+  54    0.0000            414.0625            414.0625
+                  0.0000            417.9688            417.9688
+  55    0.0000            421.8750            421.8750
+                  0.0000            425.7812            425.7812
+  56    0.0000            429.6875            429.6875
+                  0.0000            433.5938            433.5938
+  57    0.0000            437.5000            437.5000
+                  0.0000            441.4062            441.4062
+  58    0.0000            445.3125            445.3125
+                  0.0000            449.2188            449.2188
+  59    0.0000            453.1250            453.1250
+                  0.0000            457.0312            457.0312
+  60    0.0000            460.9375            460.9375
+                  0.0000            464.8438            464.8438
+  61    0.0000            468.7500            468.7500
+                  0.0000            472.6562            472.6562
+  62    0.0000            476.5625            476.5625
+                  0.0000            480.4688            480.4688
+  63    0.0000            484.3750            484.3750
+                  0.0000            488.2812            488.2812
+  64    0.0000            492.1875            492.1875
+                  0.0000            496.0938            496.0938
+  65    0.0000            500.0000            500.0000
+                  0.0000            503.9062            503.9062
+  66    0.0000            507.8125            507.8125
+                  0.0000            511.7188            511.7188
+  67    0.0000            515.6250            515.6250
+                  0.0000            519.5312            519.5312
+  68    0.0000            523.4375            523.4375
+                  0.0000            527.3438            527.3438
+  69    0.0000            531.2500            531.2500
+                  0.0000            535.1562            535.1562
+  70    0.0000            539.0625            539.0625
+                  0.0000            542.9688            542.9688
+  71    0.0000            546.8750            546.8750
+                  0.0000            550.7812            550.7812
+  72    0.0000            554.6875            554.6875
+                  0.0000            558.5938            558.5938
+  73    0.0000            562.5000            562.5000
+                  0.0000            566.4062            566.4062
+  74    0.0000            570.3125            570.3125
+                  0.0000            574.2188            574.2188
+  75    0.0000            578.1250            578.1250
+                  0.0000            582.0312            582.0312
+  76    0.0000            585.9375            585.9375
+                  0.0000            589.8438            589.8438
+  77    0.0000            593.7500            593.7500
+                  0.0000            597.6562            597.6562
+  78    0.0000            601.5625            601.5625
+                  0.0000            605.4688            605.4688
+  79    0.0000            609.3750            609.3750
+                  0.0000            613.2812            613.2812
+  80    0.0000            617.1875            617.1875
+                  0.0000            621.0938            621.0938
+  81    0.0000            625.0000            625.0000
+                  0.0000            628.9062            628.9062
+  82    0.0000            632.8125            632.8125
+                  0.0000            636.7188            636.7188
+  83    0.0000            640.6250            640.6250
+                  0.0000            644.5312            644.5312
+  84    0.0000            648.4375            648.4375
+                  0.0000            652.3438            652.3438
+  85    0.0000            656.2500            656.2500
+                  0.0000            660.1562            660.1562
+  86    0.0000            664.0625            664.0625
+                  0.0000            667.9688            667.9688
+  87    0.0000            671.8750            671.8750
+                  0.0000            675.7812            675.7812
+  88    0.0000            679.6875            679.6875
+                  0.0000            683.5938            683.5938
+  89    0.0000            687.5000            687.5000
+                  0.0000            691.4062            691.4062
+  90    0.0000            695.3125            695.3125
+                  0.0000            699.2188            699.2188
+  91    0.0000            703.1250            703.1250
+                  0.0000            707.0312            707.0312
+  92    0.0000            710.9375            710.9375
+                  0.0000            714.8438            714.8438
+  93    0.0000            718.7500            718.7500
+                  0.0000            722.6562            722.6562
+  94    0.0000            726.5625            726.5625
+                  0.0000            730.4688            730.4688
+  95    0.0000            734.3750            734.3750
+                  0.0000            738.2812            738.2812
+  96    0.0000            742.1875            742.1875
+                  0.0000            746.0938            746.0938
+  97    0.0000            750.0000            750.0000
+                  0.0000            753.9062            753.9062
+  98    0.0000            757.8125            757.8125
+                  0.0000            761.7188            761.7188
+  99    0.0000            765.6250            765.6250
+                  0.0000            769.5312            769.5312
+ 100    0.0000            773.4375            773.4375
+                  0.0000            777.3438            777.3438
+ 101    0.0000            781.2500            781.2500
+                  0.0000            785.1562            785.1562
+ 102    0.0000            789.0625            789.0625
+                  0.0000            792.9688            792.9688
+ 103    0.0000            796.8750            796.8750
+                  0.0000            800.7812            800.7812
+ 104    0.0000            804.6875            804.6875
+                  0.0000            808.5938            808.5938
+ 105    0.0000            812.5000            812.5000
+                  0.0000            816.4062            816.4062
+ 106    0.0000            820.3125            820.3125
+                  0.0000            824.2188            824.2188
+ 107    0.0000            828.1250            828.1250
+                  0.0000            832.0312            832.0312
+ 108    0.0000            835.9375            835.9375
+                  0.0000            839.8438            839.8438
+ 109    0.0000            843.7500            843.7500
+                  0.0000            847.6562            847.6562
+ 110    0.0000            851.5625            851.5625
+                  0.0000            855.4688            855.4688
+ 111    0.0000            859.3750            859.3750
+                  0.0000            863.2812            863.2812
+ 112    0.0000            867.1875            867.1875
+                  0.0000            871.0938            871.0938
+ 113    0.0000            875.0000            875.0000
+                  0.0000            878.9062            878.9062
+ 114    0.0000            882.8125            882.8125
+                  0.0000            886.7188            886.7188
+ 115    0.0000            890.6250            890.6250
+                  0.0000            894.5312            894.5312
+ 116    0.0000            898.4375            898.4375
+                  0.0000            902.3438            902.3438
+ 117    0.0000            906.2500            906.2500
+                  0.0000            910.1562            910.1562
+ 118    0.0000            914.0625            914.0625
+                  0.0000            917.9688            917.9688
+ 119    0.0000            921.8750            921.8750
+                  0.0000            925.7812            925.7812
+ 120    0.0000            929.6875            929.6875
+                  0.0000            933.5938            933.5938
+ 121    0.0000            937.5000            937.5000
+                  0.0000            941.4062            941.4062
+ 122    0.0000            945.3125            945.3125
+                  0.0000            949.2188            949.2188
+ 123    0.0000            953.1250            953.1250
+                  0.0000            957.0312            957.0312
+ 124    0.0000            960.9375            960.9375
+                  0.0000            964.8438            964.8438
+ 125    0.0000            968.7500            968.7500
+                  0.0000            972.6562            972.6562
+ 126    0.0000            976.5625            976.5625
+                  0.0000            980.4688            980.4688
+ 127    0.0000            984.3750            984.3750
+                  0.0000            988.2812            988.2812
+ 128    0.0000            992.1875            992.1875
+                  0.0000            996.0938            996.0938
+ 129    0.0000           1000.0000           1000.0000
+ Primitive Equation Initialization...
+ Primitive Equation Init2...
+ 
+ Running Global Integral Diagnostic...
+ Area of manifold is   1.0000000000000793     
+ Should be 1.0 to round off...
+Element area:  max/min    1.406
+Average equatorial node spacing (deg, km) =  0.234   26.08
+norm of Dinv (min, max):   163.003  245.466
+Max Dinv-based element distortion:     1.73
+dx based on Dinv svd:          ave,min,max =    21.69   17.32   26.08
+dx based on sqrt element area: ave,min,max =    24.03   22.00   26.08
+  runtype: initial run
+ initializing Jablonowski and Williamson baroclinic instability test V1
+ ...done
+ sponge layer nu_top viscosity scaling factor
+   nu_scale_top            1   8.0000000000000000     
+   nu_scale_top            2   1.5999999999999999     
+   nu_scale_top            3  0.61538461538461553     
+   nu_scale_top            4  0.31999999999999995     
+   nu_scale_top            5  0.19512195121951217     
+   nlev_tom            5
+CFL estimates in terms of S=time step stability region
+(i.e. advection w/leapfrog: S=1, viscosity w/forward Euler: S=2)
+SSP preservation (120m/s) RKSSP euler step dt  < S *     36.08s
+Stability: advective (120m/s)   dt_tracer < S *     79.00s
+Stability: advective (120m/s)   dt_tracer < S *     79.00s
+Stability: gravity wave(342m/s)   dt_dyn  < S *     27.72s
+Stability: nu_q   hyperviscosity dt < S *     39.52s
+Stability: nu_vor hyperviscosity dt < S *     39.52s
+Stability: nu_div hyperviscosity dt < S *     39.52s
+ tstep_type =           10
+dt_remap: (0=disabled)      160.00
+dt_tracer (SE), per RK stage:    640.00   320.00
+dt_dyn:                      80.00
+dt_dyn (viscosity):          26.67
+dt_tracer (viscosity):       80.00
+dt_vis_TOM:      26.67
+ initial state:
+ nstep=           0  time=   0.0000000000000000       [s]
+  u     =   0.506938710731011-259 (  1)  0.355939740543149E+02 ( 33)  0.301282004174233E+10
+  v     =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+  w     =  -0.173606985093102E-09 (129)  0.173606986506289E-09 (129) -0.584340066855695E-09
+  mu    =   0.999999999999013E+00 ( 89)  0.100000000000099E+01 ( 88)  0.202899456000000E+09
+  vTh_dp=   0.176953478603306E+06 (128)  0.101750736618448E+07 (  1)  0.552069323794223E+14
+  dz(m) =   0.519417834024822E+02 (128)  0.156458399899056E+05 (  1)  0.783135189621702E+11
+  dp    =   0.781250000000000E+03 (  1)  0.781250000000000E+03 (  1)  0.157286400000000E+12
+    fu  =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+    fv  =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+    ft  =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+    fq1 =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+      min dz/w (CFL condition) =   0.323997186971474E+12 (128)
+ qv(  1)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv(  2)=   0.0000000000000000E+00  0.8866465225950985E+00  0.1986966840415947E+06
+ qv(  3)=   0.1000000000000000E+01  0.1000000000000000E+01  0.1256637061436017E+07
+ qv(  4)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv(  5)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv(  6)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv(  7)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv(  8)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv(  9)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 10)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 11)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 12)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 13)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 14)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 15)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 16)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 17)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 18)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 19)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 20)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 21)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 22)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 23)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 24)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 25)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 26)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 27)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 28)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 29)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 30)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 31)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 32)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 33)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 34)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 35)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 36)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 37)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 38)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 39)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 40)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+      ps=   0.100000000000000E+06  0.100000000000000E+06  0.157286400000000E+12
+      M =   0.101976716676057E+05 kg/m^2  0.100000000000008E+06mb     
+compose> nelemd 128 qsize 40 hv_q 1 hv_subcycle_q 8 lim 9 independent_time_steps 1
+ Directory ./movies/ does exist: initialing IO
+ I/O init...
+ Output of initial state...
+ Entering main timestepping loop
+ Finished main timestepping loop        4096
+ closing history files
+ writing timing data
+ calling t_finalizef
+ exiting program...
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+>>> SL full
+
+***** GLOBAL STATISTICS (   768 MPI TASKS) *****
+
+$Id: gptl.c,v 1.157 2011-03-28 20:55:18 rosinski Exp $
+'count' is cumulative. All other stats are max/min
+'on' indicates whether the timer was active during output, and so stats are lower or upper bounds.
+
+name                               on  processes  threads        count      walltotal   wallmax (proc   thrd  )   wallmin (proc   thrd  )
+"Total"                             -        768      768 7.680000e+02   5.774254e+04    75.246 (   160      0)    75.155 (   356      0)
+"prim_init1"                        -        768      768 7.680000e+02   1.702186e+03     2.277 (   148      0)     2.197 (   443      0)
+"PartitioningTime"                  -        768      768 7.680000e+02   4.455140e-04     0.000 (   129      0)     0.000 (   184      0)
+"repro_sum_int"                     -        768      768 4.277760e+05   2.135299e+03     3.512 (   164      0)     1.075 (   206      0)
+"compose_init"                      -        768      768 7.680000e+02   3.486181e+01     0.049 (   216      0)     0.043 (   173      0)
+"sl_init1"                          -        768      768 7.680000e+02   1.232172e+02     0.229 (   135      0)     0.154 (   260      0)
+"prim_init2"                        -        768      768 7.680000e+02   2.944032e+03     4.464 (   306      0)     2.117 (    55      0)
+"prim_printstate"                   -        768      768 7.680000e+02   1.082219e+02     0.142 (     0      0)     0.141 (   182      0)
+"prim_io_init"                      -        768      768 7.680000e+02   1.880920e-04     0.000 (   218      0)     0.000 (   248      0)
+"prim_main_loop"                    -        768      768 7.680000e+02   5.246407e+04    68.326 (   100      0)    68.278 (   641      0)
+"prim_run"                          -        768      768 3.932160e+05   5.246389e+04    68.326 (   100      0)    68.278 (   641      0)
+"tl-sc prim_run_subcycle_c"         -        768      768 3.932160e+05   5.238049e+04    68.217 (   100      0)    68.173 (   744      0)
+"tl-sc dp3d-from-ps"                -        768      768 3.932160e+05   1.428305e+01     0.020 (   530      0)     0.018 (   101      0)
+"tl-s prim_step_flexible"           -        768      768 3.932160e+05   5.236285e+04    68.194 (   128      0)    68.150 (   744      0)
+"ApplyCAMForcing_tracers"           -        768      768 3.932160e+05   2.314843e+02     0.303 (   759      0)     0.299 (    54      0)
+"tl-s deep_copy+derived_dp"         -        768      768 3.932160e+05   2.355969e+01     0.032 (   414      0)     0.030 (    42      0)
+"ApplyCAMForcing_dynamics"          -        768      768 1.572864e+06   1.168745e+02     0.157 (   200      0)     0.149 (   533      0)
+"tl-ae prim_advance_exp"            -        768      768 3.145728e+06   4.021563e+04    52.896 (   686      0)    51.895 (   427      0)
+"IMEX_KG255"                        -        768      768 3.145728e+06   2.607016e+04    34.484 (   651      0)    33.588 (   344      0)
+"caar compute"                      -        768      768 3.145728e+07   8.517377e+03    11.150 (   204      0)    11.026 (   335      0)
+"caar_bexchV"                       -        768      768 1.572864e+07   8.893078e+03    12.058 (   753      0)    11.117 (   339      0)
+"caar dp3d"                         -        768      768 1.572864e+07   6.225519e+02     0.842 (   270      0)     0.785 (   432      0)
+"compute_stage_value_dirk"          -        768      768 1.572864e+07   7.976210e+03    10.602 (   118      0)    10.280 (   317      0)
+"tl-ae advance_hypervis_dp"         -        768      768 3.145728e+06   1.406198e+04    18.547 (   699      0)    17.964 (     6      0)
+"hvf-bhwk"                          -        768      768 9.437184e+06   7.821891e+03    10.353 (   699      0)     9.978 (     6      0)
+"hvf-bexch"                         -        768      768 1.887437e+07   8.419693e+03    11.218 (   699      0)    10.625 (     6      0)
+"Remap Thickness Functor"           -        768      768 1.572864e+06   1.198037e+02     0.161 (    60      0)     0.152 (   413      0)
+"Remap Scale States Functor"        -        768      768 1.572864e+06   6.746944e+01     0.090 (   540      0)     0.085 (    42      0)
+"Remap Compute Grids Functor"       -        768      768 1.572864e+06   1.865586e+02     0.248 (   270      0)     0.240 (    29      0)
+"Remap Compute Remap Functor"       -        768      768 1.572864e+06   5.523533e+02     0.725 (    99      0)     0.715 (   389      0)
+"Remap Rescale States Functor"      -        768      768 1.572864e+06   6.610593e+01     0.089 (   270      0)     0.084 (   527      0)
+"tl-at prim_advec_tracers_compose"  -        768      768 3.932160e+05   9.322847e+03    12.611 (   427      0)    11.607 (   686      0)
+"compose_transport"                 -        768      768 3.932160e+05   9.317540e+03    12.603 (   427      0)    11.600 (   686      0)
+"compose_calc_trajectory"           -        768      768 3.932160e+05   5.834050e+02     0.864 (   577      0)     0.673 (   632      0)
+"compose_3d_levels"                 -        768      768 3.932160e+05   2.551539e+02     0.335 (    16      0)     0.329 (   330      0)
+"compose_v_bexchv"                  -        768      768 3.932160e+05   2.983908e+02     0.492 (   577      0)     0.303 (   632      0)
+"compose_v2x"                       -        768      768 3.932160e+05   2.739743e+01     0.037 (   370      0)     0.035 (   330      0)
+"compose_isl"                       -        768      768 3.932160e+05   2.712211e+03     3.955 (   138      0)     3.078 (   740      0)
+"SLMM_isl_01_mylid"                 -        768      768 3.932160e+05   2.491726e+00     0.004 (   304      0)     0.003 (   137      0)
+"SLMM_isl_02_setup_irecv"           -        768      768 3.932160e+05   1.269325e+01     0.129 (   533      0)     0.003 (   101      0)
+"SLMM_isl_03_adp"                   -        768      768 3.932160e+05   9.915575e+01     0.135 (   423      0)     0.121 (   624      0)
+"SLMM_isl_04_pack_pass1"            -        768      768 3.932160e+05   2.598909e+02     0.403 (   270      0)     0.245 (   341      0)
+"SLMM_isl_05_pack_pass2"            -        768      768 3.932160e+05   1.065950e+02     0.274 (   414      0)     0.096 (   743      0)
+"SLMM_isl_06_isend"                 -        768      768 3.932160e+05   7.462082e+01     0.268 (   264      0)     0.018 (   345      0)
+"SLMM_isl_07_q_extrema"             -        768      768 3.932160e+05   1.086679e+02     0.144 (   373      0)     0.139 (    54      0)
+"SLMM_isl_08_recv_and_wait"         -        768      768 3.932160e+05   2.257503e+02     0.528 (   619      0)     0.102 (   414      0)
+"SLMM_isl_09_rmt_q_pass1"           -        768      768 3.932160e+05   1.495706e+02     0.309 (    96      0)     0.123 (   341      0)
+"SLMM_isl_09_rmt_q_pass2"           -        768      768 3.932160e+05   5.367064e+01     0.081 (   743      0)     0.063 (    24      0)
+"SLMM_isl_10_isend"                 -        768      768 3.932160e+05   1.340627e+01     0.082 (   138      0)     0.004 (   180      0)
+"SLMM_isl_11_setup_irecv"           -        768      768 3.932160e+05   4.206455e+00     0.037 (    15      0)     0.003 (   137      0)
+"SLMM_isl_12_own_q"                 -        768      768 3.932160e+05   1.072873e+03     1.464 (    96      0)     1.289 (    75      0)
+"SLMM_isl_13_recv"                  -        768      768 3.932160e+05   3.727536e+02     0.987 (   344      0)     0.098 (   688      0)
+"SLMM_isl_14_copy_q"                -        768      768 3.932160e+05   7.005864e+01     0.181 (   352      0)     0.055 (   224      0)
+"SLMM_isl_15_wait_on_send"          -        768      768 3.932160e+05   8.124437e+01     0.721 (   256      0)     0.003 (   122      0)
+"compose_hypervis_scalar"           -        768      768 3.932160e+05   3.143129e+03     4.573 (   315      0)     3.691 (   234      0)
+"compose_cedr_global"               -        768      768 3.932160e+05   1.211482e+03     1.701 (   164      0)     1.483 (   369      0)
+"CEDR_01_write_global"              -        768      768 3.932160e+05   2.879161e+02     0.381 (   359      0)     0.370 (   656      0)
+"CEDR_02_run_cdr"                   -        768      768 3.932160e+05   9.178738e+02     1.320 (   164      0)     1.101 (   398      0)
+"compose_cedr_local"                -        768      768 3.932160e+05   3.112267e+02     0.417 (   361      0)     0.399 (   102      0)
+"CEDR_03_run_local"                 -        768      768 3.932160e+05   3.027804e+02     0.406 (   361      0)     0.389 (   102      0)
+"compose_dss_q"                     -        768      768 3.932160e+05   1.354323e+03     2.290 (   344      0)     1.307 (   686      0)
+"compose_vertical_remap"            -        768      768 3.932160e+05   1.084899e+03     1.436 (   623      0)     1.406 (   289      0)
+"push_to_f90"                       -        768      768 7.680000e+02   8.305442e+01     0.121 (   687      0)     0.100 (   452      0)
+"t_prf"                             y          0        0 0.000000e+00   0.000000e+00     0.000 (     0      0)     0.000 (     0      0)
+
+ number of MPI processes:          768
+ MPI processors stride:            1
+ number of MPI processes per node: min,max=           6           6
+ Primitive Equation Init1...
+ (t_initf) Read in prof_inparm namelist from: input.nl
+ (t_initf) Using profile_disable=          F
+ (t_initf)       profile_timer=                      4
+ (t_initf)       profile_depth_limit=            99999
+ (t_initf)       profile_detail_limit=               1
+ (t_initf)       profile_barrier=          F
+ (t_initf)       profile_outpe_num=                  0
+ (t_initf)       profile_outpe_stride=               1
+ (t_initf)       profile_single_file=      F
+ (t_initf)       profile_global_stats=     T
+ (t_initf)       profile_ovhd_measurement= F
+ (t_initf)       profile_add_detail=       F
+ (t_initf)       profile_papi_enable=      F
+macro  KOKKOS_ENABLE_CUDA      : defined
+macro  CUDA_VERSION          = 10010 = version 10.1
+Kokkos::Cuda[ 0 ] Tesla V100-SXM2-16GB capability 7.0, Total Global Memory: 15.75 G, Shared Memory per Block: 48 K : Selected
+HOMMEXX SHA1: 09574f3030b7a5c1733746c0458ac75852f84206
+HOMMEXX VECTOR_SIZE: 1
+HOMMEXX vector tag: SIMD
+HOMMEXX active AVX set:
+HOMMEXX MPI_ON_DEVICE: 1
+HOMMEXX CUDA_SHARE_BUFFER: off
+HOMMEXX CUDA_(MIN/MAX)_WARP_PER_TEAM: 8 / 16
+HOMMEXX doesn't have vector pragmas
+HOMMEXX configured with CMake
+HOMMEXX has config.h.c
+ reading ctl namelist...
+ Reading namelist ctl_nl from standard input
+ reading physics namelist...
+ reading vertical namelist...
+   vform =ccm
+   vfile_mid=/gpfs/alpine/scratch/ambradl/cli115/vcoord/sabm-128.ascii
+   vfile_int=/gpfs/alpine/scratch/ambradl/cli115/vcoord/sabi-128.ascii
+   vanalytic=           0
+dt_remap_factor and dt_tracer_factor were specified; changing qsplit from  1 to  1 and rsplit from  0 to  2.
+ -DHORIZ_OPENMP disabled
+ -DCOLUMN_OPENMP disabled
+ Mesh File:/dev/null
+ Reference element projection: cubed_sphere_map=           2
+ done reading namelist...
+ readnl: topology      = cube
+ readnl: geometry      = sphere
+ readnl: test_case     = jw_baroclinic
+ readnl: omega         =    7.2920000000000000E-005
+ readnl: sub_case      =            1
+ readnl: ndays         =            0
+ readnl: nmax          =         4096
+ readnl: pertlim       =    0.0000000000000000     
+ readnl: qsize,qsize_d =           40          40
+ readnl: NThreads      =            1
+ readnl: ne,np         =          128           4
+ readnl: partmethod    =            4
+ readnl: COORD_TRANSFORM_METHOD    =            1
+ readnl: Z2_MAP_METHOD    =            1
+ readnl: nmpi_per_node =            6
+ readnl: vthreads      =            1
+ readnl: nnodes        =          128
+ readnl: npart         =          768
+
+ readnl: integration   = explicit
+ readnl: LF-trapazoidal freq=            0
+ readnl: theta_hydrostatic_mode =  F
+ readnl: transport_alg   =            0
+ readnl: semi_lagrange_cdr_alg   =            3
+ readnl: semi_lagrange_cdr_check   =  F
+ readnl: semi_lagrange_hv_q   =            1
+ readnl: semi_lagrange_nearest_point_lev   =          256
+ readnl: tstep_type    =           10
+ readnl: theta_advect_form =            1
+ readnl: vert_remap_q_alg  =           10
+ readnl: tstep          =    80.000000000000000     
+ readnl: ftype          =            0
+ readnl: limiter_option =            9
+ readnl: qsplit (deprecated) =            1
+ readnl: vertical remap frequency rsplit (0=disabled) (deprecated):            2
+ readnl: dt_tracer_factor =            1
+ readnl: vertical remap frequency dt_remap_factor (0=disabled):            2
+ readnl: runtype       =            0
+ readnl: se_fv_phys_remap_alg =            1
+ Constant (hyper)viscosity used.
+ hypervis_subcycle     =            3
+ hypervis_subcycle_tom =            0
+ hypervis_subcycle_q   =            1
+viscosity:  nu (vor/div) =  0.13E+14 0.13E+14
+viscosity:  nu_s      =  0.13E+14
+viscosity:  nu_q      =  0.13E+14
+viscosity:  nu_p      =  0.13E+14
+viscosity:  nu_top      =  0.00E+00
+ 
+ physconst: omega  =    7.2920000000000000E-005
+ physconst: rearth =    6376000.0000000000     
+ physconst: rrearth=    1.5683814303638645E-007
+ 
+  analysis interpolation =  T F F F F F F F
+  analysis interp nlat =         1024
+  analysis interp nlon =         2048
+  analysis interp lon0 =    0.0000000000000000     
+  analysis interp gridtype =            2
+  analysis interpolation type =            0
+ Running dycore: theta-l
+ Running tracer transport method: horizonatally Eulerian
+ REPRO_SUM_SETOPTS: Using fixed-point-based (scalable) reproducible distributed sum algorithm
+                     and not comparing with floating point algorithms.
+ Initialized repro_sum
+ 
+  total simulated time =    327680.00000000000     
+ 
+
+ ============================================
+         Testing Gaussian Quadrature...
+
+           points              weights
+ ============================================
+           1 -0.86113631159405257522394648889280        0.34785484513745385737306394922199      
+           2 -0.33998104358485626480266575910324        0.65214515486254614262693605077798      
+           3  0.33998104358485626480266575910324        0.65214515486254614262693605077798      
+           4  0.86113631159405257522394648889280        0.34785484513745385737306394922199      
+ ============================================
+ sum of Gaussian weights=   2.0000000000000000     
+ ============================================
+
+ ============================================
+       Testing Gauss-Lobatto Quadrature...
+
+           points              weights
+ ============================================
+           1  -1.0000000000000000000000000000000        0.16666666666666666666666666666666      
+           2 -0.44721359549995793928183473374625        0.83333333333333333333333333333332      
+           3  0.44721359549995793928183473374625        0.83333333333333333333333333333332      
+           4   1.0000000000000000000000000000000        0.16666666666666666666666666666666      
+ ============================================
+ sum of Gauss-Lobatto weights=   2.0000000000000000     
+ ============================================
+ total number of elements nelem =        98304
+ getMetaSchedule: tmpP:            2           1           7          95         427          96           1         142         428        2418           8        2419         342        2465         341        2512         340        2559
+ prim_init1: total threads: nthreads =            1
+ threads across elements    hthreads =            1
+ threading within elements  vthreads =            1
+ init shared boundary_exchange buffers
+ initializing elements...
+ running mass_matrix
+Epsilon bubble correction: Corrected area - domain size  0.00000000000099654
+ re-running mass_matrix
+ running global_dof
+process: 71 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+ PrintStateDescriptor:
+component   1 length=12288 displacement=      0
+component   2 length= 6192 displacement=  98304
+component   3 length= 6144 displacement= 147840
+component   4 length=   48 displacement= 196992
+component   5 length= 6192 displacement= 197376
+component   6 length=   16 displacement= 246912
+component   7 length=81920 displacement= 247040
+component   8 length=***** displacement= 902400
+component   9 length= 6144 displacement=2213120
+process:  1 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 70 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 76 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  2 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 77 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+ end of prim_init1
+process:  0 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 24 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 26 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 47 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 25 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 46 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 45 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 44 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 29 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 42 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  5 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 19 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 43 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 27 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  4 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 20 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 28 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 23 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  3 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 22 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 18 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 21 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+1 Layer Locations (*1000) 
+   1    0.0000              0.0000              0.0000
+                  0.0000              3.9062              3.9062
+   2    0.0000              7.8125              7.8125
+                  0.0000             11.7188             11.7188
+   3    0.0000             15.6250             15.6250
+                  0.0000             19.5312             19.5312
+   4    0.0000             23.4375             23.4375
+                  0.0000             27.3438             27.3438
+   5    0.0000             31.2500             31.2500
+                  0.0000             35.1562             35.1562
+   6    0.0000             39.0625             39.0625
+                  0.0000             42.9688             42.9688
+   7    0.0000             46.8750             46.8750
+                  0.0000             50.7812             50.7812
+   8    0.0000             54.6875             54.6875
+                  0.0000             58.5938             58.5938
+   9    0.0000             62.5000             62.5000
+                  0.0000             66.4062             66.4062
+  10    0.0000             70.3125             70.3125
+                  0.0000             74.2188             74.2188
+  11    0.0000             78.1250             78.1250
+                  0.0000             82.0312             82.0312
+  12    0.0000             85.9375             85.9375
+                  0.0000             89.8438             89.8438
+  13    0.0000             93.7500             93.7500
+                  0.0000             97.6562             97.6562
+  14    0.0000            101.5625            101.5625
+                  0.0000            105.4688            105.4688
+  15    0.0000            109.3750            109.3750
+                  0.0000            113.2812            113.2812
+  16    0.0000            117.1875            117.1875
+                  0.0000            121.0938            121.0938
+  17    0.0000            125.0000            125.0000
+                  0.0000            128.9062            128.9062
+  18    0.0000            132.8125            132.8125
+                  0.0000            136.7188            136.7188
+  19    0.0000            140.6250            140.6250
+                  0.0000            144.5312            144.5312
+  20    0.0000            148.4375            148.4375
+                  0.0000            152.3438            152.3438
+  21    0.0000            156.2500            156.2500
+                  0.0000            160.1562            160.1562
+  22    0.0000            164.0625            164.0625
+                  0.0000            167.9688            167.9688
+  23    0.0000            171.8750            171.8750
+                  0.0000            175.7812            175.7812
+  24    0.0000            179.6875            179.6875
+                  0.0000            183.5938            183.5938
+  25    0.0000            187.5000            187.5000
+                  0.0000            191.4062            191.4062
+  26    0.0000            195.3125            195.3125
+                  0.0000            199.2188            199.2188
+  27    0.0000            203.1250            203.1250
+                  0.0000            207.0312            207.0312
+  28    0.0000            210.9375            210.9375
+                  0.0000            214.8438            214.8438
+  29    0.0000            218.7500            218.7500
+                  0.0000            222.6562            222.6562
+  30    0.0000            226.5625            226.5625
+                  0.0000            230.4688            230.4688
+  31    0.0000            234.3750            234.3750
+                  0.0000            238.2812            238.2812
+  32    0.0000            242.1875            242.1875
+                  0.0000            246.0938            246.0938
+  33    0.0000            250.0000            250.0000
+                  0.0000            253.9062            253.9062
+  34    0.0000            257.8125            257.8125
+                  0.0000            261.7188            261.7188
+  35    0.0000            265.6250            265.6250
+                  0.0000            269.5312            269.5312
+  36    0.0000            273.4375            273.4375
+                  0.0000            277.3438            277.3438
+  37    0.0000            281.2500            281.2500
+                  0.0000            285.1562            285.1562
+  38    0.0000            289.0625            289.0625
+                  0.0000            292.9688            292.9688
+  39    0.0000            296.8750            296.8750
+                  0.0000            300.7812            300.7812
+  40    0.0000            304.6875            304.6875
+                  0.0000            308.5938            308.5938
+  41    0.0000            312.5000            312.5000
+                  0.0000            316.4062            316.4062
+  42    0.0000            320.3125            320.3125
+                  0.0000            324.2188            324.2188
+  43    0.0000            328.1250            328.1250
+                  0.0000            332.0312            332.0312
+  44    0.0000            335.9375            335.9375
+                  0.0000            339.8438            339.8438
+  45    0.0000            343.7500            343.7500
+                  0.0000            347.6562            347.6562
+  46    0.0000            351.5625            351.5625
+                  0.0000            355.4688            355.4688
+  47    0.0000            359.3750            359.3750
+                  0.0000            363.2812            363.2812
+  48    0.0000            367.1875            367.1875
+                  0.0000            371.0938            371.0938
+  49    0.0000            375.0000            375.0000
+                  0.0000            378.9062            378.9062
+  50    0.0000            382.8125            382.8125
+                  0.0000            386.7188            386.7188
+  51    0.0000            390.6250            390.6250
+                  0.0000            394.5312            394.5312
+  52    0.0000            398.4375            398.4375
+                  0.0000            402.3438            402.3438
+  53    0.0000            406.2500            406.2500
+                  0.0000            410.1562            410.1562
+  54    0.0000            414.0625            414.0625
+                  0.0000            417.9688            417.9688
+  55    0.0000            421.8750            421.8750
+                  0.0000            425.7812            425.7812
+  56    0.0000            429.6875            429.6875
+                  0.0000            433.5938            433.5938
+  57    0.0000            437.5000            437.5000
+                  0.0000            441.4062            441.4062
+  58    0.0000            445.3125            445.3125
+                  0.0000            449.2188            449.2188
+  59    0.0000            453.1250            453.1250
+                  0.0000            457.0312            457.0312
+  60    0.0000            460.9375            460.9375
+                  0.0000            464.8438            464.8438
+  61    0.0000            468.7500            468.7500
+                  0.0000            472.6562            472.6562
+  62    0.0000            476.5625            476.5625
+                  0.0000            480.4688            480.4688
+  63    0.0000            484.3750            484.3750
+                  0.0000            488.2812            488.2812
+  64    0.0000            492.1875            492.1875
+                  0.0000            496.0938            496.0938
+  65    0.0000            500.0000            500.0000
+                  0.0000            503.9062            503.9062
+  66    0.0000            507.8125            507.8125
+                  0.0000            511.7188            511.7188
+  67    0.0000            515.6250            515.6250
+                  0.0000            519.5312            519.5312
+  68    0.0000            523.4375            523.4375
+                  0.0000            527.3438            527.3438
+  69    0.0000            531.2500            531.2500
+                  0.0000            535.1562            535.1562
+  70    0.0000            539.0625            539.0625
+                  0.0000            542.9688            542.9688
+  71    0.0000            546.8750            546.8750
+                  0.0000            550.7812            550.7812
+  72    0.0000            554.6875            554.6875
+                  0.0000            558.5938            558.5938
+  73    0.0000            562.5000            562.5000
+                  0.0000            566.4062            566.4062
+  74    0.0000            570.3125            570.3125
+                  0.0000            574.2188            574.2188
+  75    0.0000            578.1250            578.1250
+                  0.0000            582.0312            582.0312
+  76    0.0000            585.9375            585.9375
+                  0.0000            589.8438            589.8438
+  77    0.0000            593.7500            593.7500
+                  0.0000            597.6562            597.6562
+  78    0.0000            601.5625            601.5625
+                  0.0000            605.4688            605.4688
+  79    0.0000            609.3750            609.3750
+                  0.0000            613.2812            613.2812
+  80    0.0000            617.1875            617.1875
+                  0.0000            621.0938            621.0938
+  81    0.0000            625.0000            625.0000
+                  0.0000            628.9062            628.9062
+  82    0.0000            632.8125            632.8125
+                  0.0000            636.7188            636.7188
+  83    0.0000            640.6250            640.6250
+                  0.0000            644.5312            644.5312
+  84    0.0000            648.4375            648.4375
+                  0.0000            652.3438            652.3438
+  85    0.0000            656.2500            656.2500
+                  0.0000            660.1562            660.1562
+  86    0.0000            664.0625            664.0625
+                  0.0000            667.9688            667.9688
+  87    0.0000            671.8750            671.8750
+                  0.0000            675.7812            675.7812
+  88    0.0000            679.6875            679.6875
+                  0.0000            683.5938            683.5938
+  89    0.0000            687.5000            687.5000
+                  0.0000            691.4062            691.4062
+  90    0.0000            695.3125            695.3125
+                  0.0000            699.2188            699.2188
+  91    0.0000            703.1250            703.1250
+                  0.0000            707.0312            707.0312
+  92    0.0000            710.9375            710.9375
+                  0.0000            714.8438            714.8438
+  93    0.0000            718.7500            718.7500
+                  0.0000            722.6562            722.6562
+  94    0.0000            726.5625            726.5625
+                  0.0000            730.4688            730.4688
+  95    0.0000            734.3750            734.3750
+                  0.0000            738.2812            738.2812
+  96    0.0000            742.1875            742.1875
+                  0.0000            746.0938            746.0938
+  97    0.0000            750.0000            750.0000
+                  0.0000            753.9062            753.9062
+  98    0.0000            757.8125            757.8125
+                  0.0000            761.7188            761.7188
+  99    0.0000            765.6250            765.6250
+                  0.0000            769.5312            769.5312
+ 100    0.0000            773.4375            773.4375
+                  0.0000            777.3438            777.3438
+ 101    0.0000            781.2500            781.2500
+                  0.0000            785.1562            785.1562
+ 102    0.0000            789.0625            789.0625
+                  0.0000            792.9688            792.9688
+ 103    0.0000            796.8750            796.8750
+                  0.0000            800.7812            800.7812
+ 104    0.0000            804.6875            804.6875
+                  0.0000            808.5938            808.5938
+ 105    0.0000            812.5000            812.5000
+                  0.0000            816.4062            816.4062
+ 106    0.0000            820.3125            820.3125
+                  0.0000            824.2188            824.2188
+ 107    0.0000            828.1250            828.1250
+                  0.0000            832.0312            832.0312
+ 108    0.0000            835.9375            835.9375
+                  0.0000            839.8438            839.8438
+ 109    0.0000            843.7500            843.7500
+                  0.0000            847.6562            847.6562
+ 110    0.0000            851.5625            851.5625
+                  0.0000            855.4688            855.4688
+ 111    0.0000            859.3750            859.3750
+                  0.0000            863.2812            863.2812
+ 112    0.0000            867.1875            867.1875
+                  0.0000            871.0938            871.0938
+ 113    0.0000            875.0000            875.0000
+                  0.0000            878.9062            878.9062
+ 114    0.0000            882.8125            882.8125
+                  0.0000            886.7188            886.7188
+ 115    0.0000            890.6250            890.6250
+                  0.0000            894.5312            894.5312
+ 116    0.0000            898.4375            898.4375
+                  0.0000            902.3438            902.3438
+ 117    0.0000            906.2500            906.2500
+                  0.0000            910.1562            910.1562
+ 118    0.0000            914.0625            914.0625
+                  0.0000            917.9688            917.9688
+ 119    0.0000            921.8750            921.8750
+                  0.0000            925.7812            925.7812
+ 120    0.0000            929.6875            929.6875
+                  0.0000            933.5938            933.5938
+ 121    0.0000            937.5000            937.5000
+                  0.0000            941.4062            941.4062
+ 122    0.0000            945.3125            945.3125
+                  0.0000            949.2188            949.2188
+ 123    0.0000            953.1250            953.1250
+                  0.0000            957.0312            957.0312
+ 124    0.0000            960.9375            960.9375
+                  0.0000            964.8438            964.8438
+ 125    0.0000            968.7500            968.7500
+                  0.0000            972.6562            972.6562
+ 126    0.0000            976.5625            976.5625
+                  0.0000            980.4688            980.4688
+ 127    0.0000            984.3750            984.3750
+                  0.0000            988.2812            988.2812
+ 128    0.0000            992.1875            992.1875
+                  0.0000            996.0938            996.0938
+ 129    0.0000           1000.0000           1000.0000
+ Primitive Equation Initialization...
+ Primitive Equation Init2...
+process: 72 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 74 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 75 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 73 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+ 
+ Running Global Integral Diagnostic...
+ Area of manifold is   1.0000000000000793     
+ Should be 1.0 to round off...
+Element area:  max/min    1.406
+Average equatorial node spacing (deg, km) =  0.234   26.08
+norm of Dinv (min, max):   163.003  245.466
+Max Dinv-based element distortion:     1.73
+dx based on Dinv svd:          ave,min,max =    21.69   17.32   26.08
+dx based on sqrt element area: ave,min,max =    24.03   22.00   26.08
+  runtype: initial run
+ initializing Jablonowski and Williamson baroclinic instability test V1
+process: 52 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 53 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 99 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 98 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 97 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 96 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 94 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 95 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 90 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 91 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 93 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 92 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 56 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  9 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 82 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 54 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 33 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 10 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 55 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 83 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 11 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 35 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 58 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 59 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 78 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 34 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 79 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 57 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 80 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 30 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 32 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 81 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 31 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 48 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 50 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 51 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 49 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 84 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 61 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 15 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 85 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 62 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 17 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 86 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 60 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 16 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 64 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 12 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 37 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 66 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 65 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 13 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 36 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 63 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 14 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 40 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 87 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 41 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 88 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 89 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 39 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 38 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  6 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  7 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process:  8 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 68 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 69 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+process: 67 horiz thread id:  0 # vert threads:  1 element limits:     1-  128
+ ...done
+ sponge layer nu_top viscosity scaling factor
+   nu_scale_top            1   8.0000000000000000     
+   nu_scale_top            2   1.5999999999999999     
+   nu_scale_top            3  0.61538461538461553     
+   nu_scale_top            4  0.31999999999999995     
+   nu_scale_top            5  0.19512195121951217     
+   nlev_tom            5
+CFL estimates in terms of S=time step stability region
+(i.e. advection w/leapfrog: S=1, viscosity w/forward Euler: S=2)
+SSP preservation (120m/s) RKSSP euler step dt  < S *     36.08s
+Stability: advective (120m/s)   dt_tracer < S *     79.00s
+Stability: advective (120m/s)   dt_tracer < S *     79.00s
+Stability: gravity wave(342m/s)   dt_dyn  < S *     27.72s
+Stability: nu_q   hyperviscosity dt < S *     39.52s
+Stability: nu_vor hyperviscosity dt < S *     39.52s
+Stability: nu_div hyperviscosity dt < S *     39.52s
+ tstep_type =           10
+dt_remap: (0=disabled)      160.00
+dt_tracer (SE), per RK stage:     80.00    40.00
+dt_dyn:                      80.00
+dt_dyn (viscosity):          26.67
+dt_tracer (viscosity):       80.00
+dt_vis_TOM:      26.67
+ initial state:
+ nstep=           0  time=   0.0000000000000000       [s]
+  u     =   0.506938710731011-259 (  1)  0.355939740543149E+02 ( 33)  0.301282004174233E+10
+  v     =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+  w     =  -0.173606985093102E-09 (129)  0.173606986506289E-09 (129) -0.584340066855695E-09
+  mu    =   0.999999999999013E+00 ( 89)  0.100000000000099E+01 ( 88)  0.202899456000000E+09
+  vTh_dp=   0.176953478603306E+06 (128)  0.101750736618448E+07 (  1)  0.552069323794223E+14
+  dz(m) =   0.519417834024822E+02 (128)  0.156458399899056E+05 (  1)  0.783135189621702E+11
+  dp    =   0.781250000000000E+03 (  1)  0.781250000000000E+03 (  1)  0.157286400000000E+12
+    fu  =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+    fv  =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+    ft  =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+    fq1 =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+      min dz/w (CFL condition) =   0.323997186971474E+12 (128)
+ qv(  1)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv(  2)=   0.0000000000000000E+00  0.8866465225950985E+00  0.1986966840415947E+06
+ qv(  3)=   0.1000000000000000E+01  0.1000000000000000E+01  0.1256637061436017E+07
+ qv(  4)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv(  5)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv(  6)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv(  7)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv(  8)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv(  9)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 10)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 11)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 12)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 13)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 14)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 15)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 16)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 17)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 18)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 19)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 20)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 21)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 22)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 23)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 24)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 25)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 26)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 27)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 28)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 29)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 30)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 31)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 32)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 33)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 34)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 35)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 36)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 37)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 38)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 39)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+ qv( 40)=   0.5232233744969195E+00  0.7745639824494988E+00  0.8054471000801682E+06
+      ps=   0.100000000000000E+06  0.100000000000000E+06  0.157286400000000E+12
+      M =   0.101976716676057E+05 kg/m^2  0.100000000000008E+06mb     
+ Directory ./movies/ does exist: initialing IO
+ I/O init...
+ Output of initial state...
+ Entering main timestepping loop
+ Finished main timestepping loop        4096
+ closing history files
+ writing timing data
+ calling t_finalizef
+ exiting program...
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+>>> Eul full
+
+***** GLOBAL STATISTICS (   768 MPI TASKS) *****
+
+$Id: gptl.c,v 1.157 2011-03-28 20:55:18 rosinski Exp $
+'count' is cumulative. All other stats are max/min
+'on' indicates whether the timer was active during output, and so stats are lower or upper bounds.
+
+name                                 on  processes  threads        count      walltotal   wallmax (proc   thrd  )   wallmin (proc   thrd  )
+"Total"                               -        768      768 7.680000e+02   1.270818e+05   165.549 (    90      0)   165.455 (   500      0)
+"prim_init1"                          -        768      768 7.680000e+02   1.453756e+03     1.895 (   765      0)     1.891 (   253      0)
+"PartitioningTime"                    -        768      768 7.680000e+02   5.124640e-04     0.000 (   136      0)     0.000 (   149      0)
+"repro_sum_int"                       -        768      768 3.456000e+04   8.772336e+00     0.013 (   252      0)     0.009 (     0      0)
+"sl_init1"                            -        768      768 7.680000e+02   4.951710e-04     0.000 (   599      0)     0.000 (   350      0)
+"prim_init2"                          -        768      768 7.680000e+02   1.549710e+03     2.104 (   330      0)     1.997 (   173      0)
+"prim_printstate"                     -        768      768 7.680000e+02   1.089857e+02     0.142 (     0      0)     0.142 (   505      0)
+"prim_io_init"                        -        768      768 7.680000e+02   1.369220e-04     0.000 (    90      0)     0.000 (   335      0)
+"prim_main_loop"                      -        768      768 7.680000e+02   1.239185e+05   161.374 (   132      0)   161.267 (   333      0)
+"prim_run"                            -        768      768 1.572864e+06   1.239177e+05   161.373 (   132      0)   161.266 (   333      0)
+"tl-sc prim_run_subcycle_c"           -        768      768 1.572864e+06   1.238342e+05   161.264 (   173      0)   161.159 (   333      0)
+"tl-sc dp3d-from-ps"                  -        768      768 1.572864e+06   3.820480e+02     0.500 (   579      0)     0.495 (   432      0)
+"ApplyCAMForcing_tracers"             -        768      768 1.572864e+06   9.230333e+02     1.210 (   495      0)     1.191 (    24      0)
+"ApplyCAMForcing_dynamics"            -        768      768 1.572864e+06   1.116643e+02     0.149 (   759      0)     0.141 (    48      0)
+"tl-sc prim_step-loop"                -        768      768 1.572864e+06   1.173435e+05   152.852 (   120      0)   152.663 (   335      0)
+"tl-s prim_step"                      -        768      768 3.145728e+06   1.173425e+05   152.851 (   120      0)   152.662 (   335      0)
+"tl-s deep_copy+derived_dp"           -        768      768 3.145728e+06   1.519251e+02     0.201 (   495      0)     0.194 (    48      0)
+"tl-s prim_advance_exp-loop"          -        768      768 3.145728e+06   4.498306e+04    66.071 (   740      0)    52.049 (    70      0)
+"tl-ae prim_advance_exp"              -        768      768 3.145728e+06   4.498186e+04    66.070 (   740      0)    52.047 (    70      0)
+"IMEX_KG255"                          -        768      768 3.145728e+06   2.997613e+04    46.034 (   123      0)    33.376 (    70      0)
+"caar compute"                        -        768      768 3.145728e+07   8.526244e+03    11.169 (   495      0)    11.044 (   330      0)
+"caar_bexchV"                         -        768      768 1.572864e+07   1.278885e+04    23.591 (   123      0)    11.029 (    70      0)
+"caar dp3d"                           -        768      768 1.572864e+07   6.236727e+02     0.847 (   495      0)     0.788 (   534      0)
+"compute_stage_value_dirk"            -        768      768 1.572864e+07   7.975356e+03    10.588 (   118      0)    10.290 (   383      0)
+"tl-ae advance_hypervis_dp"           -        768      768 3.145728e+06   1.492240e+04    22.579 (   507      0)    18.086 (   272      0)
+"hvf-bhwk"                            -        768      768 9.437184e+06   8.282144e+03    13.461 (   505      0)    10.028 (   279      0)
+"hvf-bexch"                           -        768      768 1.887437e+07   9.282522e+03    15.256 (   507      0)    10.732 (   334      0)
+"tl-s prim_advec_tracers_remap"       -        768      768 3.145728e+06   7.217183e+04   100.511 (    70      0)    86.490 (   740      0)
+"tl-at prim_advec_tracers_remap_RK2"  -        768      768 3.145728e+06   7.215759e+04   100.492 (    70      0)    86.472 (   740      0)
+"tl-at precompute_divdp"              -        768      768 3.145728e+06   1.855473e+02     0.247 (   495      0)     0.235 (   504      0)
+"tl-at esf-0"                         -        768      768 3.145728e+06   2.211977e+04    33.049 (    70      0)    23.717 (   134      0)
+"eus_bexch"                           -        768      768 9.437184e+06   2.411340e+04    35.580 (    66      0)    27.519 (   763      0)
+"tl-at esf-1"                         -        768      768 3.145728e+06   1.513187e+04    22.117 (    92      0)    17.815 (   301      0)
+"tl-at esf-2"                         -        768      768 3.145728e+06   3.368903e+04    46.699 (   345      0)    40.622 (   395      0)
+"tl-at qdp_time_avg"                  -        768      768 3.145728e+06   9.957503e+02     1.300 (   495      0)     1.293 (   533      0)
+"tl-sc vertical_remap"                -        768      768 1.572864e+06   5.000028e+03     6.611 (   579      0)     6.474 (   173      0)
+"Remap Thickness Functor"             -        768      768 1.572864e+06   1.224666e+02     0.163 (   276      0)     0.156 (   191      0)
+"Remap Scale States Functor"          -        768      768 1.572864e+06   6.774938e+01     0.091 (   495      0)     0.086 (    48      0)
+"Remap Compute Grids Functor"         -        768      768 1.572864e+06   1.862710e+02     0.246 (   276      0)     0.240 (   287      0)
+"Remap Compute Remap Functor"         -        768      768 1.572864e+06   4.202983e+03     5.569 (   579      0)     5.447 (   308      0)
+"Remap Rescale States Functor"        -        768      768 1.572864e+06   6.754818e+01     0.091 (   495      0)     0.086 (    54      0)
+"push_to_f90"                         -        768      768 7.680000e+02   8.251556e+01     0.122 (   689      0)     0.100 (   325      0)
+"t_prf"                               y          0        0 0.000000e+00   0.000000e+00     0.000 (     0      0)     0.000 (     0      0)
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@batch4>
+Subject: Job 883857: <r5-ne128-nmax4096-qsize40-nnode128> in cluster <summit> Done
+
+Job <r5-ne128-nmax4096-qsize40-nnode128> was submitted from host <login1> by user <ambradl> in cluster <summit> at Tue Apr  6 14:49:41 2021
+Job was executed on host(s) <1*batch4>, in queue <batch>, as user <ambradl> in cluster <summit> at Tue Apr  6 15:38:11 2021
+                            <42*g36n02>
+                            <42*g36n03>
+                            <42*g36n05>
+                            <42*g36n06>
+                            <42*g36n07>
+                            <42*g36n08>
+                            <42*g36n09>
+                            <42*g36n10>
+                            <42*g36n11>
+                            <42*g36n12>
+                            <42*g36n13>
+                            <42*g36n14>
+                            <42*g36n15>
+                            <42*g36n16>
+                            <42*g36n17>
+                            <42*g36n18>
+                            <42*g37n01>
+                            <42*g37n02>
+                            <42*g37n03>
+                            <42*g37n04>
+                            <42*g37n05>
+                            <42*g37n06>
+                            <42*g37n07>
+                            <42*g37n08>
+                            <42*g37n09>
+                            <42*g37n10>
+                            <42*g37n11>
+                            <42*g37n12>
+                            <42*g37n13>
+                            <42*g37n14>
+                            <42*g37n15>
+                            <42*g37n16>
+                            <42*g37n17>
+                            <42*g37n18>
+                            <42*h09n01>
+                            <42*h09n02>
+                            <42*h09n03>
+                            <42*h09n04>
+                            <42*h09n05>
+                            <42*h09n06>
+                            <42*h09n07>
+                            <42*h09n08>
+                            <42*h09n09>
+                            <42*h09n10>
+                            <42*h09n11>
+                            <42*h09n12>
+                            <42*h09n13>
+                            <42*h09n14>
+                            <42*h09n15>
+                            <42*h09n16>
+                            <42*h09n17>
+                            <42*h09n18>
+                            <42*h10n01>
+                            <42*h10n02>
+                            <42*h10n03>
+                            <42*h10n04>
+                            <42*h10n05>
+                            <42*h10n06>
+                            <42*h10n07>
+                            <42*h10n08>
+                            <42*h10n09>
+                            <42*h10n10>
+                            <42*h10n11>
+                            <42*h10n12>
+                            <42*h10n13>
+                            <42*h10n14>
+                            <42*h10n15>
+                            <42*h10n16>
+                            <42*h10n17>
+                            <42*h10n18>
+                            <42*h11n01>
+                            <42*h11n02>
+                            <42*h11n03>
+                            <42*h11n04>
+                            <42*h11n05>
+                            <42*h11n06>
+                            <42*h11n07>
+                            <42*h11n08>
+                            <42*h11n09>
+                            <42*h11n10>
+                            <42*h11n11>
+                            <42*h11n12>
+                            <42*h11n13>
+                            <42*h11n14>
+                            <42*h11n15>
+                            <42*h11n16>
+                            <42*h11n17>
+                            <42*h11n18>
+                            <42*h12n01>
+                            <42*h12n02>
+                            <42*h12n03>
+                            <42*h12n04>
+                            <42*h12n05>
+                            <42*h12n06>
+                            <42*h12n07>
+                            <42*h12n09>
+                            <42*h12n10>
+                            <42*h12n11>
+                            <42*h12n12>
+                            <42*h12n13>
+                            <42*h12n14>
+                            <42*h12n15>
+                            <42*h12n16>
+                            <42*h12n17>
+                            <42*h12n18>
+                            <42*h13n01>
+                            <42*h13n02>
+                            <42*h13n03>
+                            <42*h13n04>
+                            <42*h13n05>
+                            <42*h13n06>
+                            <42*h13n07>
+                            <42*h13n08>
+                            <42*h13n09>
+                            <42*h13n10>
+                            <42*h13n12>
+                            <42*h13n13>
+                            <42*h13n14>
+                            <42*h13n15>
+                            <42*h13n16>
+                            <42*h13n17>
+                            <42*h13n18>
+                            <42*h14n01>
+                            <42*h14n02>
+                            <42*h14n03>
+                            <42*h14n04>
+                            <42*h14n05>
+                            <42*h14n06>
+</ccs/home/ambradl> was used as the home directory.
+</ccs/home/ambradl/sl/gpu> was used as the working directory.
+Started at Tue Apr  6 15:38:11 2021
+Terminated at Tue Apr  6 15:43:17 2021
+Results reported at Tue Apr  6 15:43:17 2021
+
+The output (if any) is above this job summary.
+

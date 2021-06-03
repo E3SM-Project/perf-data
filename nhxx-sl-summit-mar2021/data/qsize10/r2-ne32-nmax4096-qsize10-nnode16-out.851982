@@ -1,0 +1,1655 @@
+module purge
+module load cuda/10.1.243 gcc/7.4.0 netlib-lapack/3.8.0 cmake/3.18.2 spectrum-mpi/10.3.1.2-20200121 netcdf/4.6.2 netcdf-fortran/4.4.4 hdf5/1.10.4
+module load python/3.6.6-anaconda3-5.3.0
+
+export PAMI_ENABLE_STRIPING=1
+export PAMI_IBV_ADAPTER_AFFINITY=1
+export PAMI_IBV_DEVICE_NAME="mlx5_0:1,mlx5_3:1"
+export PAMI_IBV_DEVICE_NAME_1="mlx5_3:1,mlx5_0:1"
+export PAMI_CUDA_AWARE_THRESH=320000
+mkdir: cannot create directory '/gpfs/alpine/scratch/ambradl/cli115//r2-ne32-nmax4096-qsize10-nnode16': File exists
+mkdir: cannot create directory 'movies': File exists
+&ctl_nl
+vthreads          = 1
+NThreads          = 1
+partmethod        = 4
+topology          = "cube"
+test_case         = "jw_baroclinic"
+u_perturb         = 1
+rotate_grid       = 0
+ne                = 32
+qsize             = 10
+nmax              = 4096
+disable_diagnostics = .true.
+statefreq         = 99999999
+restartfreq       = 43200
+restartfile       = "./R0001"
+runtype           = 0
+mesh_file         = '/dev/null'
+tstep             = 320.0
+integration       = "explicit"
+smooth            = 0
+nu                = 8.19e+14
+nu_div            = 8.19e+14
+nu_p              = 8.19e+14
+nu_q              = 8.19e+14
+nu_s              =-1
+nu_top            = 0
+se_ftype          = 0
+limiter_option    = 9
+vert_remap_q_alg  = 10
+hypervis_scaling  = 0
+hypervis_order    = 2
+hypervis_subcycle = 3
+hypervis_subcycle_tom  = 0
+theta_hydrostatic_mode = false
+theta_advect_form = 1
+tstep_type        = 10
+dt_remap_factor     = 2
+dt_tracer_factor    = 8
+hypervis_subcycle_q = 8
+transport_alg       = 12
+semi_lagrange_hv_q  = 1
+semi_lagrange_cdr_check = .false.
+/
+&solver_nl
+precon_method = "identity"
+maxits        = 500
+tol           = 1.e-9
+/
+&filter_nl
+filter_type   = "taylor"
+transfer_type = "bv"
+filter_freq   = 0
+filter_mu     = 0.04D0
+p_bv          = 12.0D0
+s_bv          = .666666666666666666D0
+wght_fm       = 0.10D0
+kcut_fm       = 2
+/
+&vert_nl
+vform     = "ccm"
+vfile_mid = '/ccs/home/ambradl/sl/gpu/vcoord/sabm-128.ascii'
+vfile_int = '/ccs/home/ambradl/sl/gpu/vcoord/sabi-128.ascii'
+/
+
+&prof_inparm
+profile_outpe_num   = 100
+profile_single_file = .true.
+/
+
+!  timunits: 0= steps, 1=days, 2=hours
+&analysis_nl
+ interp_gridtype   = 2
+ output_timeunits  = 1,1
+ output_frequency  = 0,0
+ output_start_time = 0,0
+ output_end_time   = 30000,30000
+ output_varnames1  = 'ps','zeta','u','v','T'
+ output_varnames2  = 'Q','Q2','Q3','Q4'
+ io_stride         = 8
+ output_type       = 'netcdf'
+/
+&ctl_nl
+vthreads          = 1
+NThreads          = 1
+partmethod        = 4
+topology          = "cube"
+test_case         = "jw_baroclinic"
+u_perturb         = 1
+rotate_grid       = 0
+ne                = 32
+qsize             = 10
+nmax              = 4096
+disable_diagnostics = .true.
+statefreq         = 99999999
+restartfreq       = 43200
+restartfile       = "./R0001"
+runtype           = 0
+mesh_file         = '/dev/null'
+tstep             = 320.0
+integration       = "explicit"
+smooth            = 0
+nu                = 8.19e+14
+nu_div            = 8.19e+14
+nu_p              = 8.19e+14
+nu_q              = 8.19e+14
+nu_s              =-1
+nu_top            = 0
+se_ftype          = 0
+limiter_option    = 9
+vert_remap_q_alg  = 10
+hypervis_scaling  = 0
+hypervis_order    = 2
+hypervis_subcycle = 3
+hypervis_subcycle_tom  = 0
+theta_hydrostatic_mode = false
+theta_advect_form = 1
+tstep_type        = 10
+dt_remap_factor     = 2
+dt_tracer_factor    = 1
+hypervis_subcycle_q = 1
+transport_alg       = 0
+/
+&solver_nl
+precon_method = "identity"
+maxits        = 500
+tol           = 1.e-9
+/
+&filter_nl
+filter_type   = "taylor"
+transfer_type = "bv"
+filter_freq   = 0
+filter_mu     = 0.04D0
+p_bv          = 12.0D0
+s_bv          = .666666666666666666D0
+wght_fm       = 0.10D0
+kcut_fm       = 2
+/
+&vert_nl
+vform     = "ccm"
+vfile_mid = '/ccs/home/ambradl/sl/gpu/vcoord/sabm-128.ascii'
+vfile_int = '/ccs/home/ambradl/sl/gpu/vcoord/sabi-128.ascii'
+/
+
+&prof_inparm
+profile_outpe_num   = 100
+profile_single_file = .true.
+/
+
+!  timunits: 0= steps, 1=days, 2=hours
+&analysis_nl
+ interp_gridtype   = 2
+ output_timeunits  = 1,1
+ output_frequency  = 0,0
+ output_start_time = 0,0
+ output_end_time   = 30000,30000
+ output_varnames1  = 'ps','zeta','u','v','T'
+ output_varnames2  = 'Q','Q2','Q3','Q4'
+ io_stride         = 8
+ output_type       = 'netcdf'
+/
+ number of MPI processes:           96
+ MPI processors stride:            1
+ number of MPI processes per node: min,max=           6           6
+ Primitive Equation Init1...
+ (t_initf) Read in prof_inparm namelist from: input.nl
+ (t_initf) Using profile_disable=          F
+ (t_initf)       profile_timer=                      4
+ (t_initf)       profile_depth_limit=            99999
+ (t_initf)       profile_detail_limit=               1
+ (t_initf)       profile_barrier=          F
+ (t_initf)       profile_outpe_num=                  0
+ (t_initf)       profile_outpe_stride=               1
+ (t_initf)       profile_single_file=      F
+ (t_initf)       profile_global_stats=     T
+ (t_initf)       profile_ovhd_measurement= F
+ (t_initf)       profile_add_detail=       F
+ (t_initf)       profile_papi_enable=      F
+macro  KOKKOS_ENABLE_CUDA      : defined
+macro  CUDA_VERSION          = 10010 = version 10.1
+Kokkos::Cuda[ 0 ] Tesla V100-SXM2-16GB capability 7.0, Total Global Memory: 15.75 G, Shared Memory per Block: 48 K : Selected
+HOMMEXX SHA1: 09574f3030b7a5c1733746c0458ac75852f84206
+HOMMEXX VECTOR_SIZE: 1
+HOMMEXX vector tag: SIMD
+HOMMEXX active AVX set:
+HOMMEXX MPI_ON_DEVICE: 1
+HOMMEXX CUDA_SHARE_BUFFER: off
+HOMMEXX CUDA_(MIN/MAX)_WARP_PER_TEAM: 8 / 16
+HOMMEXX doesn't have vector pragmas
+HOMMEXX configured with CMake
+HOMMEXX has config.h.c
+ reading ctl namelist...
+ Reading namelist ctl_nl from standard input
+ reading physics namelist...
+ reading vertical namelist...
+   vform =ccm
+   vfile_mid=/ccs/home/ambradl/sl/gpu/vcoord/sabm-128.ascii
+   vfile_int=/ccs/home/ambradl/sl/gpu/vcoord/sabi-128.ascii
+   vanalytic=           0
+dt_remap_factor and dt_tracer_factor were specified; changing qsplit from  1 to  8 and rsplit from  0 to  1.
+ -DHORIZ_OPENMP disabled
+ -DCOLUMN_OPENMP disabled
+ Mesh File:/dev/null
+ Reference element projection: cubed_sphere_map=           2
+ done reading namelist...
+ readnl: topology      = cube
+ readnl: geometry      = sphere
+ readnl: test_case     = jw_baroclinic
+ readnl: omega         =    7.2920000000000000E-005
+ readnl: sub_case      =            1
+ readnl: ndays         =            0
+ readnl: nmax          =         4096
+ readnl: pertlim       =    0.0000000000000000     
+ readnl: qsize,qsize_d =           10          10
+ readnl: NThreads      =            1
+ readnl: ne,np         =           32           4
+ readnl: partmethod    =            4
+ readnl: COORD_TRANSFORM_METHOD    =            1
+ readnl: Z2_MAP_METHOD    =            1
+ readnl: nmpi_per_node =            6
+ readnl: vthreads      =            1
+ readnl: nnodes        =           16
+ readnl: npart         =           96
+
+ readnl: integration   = explicit
+ readnl: LF-trapazoidal freq=            0
+ readnl: theta_hydrostatic_mode =  F
+ readnl: transport_alg   =           12
+ readnl: semi_lagrange_cdr_alg   =            3
+ readnl: semi_lagrange_cdr_check   =  F
+ readnl: semi_lagrange_hv_q   =            1
+ readnl: semi_lagrange_nearest_point_lev   =          256
+ readnl: tstep_type    =           10
+ readnl: theta_advect_form =            1
+ readnl: vert_remap_q_alg  =           10
+ readnl: tstep          =    320.00000000000000     
+ readnl: ftype          =            0
+ readnl: limiter_option =            9
+ readnl: qsplit (deprecated) =            8
+ readnl: vertical remap frequency rsplit (0=disabled) (deprecated):            1
+ readnl: dt_tracer_factor =            8
+ readnl: vertical remap frequency dt_remap_factor (0=disabled):            2
+ readnl: runtype       =            0
+ readnl: se_fv_phys_remap_alg =            1
+ Constant (hyper)viscosity used.
+ hypervis_subcycle     =            3
+ hypervis_subcycle_tom =            0
+ hypervis_subcycle_q   =            8
+viscosity:  nu (vor/div) =  0.82E+15 0.82E+15
+viscosity:  nu_s      =  0.82E+15
+viscosity:  nu_q      =  0.82E+15
+viscosity:  nu_p      =  0.82E+15
+viscosity:  nu_top      =  0.00E+00
+ 
+ physconst: omega  =    7.2920000000000000E-005
+ physconst: rearth =    6376000.0000000000     
+ physconst: rrearth=    1.5683814303638645E-007
+ 
+  analysis interpolation =  T F F F F F F F
+  analysis interp nlat =          256
+  analysis interp nlon =          512
+  analysis interp lon0 =    0.0000000000000000     
+  analysis interp gridtype =            2
+  analysis interpolation type =            0
+ Running dycore: theta-l
+ Running tracer transport method: semi-Lagrangian
+ REPRO_SUM_SETOPTS: Using fixed-point-based (scalable) reproducible distributed sum algorithm
+                     and not comparing with floating point algorithms.
+ Initialized repro_sum
+ 
+  total simulated time =    1310720.0000000000     
+ 
+
+ ============================================
+         Testing Gaussian Quadrature...
+
+           points              weights
+ ============================================
+           1 -0.86113631159405257522394648889280        0.34785484513745385737306394922199      
+           2 -0.33998104358485626480266575910324        0.65214515486254614262693605077798      
+           3  0.33998104358485626480266575910324        0.65214515486254614262693605077798      
+           4  0.86113631159405257522394648889280        0.34785484513745385737306394922199      
+ ============================================
+ sum of Gaussian weights=   2.0000000000000000     
+ ============================================
+
+ ============================================
+       Testing Gauss-Lobatto Quadrature...
+
+           points              weights
+ ============================================
+           1  -1.0000000000000000000000000000000        0.16666666666666666666666666666666      
+           2 -0.44721359549995793928183473374625        0.83333333333333333333333333333332      
+           3  0.44721359549995793928183473374625        0.83333333333333333333333333333332      
+           4   1.0000000000000000000000000000000        0.16666666666666666666666666666666      
+ ============================================
+ sum of Gauss-Lobatto weights=   2.0000000000000000     
+ ============================================
+ total number of elements nelem =         6144
+ getMetaSchedule: tmpP:            4           1           3          47          54          48           1          94          55        1186           2        1187          43        1233          42        1279
+ prim_init1: total threads: nthreads =            1
+ threads across elements    hthreads =            1
+ threading within elements  vthreads =            1
+ init shared boundary_exchange buffers
+ initializing elements...
+ running mass_matrix
+Epsilon bubble correction: Corrected area - domain size  0.00000000000002487
+ re-running mass_matrix
+ running global_dof
+ PrintStateDescriptor:
+component   1 length=12288 displacement=      0
+component   2 length= 6192 displacement=  98304
+component   3 length= 6144 displacement= 147840
+component   4 length=   48 displacement= 196992
+component   5 length= 6192 displacement= 197376
+component   6 length=   16 displacement= 246912
+component   7 length=20480 displacement= 247040
+component   8 length=40960 displacement= 410880
+component   9 length= 6144 displacement= 738560
+ creating sorted ghost cell neigbor map...
+ checking ghost cell neighbor buffer sorting...
+ passed.
+ COMPOSE> use HV; nu_q, all:   819000000000000.00                1
+process: 60 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 13 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  8 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 29 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 12 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 39 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 61 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 50 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 31 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  2 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 18 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 19 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 28 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 33 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 27 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 69 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 32 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 63 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 37 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 11 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 20 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 74 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  7 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 53 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 23 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 93 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 85 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 54 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 86 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 84 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  6 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 21 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 22 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 16 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 15 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 67 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 14 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  9 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 17 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 10 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 38 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 58 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 82 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 78 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 83 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 79 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  4 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 81 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 80 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 56 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 62 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 55 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  3 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 57 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 64 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 59 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  5 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 65 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  1 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+ end of prim_init1
+process:  0 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+1 Layer Locations (*1000) 
+   1    0.0000              0.0000              0.0000
+                  0.0000              3.9062              3.9062
+   2    0.0000              7.8125              7.8125
+                  0.0000             11.7188             11.7188
+   3    0.0000             15.6250             15.6250
+                  0.0000             19.5312             19.5312
+   4    0.0000             23.4375             23.4375
+                  0.0000             27.3438             27.3438
+   5    0.0000             31.2500             31.2500
+                  0.0000             35.1562             35.1562
+   6    0.0000             39.0625             39.0625
+                  0.0000             42.9688             42.9688
+   7    0.0000             46.8750             46.8750
+                  0.0000             50.7812             50.7812
+   8    0.0000             54.6875             54.6875
+process: 91 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 94 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 90 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 92 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 95 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 24 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 25 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 26 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 66 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 68 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 70 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 87 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 71 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 36 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 41 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 40 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 30 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 34 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 35 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 72 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+                  0.0000             58.5938             58.5938
+   9    0.0000             62.5000             62.5000
+                  0.0000             66.4062             66.4062
+  10    0.0000             70.3125             70.3125
+                  0.0000             74.2188             74.2188
+  11    0.0000             78.1250             78.1250
+                  0.0000             82.0312             82.0312
+  12    0.0000             85.9375             85.9375
+                  0.0000             89.8438             89.8438
+  13    0.0000             93.7500             93.7500
+                  0.0000             97.6562             97.6562
+  14    0.0000            101.5625            101.5625
+                  0.0000            105.4688            105.4688
+  15    0.0000            109.3750            109.3750
+                  0.0000            113.2812            113.2812
+  16    0.0000            117.1875            117.1875
+                  0.0000            121.0938            121.0938
+  17    0.0000            125.0000            125.0000
+                  0.0000            128.9062            128.9062
+  18    0.0000            132.8125            132.8125
+                  0.0000            136.7188            136.7188
+  19    0.0000            140.6250            140.6250
+                  0.0000            144.5312            144.5312
+  20    0.0000            148.4375            148.4375
+                  0.0000            152.3438            152.3438
+  21    0.0000            156.2500            156.2500
+                  0.0000            160.1562            160.1562
+  22    0.0000            164.0625            164.0625
+                  0.0000            167.9688            167.9688
+  23    0.0000            171.8750            171.8750
+                  0.0000            175.7812            175.7812
+  24    0.0000            179.6875            179.6875
+                  0.0000            183.5938            183.5938
+  25    0.0000            187.5000            187.5000
+                  0.0000            191.4062            191.4062
+  26    0.0000            195.3125            195.3125
+                  0.0000            199.2188            199.2188
+  27    0.0000            203.1250            203.1250
+                  0.0000            207.0312            207.0312
+  28    0.0000            210.9375            210.9375
+                  0.0000            214.8438            214.8438
+  29    0.0000            218.7500            218.7500
+                  0.0000            222.6562            222.6562
+  30    0.0000            226.5625            226.5625
+                  0.0000            230.4688            230.4688
+  31    0.0000            234.3750            234.3750
+                  0.0000            238.2812            238.2812
+  32    0.0000            242.1875            242.1875
+                  0.0000            246.0938            246.0938
+  33    0.0000            250.0000            250.0000
+                  0.0000            253.9062            253.9062
+  34    0.0000            257.8125            257.8125
+                  0.0000            261.7188            261.7188
+  35    0.0000            265.6250            265.6250
+                  0.0000            269.5312            269.5312
+  36    0.0000            273.4375            273.4375
+                  0.0000            277.3438            277.3438
+  37    0.0000            281.2500            281.2500
+                  0.0000            285.1562            285.1562
+  38    0.0000            289.0625            289.0625
+                  0.0000            292.9688            292.9688
+  39    0.0000            296.8750            296.8750
+                  0.0000            300.7812            300.7812
+  40    0.0000            304.6875            304.6875
+                  0.0000            308.5938            308.5938
+  41    0.0000            312.5000            312.5000
+                  0.0000            316.4062            316.4062
+  42    0.0000            320.3125            320.3125
+                process: 76 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+  0.0000            324.2188            324.2188
+  43    0.0000            328.1250            328.1250
+                  0.0000            332.0312            332.0312
+  44    0.0000            335.9375            335.9375
+                  0.0000            339.8438            339.8438
+  45    0.0000            343.7500            343.7500
+                  0.0000            347.6562            347.6562
+  46    0.0000            351.5625            351.5625
+                  0.0000            355.4688            355.4688
+  47    0.0000            359.3750            359.3750
+                  0.0000            363.2812            363.2812
+  48    0.0000            367.1875            367.1875
+                  0.0000            371.0938            371.0938
+  49    0.0000            375.0000            375.0000
+                  0.0000            378.9062            378.9062
+  50    0.0000            382.8125            382.8125
+                  0.0000            386.7188            386.7188
+  51    0.0000            390.6250            390.6250
+                  0.0000            394.5312            394.5312
+  52    0.0000            398.4375            398.4375
+                  0.0000            402.3438            402.3438
+  53    0.0000            406.2500            406.2500
+                  0.0000            410.1562            410.1562
+  54    0.0000            414.0625            414.0625
+                  0.0000            417.9688            417.9688
+  55    0.0000            421.8750            421.8750
+                  0.0000            425.7812            425.7812
+  56    0.0000            429.6875            429.6875
+                  0.0000            433.5938            433.5938
+  57    0.0000            437.5000            437.5000
+                  0.0000            441.4062            441.4062
+  58    0.0000            445.3125            445.3125
+                  0.0000            449.2188            449.2188
+  59    0.0000            453.1250            453.1250
+                  0.0000            457.0312            457.0312
+  60    0.0000            460.9375            460.9375
+                  0.0000            464.8438            464.8438
+  61    0.0000            468.7500            468.7500
+                  0.0000            472.6562            472.6562
+  62    0.0000            476.5625            476.5625
+                  0.0000            480.4688            480.4688
+  63    0.0000            484.3750            484.3750
+                  0.0000            488.2812            488.2812
+  64    0.0000            492.1875            492.1875
+                  0.0000            496.0938            496.0938
+  65    0.0000            500.0000            500.0000
+                  0.0000            503.9062            503.9062
+  66    0.0000            507.8125            507.8125
+                  0.0000            511.7188            511.7188
+  67    0.0000            515.6250            515.6250
+                  0.0000            519.5312            519.5312
+  68    0.0000            523.4375            523.4375
+                  0.0000            527.3438            527.3438
+  69    0.0000            531.2500            531.2500
+                  0.0000            535.1562            535.1562
+  70    0.0000            539.0625            539.0625
+                  0.0000            542.9688            542.9688
+  71    0.0000            546.8750            546.8750
+                  0.0000            550.7812            550.7812
+  72    0.0000            554.6875            554.6875
+                  0.0000            558.5938            558.5938
+  73    0.0000            562.5000            562.5000
+                  0.0000            566.4062            566.4062
+  74    0.0000            570.3125            570.3125
+                  0.0000            574.2188            574.2188
+  75    0.0000            578.1250            578.1250
+                  0.0000            582.0312            582.0312
+  76    0.0000            585.9375            585.9375
+                  0.0000        process: 73 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+    589.8438            589.8438
+  77    0.0000            593.7500            593.7500
+                  0.0000            597.6562            597.6562
+  78    0.0000            601.5625            601.5625
+                  0.0000            605.4688            605.4688
+  79    0.0000            609.3750            609.3750
+                  0.0000            613.2812            613.2812
+  80    0.0000            617.1875            617.1875
+                  0.0000            621.0938            621.0938
+  81    0.0000            625.0000            625.0000
+                  0.0000            628.9062            628.9062
+  82    0.0000            632.8125            632.8125
+                  0.0000            636.7188            636.7188
+  83    0.0000            640.6250            640.6250
+                  0.0000            644.5312            644.5312
+  84    0.0000            648.4375            648.4375
+                  0.0000            652.3438            652.3438
+  85    0.0000            656.2500            656.2500
+                  0.0000            660.1562            660.1562
+  86    0.0000            664.0625            664.0625
+                  0.0000            667.9688            667.9688
+  87    0.0000            671.8750            671.8750
+                  0.0000            675.7812            675.7812
+  88    0.0000            679.6875            679.6875
+                  0.0000            683.5938            683.5938
+  89    0.0000            687.5000            687.5000
+                  0.0000            691.4062            691.4062
+  90    0.0000            695.3125            695.3125
+                  0.0000            699.2188            699.2188
+  91    0.0000            703.1250            703.1250
+                  0.0000            707.0312            707.0312
+  92    0.0000            710.9375            710.9375
+                  0.0000            714.8438            714.8438
+  93    0.0000            718.7500            718.7500
+                  0.0000            722.6562            722.6562
+  94    0.0000            726.5625            726.5625
+                  0.0000            730.4688            730.4688
+  95    0.0000            734.3750            734.3750
+                  0.0000            738.2812            738.2812
+  96    0.0000            742.1875            742.1875
+                  0.0000            746.0938            746.0938
+  97    0.0000            750.0000            750.0000
+                  0.0000            753.9062            753.9062
+  98    0.0000            757.8125            757.8125
+                  0.0000            761.7188            761.7188
+  99    0.0000            765.6250            765.6250
+                  0.0000            769.5312            769.5312
+ 100    0.0000            773.4375            773.4375
+                  0.0000            777.3438            777.3438
+ 101    0.0000            781.2500            781.2500
+                  0.0000            785.1562            785.1562
+ 102    0.0000            789.0625            789.0625
+                  0.0000            792.9688            792.9688
+ 103    0.0000            796.8750            796.8750
+                  0.0000            800.7812            800.7812
+ 104    0.0000            804.6875            804.6875
+                  0.0000            808.5938            808.5938
+ 105    0.0000            812.5000            812.5000
+                  0.0000            816.4062            816.4062
+ 106    0.0000            820.3125            820.3125
+                  0.0000            824.2188            824.2188
+ 107    0.0000            828.1250            828.1250
+                  0.0000            832.0312            832.0312
+ 108    0.0000            835.9375            835.9375
+                  0.0000            839.8438            839.8438
+ 109    0.0000            843.7500            843.7500
+                  0.0000            847.6562            847.6562
+ 110    0.0000            851.5625            851.5625
+                  0.0000            855.4688            855.4688
+ 111    0.0000            859.3750            859.3750
+                  0.0000            863.2812            863.2812
+ 112    0.0000            867.1875            867.1875
+                  0.0000            871.0938            871.0938
+ 113    0.0000            875.0000            875.0000
+                  0.0000            878.9062            878.9062
+ 114    0.0000            882.8125            882.8125
+                  0.0000            886.7188            886.7188
+ 115    0.0000            890.6250            890.6250
+                  0.0000            894.5312            894.5312
+ 116    0.0000            898.4375            898.4375
+                  0.0000            902.3438            902.3438
+ 117    0.0000            906.2500            906.2500
+                  0.0000            910.1562            910.1562
+ 118    0.0000            914.0625            914.0625
+                  0.0000            917.9688            917.9688
+ 119    0.0000            921.8750            921.8750
+                  0.0000            925.7812            925.7812
+ 120    0.0000            929.6875            929.6875
+                  0.0000            933.5938            933.5938
+ 121    0.0000            937.5000            937.5000
+                  0.0000            941.4062            941.4062
+ 122    0.0000            945.3125            945.3125
+                  0.0000            949.2188            949.2188
+ 123    0.0000            953.1250            953.1250
+                  0.0000            957.0312            957.0312
+ 124    0.0000            960.9375            960.9375
+                  0.0000            964.8438            964.8438
+ 125    0.0000            968.7500            968.7500
+                  0.0000            972.6562            972.6562
+ 126    0.0000            976.5625            976.5625
+                  0.0000            980.4688            980.4688
+ 127    0.0000            984.3750            984.3750
+                  0.0000            988.2812            988.2812
+ 128    0.0000            992.1875            992.1875
+                  0.0000            996.0938            996.0938
+ 129    0.0000           1000.0000           1000.0000
+ Primitive Equation Initialization...
+ Primitive Equation Init2...
+ 
+ Running Global Integral Diagnostic...
+ Area of manifold is   1.0000000000000020     
+ Should be 1.0 to round off...
+Element area:  max/min    1.380
+Average equatorial node spacing (deg, km) =  0.938  104.33
+norm of Dinv (min, max):    40.858   62.131
+Max Dinv-based element distortion:     1.73
+dx based on Dinv svd:          ave,min,max =    85.51   68.41  104.03
+dx based on sqrt element area: ave,min,max =    96.12   88.79  104.29
+  runtype: initial run
+ initializing Jablonowski and Williamson baroclinic instability test V1
+process: 45 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 42 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 46 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 44 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 43 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 47 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 52 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 77 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 75 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 48 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 51 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 49 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 88 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 89 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+ ...done
+ sponge layer nu_top viscosity scaling factor
+   nu_scale_top            1   8.0000000000000000     
+   nu_scale_top            2   1.5999999999999999     
+   nu_scale_top            3  0.61538461538461553     
+   nu_scale_top            4  0.31999999999999995     
+   nu_scale_top            5  0.19512195121951217     
+   nlev_tom            5
+CFL estimates in terms of S=time step stability region
+(i.e. advection w/leapfrog: S=1, viscosity w/forward Euler: S=2)
+SSP preservation (120m/s) RKSSP euler step dt  < S *    142.53s
+Stability: advective (120m/s)   dt_tracer < S *    312.11s
+Stability: advective (120m/s)   dt_tracer < S *    312.11s
+Stability: gravity wave(342m/s)   dt_dyn  < S *    109.51s
+Stability: nu_q   hyperviscosity dt < S *    150.47s
+Stability: nu_vor hyperviscosity dt < S *    150.47s
+Stability: nu_div hyperviscosity dt < S *    150.47s
+ tstep_type =           10
+dt_remap: (0=disabled)      640.00
+dt_tracer (SE), per RK stage:   2560.00  1280.00
+dt_dyn:                     320.00
+dt_dyn (viscosity):         106.67
+dt_tracer (viscosity):      320.00
+dt_vis_TOM:     106.67
+ initial state:
+ nstep=           0  time=   0.0000000000000000       [s]
+  u     =   0.510716175322097-259 (  1)  0.355931088319263E+02 ( 33)  0.188298590565459E+09
+  v     =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+  w     =  -0.110899765496250E-07 (129)  0.110899765497377E-07 (129) -0.935651260988981E-08
+  mu    =   0.999999999999031E+00 ( 89)  0.100000000000095E+01 ( 89)  0.126812160000000E+08
+  vTh_dp=   0.176953478603306E+06 (128)  0.101750736618448E+07 (  1)  0.345043205871593E+13
+  dz(m) =   0.519417834024822E+02 (128)  0.156458399899056E+05 (  1)  0.489459453620037E+10
+  dp    =   0.781250000000000E+03 (  1)  0.781250000000000E+03 (  1)  0.983040000000000E+10
+    fu  =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+    fv  =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+    ft  =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+    fq1 =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+      min dz/w (CFL condition) =   0.509363295663512E+10 (128)
+ qv(  1)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  2)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  3)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  4)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  5)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  6)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  7)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  8)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  9)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv( 10)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+      ps=   0.100000000000000E+06  0.100000000000000E+06  0.983040000000000E+10
+      M =   0.101976716676049E+05 kg/m^2  0.100000000000000E+06mb     
+compose> nelemd 64 qsize 10 hv_q 1 hv_subcycle_q 8 lim 9 independent_time_steps 1
+ Directory ./movies/ does exist: initialing IO
+ I/O init...
+ Output of initial state...
+ Entering main timestepping loop
+ Finished main timestepping loop        4096
+ closing history files
+ writing timing data
+ calling t_finalizef
+ exiting program...
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+>>> SL full
+
+***** GLOBAL STATISTICS (    96 MPI TASKS) *****
+
+$Id: gptl.c,v 1.157 2011-03-28 20:55:18 rosinski Exp $
+'count' is cumulative. All other stats are max/min
+'on' indicates whether the timer was active during output, and so stats are lower or upper bounds.
+
+name                               on  processes  threads        count      walltotal   wallmax (proc   thrd  )   wallmin (proc   thrd  )
+"Total"                             -         96       96 9.600000e+01   4.148559e+03    43.228 (    46      0)    43.191 (    89      0)
+"prim_init1"                        -         96       96 9.600000e+01   1.836002e+02     1.917 (     0      0)     1.905 (    60      0)
+"PartitioningTime"                  -         96       96 9.600000e+01   4.120700e-05     0.000 (    62      0)     0.000 (     0      0)
+"repro_sum_int"                     -         96       96 5.059200e+04   1.806204e+01     0.214 (    90      0)     0.145 (    57      0)
+"compose_init"                      -         96       96 9.600000e+01   2.244727e+00     0.027 (    77      0)     0.021 (    60      0)
+"sl_init1"                          -         96       96 9.600000e+01   7.626496e+00     0.082 (    46      0)     0.077 (    39      0)
+"prim_init2"                        -         96       96 9.600000e+01   4.976626e+01     0.602 (     8      0)     0.509 (    77      0)
+"prim_printstate"                   -         96       96 9.600000e+01   3.329708e+00     0.035 (     0      0)     0.035 (    60      0)
+"prim_io_init"                      -         96       96 9.600000e+01   2.161200e-05     0.000 (    68      0)     0.000 (    79      0)
+"prim_main_loop"                    -         96       96 9.600000e+01   3.899172e+03    40.624 (    65      0)    40.536 (    10      0)
+"prim_run"                          -         96       96 4.915200e+04   3.899152e+03    40.623 (    65      0)    40.536 (    10      0)
+"tl-sc prim_run_subcycle_c"         -         96       96 4.915200e+04   3.897714e+03    40.608 (    49      0)    40.521 (    11      0)
+"tl-sc dp3d-from-ps"                -         96       96 4.915200e+04   1.649626e+00     0.018 (    88      0)     0.017 (     5      0)
+"tl-s prim_step_flexible"           -         96       96 4.915200e+04   3.895654e+03    40.587 (    49      0)    40.499 (     7      0)
+"ApplyCAMForcing_tracers"           -         96       96 4.915200e+04   9.233694e+00     0.097 (    29      0)     0.095 (    42      0)
+"tl-s deep_copy+derived_dp"         -         96       96 4.915200e+04   2.092774e+00     0.022 (    31      0)     0.021 (    90      0)
+"ApplyCAMForcing_dynamics"          -         96       96 1.966080e+05   9.984193e+00     0.106 (    55      0)     0.102 (    42      0)
+"tl-ae prim_advance_exp"            -         96       96 3.932160e+05   3.185866e+03    33.268 (    64      0)    33.045 (    10      0)
+"IMEX_KG255"                        -         96       96 3.932160e+05   2.042015e+03    21.541 (    40      0)    21.043 (    10      0)
+"caar compute"                      -         96       96 3.932160e+06   5.880714e+02     6.163 (    55      0)     6.086 (    42      0)
+"caar_bexchV"                       -         96       96 1.966080e+06   7.894060e+02     8.420 (    34      0)     8.005 (    47      0)
+"caar dp3d"                         -         96       96 1.966080e+06   6.852096e+01     0.732 (    55      0)     0.691 (    42      0)
+"compute_stage_value_dirk"          -         96       96 1.966080e+06   5.883550e+02     6.504 (    46      0)     6.027 (     5      0)
+"tl-ae advance_hypervis_dp"         -         96       96 3.932160e+05   1.133502e+03    11.949 (    78      0)    11.585 (    40      0)
+"hvf-bhwk"                          -         96       96 1.179648e+06   6.093731e+02     6.446 (    82      0)     6.208 (    44      0)
+"hvf-bexch"                         -         96       96 2.359296e+06   6.977784e+02     7.420 (    78      0)     7.027 (    46      0)
+"Remap Thickness Functor"           -         96       96 1.966080e+05   1.224399e+01     0.129 (    55      0)     0.125 (    90      0)
+"Remap Scale States Functor"        -         96       96 1.966080e+05   7.156867e+00     0.077 (    55      0)     0.072 (    42      0)
+"Remap Compute Grids Functor"       -         96       96 1.966080e+05   1.370398e+01     0.145 (    55      0)     0.140 (    42      0)
+"Remap Compute Remap Functor"       -         96       96 1.966080e+05   3.790400e+01     0.397 (    38      0)     0.391 (    90      0)
+"Remap Rescale States Functor"      -         96       96 1.966080e+05   6.806793e+00     0.073 (    55      0)     0.068 (    42      0)
+"tl-at prim_advec_tracers_compose"  -         96       96 4.915200e+04   5.473105e+02     5.770 (    21      0)     5.617 (    64      0)
+"compose_transport"                 -         96       96 4.915200e+04   5.466611e+02     5.764 (    21      0)     5.610 (    64      0)
+"compose_calc_trajectory"           -         96       96 4.915200e+04   4.892825e+01     0.582 (    58      0)     0.439 (    78      0)
+"compose_3d_levels"                 -         96       96 4.915200e+04   2.026648e+01     0.213 (    36      0)     0.208 (    42      0)
+"compose_v_bexchv"                  -         96       96 4.915200e+04   2.615685e+01     0.346 (    58      0)     0.202 (    78      0)
+"compose_v2x"                       -         96       96 4.915200e+04   2.196496e+00     0.023 (    13      0)     0.023 (    75      0)
+"compose_isl"                       -         96       96 4.915200e+04   1.628456e+02     1.899 (    52      0)     1.483 (    95      0)
+"SLMM_isl_01_mylid"                 -         96       96 4.915200e+04   3.181723e-01     0.003 (    59      0)     0.003 (    42      0)
+"SLMM_isl_02_setup_irecv"           -         96       96 4.915200e+04   1.824982e+00     0.089 (     5      0)     0.004 (    16      0)
+"SLMM_isl_03_adp"                   -         96       96 4.915200e+04   1.079472e+01     0.115 (    52      0)     0.109 (    77      0)
+"SLMM_isl_04_pack_pass1"            -         96       96 4.915200e+04   3.327591e+01     0.363 (    55      0)     0.310 (    42      0)
+"SLMM_isl_05_pack_pass2"            -         96       96 4.915200e+04   1.331960e+01     0.191 (    43      0)     0.089 (    28      0)
+"SLMM_isl_06_isend"                 -         96       96 4.915200e+04   7.555156e+00     0.209 (    17      0)     0.015 (    71      0)
+"SLMM_isl_07_q_extrema"             -         96       96 4.915200e+04   2.750882e+00     0.030 (    74      0)     0.028 (    35      0)
+"SLMM_isl_08_recv_and_wait"         -         96       96 4.915200e+04   2.303286e+01     0.433 (    70      0)     0.108 (    17      0)
+"SLMM_isl_09_rmt_q_pass1"           -         96       96 4.915200e+04   2.105683e+01     0.289 (    55      0)     0.152 (    58      0)
+"SLMM_isl_09_rmt_q_pass2"           -         96       96 4.915200e+04   3.771857e+00     0.041 (    57      0)     0.037 (    87      0)
+"SLMM_isl_10_isend"                 -         96       96 4.915200e+04   1.183250e+00     0.049 (     8      0)     0.005 (    10      0)
+"SLMM_isl_11_setup_irecv"           -         96       96 4.915200e+04   4.652166e-01     0.035 (    56      0)     0.003 (     5      0)
+"SLMM_isl_12_own_q"                 -         96       96 4.915200e+04   1.988641e+01     0.235 (    28      0)     0.198 (     7      0)
+"SLMM_isl_13_recv"                  -         96       96 4.915200e+04   1.495812e+01     0.345 (    31      0)     0.038 (    26      0)
+"SLMM_isl_14_copy_q"                -         96       96 4.915200e+04   1.995909e+00     0.022 (    18      0)     0.019 (    92      0)
+"SLMM_isl_15_wait_on_send"          -         96       96 4.915200e+04   6.080359e+00     0.210 (    51      0)     0.004 (    73      0)
+"compose_hypervis_scalar"           -         96       96 4.915200e+04   2.560439e+02     2.861 (    26      0)     2.435 (    13      0)
+"compose_cedr_global"               -         96       96 4.915200e+04   3.277447e+01     0.368 (    90      0)     0.300 (    57      0)
+"CEDR_01_write_global"              -         96       96 4.915200e+04   6.605776e+00     0.070 (    86      0)     0.068 (    53      0)
+"CEDR_02_run_cdr"                   -         96       96 4.915200e+04   2.543306e+01     0.292 (    90      0)     0.224 (    57      0)
+"compose_cedr_local"                -         96       96 4.915200e+04   7.969601e+00     0.085 (    29      0)     0.082 (    53      0)
+"CEDR_03_run_local"                 -         96       96 4.915200e+04   6.897173e+00     0.073 (    29      0)     0.071 (    53      0)
+"compose_dss_q"                     -         96       96 4.915200e+04   3.787505e+01     0.444 (     2      0)     0.351 (    31      0)
+"compose_vertical_remap"            -         96       96 4.915200e+04   2.348891e+01     0.246 (    46      0)     0.243 (    34      0)
+"push_to_f90"                       -         96       96 9.600000e+01   1.398162e+00     0.015 (    73      0)     0.014 (    89      0)
+"t_prf"                             y          0        0 0.000000e+00   0.000000e+00     0.000 (     0      0)     0.000 (     0      0)
+
+>>> SL cut
+
+***** GLOBAL STATISTICS (    96 MPI
+
+$Id: gptl.c,v 1.157 2011-03-28 20:5 $
+'count' is cumulative. All other st
+'on' indicates whether the timer wautput, and so stats are lower or upper boun
+
+name                               reads        count      walltotal   wallmax   wallmin 
+"Total"                               96 9.600000e+01   4.148559e+03    43.228    43.191 
+"prim_init1"                          96 9.600000e+01   1.836002e+02     1.917     1.905 
+"PartitioningTime"                    96 9.600000e+01   4.120700e-05     0.000     0.000 
+"repro_sum_int"                       96 5.059200e+04   1.806204e+01     0.214     0.145 
+"compose_init"                        96 9.600000e+01   2.244727e+00     0.027     0.021 
+"sl_init1"                            96 9.600000e+01   7.626496e+00     0.082     0.077 
+"prim_init2"                          96 9.600000e+01   4.976626e+01     0.602     0.509 
+"prim_printstate"                     96 9.600000e+01   3.329708e+00     0.035     0.035 
+"prim_io_init"                        96 9.600000e+01   2.161200e-05     0.000     0.000 
+"prim_main_loop"                      96 9.600000e+01   3.899172e+03    40.624    40.536 
+"prim_run"                            96 4.915200e+04   3.899152e+03    40.623    40.536 
+"tl-sc prim_run_subcycle_c"           96 4.915200e+04   3.897714e+03    40.608    40.521 
+"tl-sc dp3d-from-ps"                  96 4.915200e+04   1.649626e+00     0.018     0.017 
+"tl-s prim_step_flexible"             96 4.915200e+04   3.895654e+03    40.587    40.499 
+"ApplyCAMForcing_tracers"             96 4.915200e+04   9.233694e+00     0.097     0.095 
+"tl-s deep_copy+derived_dp"           96 4.915200e+04   2.092774e+00     0.022     0.021 
+"ApplyCAMForcing_dynamics"            96 1.966080e+05   9.984193e+00     0.106     0.102 
+"tl-ae prim_advance_exp"              96 3.932160e+05   3.185866e+03    33.268    33.045 
+"IMEX_KG255"                          96 3.932160e+05   2.042015e+03    21.541    21.043 
+"caar compute"                        96 3.932160e+06   5.880714e+02     6.163     6.086 
+"caar_bexchV"                         96 1.966080e+06   7.894060e+02     8.420     8.005 
+"caar dp3d"                           96 1.966080e+06   6.852096e+01     0.732     0.691 
+"compute_stage_value_dirk"            96 1.966080e+06   5.883550e+02     6.504     6.027 
+"tl-ae advance_hypervis_dp"           96 3.932160e+05   1.133502e+03    11.949    11.585 
+"hvf-bhwk"                            96 1.179648e+06   6.093731e+02     6.446     6.208 
+"hvf-bexch"                           96 2.359296e+06   6.977784e+02     7.420     7.027 
+"Remap Thickness Functor"             96 1.966080e+05   1.224399e+01     0.129     0.125 
+"Remap Scale States Functor"          96 1.966080e+05   7.156867e+00     0.077     0.072 
+"Remap Compute Grids Functor"         96 1.966080e+05   1.370398e+01     0.145     0.140 
+"Remap Compute Remap Functor"         96 1.966080e+05   3.790400e+01     0.397     0.391 
+"Remap Rescale States Functor"        96 1.966080e+05   6.806793e+00     0.073     0.068 
+"tl-at prim_advec_tracers_compose"    96 4.915200e+04   5.473105e+02     5.770     5.617 
+"compose_transport"                   96 4.915200e+04   5.466611e+02     5.764     5.610 
+"compose_calc_trajectory"             96 4.915200e+04   4.892825e+01     0.582     0.439 
+"compose_3d_levels"                   96 4.915200e+04   2.026648e+01     0.213     0.208 
+"compose_v_bexchv"                    96 4.915200e+04   2.615685e+01     0.346     0.202 
+"compose_v2x"                         96 4.915200e+04   2.196496e+00     0.023     0.023 
+"compose_isl"                         96 4.915200e+04   1.628456e+02     1.899     1.483 
+"SLMM_isl_01_mylid"                   96 4.915200e+04   3.181723e-01     0.003     0.003 
+"SLMM_isl_02_setup_irecv"             96 4.915200e+04   1.824982e+00     0.089     0.004 
+"SLMM_isl_03_adp"                     96 4.915200e+04   1.079472e+01     0.115     0.109 
+"SLMM_isl_04_pack_pass1"              96 4.915200e+04   3.327591e+01     0.363     0.310 
+"SLMM_isl_05_pack_pass2"              96 4.915200e+04   1.331960e+01     0.191     0.089 
+"SLMM_isl_06_isend"                   96 4.915200e+04   7.555156e+00     0.209     0.015 
+"SLMM_isl_07_q_extrema"               96 4.915200e+04   2.750882e+00     0.030     0.028 
+"SLMM_isl_08_recv_and_wait"           96 4.915200e+04   2.303286e+01     0.433     0.108 
+"SLMM_isl_09_rmt_q_pass1"             96 4.915200e+04   2.105683e+01     0.289     0.152 
+"SLMM_isl_09_rmt_q_pass2"             96 4.915200e+04   3.771857e+00     0.041     0.037 
+"SLMM_isl_10_isend"                   96 4.915200e+04   1.183250e+00     0.049     0.005 
+"SLMM_isl_11_setup_irecv"             96 4.915200e+04   4.652166e-01     0.035     0.003 
+"SLMM_isl_12_own_q"                   96 4.915200e+04   1.988641e+01     0.235     0.198 
+"SLMM_isl_13_recv"                    96 4.915200e+04   1.495812e+01     0.345     0.038 
+"SLMM_isl_14_copy_q"                  96 4.915200e+04   1.995909e+00     0.022     0.019 
+"SLMM_isl_15_wait_on_send"            96 4.915200e+04   6.080359e+00     0.210     0.004 
+"compose_hypervis_scalar"             96 4.915200e+04   2.560439e+02     2.861     2.435 
+"compose_cedr_global"                 96 4.915200e+04   3.277447e+01     0.368     0.300 
+"CEDR_01_write_global"                96 4.915200e+04   6.605776e+00     0.070     0.068 
+"CEDR_02_run_cdr"                     96 4.915200e+04   2.543306e+01     0.292     0.224 
+"compose_cedr_local"                  96 4.915200e+04   7.969601e+00     0.085     0.082 
+"CEDR_03_run_local"                   96 4.915200e+04   6.897173e+00     0.073     0.071 
+"compose_dss_q"                       96 4.915200e+04   3.787505e+01     0.444     0.351 
+"compose_vertical_remap"              96 4.915200e+04   2.348891e+01     0.246     0.243 
+"push_to_f90"                         96 9.600000e+01   1.398162e+00     0.015     0.014 
+"t_prf"                                0 0.000000e+00   0.000000e+00     0.000     0.000 
+
+ number of MPI processes:           96
+ MPI processors stride:            1
+ number of MPI processes per node: min,max=           6           6
+ Primitive Equation Init1...
+ (t_initf) Read in prof_inparm namelist from: input.nl
+ (t_initf) Using profile_disable=          F
+ (t_initf)       profile_timer=                      4
+ (t_initf)       profile_depth_limit=            99999
+ (t_initf)       profile_detail_limit=               1
+ (t_initf)       profile_barrier=          F
+ (t_initf)       profile_outpe_num=                  0
+ (t_initf)       profile_outpe_stride=               1
+ (t_initf)       profile_single_file=      F
+ (t_initf)       profile_global_stats=     T
+ (t_initf)       profile_ovhd_measurement= F
+ (t_initf)       profile_add_detail=       F
+ (t_initf)       profile_papi_enable=      F
+macro  KOKKOS_ENABLE_CUDA      : defined
+macro  CUDA_VERSION          = 10010 = version 10.1
+Kokkos::Cuda[ 0 ] Tesla V100-SXM2-16GB capability 7.0, Total Global Memory: 15.75 G, Shared Memory per Block: 48 K : Selected
+HOMMEXX SHA1: 09574f3030b7a5c1733746c0458ac75852f84206
+HOMMEXX VECTOR_SIZE: 1
+HOMMEXX vector tag: SIMD
+HOMMEXX active AVX set:
+HOMMEXX MPI_ON_DEVICE: 1
+HOMMEXX CUDA_SHARE_BUFFER: off
+HOMMEXX CUDA_(MIN/MAX)_WARP_PER_TEAM: 8 / 16
+HOMMEXX doesn't have vector pragmas
+HOMMEXX configured with CMake
+HOMMEXX has config.h.c
+ reading ctl namelist...
+ Reading namelist ctl_nl from standard input
+ reading physics namelist...
+ reading vertical namelist...
+   vform =ccm
+   vfile_mid=/ccs/home/ambradl/sl/gpu/vcoord/sabm-128.ascii
+   vfile_int=/ccs/home/ambradl/sl/gpu/vcoord/sabi-128.ascii
+   vanalytic=           0
+dt_remap_factor and dt_tracer_factor were specified; changing qsplit from  1 to  1 and rsplit from  0 to  2.
+ -DHORIZ_OPENMP disabled
+ -DCOLUMN_OPENMP disabled
+ Mesh File:/dev/null
+ Reference element projection: cubed_sphere_map=           2
+ done reading namelist...
+ readnl: topology      = cube
+ readnl: geometry      = sphere
+ readnl: test_case     = jw_baroclinic
+ readnl: omega         =    7.2920000000000000E-005
+ readnl: sub_case      =            1
+ readnl: ndays         =            0
+ readnl: nmax          =         4096
+ readnl: pertlim       =    0.0000000000000000     
+ readnl: qsize,qsize_d =           10          10
+ readnl: NThreads      =            1
+ readnl: ne,np         =           32           4
+ readnl: partmethod    =            4
+ readnl: COORD_TRANSFORM_METHOD    =            1
+ readnl: Z2_MAP_METHOD    =            1
+ readnl: nmpi_per_node =            6
+ readnl: vthreads      =            1
+ readnl: nnodes        =           16
+ readnl: npart         =           96
+
+ readnl: integration   = explicit
+ readnl: LF-trapazoidal freq=            0
+ readnl: theta_hydrostatic_mode =  F
+ readnl: transport_alg   =            0
+ readnl: semi_lagrange_cdr_alg   =            3
+ readnl: semi_lagrange_cdr_check   =  F
+ readnl: semi_lagrange_hv_q   =            1
+ readnl: semi_lagrange_nearest_point_lev   =          256
+ readnl: tstep_type    =           10
+ readnl: theta_advect_form =            1
+ readnl: vert_remap_q_alg  =           10
+ readnl: tstep          =    320.00000000000000     
+ readnl: ftype          =            0
+ readnl: limiter_option =            9
+ readnl: qsplit (deprecated) =            1
+ readnl: vertical remap frequency rsplit (0=disabled) (deprecated):            2
+ readnl: dt_tracer_factor =            1
+ readnl: vertical remap frequency dt_remap_factor (0=disabled):            2
+ readnl: runtype       =            0
+ readnl: se_fv_phys_remap_alg =            1
+ Constant (hyper)viscosity used.
+ hypervis_subcycle     =            3
+ hypervis_subcycle_tom =            0
+ hypervis_subcycle_q   =            1
+viscosity:  nu (vor/div) =  0.82E+15 0.82E+15
+viscosity:  nu_s      =  0.82E+15
+viscosity:  nu_q      =  0.82E+15
+viscosity:  nu_p      =  0.82E+15
+viscosity:  nu_top      =  0.00E+00
+ 
+ physconst: omega  =    7.2920000000000000E-005
+ physconst: rearth =    6376000.0000000000     
+ physconst: rrearth=    1.5683814303638645E-007
+ 
+  analysis interpolation =  T F F F F F F F
+  analysis interp nlat =          256
+  analysis interp nlon =          512
+  analysis interp lon0 =    0.0000000000000000     
+  analysis interp gridtype =            2
+  analysis interpolation type =            0
+ Running dycore: theta-l
+ Running tracer transport method: horizonatally Eulerian
+ REPRO_SUM_SETOPTS: Using fixed-point-based (scalable) reproducible distributed sum algorithm
+                     and not comparing with floating point algorithms.
+ Initialized repro_sum
+ 
+  total simulated time =    1310720.0000000000     
+ 
+
+ ============================================
+         Testing Gaussian Quadrature...
+
+           points              weights
+ ============================================
+           1 -0.86113631159405257522394648889280        0.34785484513745385737306394922199      
+           2 -0.33998104358485626480266575910324        0.65214515486254614262693605077798      
+           3  0.33998104358485626480266575910324        0.65214515486254614262693605077798      
+           4  0.86113631159405257522394648889280        0.34785484513745385737306394922199      
+ ============================================
+ sum of Gaussian weights=   2.0000000000000000     
+ ============================================
+
+ ============================================
+       Testing Gauss-Lobatto Quadrature...
+
+           points              weights
+ ============================================
+           1  -1.0000000000000000000000000000000        0.16666666666666666666666666666666      
+           2 -0.44721359549995793928183473374625        0.83333333333333333333333333333332      
+           3  0.44721359549995793928183473374625        0.83333333333333333333333333333332      
+           4   1.0000000000000000000000000000000        0.16666666666666666666666666666666      
+ ============================================
+ sum of Gauss-Lobatto weights=   2.0000000000000000     
+ ============================================
+ total number of elements nelem =         6144
+ getMetaSchedule: tmpP:            4           1           3          47          54          48           1          94          55        1186           2        1187          43        1233          42        1279
+ prim_init1: total threads: nthreads =            1
+ threads across elements    hthreads =            1
+ threading within elements  vthreads =            1
+ init shared boundary_exchange buffers
+ initializing elements...
+ running mass_matrix
+Epsilon bubble correction: Corrected area - domain size  0.00000000000002487
+ re-running mass_matrix
+ running global_dof
+process: 90 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+ PrintStateDescriptor:
+component   1 length=12288 displacement=      0
+component   2 length= 6192 displacement=  98304
+component   3 length= 6144 displacement= 147840
+component   4 length=   48 displacement= 196992
+component   5 length= 6192 displacement= 197376
+component   6 length=   16 displacement= 246912
+component   7 length=20480 displacement= 247040
+component   8 length=40960 displacement= 410880
+component   9 length= 6144 displacement= 738560
+process: 92 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 91 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 42 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  2 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  6 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 93 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 45 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  1 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 95 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  7 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 43 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 12 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 94 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  8 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 47 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  3 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 44 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 14 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 30 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 10 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 46 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 24 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  5 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 31 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 11 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 32 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  4 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process:  9 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 25 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 33 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+ end of prim_init1
+process:  0 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 79 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 39 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 35 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 26 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 64 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 75 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 80 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 34 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 36 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 78 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 65 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 81 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 41 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 82 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 63 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 83 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 40 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 60 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 37 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 61 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 38 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 62 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 76 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 73 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 74 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 72 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 77 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+1 Layer Locations (*1000) 
+   1    0.0000              0.0000              0.0000
+                  0.0000              3.9062              3.9062
+   2    0.0000              7.8125              7.8125
+                  0.0000             11.7188             11.7188
+   3    0.0000             15.6250             15.6250
+                  0.0000             19.5312             19.5312
+   4    0.0000             23.4375             23.4375
+                  0.0000             27.3438             27.3438
+   5    0.0000             31.2500             31.2500
+                  0.0000             35.1562             35.1562
+   6    0.0000             39.0625             39.0625
+                  0.0000             42.9688             42.9688
+   7    0.0000             46.8750             46.8750
+                  0.0000             50.7812             50.7812
+   8    0.0000             54.6875             54.6875
+                  0.0000             58.5938             58.5938
+   9    0.0000             62.5000             62.5000
+                  0.0000             66.4062             66.4062
+  10    0.0000             70.3125             70.3125
+                  0.0000             74.2188             74.2188
+  11    0.0000             78.1250             78.1250
+                  0.0000             82.0312             82.0312
+  12    0.0000             85.9375             85.9375
+                  0.0000             89.8438             89.8438
+  13    0.0000             93.7500             93.7500
+                  0.0000             97.6562             97.6562
+  14    0.0000            101.5625            101.5625
+                  0.0000            105.4688            105.4688
+  15    0.0000            109.3750            109.3750
+                  0.0000            113.2812            113.2812
+  16    0.0000            117.1875            117.1875
+                  0.0000            121.0938            121.0938
+  17    0.0000            125.0000            125.0000
+                  0.0000            128.9062            128.9062
+  18    0.0000            132.8125            132.8125
+                  0.0000            136.7188            136.7188
+  19    0.0000            140.6250            140.6250
+                  0.0000            144.5312            144.5312
+  20    0.0000            148.4375            148.4375
+                  0.0000            152.3438            152.3438
+  21    0.0000            156.2500            156.2500
+                  0.0000            160.1562            160.1562
+  22    0.0000            164.0625            164.0625
+                  0.0000            167.9688            167.9688
+  23    0.0000            171.8750            171.8750
+                  0.0000            175.7812            175.7812
+  24    0.0000            179.6875            179.6875
+                  0.0000            183.5938            183.5938
+  25    0.0000            187.5000            187.5000
+                  0.0000            191.4062            191.4062
+  26    0.0000            195.3125            195.3125
+                  0.0000            199.2188            199.2188
+  27    0.0000            203.1250            203.1250
+                  0.0000            207.0312            207.0312
+  28    0.0000            210.9375            210.9375
+                  0.0000            214.8438            214.8438
+  29    0.0000            218.7500            218.7500
+                  0.0000            222.6562            222.6562
+  30    0.0000            226.5625            226.5625
+                  0.0000            230.4688            230.4688
+  31    0.0000            234.3750            234.3750
+                  0.0000            238.2812            238.2812
+  32    0.0000            242.1875            242.1875
+                  0.0000            246.0938            246.0938
+  33    0.0000            250.0000            250.0000
+                  0.0000            253.9062            253.9062
+  34    0.0000            257.8125            257.8125
+                  0.0000            261.7188            261.7188
+  35    0.0000            265.6250            265.6250
+                  0.0000            269.5312            269.5312
+  36    0.0000            273.4375            273.4375
+                  0.0000            277.3438            277.3438
+  37    0.0000            281.2500            281.2500
+                  0.0000            285.1562            285.1562
+  38    0.0000            289.0625            289.0625
+                  0.0000            292.9688            292.9688
+  39    0.0000            296.8750            296.8750
+                  0.0000            300.7812            300.7812
+  40    0.0000            304.6875            304.6875
+                  0.0000            308.5938            308.5938
+  41    0.0000            312.5000            312.5000
+                  0.0000            316.4062            316.4062
+  42    0.0000            320.3125            320.3125
+                  0.0000            324.2188            324.2188
+  43    0.0000            328.1250            328.1250
+                  0.0000            332.0312            332.0312
+  44    0.0000            335.9375            335.9375
+                  0.0000            339.8438            339.8438
+  45    0.0000            343.7500            343.7500
+                  0.0000            347.6562            347.6562
+  46    0.0000            351.5625            351.5625
+                  0.0000            355.4688            355.4688
+  47    0.0000            359.3750            359.3750
+                  0.0000            363.2812            363.2812
+  48    0.0000            367.1875            367.1875
+                  0.0000            371.0938            371.0938
+  49    0.0000            375.0000            375.0000
+                  0.0000            378.9062            378.9062
+  50    0.0000            382.8125            382.8125
+                  0.0000            386.7188            386.7188
+  51    0.0000            390.6250            390.6250
+                  0.0000            394.5312            394.5312
+  52    0.0000            398.4375            398.4375
+                  0.0000            402.3438            402.3438
+  53    0.0000            406.2500            406.2500
+                  0.0000            410.1562            410.1562
+  54    0.0000            414.0625            414.0625
+                  0.0000            417.9688            417.9688
+  55    0.0000            421.8750            421.8750
+                  0.0000            425.7812            425.7812
+  56    0.0000            429.6875            429.6875
+                  0.0000            433.5938            433.5938
+  57    0.0000            437.5000            437.5000
+                  0.0000            441.4062            441.4062
+  58    0.0000            445.3125            445.3125
+                  0.0000            449.2188            449.2188
+  59    0.0000            453.1250            453.1250
+                  0.0000            457.0312            457.0312
+  60    0.0000            460.9375            460.9375
+                  0.0000            464.8438            464.8438
+  61    0.0000            468.7500            468.7500
+                  0.0000            472.6562            472.6562
+  62    0.0000            476.5625            476.5625
+                  0.0000            480.4688            480.4688
+  63    0.0000            484.3750            484.3750
+                  0.0000            488.2812            488.2812
+  64    0.0000            492.1875            492.1875
+                  0.0000            496.0938            496.0938
+  65    0.0000            500.0000            500.0000
+                  0.0000            503.9062            503.9062
+  66    0.0000            507.8125            507.8125
+                  0.0000            511.7188            511.7188
+  67    0.0000            515.6250            515.6250
+                  0.0000            519.5312            519.5312
+  68    0.0000            523.4375            523.4375
+                  0.0000            527.3438            527.3438
+  69    0.0000            531.2500            531.2500
+                  0.0000            535.1562            535.1562
+  70    0.0000            539.0625            539.0625
+process: 48 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+                  0.0000            542.9688            542.9688
+  71    0.0000            546.8750            546.8750
+                  0.0000            550.7812            550.7812
+  72    0.0000            554.6875            554.6875
+                  0.0000            558.5938            558.5938
+  73    0.0000            562.5000            562.5000
+                  0.0000            566.4062            566.4062
+  74    0.0000            570.3125            570.3125
+                  0.0000            574.2188            574.2188
+  75    0.0000            578.1250            578.1250
+                  0.0000            582.0312            582.0312
+  76    0.0000            585.9375            585.9375
+                  0.0000            589.8438            589.8438
+  77    0.0000            593.7500            593.7500
+                  0.0000            597.6562            597.6562
+  78    0.0000            601.5625            601.5625
+                  0.0000            605.4688            605.4688
+  79    0.0000            609.3750            609.3750
+                  0.0000            613.2812            613.2812
+  80    0.0000            617.1875            617.1875
+                  0.0000            621.0938            621.0938
+  81    0.0000            625.0000            625.0000
+process: 49 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 50 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 51 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 52 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 53 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+                  0.0000            628.9062            628.9062
+  82    0.0000            632.8125            632.8125
+                  0.0000            636.7188            636.7188
+  83    0.0000            640.6250            640.6250
+                  0.0000            644.5312            644.5312
+  84    0.0000            648.4375            648.4375
+                  0.0000            652.3438            652.3438
+  85    0.0000            656.2500            656.2500
+                  0.0000            660.1562            660.1562
+  86    0.0000            664.0625            664.0625
+                  0.0000            667.9688            667.9688
+  87    0.0000            671.8750            671.8750
+                  0.0000            675.7812            675.7812
+  88    0.0000            679.6875            679.6875
+                  0.0000            683.5938            683.5938
+  89    0.0000            687.5000            687.5000
+                  0.0000            691.4062            691.4062
+  90    0.0000            695.3125            695.3125
+                  0.0000            699.2188            699.2188
+  91    0.0000            703.1250            703.1250
+                  0.0000            707.0312            707.0312
+  92    0.0000            710.9375            710.9375
+                  0.0000            714.8438            714.8438
+  93    0.0000            718.7500            718.7500
+                  0.0000            722.6562            722.6562
+  94    0.0000            726.5625            726.5625
+                  0.0000            730.4688            730.4688
+  95    0.0000            734.3750            734.3750
+                  0.0000            738.2812            738.2812
+  96    0.0000            742.1875            742.1875
+                  0.0000            746.0938            746.0938
+  97    0.0000            750.0000            750.0000
+                  0.0000            753.9062            753.9062
+  98    0.0000            757.8125            757.8125
+                  0.0000            761.7188            761.7188
+  99    0.0000            765.6250            765.6250
+                  0.0000            769.5312            769.5312
+ 100    0.0000            773.4375            773.4375
+                  0.0000            777.3438            777.3438
+ 101    0.0000            781.2500            781.2500
+                  0.0000            785.1562            785.1562
+ 102    0.0000            789.0625            789.0625
+                  0.0000            792.9688            792.9688
+ 103    0.0000            796.8750            796.8750
+                  0.0000            800.7812            800.7812
+ 104    0.0000            804.6875            804.6875
+                  0.0000            808.5938            808.5938
+ 105    0.0000            812.5000            812.5000
+                  0.0000            816.4062            816.4062
+ 106    0.0000            820.3125            820.3125
+                  0.0000            824.2188            824.2188
+ 107    0.0000            828.1250            828.1250
+                  0.0000            832.0312            832.0312
+ 108    0.0000            835.9375            835.9375
+                  0.0000            839.8438            839.8438
+ 109    0.0000            843.7500            843.7500
+                  0.0000            847.6562            847.6562
+ 110    0.0000            851.5625            851.5625
+                  0.0000            855.4688            855.4688
+ 111    0.0000            859.3750            859.3750
+                  0.0000            863.2812            863.2812
+ 112    0.0000            867.1875            867.1875
+                  0.0000            871.0938            871.0938
+ 113    0.0000            875.0000            875.0000
+                  0.0000            878.9062            878.9062
+ 114    0.0000            882.8125            882.8125
+                  0.0000            886.7188            886.7188
+ 115    0.0000            890.6250            890.6250
+                  0.0000            894.5312            894.5312
+ 116    0.0000            898.4375            898.4375
+                  0.0000            902.3438            902.3438
+ 117    0.0000            906.2500            906.2500
+                  0.0000            910.1562            910.1562
+ 118    0.0000            914.0625            914.0625
+                  0.0000            917.9688            917.9688
+ 119    0.0000            921.8750            921.8750
+                  0.0000            925.7812            925.7812
+ 120    0.0000            929.6875            929.6875
+                  0.0000            933.5938            933.5938
+ 121    0.0000            937.5000            937.5000
+                  0.0000            941.4062            941.4062
+ 122    0.0000            945.3125            945.3125
+                  0.0000            949.2188            949.2188
+ 123    0.0000            953.1250            953.1250
+                  0.0000            957.0312            957.0312
+ 124    0.0000            960.9375            960.9375
+                  0.0000            964.8438            964.8438
+ 125    0.0000            968.7500            968.7500
+                  0.0000            972.6562            972.6562
+ 126    0.0000            976.5625            976.5625
+                  0.0000            980.4688            980.4688
+ 127    0.0000            984.3750            984.3750
+                  0.0000            988.2812            988.2812
+ 128    0.0000            992.1875            992.1875
+                  0.0000            996.0938            996.0938
+ 129    0.0000           1000.0000           1000.0000
+ Primitive Equation Initialization...
+ Primitive Equation Init2...
+ 
+ Running Global Integral Diagnostic...
+ Area of manifold is   1.0000000000000020     
+ Should be 1.0 to round off...
+Element area:  max/min    1.380
+Average equatorial node spacing (deg, km) =  0.938  104.33
+norm of Dinv (min, max):    40.858   62.131
+Max Dinv-based element distortion:     1.73
+dx based on Dinv svd:          ave,min,max =    85.51   68.41  104.03
+dx based on sqrt element area: ave,min,max =    96.12   88.79  104.29
+  runtype: initial run
+ initializing Jablonowski and Williamson baroclinic instability test V1
+process: 13 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 84 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 85 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 15 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 86 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 16 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 17 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 69 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 21 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 70 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 22 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 71 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 23 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 66 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 18 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 54 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 55 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 67 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 20 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 56 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 68 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 19 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 28 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 29 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 27 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 87 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 88 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 89 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 57 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 58 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+process: 59 horiz thread id:  0 # vert threads:  1 element limits:     1-   64
+ ...done
+ sponge layer nu_top viscosity scaling factor
+   nu_scale_top            1   8.0000000000000000     
+   nu_scale_top            2   1.5999999999999999     
+   nu_scale_top            3  0.61538461538461553     
+   nu_scale_top            4  0.31999999999999995     
+   nu_scale_top            5  0.19512195121951217     
+   nlev_tom            5
+CFL estimates in terms of S=time step stability region
+(i.e. advection w/leapfrog: S=1, viscosity w/forward Euler: S=2)
+SSP preservation (120m/s) RKSSP euler step dt  < S *    142.53s
+Stability: advective (120m/s)   dt_tracer < S *    312.11s
+Stability: advective (120m/s)   dt_tracer < S *    312.11s
+Stability: gravity wave(342m/s)   dt_dyn  < S *    109.51s
+Stability: nu_q   hyperviscosity dt < S *    150.47s
+Stability: nu_vor hyperviscosity dt < S *    150.47s
+Stability: nu_div hyperviscosity dt < S *    150.47s
+ tstep_type =           10
+dt_remap: (0=disabled)      640.00
+dt_tracer (SE), per RK stage:    320.00   160.00
+dt_dyn:                     320.00
+dt_dyn (viscosity):         106.67
+dt_tracer (viscosity):      320.00
+dt_vis_TOM:     106.67
+ initial state:
+ nstep=           0  time=   0.0000000000000000       [s]
+  u     =   0.510716175322097-259 (  1)  0.355931088319263E+02 ( 33)  0.188298590565459E+09
+  v     =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+  w     =  -0.110899765496250E-07 (129)  0.110899765497377E-07 (129) -0.935651260988981E-08
+  mu    =   0.999999999999031E+00 ( 89)  0.100000000000095E+01 ( 89)  0.126812160000000E+08
+  vTh_dp=   0.176953478603306E+06 (128)  0.101750736618448E+07 (  1)  0.345043205871593E+13
+  dz(m) =   0.519417834024822E+02 (128)  0.156458399899056E+05 (  1)  0.489459453620037E+10
+  dp    =   0.781250000000000E+03 (  1)  0.781250000000000E+03 (  1)  0.983040000000000E+10
+    fu  =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+    fv  =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+    ft  =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+    fq1 =   0.000000000000000E+00 (  1)  0.000000000000000E+00 (  1)  0.000000000000000E+00
+      min dz/w (CFL condition) =   0.509363295663512E+10 (128)
+ qv(  1)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  2)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  3)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  4)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  5)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  6)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  7)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  8)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv(  9)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+ qv( 10)=   0.0000000000000000E+00  0.1000000000000000E+01  0.6317888363110834E+06
+      ps=   0.100000000000000E+06  0.100000000000000E+06  0.983040000000000E+10
+      M =   0.101976716676049E+05 kg/m^2  0.100000000000000E+06mb     
+ Directory ./movies/ does exist: initialing IO
+ I/O init...
+ Output of initial state...
+ Entering main timestepping loop
+ Finished main timestepping loop        4096
+ closing history files
+ writing timing data
+ calling t_finalizef
+ exiting program...
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG
+>>> Eul full
+
+***** GLOBAL STATISTICS (    96 MPI TASKS) *****
+
+$Id: gptl.c,v 1.157 2011-03-28 20:55:18 rosinski Exp $
+'count' is cumulative. All other stats are max/min
+'on' indicates whether the timer was active during output, and so stats are lower or upper bounds.
+
+name                                 on  processes  threads        count      walltotal   wallmax (proc   thrd  )   wallmin (proc   thrd  )
+"Total"                               -         96       96 9.600000e+01   5.563981e+03    58.002 (    94      0)    57.948 (    35      0)
+"prim_init1"                          -         96       96 9.600000e+01   1.746057e+02     1.819 (     0      0)     1.819 (    84      0)
+"PartitioningTime"                    -         96       96 9.600000e+01   4.000700e-05     0.000 (     0      0)     0.000 (    84      0)
+"repro_sum_int"                       -         96       96 1.440000e+03   2.397984e-01     0.004 (    19      0)     0.001 (     0      0)
+"sl_init1"                            -         96       96 9.600000e+01   2.881900e-05     0.000 (    50      0)     0.000 (    19      0)
+"prim_init2"                          -         96       96 9.600000e+01   4.966112e+01     0.540 (    18      0)     0.511 (    64      0)
+"prim_printstate"                     -         96       96 9.600000e+01   3.270550e+00     0.034 (     0      0)     0.034 (    62      0)
+"prim_io_init"                        -         96       96 9.600000e+01   1.671700e-05     0.000 (    32      0)     0.000 (    43      0)
+"prim_main_loop"                      -         96       96 9.600000e+01   5.325379e+03    55.480 (    13      0)    55.450 (    18      0)
+"prim_run"                            -         96       96 1.966080e+05   5.325291e+03    55.479 (    13      0)    55.449 (    18      0)
+"tl-sc prim_run_subcycle_c"           -         96       96 1.966080e+05   5.323756e+03    55.463 (    13      0)    55.433 (    18      0)
+"tl-sc dp3d-from-ps"                  -         96       96 1.966080e+05   7.376706e+00     0.080 (     6      0)     0.074 (    67      0)
+"ApplyCAMForcing_tracers"             -         96       96 1.966080e+05   3.652667e+01     0.385 (     7      0)     0.375 (    42      0)
+"ApplyCAMForcing_dynamics"            -         96       96 1.966080e+05   9.443599e+00     0.100 (     7      0)     0.096 (    90      0)
+"tl-sc prim_step-loop"                -         96       96 1.966080e+05   5.087303e+03    53.021 (    42      0)    52.961 (    23      0)
+"tl-s prim_step"                      -         96       96 3.932160e+05   5.087181e+03    53.020 (    42      0)    52.960 (    23      0)
+"tl-s deep_copy+derived_dp"           -         96       96 3.932160e+05   1.432235e+01     0.151 (    36      0)     0.147 (    90      0)
+"tl-s prim_advance_exp-loop"          -         96       96 3.932160e+05   3.224227e+03    34.253 (    75      0)    32.884 (     2      0)
+"tl-ae prim_advance_exp"              -         96       96 3.932160e+05   3.224072e+03    34.252 (    75      0)    32.883 (     2      0)
+"IMEX_KG255"                          -         96       96 3.932160e+05   2.083360e+03    22.299 (    32      0)    20.998 (    13      0)
+"caar compute"                        -         96       96 3.932160e+06   5.880673e+02     6.168 (    55      0)     6.098 (    42      0)
+"caar_bexchV"                         -         96       96 1.966080e+06   8.311036e+02     9.257 (    75      0)     8.003 (     2      0)
+"caar dp3d"                           -         96       96 1.966080e+06   6.870484e+01     0.731 (    55      0)     0.692 (    42      0)
+"compute_stage_value_dirk"            -         96       96 1.966080e+06   5.877735e+02     6.508 (    46      0)     6.017 (     5      0)
+"tl-ae advance_hypervis_dp"           -         96       96 3.932160e+05   1.130419e+03    11.969 (    78      0)    11.475 (    46      0)
+"hvf-bhwk"                            -         96       96 1.179648e+06   6.086828e+02     6.456 (    76      0)     6.178 (    47      0)
+"hvf-bexch"                           -         96       96 2.359296e+06   6.952372e+02     7.449 (    76      0)     6.920 (    46      0)
+"tl-s prim_advec_tracers_remap"       -         96       96 3.932160e+05   1.844212e+03    19.928 (    13      0)    18.543 (    75      0)
+"tl-at prim_advec_tracers_remap_RK2"  -         96       96 3.932160e+05   1.842467e+03    19.911 (    13      0)    18.524 (    75      0)
+"tl-at precompute_divdp"              -         96       96 3.932160e+05   1.840907e+01     0.195 (     7      0)     0.187 (    42      0)
+"tl-at esf-0"                         -         96       96 3.932160e+05   5.388210e+02     5.975 (    91      0)     5.177 (    75      0)
+"eus_bexch"                           -         96       96 1.179648e+06   6.726702e+02     7.439 (     1      0)     6.621 (    27      0)
+"tl-at esf-1"                         -         96       96 3.932160e+05   3.920778e+02     4.258 (    41      0)     3.906 (    74      0)
+"tl-at esf-2"                         -         96       96 3.932160e+05   8.661662e+02     9.285 (    13      0)     8.662 (    70      0)
+"tl-at qdp_time_avg"                  -         96       96 3.932160e+05   2.255903e+01     0.237 (    22      0)     0.233 (    53      0)
+"tl-sc vertical_remap"                -         96       96 1.966080e+05   1.739143e+02     1.822 (    67      0)     1.794 (    90      0)
+"Remap Thickness Functor"             -         96       96 1.966080e+05   1.262496e+01     0.133 (    55      0)     0.130 (    90      0)
+"Remap Scale States Functor"          -         96       96 1.966080e+05   7.168524e+00     0.076 (     7      0)     0.073 (    90      0)
+"Remap Compute Grids Functor"         -         96       96 1.966080e+05   1.371392e+01     0.144 (     7      0)     0.141 (    42      0)
+"Remap Compute Remap Functor"         -         96       96 1.966080e+05   9.637174e+01     1.009 (     9      0)     0.998 (    91      0)
+"Remap Rescale States Functor"        -         96       96 1.966080e+05   6.927492e+00     0.074 (    55      0)     0.070 (    90      0)
+"push_to_f90"                         -         96       96 9.600000e+01   1.403405e+00     0.015 (    72      0)     0.014 (    77      0)
+"t_prf"                               y          0        0 0.000000e+00   0.000000e+00     0.000 (     0      0)     0.000 (     0      0)
+
+>>> Eul cut
+
+***** GLOBAL STATISTICS (    96 MPI T
+
+$Id: gptl.c,v 1.157 2011-03-28 20:55:
+'count' is cumulative. All other stat
+'on' indicates whether the timer was put, and so stats are lower or upper bounds
+
+name                                 reads        count      walltotal   wallmax   wallmin 
+"Total"                                 96 9.600000e+01   5.563981e+03    58.002    57.948 
+"prim_init1"                            96 9.600000e+01   1.746057e+02     1.819     1.819 
+"PartitioningTime"                      96 9.600000e+01   4.000700e-05     0.000     0.000 
+"repro_sum_int"                         96 1.440000e+03   2.397984e-01     0.004     0.001 
+"sl_init1"                              96 9.600000e+01   2.881900e-05     0.000     0.000 
+"prim_init2"                            96 9.600000e+01   4.966112e+01     0.540     0.511 
+"prim_printstate"                       96 9.600000e+01   3.270550e+00     0.034     0.034 
+"prim_io_init"                          96 9.600000e+01   1.671700e-05     0.000     0.000 
+"prim_main_loop"                        96 9.600000e+01   5.325379e+03    55.480    55.450 
+"prim_run"                              96 1.966080e+05   5.325291e+03    55.479    55.449 
+"tl-sc prim_run_subcycle_c"             96 1.966080e+05   5.323756e+03    55.463    55.433 
+"tl-sc dp3d-from-ps"                    96 1.966080e+05   7.376706e+00     0.080     0.074 
+"ApplyCAMForcing_tracers"               96 1.966080e+05   3.652667e+01     0.385     0.375 
+"ApplyCAMForcing_dynamics"              96 1.966080e+05   9.443599e+00     0.100     0.096 
+"tl-sc prim_step-loop"                  96 1.966080e+05   5.087303e+03    53.021    52.961 
+"tl-s prim_step"                        96 3.932160e+05   5.087181e+03    53.020    52.960 
+"tl-s deep_copy+derived_dp"             96 3.932160e+05   1.432235e+01     0.151     0.147 
+"tl-s prim_advance_exp-loop"            96 3.932160e+05   3.224227e+03    34.253    32.884 
+"tl-ae prim_advance_exp"                96 3.932160e+05   3.224072e+03    34.252    32.883 
+"IMEX_KG255"                            96 3.932160e+05   2.083360e+03    22.299    20.998 
+"caar compute"                          96 3.932160e+06   5.880673e+02     6.168     6.098 
+"caar_bexchV"                           96 1.966080e+06   8.311036e+02     9.257     8.003 
+"caar dp3d"                             96 1.966080e+06   6.870484e+01     0.731     0.692 
+"compute_stage_value_dirk"              96 1.966080e+06   5.877735e+02     6.508     6.017 
+"tl-ae advance_hypervis_dp"             96 3.932160e+05   1.130419e+03    11.969    11.475 
+"hvf-bhwk"                              96 1.179648e+06   6.086828e+02     6.456     6.178 
+"hvf-bexch"                             96 2.359296e+06   6.952372e+02     7.449     6.920 
+"tl-s prim_advec_tracers_remap"         96 3.932160e+05   1.844212e+03    19.928    18.543 
+"tl-at prim_advec_tracers_remap_RK2"    96 3.932160e+05   1.842467e+03    19.911    18.524 
+"tl-at precompute_divdp"                96 3.932160e+05   1.840907e+01     0.195     0.187 
+"tl-at esf-0"                           96 3.932160e+05   5.388210e+02     5.975     5.177 
+"eus_bexch"                             96 1.179648e+06   6.726702e+02     7.439     6.621 
+"tl-at esf-1"                           96 3.932160e+05   3.920778e+02     4.258     3.906 
+"tl-at esf-2"                           96 3.932160e+05   8.661662e+02     9.285     8.662 
+"tl-at qdp_time_avg"                    96 3.932160e+05   2.255903e+01     0.237     0.233 
+"tl-sc vertical_remap"                  96 1.966080e+05   1.739143e+02     1.822     1.794 
+"Remap Thickness Functor"               96 1.966080e+05   1.262496e+01     0.133     0.130 
+"Remap Scale States Functor"            96 1.966080e+05   7.168524e+00     0.076     0.073 
+"Remap Compute Grids Functor"           96 1.966080e+05   1.371392e+01     0.144     0.141 
+"Remap Compute Remap Functor"           96 1.966080e+05   9.637174e+01     1.009     0.998 
+"Remap Rescale States Functor"          96 1.966080e+05   6.927492e+00     0.074     0.070 
+"push_to_f90"                           96 9.600000e+01   1.403405e+00     0.015     0.014 
+"t_prf"                                  0 0.000000e+00   0.000000e+00     0.000     0.000 
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@batch4>
+Subject: Job 851982: <r2-ne32-nmax4096-qsize10-nnode16> in cluster <summit> Done
+
+Job <r2-ne32-nmax4096-qsize10-nnode16> was submitted from host <login1> by user <ambradl> in cluster <summit> at Wed Mar 24 19:12:33 2021
+Job was executed on host(s) <1*batch4>, in queue <batch>, as user <ambradl> in cluster <summit> at Wed Mar 24 19:12:53 2021
+                            <42*d26n04>
+                            <42*d26n05>
+                            <42*d26n06>
+                            <42*d26n07>
+                            <42*d26n08>
+                            <42*d26n09>
+                            <42*d26n10>
+                            <42*d26n11>
+                            <42*d26n12>
+                            <42*d26n13>
+                            <42*d26n14>
+                            <42*d26n15>
+                            <42*d26n16>
+                            <42*d26n17>
+                            <42*d26n18>
+                            <42*d27n01>
+</ccs/home/ambradl> was used as the home directory.
+</ccs/home/ambradl/sl/gpu> was used as the working directory.
+Started at Wed Mar 24 19:12:53 2021
+Terminated at Wed Mar 24 19:15:09 2021
+Results reported at Wed Mar 24 19:15:09 2021
+
+The output (if any) is above this job summary.
+

@@ -1,0 +1,51 @@
+#!/bin/bash -f
+#BSUB -P cli115
+#BSUB -nnodes NNODE
+#BSUB -W 00:WALLTIME
+#BSUB -alloc_flags smt1
+#BSUB -J JOBNAME
+#BSUB -e JOBNAME-out.%J
+#BSUB -o JOBNAME-out.%J
+
+src=/ccs/home/ambradl/sl/gpu
+. $src/source.sh
+cat $src/source.sh
+
+outdir=/gpfs/alpine/scratch/ambradl/cli115/
+mkdir $outdir/JOBNAME
+cd $outdir/JOBNAME
+mkdir movies
+
+ngpu=$(expr 6 \* NNODE)
+inputsl=INPUTSL
+inputeul=INPUTEUL
+cat $inputsl
+cat $inputeul
+
+exe=/gpfs/alpine/scratch/ambradl/cli115/theta-nlev128-kokkos-qsized40
+
+for trial in 1; do
+    jsrun -n $ngpu -r 6 -l gpu-gpu -b packed:1 -d plane:1 -a1 -c7 -g1 --smpiargs "-gpu" $exe < $inputsl
+    echo ">>> SL full"
+    cat HommeTime_stats
+    #echo ">>> SL cut"
+    #cat HommeTime_stats | cut --complement -c 36-52,96-111,123-
+
+    if false; then
+        jsrun -n $ngpu -r 6 -l gpu-gpu -b packed:1 -d plane:1 -a1 -c7 -g1 --smpiargs "-gpu" $exe-treered < $inputsl
+        echo ">>> SLtree full"
+        cat HommeTime_stats
+        #echo ">>> SLtree cut"
+        #cat HommeTime_stats | cut --complement -c 36-52,96-111,123-
+    fi
+
+    if true; then
+        jsrun -n $ngpu -r 6 -l gpu-gpu -b packed:1 -d plane:1 -a1 -c7 -g1 --smpiargs "-gpu" $exe < $inputeul
+        echo ">>> Eul full"
+        cat HommeTime_stats
+        #echo ">>> Eul cut"
+        #cat HommeTime_stats | cut --complement -c 38-54,98-113,125-
+    fi
+done
+
+touch JOBNAME.done
