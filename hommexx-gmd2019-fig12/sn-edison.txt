@@ -1,0 +1,466 @@
+sn-edison.out:AMB> ivb qsize 40 ne  2 nrank 24 nthr   1 nmax  8001
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.534118e+03    63.922 (    17      0)    63.922 (     3      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.920240e+05   1.138605e+02     5.043 (    16      0)     4.496 (    13      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.920240e+05   1.210886e+02     5.082 (    22      0)     4.989 (     1      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.920240e+05   1.194508e+03    50.040 (     3      0)    49.510 (    16      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 6.400800e+04   8.390199e+01     3.563 (    11      0)     3.431 (     5      0)
+sn-edison.out:AMB> ivb qsize 40 ne  3 nrank 24 nthr   1 nmax  3558
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.797747e+03    74.908 (     0      0)    74.905 (    21      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 8.539200e+04   1.950345e+02    12.258 (    14      0)     4.281 (     1      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 8.539200e+04   1.199975e+02     5.043 (     4      0)     4.966 (    12      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 8.539200e+04   1.381931e+03    60.190 (     1      0)    53.790 (    14      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.846400e+04   8.275319e+01     4.527 (     3      0)     3.027 (    19      0)
+sn-edison.out:AMB> ivb qsize 40 ne  4 nrank 24 nthr   1 nmax  2001
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.859057e+03    77.461 (    23      0)    77.461 (     5      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 4.802400e+04   9.486319e+01     4.741 (    18      0)     3.281 (     7      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 4.802400e+04   9.379271e+01     3.925 (    14      0)     3.886 (     5      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 4.802400e+04   1.564331e+03    65.916 (     7      0)    64.125 (    18      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 1.600800e+04   8.269701e+01     3.649 (    18      0)     3.331 (     3      0)
+sn-edison.out:AMB> ivb qsize 40 ne  5 nrank 24 nthr   1 nmax  1281
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.852111e+03    77.172 (     4      0)    77.171 (     8      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 3.074400e+04   1.248167e+02     7.467 (    23      0)     3.388 (     3      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 3.074400e+04   9.433375e+01     3.943 (     1      0)     3.911 (    21      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 3.074400e+04   1.529960e+03    65.276 (     3      0)    61.348 (    23      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 1.024800e+04   8.436719e+01     3.834 (     3      0)     3.289 (     6      0)
+sn-edison.out:AMB> ivb qsize 40 ne  6 nrank 24 nthr   1 nmax   891
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.879858e+03    78.328 (     6      0)    78.326 (     9      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 2.138400e+04   9.732449e+01     6.360 (     9      0)     3.159 (     6      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 2.138400e+04   8.835933e+01     3.707 (    18      0)     3.664 (    10      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 2.138400e+04   1.587789e+03    67.204 (     6      0)    63.738 (     9      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 7.128000e+03   8.377527e+01     3.728 (     9      0)     3.361 (     5      0)
+sn-edison.out:AMB> ivb qsize 40 ne  7 nrank 24 nthr   1 nmax   654
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.831522e+03    76.314 (     1      0)    76.313 (    10      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.569600e+04   1.103599e+02     5.793 (    20      0)     3.474 (     3      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.569600e+04   9.197001e+01     3.868 (    23      0)     3.777 (    12      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.569600e+04   1.524743e+03    64.633 (     3      0)    62.201 (    20      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 5.232000e+03   8.463587e+01     3.651 (     2      0)     3.370 (    14      0)
+sn-edison.out:AMB> ivb qsize 40 ne  8 nrank 24 nthr   1 nmax   501
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.839757e+03    76.657 (     7      0)    76.656 (     2      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.202400e+04   1.034414e+02     5.103 (    18      0)     3.869 (     3      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.202400e+04   9.589654e+01     4.033 (     4      0)     3.961 (    16      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.202400e+04   1.532513e+03    64.392 (    13      0)    62.884 (    18      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 4.008000e+03   8.388477e+01     3.669 (    18      0)     3.417 (     0      0)
+sn-edison.out:AMB> ivb qsize 40 ne  9 nrank 24 nthr   1 nmax   396
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.855487e+03    77.313 (     3      0)    77.312 (     8      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 9.504000e+03   1.254335e+02     6.052 (    14      0)     4.386 (     3      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 9.504000e+03   1.124358e+02     4.845 (     4      0)     4.595 (    10      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 9.504000e+03   1.511470e+03    63.814 (     3      0)    62.064 (    22      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 3.168000e+03   8.444982e+01     3.640 (    22      0)     3.420 (     7      0)
+sn-edison.out:AMB> ivb qsize 40 ne 10 nrank 24 nthr   1 nmax   321
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.889976e+03    78.749 (    12      0)    78.749 (    15      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 7.704000e+03   1.293525e+02     6.003 (    18      0)     4.897 (    12      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 7.704000e+03   1.309816e+02     5.592 (     4      0)     5.392 (    15      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 7.704000e+03   1.521794e+03    64.097 (    12      0)    62.638 (    18      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.568000e+03   8.401043e+01     3.652 (    18      0)     3.420 (    23      0)
+sn-edison.out:AMB> ivb qsize 40 ne 11 nrank 24 nthr   1 nmax   267
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.887553e+03    78.651 (     4      0)    78.645 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 6.408000e+03   1.461516e+02     7.944 (    23      0)     5.252 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 6.408000e+03   1.427096e+02     6.072 (     4      0)     5.834 (    21      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 6.408000e+03   1.491340e+03    62.909 (     4      0)    60.251 (    23      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.136000e+03   8.479501e+01     3.736 (    23      0)     3.421 (    13      0)
+sn-edison.out:AMB> ivb qsize 40 ne 16 nrank 24 nthr   1 nmax   126
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.876819e+03    78.201 (    22      0)    78.200 (    21      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 3.024000e+03   1.448223e+02     6.195 (    19      0)     5.855 (    12      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 3.024000e+03   1.792471e+02     7.489 (    10      0)     7.443 (     1      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 3.024000e+03   1.442748e+03    60.358 (     0      0)    59.889 (    17      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 1.008000e+03   8.442646e+01     3.611 (    17      0)     3.448 (     0      0)
+sn-edison.out:AMB> ivb qsize 40 ne 20 nrank 24 nthr   1 nmax    81
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.878995e+03    78.293 (     7      0)    78.290 (    10      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.944000e+03   1.433672e+02     6.205 (    19      0)     5.780 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.944000e+03   1.799390e+02     7.522 (     4      0)     7.474 (    22      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.944000e+03   1.444547e+03    60.504 (    12      0)    59.869 (    19      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 6.480000e+02   8.479352e+01     3.616 (    18      0)     3.451 (     0      0)
+sn-edison.out:AMB> ivb qsize 40 ne 24 nrank 24 nthr   1 nmax    57
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.889960e+03    78.751 (    22      0)    78.746 (    16      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.368000e+03   1.443979e+02     6.298 (     1      0)     5.770 (    22      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.368000e+03   1.811194e+02     7.564 (    14      0)     7.527 (     3      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.368000e+03   1.450981e+03    60.802 (    22      0)    60.076 (     1      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 4.560000e+02   8.594183e+01     3.648 (    19      0)     3.518 (     5      0)
+sn-edison.out:AMB> ivb qsize 40 ne 32 nrank 24 nthr   1 nmax    33
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.921520e+03    80.071 (    11      0)    80.057 (    20      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 7.920000e+02   1.464685e+02     6.279 (    23      0)     5.929 (    13      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 7.920000e+02   1.849680e+02     7.723 (    11      0)     7.670 (    20      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 7.920000e+02   1.470023e+03    61.470 (    13      0)    61.087 (    16      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.640000e+02   8.900230e+01     3.829 (    11      0)     3.605 (     2      0)
+sn-edison.out:AMB> ivb qsize  0 ne  2 nrank 24 nthr   1 nmax 40005
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.122041e+03    46.752 (     2      0)    46.752 (    16      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 9.601200e+05   4.819284e+02    20.122 (     8      0)    20.026 (    22      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 9.601200e+05   5.732258e+02    23.935 (    22      0)    23.840 (     8      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 3.200400e+05   5.302925e+01     2.227 (     9      0)     2.189 (     3      0)
+sn-edison.out:AMB> ivb qsize  0 ne  3 nrank 24 nthr   1 nmax 17790
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.156433e+03    48.186 (     0      0)    48.184 (    15      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 4.269600e+05   5.126590e+02    21.709 (    11      0)    20.472 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 4.269600e+05   5.828265e+02    24.377 (     4      0)    24.193 (    11      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.423200e+05   5.138054e+01     2.836 (     3      0)     1.893 (    20      0)
+sn-edison.out:AMB> ivb qsize  0 ne  4 nrank 24 nthr   1 nmax 10005
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   9.085076e+02    37.855 (    14      0)    37.854 (     1      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 2.401200e+05   3.879836e+02    16.210 (    16      0)    16.122 (     0      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 2.401200e+05   4.602290e+02    19.207 (     0      0)    19.148 (     8      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 8.004000e+04   5.169140e+01     2.183 (    23      0)     2.128 (    16      0)
+sn-edison.out:AMB> ivb qsize  0 ne  5 nrank 24 nthr   1 nmax  6405
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   9.389380e+02    39.124 (     0      0)    39.122 (    12      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 1.537200e+05   4.044091e+02    17.010 (    10      0)    16.461 (     5      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 1.537200e+05   4.684914e+02    19.590 (    20      0)    19.469 (    13      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 5.124000e+04   5.620702e+01     2.621 (     5      0)     2.233 (    16      0)
+sn-edison.out:AMB> ivb qsize  0 ne  6 nrank 24 nthr   1 nmax  4455
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   9.192155e+02    38.302 (    16      0)    38.299 (     1      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 1.069200e+05   3.980525e+02    16.819 (     7      0)    16.456 (    13      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 1.069200e+05   4.417828e+02    18.485 (    20      0)    18.308 (    10      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 3.564000e+04   5.956077e+01     2.500 (    15      0)     2.458 (    16      0)
+sn-edison.out:AMB> ivb qsize  0 ne  7 nrank 24 nthr   1 nmax  3270
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   9.756396e+02    40.652 (     0      0)    40.651 (    16      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 7.848000e+04   4.387292e+02    18.752 (    15      0)    17.953 (     1      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 7.848000e+04   4.567262e+02    19.180 (    23      0)    18.818 (    12      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 2.616000e+04   6.022134e+01     2.690 (     4      0)     2.412 (    15      0)
+sn-edison.out:AMB> ivb qsize  0 ne  8 nrank 24 nthr   1 nmax  2505
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.065081e+03    44.380 (     4      0)    44.375 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 6.012000e+04   4.988609e+02    21.406 (     7      0)    20.451 (    15      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 6.012000e+04   4.762098e+02    20.126 (    14      0)    19.546 (     7      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 2.004000e+04   6.276168e+01     2.672 (     1      0)     2.587 (    16      0)
+sn-edison.out:AMB> ivb qsize  0 ne  9 nrank 24 nthr   1 nmax  1980
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.230165e+03    51.260 (     4      0)    51.254 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 4.752000e+04   5.747329e+02    24.490 (    22      0)    23.399 (     1      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 4.752000e+04   5.641996e+02    24.156 (     4      0)    23.090 (    23      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.584000e+04   6.625999e+01     2.891 (     1      0)     2.656 (     6      0)
+sn-edison.out:AMB> ivb qsize  0 ne 10 nrank 24 nthr   1 nmax  1605
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.374645e+03    57.279 (     8      0)    57.274 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 3.852000e+04   6.257102e+02    26.495 (    10      0)    25.664 (     6      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 3.852000e+04   6.533880e+02    27.919 (     6      0)    26.832 (     0      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.284000e+04   6.670905e+01     2.822 (    15      0)     2.750 (     2      0)
+sn-edison.out:AMB> ivb qsize  0 ne 11 nrank 24 nthr   1 nmax  1335
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.470277e+03    61.264 (     4      0)    61.259 (    18      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 3.204000e+04   6.677215e+02    28.503 (    21      0)    27.226 (     1      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 3.204000e+04   7.086113e+02    30.341 (     1      0)    28.794 (    21      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.068000e+04   6.830760e+01     2.949 (    21      0)     2.764 (    14      0)
+sn-edison.out:AMB> ivb qsize  0 ne 16 nrank 24 nthr   1 nmax   630
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.737065e+03    72.384 (     8      0)    72.369 (     1      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 1.512000e+04   7.323295e+02    30.640 (    22      0)    30.418 (     1      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 1.512000e+04   8.940627e+02    37.356 (     5      0)    37.150 (    15      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 5.040000e+03   7.082894e+01     2.970 (    15      0)     2.916 (     2      0)
+sn-edison.out:AMB> ivb qsize  0 ne 20 nrank 24 nthr   1 nmax   405
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.885488e+03    78.565 (     0      0)    78.556 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 6.408000e+03   1.466912e+02     8.302 (    23      0)     5.153 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 6.408000e+03   1.431590e+02     6.137 (     4      0)     5.849 (    13      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 6.408000e+03   1.487084e+03    62.917 (     0      0)    59.820 (    23      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.136000e+03   8.636012e+01     3.724 (    12      0)     3.373 (     7      0)
+sn-edison.out:AMB> ivb qsize  0 ne 24 nrank 24 nthr   1 nmax   285
+sn-edison.out:    prim_main_loop                                         -        1    -      78.087891    78.087891    78.087891         0.000001 
+sn-edison.out:                  tl-ae U3-5stage_timestep                 -      126    -       6.062305     0.051052     0.045659         0.000079 
+sn-edison.out:                  tl-ae advance_hypervis_dp                -      126    -       7.417685     0.061995     0.056527         0.000079 
+sn-edison.out:                tl-at prim_advec_tracers_remap_RK2         -      126    -      59.953430     0.478101     0.470231         0.000079 
+sn-edison.out:AMB> ivb qsize  0 ne 32 nrank 24 nthr   1 nmax   165
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   9.135106e+02    38.063 (     0      0)    38.063 (    22      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 2.401200e+05   3.902393e+02    16.334 (     4      0)    16.219 (     5      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 2.401200e+05   4.629051e+02    19.316 (    23      0)    19.229 (     4      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 8.004000e+04   5.164964e+01     2.176 (    21      0)     2.130 (     4      0)
+sn-edison.out:AMB> ivb qsize 40 ne  2 nrank 24 nthr   1 nmax  8001
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.529990e+03    63.750 (     2      0)    63.750 (    10      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.920240e+05   1.138524e+02     5.021 (    16      0)     4.466 (    14      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.920240e+05   1.205981e+02     5.056 (    20      0)     4.977 (     1      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.920240e+05   1.191041e+03    49.956 (    13      0)    49.387 (    16      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 6.400800e+04   8.356639e+01     3.539 (     2      0)     3.415 (     7      0)
+sn-edison.out:AMB> ivb qsize 40 ne  3 nrank 24 nthr   1 nmax  3558
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.804824e+03    75.202 (     0      0)    75.201 (    16      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 8.539200e+04   1.952578e+02    12.359 (    14      0)     4.217 (     1      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 8.539200e+04   1.197680e+02     5.045 (     4      0)     4.950 (    14      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 8.539200e+04   1.388659e+03    60.583 (     1      0)    53.989 (    14      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.846400e+04   8.305117e+01     4.560 (     2      0)     3.036 (    20      0)
+sn-edison.out:AMB> ivb qsize 40 ne  4 nrank 24 nthr   1 nmax  2001
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.866226e+03    77.759 (     2      0)    77.759 (    14      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 4.802400e+04   9.299241e+01     4.651 (    18      0)     3.318 (    13      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 4.802400e+04   9.438909e+01     3.953 (    19      0)     3.917 (     0      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 4.802400e+04   1.572608e+03    66.210 (    13      0)    64.491 (    18      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 1.600800e+04   8.273117e+01     3.630 (    18      0)     3.346 (     3      0)
+sn-edison.out:AMB> ivb qsize 40 ne  5 nrank 24 nthr   1 nmax  1281
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.864218e+03    77.677 (     0      0)    77.675 (    20      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 3.074400e+04   1.244332e+02     7.580 (    23      0)     3.374 (     3      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 3.074400e+04   9.502291e+01     3.982 (    20      0)     3.941 (    10      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 3.074400e+04   1.541258e+03    65.769 (     3      0)    61.758 (    23      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 1.024800e+04   8.480093e+01     3.860 (     5      0)     3.313 (     6      0)
+sn-edison.out:AMB> ivb qsize 40 ne  6 nrank 24 nthr   1 nmax   891
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.889422e+03    78.726 (     4      0)    78.726 (    17      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 2.138400e+04   9.196679e+01     5.395 (     9      0)     3.220 (     2      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 2.138400e+04   8.892202e+01     3.724 (    13      0)     3.690 (     2      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 2.138400e+04   1.600486e+03    67.480 (     6      0)    64.853 (     9      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 7.128000e+03   8.393699e+01     3.772 (     9      0)     3.383 (     5      0)
+sn-edison.out:AMB> ivb qsize 40 ne  7 nrank 24 nthr   1 nmax   654
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.837943e+03    76.582 (     4      0)    76.580 (    11      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.569600e+04   1.133021e+02     5.950 (    23      0)     3.475 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.569600e+04   9.288747e+01     3.913 (     4      0)     3.839 (    12      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.569600e+04   1.526905e+03    64.802 (     4      0)    62.310 (    23      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 5.232000e+03   8.477730e+01     3.663 (     1      0)     3.387 (     7      0)
+sn-edison.out:AMB> ivb qsize 40 ne  8 nrank 24 nthr   1 nmax   501
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.830429e+03    76.268 (     6      0)    76.268 (    13      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.202400e+04   1.026578e+02     4.866 (    16      0)     3.941 (     3      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.202400e+04   9.392910e+01     3.979 (     8      0)     3.866 (    19      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.202400e+04   1.526049e+03    64.068 (     3      0)    62.889 (    16      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 4.008000e+03   8.372252e+01     3.602 (    17      0)     3.393 (     0      0)
+sn-edison.out:AMB> ivb qsize 40 ne  9 nrank 24 nthr   1 nmax   396
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.852583e+03    77.193 (     4      0)    77.190 (    15      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 9.504000e+03   1.287873e+02     6.465 (    23      0)     4.385 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 9.504000e+03   1.123517e+02     4.853 (     4      0)     4.556 (    23      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 9.504000e+03   1.505190e+03    63.602 (     0      0)    61.646 (    23      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 3.168000e+03   8.453607e+01     3.636 (    22      0)     3.406 (     7      0)
+sn-edison.out:AMB> ivb qsize 40 ne 10 nrank 24 nthr   1 nmax   321
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.880767e+03    78.365 (     0      0)    78.365 (     6      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 7.704000e+03   1.288552e+02     6.310 (    19      0)     4.751 (    12      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 7.704000e+03   1.291235e+02     5.486 (     6      0)     5.302 (    14      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 7.704000e+03   1.515148e+03    63.929 (    12      0)    61.944 (    19      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.568000e+03   8.392684e+01     3.696 (    19      0)     3.390 (    15      0)
+sn-edison.out:AMB> ivb qsize 40 ne 11 nrank 24 nthr   1 nmax   267
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.873171e+03    78.051 (     4      0)    78.045 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 6.408000e+03   1.418314e+02     7.533 (    23      0)     5.114 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 6.408000e+03   1.430050e+02     6.087 (     5      0)     5.820 (    12      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 6.408000e+03   1.481036e+03    62.498 (     0      0)    60.090 (    23      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.136000e+03   8.470526e+01     3.663 (    23      0)     3.374 (    13      0)
+sn-edison.out:AMB> ivb qsize 40 ne 16 nrank 24 nthr   1 nmax   126
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.886230e+03    78.594 (     4      0)    78.592 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 3.024000e+03   1.467659e+02     6.457 (    19      0)     5.864 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 3.024000e+03   1.797423e+02     7.525 (    10      0)     7.453 (     5      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 3.024000e+03   1.449880e+03    60.733 (     4      0)    60.001 (    19      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 1.008000e+03   8.440833e+01     3.611 (    17      0)     3.427 (     3      0)
+sn-edison.out:AMB> ivb qsize 40 ne 20 nrank 24 nthr   1 nmax    81
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.888652e+03    78.696 (    12      0)    78.692 (    17      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.944000e+03   1.460190e+02     6.586 (    19      0)     5.681 (    12      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.944000e+03   1.820642e+02     7.641 (     8      0)     7.533 (    19      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.944000e+03   1.449522e+03    60.925 (    12      0)    59.791 (    21      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 6.480000e+02   8.508987e+01     3.663 (    19      0)     3.446 (    13      0)
+sn-edison.out:AMB> ivb qsize 40 ne 24 nrank 24 nthr   1 nmax    57
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.895495e+03    78.981 (    13      0)    78.977 (    11      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.368000e+03   1.455022e+02     6.376 (     1      0)     5.842 (    22      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.368000e+03   1.835254e+02     7.684 (    14      0)     7.598 (     9      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.368000e+03   1.452567e+03    60.840 (    22      0)    60.124 (     1      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 4.560000e+02   8.615834e+01     3.651 (     1      0)     3.530 (    11      0)
+sn-edison.out:AMB> ivb qsize 40 ne 32 nrank 24 nthr   1 nmax    33
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.924724e+03    80.200 (     7      0)    80.187 (     2      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 7.920000e+02   1.466699e+02     6.375 (    18      0)     5.968 (    13      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 7.920000e+02   1.855477e+02     7.746 (    14      0)     7.720 (    19      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 7.920000e+02   1.471906e+03    61.530 (     7      0)    61.017 (    18      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.640000e+02   8.915661e+01     3.771 (    19      0)     3.637 (     2      0)
+sn-edison.out:AMB> ivb qsize  0 ne  2 nrank 24 nthr   1 nmax 40005
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.885488e+03    78.565 (     0      0)    78.556 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 6.408000e+03   1.466912e+02     8.302 (    23      0)     5.153 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 6.408000e+03   1.431590e+02     6.137 (     4      0)     5.849 (    13      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 6.408000e+03   1.487084e+03    62.917 (     0      0)    59.820 (    23      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.136000e+03   8.636012e+01     3.724 (    12      0)     3.373 (     7      0)
+sn-edison.out:AMB> ivb qsize  0 ne  3 nrank 24 nthr   1 nmax 17790
+sn-edison.out:    prim_main_loop                                         -        1    -      78.087891    78.087891    78.087891         0.000001 
+sn-edison.out:                  tl-ae U3-5stage_timestep                 -      126    -       6.062305     0.051052     0.045659         0.000079 
+sn-edison.out:                  tl-ae advance_hypervis_dp                -      126    -       7.417685     0.061995     0.056527         0.000079 
+sn-edison.out:                tl-at prim_advec_tracers_remap_RK2         -      126    -      59.953430     0.478101     0.470231         0.000079 
+sn-edison.out:AMB> ivb qsize  0 ne  4 nrank 24 nthr   1 nmax 10005
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   9.135106e+02    38.063 (     0      0)    38.063 (    22      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 2.401200e+05   3.902393e+02    16.334 (     4      0)    16.219 (     5      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 2.401200e+05   4.629051e+02    19.316 (    23      0)    19.229 (     4      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 8.004000e+04   5.164964e+01     2.176 (    21      0)     2.130 (     4      0)
+sn-edison.out:AMB> ivb qsize  0 ne  5 nrank 24 nthr   1 nmax  6405
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.905794e+03    79.413 (    12      0)    79.402 (    21      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.944000e+03   1.481094e+02     6.966 (    21      0)     5.697 (    12      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.944000e+03   1.820752e+02     7.612 (     5      0)     7.546 (     7      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.944000e+03   1.463042e+03    61.474 (    12      0)    60.151 (    21      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 6.480000e+02   8.668169e+01     3.782 (     8      0)     3.463 (    23      0)
+sn-edison.out:AMB> ivb qsize  0 ne  6 nrank 24 nthr   1 nmax  4455
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.895923e+03    79.000 (    22      0)    78.988 (     9      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.368000e+03   1.465600e+02     6.883 (     9      0)     5.831 (    22      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.368000e+03   1.830508e+02     7.659 (    10      0)     7.580 (    21      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.368000e+03   1.452559e+03    60.906 (    22      0)    59.606 (     9      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 4.560000e+02   8.623699e+01     3.731 (     9      0)     3.522 (     4      0)
+sn-edison.out:AMB> ivb qsize  0 ne  7 nrank 24 nthr   1 nmax  3270
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   9.703103e+02    40.433 (     0      0)    40.427 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 7.848000e+04   4.379169e+02    18.575 (    15      0)    17.907 (     3      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 7.848000e+04   4.514018e+02    18.999 (    23      0)    18.699 (    10      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 2.616000e+04   6.045624e+01     2.704 (     3      0)     2.442 (    22      0)
+sn-edison.out:AMB> ivb qsize  0 ne  8 nrank 24 nthr   1 nmax  2505
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.063068e+03    44.296 (    20      0)    44.293 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 6.012000e+04   5.006230e+02    21.094 (     6      0)    20.738 (    15      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 6.012000e+04   4.707869e+02    19.693 (     8      0)    19.505 (     6      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 2.004000e+04   6.307296e+01     2.658 (     9      0)     2.583 (     0      0)
+sn-edison.out:AMB> ivb qsize  0 ne  9 nrank 24 nthr   1 nmax  1980
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.214215e+03    50.595 (     0      0)    50.591 (    22      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 4.752000e+04   5.664792e+02    24.139 (    14      0)    23.040 (     5      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 4.752000e+04   5.597454e+02    23.961 (     4      0)    22.844 (    14      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.584000e+04   6.544440e+01     2.840 (     3      0)     2.641 (    18      0)
+sn-edison.out:AMB> ivb qsize  0 ne 10 nrank 24 nthr   1 nmax  1605
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.368753e+03    57.035 (    16      0)    57.030 (     2      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 3.852000e+04   6.256040e+02    26.461 (    15      0)    25.721 (     6      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 3.852000e+04   6.490807e+02    27.575 (     6      0)    26.630 (    15      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.284000e+04   6.719314e+01     2.846 (    12      0)     2.749 (     5      0)
+sn-edison.out:AMB> ivb qsize  0 ne 11 nrank 24 nthr   1 nmax  1335
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.476129e+03    61.509 (     4      0)    61.502 (    22      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 3.204000e+04   6.683906e+02    28.293 (    22      0)    27.320 (     1      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 3.204000e+04   7.133970e+02    30.408 (     1      0)    29.298 (    22      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.068000e+04   6.782747e+01     2.881 (     2      0)     2.764 (    17      0)
+sn-edison.out:AMB> ivb qsize  0 ne 16 nrank 24 nthr   1 nmax   630
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.727249e+03    71.978 (     0      0)    71.960 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 1.512000e+04   7.225745e+02    30.269 (    23      0)    29.944 (     8      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 1.512000e+04   8.932480e+02    37.347 (     8      0)    37.077 (     1      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 5.040000e+03   7.131587e+01     3.021 (    12      0)     2.934 (    19      0)
+sn-edison.out:AMB> ivb qsize  0 ne 20 nrank 24 nthr   1 nmax   405
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.744101e+03    72.685 (     8      0)    72.646 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 9.720000e+03   7.219512e+02    30.251 (    16      0)    29.974 (    10      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 9.720000e+03   9.076953e+02    37.939 (    10      0)    37.649 (    16      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 3.240000e+03   7.219846e+01     3.052 (    10      0)     2.962 (    19      0)
+sn-edison.out:AMB> ivb qsize  0 ne 24 nrank 24 nthr   1 nmax   285
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.757301e+03    73.242 (     8      0)    73.205 (    21      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 6.840000e+03   7.246330e+02    30.584 (    23      0)    30.036 (     6      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 6.840000e+03   9.158019e+02    38.376 (     6      0)    37.835 (    23      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 2.280000e+03   7.339360e+01     3.092 (    10      0)     3.016 (    20      0)
+sn-edison.out:AMB> ivb qsize  0 ne 32 nrank 24 nthr   1 nmax   165
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.790365e+03    74.641 (    16      0)    74.551 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 3.960000e+03   7.318873e+02    30.686 (    19      0)    30.312 (    14      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 3.960000e+03   9.322609e+02    38.991 (    14      0)    38.684 (    19      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.320000e+03   7.613492e+01     3.209 (     8      0)     3.112 (    22      0)
+sn-edison.out:AMB> ivb qsize 40 ne  2 nrank 24 nthr   1 nmax  8001
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.552914e+03    64.705 (    12      0)    64.705 (     1      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.920240e+05   1.174397e+02     5.116 (    11      0)     4.470 (     6      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.920240e+05   1.217147e+02     5.116 (    14      0)     5.035 (     3      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.920240e+05   1.207726e+03    50.727 (     6      0)    50.101 (    18      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 6.400800e+04   8.508500e+01     3.637 (    18      0)     3.473 (    13      0)
+sn-edison.out:AMB> ivb qsize 40 ne  3 nrank 24 nthr   1 nmax  3558
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.820508e+03    75.856 (     4      0)    75.854 (    11      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 8.539200e+04   2.076342e+02    12.594 (    14      0)     4.332 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 8.539200e+04   1.228066e+02     5.175 (     2      0)     5.076 (    21      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 8.539200e+04   1.387267e+03    60.791 (     4      0)    54.052 (    14      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.846400e+04   8.453891e+01     4.753 (     0      0)     3.029 (    17      0)
+sn-edison.out:AMB> ivb qsize 40 ne  4 nrank 24 nthr   1 nmax  2001
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.884765e+03    78.532 (     4      0)    78.532 (    12      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 4.802400e+04   9.507845e+01     4.513 (     9      0)     3.350 (    22      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 4.802400e+04   9.634675e+01     4.040 (     5      0)     3.985 (    20      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 4.802400e+04   1.585575e+03    66.749 (    22      0)    65.397 (     9      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 1.600800e+04   8.401956e+01     3.638 (    16      0)     3.378 (     7      0)
+sn-edison.out:AMB> ivb qsize 40 ne  5 nrank 24 nthr   1 nmax  1281
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.862992e+03    77.626 (     2      0)    77.624 (    22      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 3.074400e+04   1.298503e+02     7.792 (    23      0)     3.434 (     2      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 3.074400e+04   9.612484e+01     4.018 (     2      0)     3.991 (    13      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 3.074400e+04   1.533057e+03    65.436 (     3      0)    61.441 (    23      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 1.024800e+04   8.516227e+01     3.994 (     2      0)     3.252 (     7      0)
+sn-edison.out:AMB> ivb qsize 40 ne  6 nrank 24 nthr   1 nmax   891
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.900220e+03    79.177 (     2      0)    79.174 (    13      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 2.138400e+04   1.033508e+02     6.821 (     9      0)     3.288 (     2      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 2.138400e+04   9.114151e+01     3.817 (    19      0)     3.782 (     2      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 2.138400e+04   1.597597e+03    67.685 (    22      0)    63.972 (     9      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 7.128000e+03   8.561122e+01     3.818 (     8      0)     3.368 (    23      0)
+sn-edison.out:AMB> ivb qsize 40 ne  7 nrank 24 nthr   1 nmax   654
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.853595e+03    77.236 (     4      0)    77.230 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.569600e+04   1.255490e+02     7.711 (    23      0)     3.545 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.569600e+04   9.447568e+01     3.966 (     4      0)     3.910 (    16      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.569600e+04   1.528322e+03    65.241 (     4      0)    61.227 (    23      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 5.232000e+03   8.588111e+01     3.763 (    16      0)     3.295 (     7      0)
+sn-edison.out:AMB> ivb qsize 40 ne  8 nrank 24 nthr   1 nmax   501
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.839800e+03    76.658 (    23      0)    76.658 (     0      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.202400e+04   1.037250e+02     4.676 (     9      0)     3.965 (    12      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.202400e+04   9.605027e+01     4.061 (    14      0)     3.965 (     8      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.202400e+04   1.531047e+03    64.202 (    12      0)    63.389 (     9      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 4.008000e+03   8.491524e+01     3.663 (    16      0)     3.382 (    23      0)
+sn-edison.out:AMB> ivb qsize 40 ne  9 nrank 24 nthr   1 nmax   396
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.868952e+03    77.876 (     4      0)    77.871 (    11      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 9.504000e+03   1.373335e+02     7.926 (    21      0)     4.346 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 9.504000e+03   1.150514e+02     4.982 (     4      0)     4.658 (    22      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 9.504000e+03   1.509972e+03    64.065 (     0      0)    60.756 (    21      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 3.168000e+03   8.605214e+01     3.733 (    22      0)     3.372 (     7      0)
+sn-edison.out:AMB> ivb qsize 40 ne 10 nrank 24 nthr   1 nmax   321
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.892535e+03    78.857 (    12      0)    78.855 (    18      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 7.704000e+03   1.307836e+02     5.969 (    19      0)     4.728 (    12      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 7.704000e+03   1.312277e+02     5.529 (    20      0)     5.380 (     4      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 7.704000e+03   1.521388e+03    64.209 (    12      0)    62.666 (    18      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.568000e+03   8.534847e+01     3.760 (    18      0)     3.403 (    23      0)
+sn-edison.out:AMB> ivb qsize 40 ne 11 nrank 24 nthr   1 nmax   267
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.885488e+03    78.565 (     0      0)    78.556 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 6.408000e+03   1.466912e+02     8.302 (    23      0)     5.153 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 6.408000e+03   1.431590e+02     6.137 (     4      0)     5.849 (    13      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 6.408000e+03   1.487084e+03    62.917 (     0      0)    59.820 (    23      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.136000e+03   8.636012e+01     3.724 (    12      0)     3.373 (     7      0)
+sn-edison.out:AMB> ivb qsize 40 ne 16 nrank 24 nthr   1 nmax   126
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.902965e+03    79.295 (     0      0)    79.279 (    21      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 3.024000e+03   1.507401e+02     7.464 (    21      0)     5.845 (     0      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 3.024000e+03   1.812212e+02     7.615 (    23      0)     7.472 (     7      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 3.024000e+03   1.459995e+03    61.250 (     0      0)    59.611 (    21      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 1.008000e+03   8.602442e+01     3.703 (    21      0)     3.421 (     7      0)
+sn-edison.out:AMB> ivb qsize 40 ne 20 nrank 24 nthr   1 nmax    81
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.905794e+03    79.413 (    12      0)    79.402 (    21      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.944000e+03   1.481094e+02     6.966 (    21      0)     5.697 (    12      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.944000e+03   1.820752e+02     7.612 (     5      0)     7.546 (     7      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.944000e+03   1.463042e+03    61.474 (    12      0)    60.151 (    21      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 6.480000e+02   8.668169e+01     3.782 (     8      0)     3.463 (    23      0)
+sn-edison.out:AMB> ivb qsize 40 ne 24 nrank 24 nthr   1 nmax    57
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.910891e+03    79.627 (     2      0)    79.612 (     7      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 1.368000e+03   1.481674e+02     6.745 (    19      0)     5.779 (     2      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 1.368000e+03   1.835550e+02     7.713 (     2      0)     7.491 (    21      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 1.368000e+03   1.464113e+03    61.405 (     2      0)    60.373 (    19      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 4.560000e+02   8.763821e+01     3.791 (    10      0)     3.508 (    23      0)
+sn-edison.out:AMB> ivb qsize 40 ne 32 nrank 24 nthr   1 nmax    33
+sn-edison.out:prim_main_loop                            24       24 2.400000e+01   1.940642e+03    80.872 (    10      0)    80.845 (    21      0)
+sn-edison.out:tl-ae U3-5stage_timestep                  24       24 7.920000e+02   1.495759e+02     6.718 (     1      0)     5.995 (    12      0)
+sn-edison.out:tl-ae advance_hypervis_dp                 24       24 7.920000e+02   1.870782e+02     7.815 (    13      0)     7.751 (    19      0)
+sn-edison.out:tl-at prim_advec_tracers_remap_RK2        24       24 7.920000e+02   1.482619e+03    62.011 (    12      0)    61.274 (     1      0)
+sn-edison.out:tl-sc vertical_remap                      24       24 2.640000e+02   9.036691e+01     3.863 (    10      0)     3.673 (    21      0)
+sn-edison.out:AMB> ivb qsize  0 ne  2 nrank 24 nthr   1 nmax 40005
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.138991e+03    47.458 (     3      0)    47.458 (    16      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 9.601200e+05   4.906409e+02    20.557 (     3      0)    20.333 (    18      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 9.601200e+05   5.804719e+02    24.255 (    17      0)    24.126 (     4      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 3.200400e+05   5.381414e+01     2.310 (    10      0)     2.193 (    11      0)
+sn-edison.out:AMB> ivb qsize  0 ne  3 nrank 24 nthr   1 nmax 17790
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.194360e+03    49.766 (     0      0)    49.765 (    16      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 4.269600e+05   5.294964e+02    22.477 (    11      0)    21.088 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 4.269600e+05   6.026802e+02    25.237 (     4      0)    24.993 (    11      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.423200e+05   5.238643e+01     2.959 (     0      0)     1.902 (     7      0)
+sn-edison.out:AMB> ivb qsize  0 ne  4 nrank 24 nthr   1 nmax 10005
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   9.285678e+02    38.691 (     8      0)    38.690 (    12      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 2.401200e+05   3.967752e+02    16.619 (    17      0)    16.445 (    18      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 2.401200e+05   4.703880e+02    19.651 (    18      0)    19.574 (    21      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 8.004000e+04   5.261104e+01     2.261 (     8      0)     2.142 (    17      0)
+sn-edison.out:AMB> ivb qsize  0 ne  5 nrank 24 nthr   1 nmax  6405
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   9.571581e+02    39.883 (     0      0)    39.881 (    14      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 1.537200e+05   4.120698e+02    17.363 (    13      0)    16.776 (     4      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 1.537200e+05   4.778320e+02    19.954 (    20      0)    19.823 (    13      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 5.124000e+04   5.720833e+01     2.693 (     2      0)     2.251 (    15      0)
+sn-edison.out:AMB> ivb qsize  0 ne  6 nrank 24 nthr   1 nmax  4455
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   9.393430e+02    39.141 (     8      0)    39.138 (    19      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 1.069200e+05   4.086036e+02    17.322 (    23      0)    16.863 (    10      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 1.069200e+05   4.518268e+02    18.921 (    20      0)    18.775 (    14      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 3.564000e+04   6.033287e+01     2.571 (     4      0)     2.465 (     5      0)
+sn-edison.out:AMB> ivb qsize  0 ne  7 nrank 24 nthr   1 nmax  3270
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   9.995929e+02    41.653 (     0      0)    41.648 (    20      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 7.848000e+04   4.504252e+02    19.079 (    15      0)    18.465 (     1      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 7.848000e+04   4.697268e+02    19.719 (    16      0)    19.477 (    10      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 2.616000e+04   6.088059e+01     2.753 (     4      0)     2.436 (    23      0)
+sn-edison.out:AMB> ivb qsize  0 ne  8 nrank 24 nthr   1 nmax  2505
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.074798e+03    44.785 (     8      0)    44.782 (    21      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 6.012000e+04   5.029376e+02    21.148 (     8      0)    20.852 (     2      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 6.012000e+04   4.796914e+02    20.082 (    15      0)    19.904 (    10      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 2.004000e+04   6.350723e+01     2.714 (    10      0)     2.592 (    15      0)
+sn-edison.out:AMB> ivb qsize  0 ne  9 nrank 24 nthr   1 nmax  1980
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.240350e+03    51.683 (     3      0)    51.678 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 4.752000e+04   5.760438e+02    24.661 (    21      0)    23.533 (     0      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 4.752000e+04   5.747126e+02    24.504 (     0      0)    23.546 (    21      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.584000e+04   6.567207e+01     2.870 (     4      0)     2.662 (    17      0)
+sn-edison.out:AMB> ivb qsize  0 ne 10 nrank 24 nthr   1 nmax  1605
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.374268e+03    57.264 (     8      0)    57.259 (    15      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 3.852000e+04   6.284701e+02    26.611 (     3      0)    25.730 (    12      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 3.852000e+04   6.530600e+02    27.847 (    12      0)    26.717 (     2      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.284000e+04   6.724027e+01     2.884 (     4      0)     2.751 (    23      0)
+sn-edison.out:AMB> ivb qsize  0 ne 11 nrank 24 nthr   1 nmax  1335
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.479384e+03    61.643 (    17      0)    61.639 (    22      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 3.204000e+04   6.715936e+02    28.634 (    21      0)    27.380 (     2      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 3.204000e+04   7.140723e+02    30.493 (     2      0)    29.107 (    22      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.068000e+04   6.859091e+01     2.949 (     4      0)     2.768 (    17      0)
+sn-edison.out:AMB> ivb qsize  0 ne 16 nrank 24 nthr   1 nmax   630
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.739742e+03    72.499 (     8      0)    72.481 (     1      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 1.512000e+04   7.269427e+02    30.604 (     9      0)    30.074 (    14      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 1.512000e+04   9.019404e+02    37.777 (    14      0)    37.331 (     9      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 5.040000e+03   7.171599e+01     3.038 (     6      0)     2.926 (    23      0)
+sn-edison.out:AMB> ivb qsize  0 ne 20 nrank 24 nthr   1 nmax   405
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.761306e+03    73.401 (     0      0)    73.374 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 9.720000e+03   7.282480e+02    30.668 (    17      0)    30.162 (     6      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 9.720000e+03   9.182436e+02    38.478 (     6      0)    37.987 (    17      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 3.240000e+03   7.326435e+01     3.104 (    10      0)     2.989 (    23      0)
+sn-edison.out:AMB> ivb qsize  0 ne 24 nrank 24 nthr   1 nmax   285
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.765337e+03    73.571 (     8      0)    73.529 (     2      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 6.840000e+03   7.297242e+02    30.592 (     3      0)    30.293 (    12      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 6.840000e+03   9.171104e+02    38.372 (     6      0)    38.020 (     3      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 2.280000e+03   7.450498e+01     3.137 (    12      0)     3.054 (    23      0)
+sn-edison.out:AMB> ivb qsize  0 ne 32 nrank 24 nthr   1 nmax   165
+sn-edison.out:prim_main_loop                       24       24 2.400000e+01   1.810297e+03    75.474 (    16      0)    75.383 (    23      0)
+sn-edison.out:tl-ae U3-5stage_timestep             24       24 3.960000e+03   7.448878e+02    31.272 (    21      0)    30.927 (    14      0)
+sn-edison.out:tl-ae advance_hypervis_dp            24       24 3.960000e+03   9.390917e+02    39.218 (    13      0)    38.932 (    21      0)
+sn-edison.out:tl-sc vertical_remap                 24       24 1.320000e+03   7.690571e+01     3.285 (    16      0)     3.126 (     5      0)
