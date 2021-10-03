@@ -45,7 +45,7 @@
       timer-names (, "Total" "Atmosphere" "Dycore" "Tracer transport")
       clrs (, "b" "r")
       linestyles (, "--" "-")
-      markers "o^s*"
+      markers "o*s^"
       fs 14
       y {})
   (defn text [x y dx fy]
@@ -63,7 +63,7 @@
                            (sypd (get d1 vname (first timers))
                                  (get d1 vname timer)
                                  "tmax"))))
-  (for [fmt (, "pdf")]
+  (for [fmt (, "pdf" "png")]
     (with [(pl-plot (, 8 6) "f1" :format fmt)]
       (for [(, vi vname) (enumerate (, v1-name v2-name))
             (, ti timer) (enumerate timers)]
@@ -75,7 +75,10 @@
         (pl.semilogy x (get y vname timer)
                      (+ (nth clrs vi) (nth linestyles vi) (nth markers ti))
                      :label (+ (nth v-short-names vi) " " (nth timer-names ti))))
-      (pl.legend :loc "best" :fontsize fs :ncol 2)
+      (sv g 0.5 r 0.8)
+      (pl.semilogy (, (first x) (last x))
+                   (, r (* r (/ (last ncs) (first ncs)))) "--" :color (, g g g))
+      (pl.legend :loc "best" :fontsize fs :ncol 2 :framealpha 1)
       (my-grid)
       (pl.title (+ "Performance of maint-1.0 " v1-name "\n and v2.0.0 " v2-name)
                 :fontsize fs)
