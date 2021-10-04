@@ -109,6 +109,7 @@
       hatches (, "o" "////" "" "x")
       ;;hatches (, "" "" "" "")
       clrs "rbgy"
+      ys (npy.linspace 0 1 11)
       ds [])
   (for [(, ti timer) (enumerate (, "a:PAT_remap" "a:CAM_run3" "CPL:ATM_RUN" "CPL:RUN_LOOP"))]
     (.append ds [])
@@ -123,17 +124,18 @@
   (for [fmt (, "pdf" "png")]
     (with [(pl-plot (, 6 6) "F-case-bar-chart" :format fmt)]
       (sv g 0.6)
-      (pl.plot (, -1 3) [0.5 0.5] "-" :color (, g g g) :zorder -1)
+      (for [y ys]
+        (pl.plot (, -1 3) [y y] "-" :color (, g g g) :zorder -1 :lw 0.5))
       (sv acc (npa [0.0 0.0]))
       (for [i (range (len ds))]
         (pl.bar [1 2] (get ds i) :bottom acc :label (nth timer-names i)
                 :hatch (nth hatches i) :facecolor (nth clrs i) :edgecolor "k")
         (+= acc (npa (get ds i))))
-      (pl.yticks (, 0 0.5 1) :fontsize fs)
+      (pl.yticks ys :fontsize fs)
       (pl.ylim (, 0 1.01))
       (pl.xlim (, 0.5 2.5))
       (pl.xticks [1 2] (, "v1" "v2") :fontsize fs)
-      (pl.legend :loc "upper right" :fontsize (dec fs) :ncol 1 :framealpha 0)
+      (pl.legend :loc "upper right" :fontsize (dec fs) :ncol 1 :framealpha 1)
       (pl.title (+ "Performance of maint-1.0 " (slash-underscore v1-name)
                    "\n and v2.0.0 " (slash-underscore v2-name)
                    " on " (str nc) " nodes")
