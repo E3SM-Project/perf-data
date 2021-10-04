@@ -100,13 +100,14 @@
 (defn plot-fcase-bar-chart [d &optional [nc 85]]
   (sv npa npy.array
       e (get-env)
-      fs 15
+      fs 16
       d (get d nc)
       v1-name (:v1-name e)
       v2-name (:v2-name e)
       timer-names (, "Tracer transport" "Rest of dycore" "Rest of atmosphere" "Rest of model")
       tot (get d v1-name "CPL:RUN_LOOP" "tmax")
-      hatches (, "o" "\\\\" "x" "////")
+      hatches (, "o" "////" "" "x")
+      ;;hatches (, "" "" "" "")
       clrs "rbgy"
       ds [])
   (for [(, ti timer) (enumerate (, "a:PAT_remap" "a:CAM_run3" "CPL:ATM_RUN" "CPL:RUN_LOOP"))]
@@ -121,19 +122,23 @@
     (sv (get ds i j) (/ (get ds i j) tot)))
   (for [fmt (, "pdf" "png")]
     (with [(pl-plot (, 6 6) "F-case-bar-chart" :format fmt)]
+      (sv g 0.6)
+      (pl.plot (, -1 3) [0.5 0.5] "-" :color (, g g g) :zorder -1)
       (sv acc (npa [0.0 0.0]))
       (for [i (range (len ds))]
         (pl.bar [1 2] (get ds i) :bottom acc :label (nth timer-names i)
                 :hatch (nth hatches i) :facecolor (nth clrs i) :edgecolor "k")
         (+= acc (npa (get ds i))))
-      (pl.yticks (, 0 0.5 1))
-      (pl.ylim (, 0 1.2))
+      (pl.yticks (, 0 0.5 1) :fontsize fs)
+      (pl.ylim (, 0 1.01))
+      (pl.xlim (, 0.5 2.5))
       (pl.xticks [1 2] (, "v1" "v2") :fontsize fs)
-      (pl.legend :loc "upper left" :fontsize fs :ncol 2 :framealpha 1)
+      (pl.legend :loc "upper right" :fontsize (dec fs) :ncol 1 :framealpha 0)
       (pl.title (+ "Performance of maint-1.0 " (slash-underscore v1-name)
-                   "\n and v2.0.0 " (slash-underscore v2-name))
+                   "\n and v2.0.0 " (slash-underscore v2-name)
+                   " on " (str nc) " nodes")
                 :fontsize fs)
-      (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))))
+      (pl.ylabel "Normalized time" :fontsize fs))))
 
 (when-inp ["parse-and-plot-fcase-vs-nodecount"]
   (sv d (parse-timer-summary-file "../timers0.txt"))
