@@ -1,8 +1,15 @@
 (require [amb3 [*]]) (import [amb3 [*]])
 
+(pl-require-type1-fonts)
+(assoc matplotlib.rcParams "savefig.dpi" 300)
+
 (defn get-env []
   {:nphys-per-day 48
-   :xticks (, 5 10 20 38 43 49 57 68 85)})
+   :xticks (, 5 10 20 38 43 49 57 68 85)
+   :v1-name "FC5AV1C-L.ne30_ne30"
+   :v2-name "F2010-CICE.ne30pg2_ne30pg2"})
+
+(defn slash-underscore [s] (.replace s "_" "\_"))
 
 (defn parse-timer-summary-file [fname]
   (defn parse-name [ln]
@@ -30,7 +37,7 @@
       walldays (/ (get t fld) 24 3600))
   (/ simyrs walldays))
 
-(defn plot [d]  
+(defn plot-fcase-vs-nodecount [d]
   (sv ncs (sort (list (.keys d)))
       x (npy.log ncs)
       e (get-env)
@@ -38,15 +45,15 @@
       log-xticks (npy.log xticks)
       yticks (, 1 10 100 1000)
       dx 0
-      v1-name "FC5AV1C-L.ne30_ne30"
-      v2-name "F2010-CICE.ne30pg2_ne30pg2"
+      v1-name (:v1-name e)
+      v2-name (:v2-name e)
       v-short-names (, "v1" "v2")
-      timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "a:CAM_run3" "a:PAT_remap")
-      timer-names (, "Total" "Atmosphere" "Dycore" "Tracer transport")
+      timers (, "CPL:RUN_LOOP" "a:CAM_run1" "a:CAM_run3" "a:PAT_remap")
+      timer-names (, "Total" "BC Physics" "Dycore" "Tracer transport")
       clrs (, "b" "r")
       linestyles (, "--" "-")
       markers "o*s^"
-      fs 14
+      fs 15
       y {})
   (defn text [x y dx fy]
     (sv subselect (npy.log (, 5 10 20 43 85)))
@@ -64,10 +71,10 @@
                                  (get d1 vname timer)
                                  "tmax"))))
   (for [fmt (, "pdf" "png")]
-    (with [(pl-plot (, 8 6) "f1" :format fmt)]
+    (with [(pl-plot (, 8 6) "F-case-nodecount" :format fmt)]
       (for [(, vi vname) (enumerate (, v1-name v2-name))
             (, ti timer) (enumerate timers)]
-        (when (= timer "CPL:ATM_RUN")
+        (when (or (= timer "CPL:ATM_RUN") (= timer "a:CAM_run1"))
           ;; too close to CPL:RUN_LOOP to be interesting
           (continue))
         (when (= ti 0) (text x (get y vname timer) dx 0.6))
@@ -78,17 +85,60 @@
       (sv g 0.5 r 0.8)
       (pl.semilogy (, (first x) (last x))
                    (, r (* r (/ (last ncs) (first ncs)))) "--" :color (, g g g))
-      (pl.legend :loc "best" :fontsize fs :ncol 2 :framealpha 1)
+      (pl.legend :loc "lower right" :fontsize fs :ncol 2 :framealpha 1)
       (my-grid)
-      (pl.title (+ "Performance of maint-1.0 " v1-name "\n and v2.0.0 " v2-name)
+      (pl.title (+ "Performance of maint-1.0 " (slash-underscore v1-name)
+                   "\n and v2.0.0 " (slash-underscore v2-name))
                 :fontsize fs)
       (pl.xticks log-xticks xticks :fontsize fs)
       (pl.yticks yticks yticks :fontsize fs)
-      (pl.xlim (npy.log (, 4.2 103)))
-      (pl.ylim (, 0.4 1800))
+      (pl.xlim (npy.log (, 4.3 101)))
+      (pl.ylim (, 0.37 1800))
       (pl.xlabel "Number of Chrysalis AMD Epyc 7532 64-core nodes" :fontsize fs)
       (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))))
 
-(when-inp ["parse-and-plot"]
+(defn plot-fcase-bar-chart [d &optional [nc 85]]
+  (sv npa npy.array
+      e (get-env)
+      fs 15
+      d (get d nc)
+      v1-name (:v1-name e)
+      v2-name (:v2-name e)
+      timer-names (, "Tracer transport" "Rest of dycore" "Rest of atmosphere" "Rest of model")
+      tot (get d v1-name "CPL:RUN_LOOP" "tmax")
+      hatches (, "o" "\\\\" "x" "////")
+      clrs "rbgy"
+      ds [])
+  (for [(, ti timer) (enumerate (, "a:PAT_remap" "a:CAM_run3" "CPL:ATM_RUN" "CPL:RUN_LOOP"))]
+    (.append ds [])
+    (for [(, vi vname) (enumerate (, v1-name v2-name))]
+      (.append (get ds ti) (get d vname timer "tmax"))))
+  (for [i (range (dec (len ds)) 0 -1)
+        j (range 2)]
+    (-= (get ds i j) (get ds (dec i) j)))
+  (for [i (range (len ds))
+        j (range 2)]
+    (sv (get ds i j) (/ (get ds i j) tot)))
+  (for [fmt (, "pdf" "png")]
+    (with [(pl-plot (, 6 6) "F-case-bar-chart" :format fmt)]
+      (sv acc (npa [0.0 0.0]))
+      (for [i (range (len ds))]
+        (pl.bar [1 2] (get ds i) :bottom acc :label (nth timer-names i)
+                :hatch (nth hatches i) :facecolor (nth clrs i) :edgecolor "k")
+        (+= acc (npa (get ds i))))
+      (pl.yticks (, 0 0.5 1))
+      (pl.ylim (, 0 1.2))
+      (pl.xticks [1 2] (, "v1" "v2") :fontsize fs)
+      (pl.legend :loc "upper left" :fontsize fs :ncol 2 :framealpha 1)
+      (pl.title (+ "Performance of maint-1.0 " (slash-underscore v1-name)
+                   "\n and v2.0.0 " (slash-underscore v2-name))
+                :fontsize fs)
+      (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))))
+
+(when-inp ["parse-and-plot-fcase-vs-nodecount"]
   (sv d (parse-timer-summary-file "../timers0.txt"))
-  (plot d))
+  (plot-fcase-vs-nodecount d))
+
+(when-inp ["parse-and-plot-fcase-bar-chart"]
+  (sv d (parse-timer-summary-file "../timers0.txt"))
+  (plot-fcase-bar-chart d 85))
