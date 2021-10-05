@@ -5,7 +5,7 @@
 
 (defn get-env []
   {:nphys-per-day 48
-   :xticks (, 5 10 20 38 43 49 57 68 85)
+   :xticks (, 5 10 20 29 38 43 49 57 68 85)
    :v1-name "FC5AV1C-L.ne30_ne30"
    :v2-name "F2010-CICE.ne30pg2_ne30pg2"})
 
@@ -56,7 +56,7 @@
       fs 15
       y {})
   (defn text [x y dx fy]
-    (sv subselect (npy.log (, 5 10 20 43 85)))
+    (sv subselect (npy.log (, 5 10 20 29 43 85)))
     (for [i (range (len x))]
       (unless (in (nth x i) subselect) (continue))
       (pl.text (+ dx (nth x i)) (* fy (nth y i))
