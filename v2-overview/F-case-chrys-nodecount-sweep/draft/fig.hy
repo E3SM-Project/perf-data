@@ -143,9 +143,9 @@
       (pl.ylabel "Normalized time" :fontsize fs))))
 
 (when-inp ["parse-and-plot-fcase-vs-nodecount"]
-  (sv d (parse-timer-summary-file "../timers0.txt"))
+  (sv d (parse-timer-summary-file "../timers1.txt"))
   (plot-fcase-vs-nodecount d))
 
 (when-inp ["parse-and-plot-fcase-bar-chart"]
-  (sv d (parse-timer-summary-file "../timers0.txt"))
+  (sv d (parse-timer-summary-file "../timers1.txt"))
   (plot-fcase-bar-chart d 85))
