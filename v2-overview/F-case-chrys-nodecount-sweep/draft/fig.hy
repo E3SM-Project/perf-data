@@ -4,8 +4,10 @@
 (assoc matplotlib.rcParams "savefig.dpi" 300)
 
 (defn get-env []
+  (sv prefix "v2-overview-fcase-chrysalis-r0.")
   {:nphys-per-day 48
    :xticks (, 5 10 20 29 38 43 49 57 68 85)
+   :prefix prefix
    :v1-name "FC5AV1C-L.ne30_ne30"
    :v2-name "F2010-CICE.ne30pg2_ne30pg2"})
 
@@ -14,7 +16,7 @@
 (defn parse-timer-summary-file [fname]
   (defn parse-name [ln]
     (sv parts (.split ln "."))
-    (, (int (last parts)) (+ (first parts) "." (second parts))))
+    (, (int (last parts)) (+ (nth parts 1) "." (nth parts 2))))
   (sv txt (.split (readall fname) "\n")
       d {})
   (for [ln txt]
@@ -87,12 +89,14 @@
                    (, r (* r (/ (last ncs) (first ncs)))) "--" :color (, g g g))
       (pl.legend :loc "lower right" :fontsize fs :ncol 2 :framealpha 1)
       (my-grid)
-      (pl.title (+ "Performance of maint-1.0 " (slash-underscore v1-name)
-                   "\n and v2.0.0 " (slash-underscore v2-name))
+      (pl.title (+ "Performance of maint-1.0 "
+                   (slash-underscore v1-name)
+                   "\n and v2.0.0 "
+                   (slash-underscore v2-name))
                 :fontsize fs)
       (pl.xticks log-xticks xticks :fontsize fs)
       (pl.yticks yticks yticks :fontsize fs)
-      (pl.xlim (npy.log (, 4.3 101)))
+      (pl.xlim (npy.log (, 4.3 100)))
       (pl.ylim (, 0.37 1800))
       (pl.xlabel "Number of Chrysalis AMD Epyc 7532 64-core nodes" :fontsize fs)
       (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))))
@@ -136,8 +140,10 @@
       (pl.xlim (, 0.5 2.5))
       (pl.xticks [1 2] (, "v1" "v2") :fontsize fs)
       (pl.legend :loc "upper right" :fontsize (dec fs) :ncol 1 :framealpha 1)
-      (pl.title (+ "Performance of maint-1.0 " (slash-underscore v1-name)
-                   "\n and v2.0.0 " (slash-underscore v2-name)
+      (pl.title (+ "Performance of maint-1.0 "
+                   (slash-underscore v1-name)
+                   "\n and v2.0.0 "
+                   (slash-underscore v2-name)
                    " on " (str nc) " nodes")
                 :fontsize fs)
       (pl.ylabel "Normalized time" :fontsize fs))))
