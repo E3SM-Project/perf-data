@@ -3,7 +3,7 @@
 (pl-require-type1-fonts)
 (assoc matplotlib.rcParams "savefig.dpi" 300)
 
-(defn get-env []
+(defn get-fcase-context []
   (sv prefix "v2-overview-fcase-chrysalis-r0.")
   {:nphys-per-day 48
    :xticks (, 5 10 20 29 38 43 49 57 68 85)
@@ -11,18 +11,34 @@
    :v1-name "FC5AV1C-L.ne30_ne30"
    :v2-name "F2010-CICE.ne30pg2_ne30pg2"})
 
+(defn get-wccase-context []
+  (sv prefix "v2-overview-wccase-chrysalis-r0.")
+  {:nphys-per-day 48
+   :pelayouts (, "S" "M" "L")
+   :xticks (, 28 30 53 60 105 115)
+   :prefix prefix
+   :v1-name "A_WCYCL1850S_CMIP6.ne30_oECv3"
+   :v2-name "WCYCL1850.ne30pg2_EC30to60E2r2"})
+
 (defn slash-underscore [s] (.replace s "_" "\_"))
 
-(defn parse-timer-summary-file [fname]
+(defn parse-timer-summary-file [fname &optional case]
+  (svifn case "f")
   (defn parse-name [ln]
     (sv parts (.split ln "."))
-    (, (int (last parts)) (+ (nth parts 1) "." (nth parts 2))))
+    (, (last parts) (+ (nth parts 1) "." (nth parts 2))))
+  (defn parse-fcase-name [ln]
+    (sv (, a b) (parse-name ln))
+    (, (int a) b))
+  (defn parse-wccase-name [ln] (parse-name ln))
   (sv txt (.split (readall fname) "\n")
       d {})
   (for [ln txt]
     (cond [(< (len ln) 2) (break)]
-          [(or (in "FC5AV1C" ln) (in "F2010" ln))
-           (sv (, nodecount compset) (parse-name ln))]
+          [(and (= case "f") (or (in "FC5AV1C" ln) (in "F2010" ln)))
+           (sv (, nodecount compset) (parse-fcase-name ln))]
+          [(and (= case "wc") (in "WCYCL1850" ln))
+           (sv (, nodecount compset) (parse-wccase-name ln))]
           [:else
            (sv ln (.replace ln " - " "")
                (, timer nrank nthr callcnt tsum tmax)
@@ -33,7 +49,7 @@
   d)
 
 (defn sypd [ttot t fld]
-  (sv e (get-env)
+  (sv e (get-fcase-context)
       nphys-per-day (:nphys-per-day e)
       simyrs (/ (get ttot "callcnt") (get ttot "nthr") nphys-per-day 365)
       walldays (/ (get t fld) 24 3600))
@@ -42,7 +58,7 @@
 (defn plot-fcase-vs-nodecount [d]
   (sv ncs (sort (list (.keys d)))
       x (npy.log ncs)
-      e (get-env)
+      e (get-fcase-context)
       xticks (:xticks e)
       log-xticks (npy.log xticks)
       yticks (, 1 10 100 1000)
@@ -103,7 +119,7 @@
 
 (defn plot-fcase-bar-chart [d &optional [nc 85]]
   (sv npa npy.array
-      e (get-env)
+      e (get-fcase-context)
       fs 16
       d (get d nc)
       v1-name (:v1-name e)
@@ -155,3 +171,30 @@
 (when-inp ["parse-and-plot-fcase-bar-chart"]
   (sv d (parse-timer-summary-file "../fcase-timers1.txt"))
   (plot-fcase-bar-chart d 85))
+
+(when-inp ["dev-wc"]
+  (sv e (get-wccase-context)
+      d (parse-timer-summary-file "../wccase-timers1.txt" :case "wc"))
+  (print "                                          SYPD     SYPD   SYPD     SYPD   Efficiency")
+  (print "PE                           Case #node  Total |    ATM    ICE |    OCN   Gain")
+  (for [pe (:pelayouts e)
+        (, ci compset) (enumerate (, (:v1-name e) (:v2-name e)))]
+    (sv d1 (get d pe compset)
+        ttot (get d1 "CPL:RUN_LOOP")
+        tatm (get d1 "CPL:ATM_RUN")
+        tocn (get d1 "CPL:OCN_RUN")
+        tice (get d1 "CPL:ICE_RUN")
+        sypd-tot (sypd ttot ttot "tmax")
+        nrank (get ttot "nrank"))
+    (prf " {} {:>30s}   {:3d} {:6.2f} | {:6.2f} {:6.2f} | {:6.2f} |{}"
+         pe compset
+         (math.ceil (/ nrank 64))
+         sypd-tot
+         (sypd ttot tatm "tmax") (sypd ttot tice "tmax")
+         (sypd ttot tocn "tmax")
+         (if (odd? ci)
+             (.format " {:4.2f}" (* (/ sypd-tot sypd-tot-v1) (/ nrank-v1 nrank)))
+             ""))
+    (when (even? ci)
+      (sv sypd-tot-v1 sypd-tot
+          nrank-v1 nrank))))
