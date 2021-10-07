@@ -24,7 +24,7 @@ with PACE IDs
     84661 84658 84669 84660
 Many files in addition to model_timing_stats are available for each run.
 
-The procedure was as follows:
+Procedure.
   1. Run v2op.py to enumerate node counts good for GLL physics points, pg2
 physics points, and the dycore element decomposition. Choose a representative
 subset of these.
@@ -37,3 +37,24 @@ subset of these.
   3. Use untar-fcase-timers.sh and grep-fcase-timers.sh to make
      fcase-timers1.txt.
   4. Make plots using figs/fig.hy.
+
+WC-case study:
+
+runwc.sh is the script.
+
+wccase-timers1.txt: The model_timing_stats files are saved in the directory
+    v2-overview-wccase-chrysalis-r0-timers
+The PACE dataset corresponding to this run is at the URL
+    https://pace.ornl.gov/search/v2-overview-wccase-chrysalis-r0
+with PACE IDs
+    84735 84718 84721 84714 84719 84733
+
+Procedure.
+  1. Build and submit the jobs:
+    for pe in S M L; do
+        for b in maint1p0 v2p0p0; do
+            bash runwc.sh $b $pe
+        done
+    done
+  2. Use untar-wccase-timers.sh and grep-wccase-timers.sh to make
+     wccase-timers1.txt.
