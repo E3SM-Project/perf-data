@@ -9,12 +9,10 @@ prefix=v2-overview-wccase-chrysalis-r0
 if [[ $branch == maint1p0 ]]; then
     res=ne30_oECv3
     compset=A_WCYCL1850S_CMIP6
-    tfactor=2
     casegrouparg="" # not available in maint-1.0
 elif [[ $branch == v2p0p0 ]]; then
     res=ne30pg2_EC30to60E2r2
     compset=WCYCL1850
-    tfactor=1
     casegrouparg="--case-group $prefix"
 else
     echo "ERROR: Not a branch:" $branch
