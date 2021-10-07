@@ -1,17 +1,19 @@
+F-case study:
+
 runf.sh is the run script. See the comments in the file for details.
 
 walltime.py is a utility that runf.sh uses to estimate a job walltime.
 
-untar-timers.sh and grep-timers.sh collects summary data from the E3SM timers
-and in particular the model_timing_stats files. The output of grep-timers.sh is
-recorded in the timers*.txt files.
+untar-fcase-timers.sh and grep-fcase-timers.sh collects summary data from the
+E3SM timers and in particular the model_timing_stats files. The output of
+grep-timers.sh is recorded in the timers*.txt files.
 
-timers0.txt: First run. The model_timing_stats files are not recorded because we
-don't use these data; the case names were not unique for easy retrieval from
-PACE in the future.
+fcase-timers0.txt: First run. The model_timing_stats files are not recorded
+because we don't use these data; the case names were not unique for easy
+retrieval from PACE in the future.
 
-timers1.txt: Second run, done because we wanted a uniquifying prefix for use in
-PACE. We use these data in the paper.
+fcase-timers1.txt: Second run, done because we wanted a uniquifying prefix for
+use in PACE. We use these data in the paper.
   The model_timing_stats files are saved in the directory
     v2-overview-fcase-chrysalis-r0-timers
 The PACE dataset corresponding to this run is at the URL
@@ -32,5 +34,6 @@ subset of these.
             bash runf.sh $b $nc
         done
     done
-  3. Use untar-timers.sh and grep-timers.sh to produces timers1.txt.
-  4. Produces plots using fig.hy.
+  3. Use untar-fcase-timers.sh and grep-fcase-timers.sh to make
+     fcase-timers1.txt.
+  4. Make plots using figs/fig.hy.

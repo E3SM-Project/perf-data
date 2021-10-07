@@ -48,7 +48,6 @@ echo $case
 rm -rf $case
 
 walltime=`python3 walltime.py $tfactor $nodecount`
-echo "$nodecount nodes: walltime $minutes"
 
 $e3sm/cime/scripts/create_newcase \
     -case $case -compset $compset -res $res $casegrouparg \
