@@ -18,7 +18,8 @@
 
 (defn get-wccase-context []
   (sv prefix "v2-overview-wccase-chrysalis-r0.")
-  {:nphys-per-day 48
+  {:ncore 64
+   :nphys-per-day 48
    :pelayouts (, "S" "M" "L")
    :xticks (, 28 30 53 60 105 115)
    :prefix prefix
@@ -61,6 +62,13 @@
   (/ simyrs walldays))
 
 (defn plot-fcase-vs-nodecount [d]
+  (defn text [x y dx fy]
+    (sv subselect (npy.log (, 5 10 20 29 43 85)))
+    (for [i (range (len x))]
+      (unless (in (nth x i) subselect) (continue))
+      (pl.text (+ dx (nth x i)) (* fy (nth y i))
+               (.format "{:1.2f}" (nth y i))
+               :fontsize fs :ha "center")))
   (sv ncs (sort (list (.keys d)))
       x (npy.log ncs)
       e (get-fcase-context)
@@ -78,13 +86,6 @@
       markers "o*s^"
       fs 15
       y {})
-  (defn text [x y dx fy]
-    (sv subselect (npy.log (, 5 10 20 29 43 85)))
-    (for [i (range (len x))]
-      (unless (in (nth x i) subselect) (continue))
-      (pl.text (+ dx (nth x i)) (* fy (nth y i))
-               (.format "{:1.2f}" (nth y i))
-               :fontsize fs :ha "center")))
   (for [nc ncs]
     (sv d1 (get d nc))
     (for [vname (, v1-name v2-name)
@@ -186,7 +187,7 @@
         nrank (get ttot "nrank"))
     (prf " {} {:>30s}   {:3d} {:6.2f} | {:6.2f} {:6.2f} | {:6.2f} |{}"
          pe compset
-         (math.ceil (/ nrank 64))
+         (// nrank (:ncore e))
          sypd-tot
          (sypd ttot tatm "tmax") (sypd ttot tice "tmax")
          (sypd ttot tocn "tmax")
@@ -196,6 +197,82 @@
     (when (even? ci)
       (sv sypd-tot-v1 sypd-tot
           nrank-v1 nrank))))
+
+(defn get-node-counts [e d]
+  (sv ncs [])
+  (for [pe (:pelayouts e)
+        compset (, (:v2-name e) (:v1-name e))]
+    (sv nrank (get d pe compset "CPL:RUN_LOOP" "nrank")
+        nc (/ nrank (:ncore e)))
+    (assert (zero? (- nc (int nc))))
+    (.append ncs (int nc)))
+  ncs)
+
+(defn plot-wccase-vs-nodecount [d &optional [details False]]
+  (defn text [x y dx fy]
+    (for [i (range (len x))]
+      (pl.text (+ dx (nth x i)) (* fy (nth y i))
+               (.format "{:1.2f}" (nth y i))
+               :fontsize fs :ha "center")))
+  (sv e (get-wccase-context)
+      ncs (get-node-counts e d)
+      xticks (:xticks e)
+      log-xticks (npy.log xticks)
+      yticks (if details
+                 (, 1 10 100)
+                 (, 6 7 8 9 10 20 30 40 50))
+      v1-name (:v1-name e)
+      v2-name (:v2-name e)
+      v-short-names (, "v1" "v2")
+      timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "CPL:ICE_RUN" "CPL:OCN_RUN")
+      timer-names (, "Total" "Atmosphere" "Sea ice" "Ocean")
+      clrs (, "b" "r")
+      linestyles (, "--" "-")
+      markers "os*^"
+      fs 15
+      xs {}
+      ys {})
+  (for [pe (:pelayouts e)]
+    (sv d1 (get d pe))
+    (for [vname (, v1-name v2-name)]
+      (assoc-nested-append xs (, vname)
+                           (// (get d1 vname "CPL:RUN_LOOP" "nrank") (:ncore e)))
+      (for [timer timers]
+        (assoc-nested-append ys (, vname timer)
+                             (sypd (get d1 vname (first timers))
+                                   (get d1 vname timer)
+                                   "tmax")))))
+  (for [fmt (, "pdf")]
+    (with [(pl-plot (, (if details 6.5 6.5) 6)
+                    (+ "WC-case-nodecount" (if details "-detailed" ""))
+                    :format fmt)]
+      (for [(, vi vname) (enumerate (, v1-name v2-name))
+            (, ti timer) (enumerate timers)]
+        (unless (or details (= timer (first timers))) (continue))
+        (sv x (npy.log (get xs vname))
+            y (get ys vname timer))
+        (when (zero? ti) (text x y 0 (if details 0.8 1.1)))
+        (pl.semilogy x y
+                     (+ (nth clrs vi) (nth linestyles vi) (nth markers ti))
+                     :label (+ (nth v-short-names vi) " " (nth timer-names ti))))
+      (sv g 0.5 r (if details 100 40)
+          x (, 28 115))
+      (pl.semilogy (npy.log x)
+                   (, (* r (/ (first x) (last x))) r) "--" :color (, g g g))
+      (pl.legend :loc "lower right" :fontsize fs :ncol 2 :framealpha 1)
+      (my-grid)
+      (pl.title (+ "Performance of maint-1.0 "
+                   (slash-underscore v1-name)
+                   "\n and v2.0.0 "
+                   (slash-underscore v2-name))
+                :fontsize fs)
+      (pl.xticks log-xticks xticks :fontsize fs :rotation -45)
+      (pl.yticks yticks yticks :fontsize fs)
+      (pl.xlim (npy.log (, 25.5 126)))
+      (pl.ylim (if details (, 3 250) (, 5 53)))
+      (pl.xlabel "Number of Chrysalis AMD Epyc 7532 64-core nodes"
+                 :fontsize fs)
+      (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))))
 
 (when-inp ["parse-and-plot-fcase-vs-nodecount"]
   (sv d (parse-timer-summary-file "../fcase-timers1.txt"))
@@ -208,3 +285,7 @@
 (when-inp ["dev-wc"]
   (sv d (parse-timer-summary-file "../wccase-timers1.txt" :case "wc"))
   (write-wccase-table d))
+
+(when-inp ["parse-and-plot-wccase-vs-nodecount"]
+  (sv d (parse-timer-summary-file "../wccase-timers1.txt" :case "wc"))
+  (plot-wccase-vs-nodecount d :details True))
