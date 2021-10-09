@@ -242,7 +242,7 @@
                              (sypd (get d1 vname (first timers))
                                    (get d1 vname timer)
                                    "tmax")))))
-  (for [fmt (, "pdf")]
+  (for [fmt (, "pdf" "png")]
     (with [(pl-plot (, (if details 6.5 6.5) 6)
                     (+ "WC-case-nodecount" (if details "-detailed" ""))
                     :format fmt)]
@@ -269,7 +269,7 @@
       (pl.xticks log-xticks xticks :fontsize fs :rotation -45)
       (pl.yticks yticks yticks :fontsize fs)
       (pl.xlim (npy.log (, 25.5 126)))
-      (pl.ylim (if details (, 3 250) (, 5 53)))
+      (pl.ylim (if details (, 3 250) (, 7 53)))
       (pl.xlabel "Number of Chrysalis AMD Epyc 7532 64-core nodes"
                  :fontsize fs)
       (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))))
@@ -288,4 +288,5 @@
 
 (when-inp ["parse-and-plot-wccase-vs-nodecount"]
   (sv d (parse-timer-summary-file "../wccase-timers1.txt" :case "wc"))
-  (plot-wccase-vs-nodecount d :details True))
+  (for [details (, False True)]
+    (plot-wccase-vs-nodecount d :details details)))
