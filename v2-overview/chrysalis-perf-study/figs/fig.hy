@@ -1,5 +1,10 @@
 (require [amb3 [*]]) (import [amb3 [*]])
 
+;; todo
+;; - F-case figs: short titles; give res and compset details in caption
+;; - WC-case tot sypd vs nodes
+;; - PE layout fig for one WC-case
+
 (pl-require-type1-fonts)
 (assoc matplotlib.rcParams "savefig.dpi" 300)
 
@@ -164,19 +169,12 @@
                 :fontsize fs)
       (pl.ylabel "Normalized time" :fontsize fs))))
 
-(when-inp ["parse-and-plot-fcase-vs-nodecount"]
-  (sv d (parse-timer-summary-file "../fcase-timers1.txt"))
-  (plot-fcase-vs-nodecount d))
-
-(when-inp ["parse-and-plot-fcase-bar-chart"]
-  (sv d (parse-timer-summary-file "../fcase-timers1.txt"))
-  (plot-fcase-bar-chart d 85))
-
-(when-inp ["dev-wc"]
-  (sv e (get-wccase-context)
-      d (parse-timer-summary-file "../wccase-timers1.txt" :case "wc"))
-  (print "                                          SYPD     SYPD   SYPD     SYPD   Efficiency")
-  (print "PE                           Case #node  Total |    ATM    ICE |    OCN   Gain")
+(defn write-wccase-table [d]
+  (sv e (get-wccase-context))
+  (print (+ "                                          "
+            "SYPD     SYPD   SYPD     SYPD   Efficiency\n"
+            "PE                           "
+            "Case #node  Total |    ATM    ICE |    OCN   Gain"))
   (for [pe (:pelayouts e)
         (, ci compset) (enumerate (, (:v1-name e) (:v2-name e)))]
     (sv d1 (get d pe compset)
@@ -198,3 +196,15 @@
     (when (even? ci)
       (sv sypd-tot-v1 sypd-tot
           nrank-v1 nrank))))
+
+(when-inp ["parse-and-plot-fcase-vs-nodecount"]
+  (sv d (parse-timer-summary-file "../fcase-timers1.txt"))
+  (plot-fcase-vs-nodecount d))
+
+(when-inp ["parse-and-plot-fcase-bar-chart"]
+  (sv d (parse-timer-summary-file "../fcase-timers1.txt"))
+  (plot-fcase-bar-chart d 85))
+
+(when-inp ["dev-wc"]
+  (sv d (parse-timer-summary-file "../wccase-timers1.txt" :case "wc"))
+  (write-wccase-table d))
