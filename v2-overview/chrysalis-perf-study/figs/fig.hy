@@ -285,9 +285,10 @@
       v1-name (:v1-name e)
       v2-name (:v2-name e)
       v-short-names (, "v1" "v2")
-      clrs (, "b" "g" (, 0.5 0.5 0.5) (, 0.7 0.5 0) (, 0.1 0.1 0.1) "r" "k")
+      clrs (, "b" "r" "y" (, 0.7 0.5 0) "c" "g" "k")
       lss (, "-" ":" "--" "-" "-" "-" "-")
       hatches (, "\\" "//")
+      fs 14 fs1 (+ fs 2)
       T (get d pelayout v1-name tot-tname timer-type)
       boxes {})
   (defn calc-rank0 [nrank] (* (:ncore e) (math.ceil (/ nrank (:ncore e)))))
@@ -315,10 +316,12 @@
                    :time0 (cond [(= timer cpl-tname)
                                  (+ (get d1 ice-tname timer-type)
                                     (get d1 atm-tname timer-type))]
+                                [(= timer rof-tname)
+                                 (get d1 lnd-tname timer-type)]
                                 [(= timer atm-tname)
                                  (get d1 ice-tname timer-type)]
                                 [:else 0])}))
-  (for [fmt (, "pdf")]
+  (for [fmt (, "pdf" "png")]
     (with [(pl-plot (, 6 6)
                     (+ "WC-case-pelayout-perf-" pelayout "-" timer-type)
                     :format fmt)]
@@ -331,8 +334,29 @@
                   (nth clrs ti)
                   (if (= timer tot-tname) "" (nth hatches vi))))
       (pl.axis "tight")
-      (dont pl.xlim (, 0 6000))
-      (dont pl.ylim (, 0 1)))))
+      (sv ocn-rank0 (get boxes v1-name ocn-tname :rank0)
+          v1-max-rank (get d pelayout v1-name tot-tname "nrank")
+          v2-max-rank (get d pelayout v2-name tot-tname "nrank")
+          xmax (max v1-max-rank v2-max-rank))
+      (pl.xticks (, 0 ocn-rank0 v1-max-rank v2-max-rank) :fontsize fs)
+      (pl.yticks (npy.linspace 0 1 11) :fontsize fs)
+      (pl.xlim (, 0 xmax))
+      (pl.ylim (, 0 1))
+      (pl.xlabel "Number of Chrysalis AMD Epyc 7532 cores" :fontsize fs)
+      (pl.ylabel "Normalized time" :fontsize fs)
+      (pl.title (+ "Performance of maint-1.0 "
+                   (slash-underscore v1-name)
+                   "\n and v2.0.0 "
+                   (slash-underscore v2-name))
+                :fontsize fs)
+      (pl.text (* 0.01 xmax) 0.01 "ICE" :fontsize fs1)
+      (pl.text (* 0.9 xmax) 0.9 "OCN" :fontsize fs1)
+      (pl.text (* 0.01 xmax) 0.86 "CPL" :fontsize fs1)
+      (pl.text (* 0.01 xmax) 0.76 "ATM" :fontsize fs1)
+      (pl.text v1-max-rank (/ (get d pelayout v1-name tot-tname timer-type) T)
+               "v1" :fontsize (+ 2 fs1))
+      (pl.text v2-max-rank (/ (get d pelayout v2-name tot-tname timer-type) T)
+               "v2" :fontsize (+ 2 fs1)))))
 
 (when-inp ["parse-and-plot-fcase-vs-nodecount"]
   (sv d (parse-timer-summary-file "../fcase-timers1.txt"))
@@ -353,5 +377,5 @@
 
 (when-inp ["parse-and-plot-wccase-pelayout-perf"]
   (sv d (parse-timer-summary-file "../wccase-timers1.txt" :case "wc"))
-  (for [tt (, "tavg" "tmax")]
+  (for [tt (, "tmax")]
     (plot-wccase-pelayout-perf d :timer-type tt)))
