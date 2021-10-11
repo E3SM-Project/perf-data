@@ -51,7 +51,7 @@
                (sscanf ln "s,i,i,f,f,f"))
            (assoc-nested d (, nodecount compset (.replace timer "\"" ""))
                          {"nrank" nrank "nthr" nthr "callcnt" callcnt
-                          "tsum" tsum "tmax" tmax})]))
+                          "tavg" (/ tsum nthr) "tmax" tmax})]))
   d)
 
 (defn sypd [ttot t fld]
@@ -274,6 +274,66 @@
                  :fontsize fs)
       (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))))
 
+(defn plot-wccase-pelayout-perf [d &optional pelayout timer-type]
+  (svifn pelayout "L" timer-type "tavg")
+  (sv e (get-wccase-context)
+      ice-tname "CPL:ICE_RUN" atm-tname "CPL:ATM_RUN"
+      lnd-tname "CPL:LND_RUN" rof-tname "CPL:ROF_RUN"
+      tot-tname "CPL:RUN_LOOP" ocn-tname "CPL:OCN_RUN" cpl-tname "CPL:RUN"
+      timers (, atm-tname cpl-tname ice-tname lnd-tname rof-tname ocn-tname
+                tot-tname)
+      v1-name (:v1-name e)
+      v2-name (:v2-name e)
+      v-short-names (, "v1" "v2")
+      clrs (, "b" "g" (, 0.5 0.5 0.5) (, 0.7 0.5 0) (, 0.1 0.1 0.1) "r" "k")
+      lss (, "-" ":" "--" "-" "-" "-" "-")
+      hatches (, "\\" "//")
+      T (get d pelayout v1-name tot-tname timer-type)
+      boxes {})
+  (defn calc-rank0 [nrank] (* (:ncore e) (math.ceil (/ nrank (:ncore e)))))
+  (defn draw-box [ax b ls lw color hatch]
+    (.add-patch ax
+      (matplotlib.patches.Rectangle (, (:rank0 b) (/ (:time0 b) T))
+                                    (:nrank b) (/ (:time b) T)
+                                    :fill False :linestyle ls :lw lw
+                                    :color color :hatch hatch)))
+  (for [vname (, v1-name v2-name)
+        timer timers]
+    (sv d1 (get d pelayout vname))
+    (assoc-nested boxes (, vname timer)
+                  {:nrank (cond [(= timer cpl-tname)
+                                 ;; for some reason this is not the ranks
+                                 ;; reported in CPL:RUN.
+                                 (calc-rank0 (get d1 atm-tname "nrank"))]
+                                [:else (get d1 timer "nrank")])
+                   :time (get d1 timer timer-type)
+                   :rank0 (cond [(in timer (, rof-tname lnd-tname))
+                                 (calc-rank0 (get d1 ice-tname "nrank"))]
+                                [(= timer ocn-tname)
+                                 (calc-rank0 (get d1 atm-tname "nrank"))]
+                                [:else 0])
+                   :time0 (cond [(= timer cpl-tname)
+                                 (+ (get d1 ice-tname timer-type)
+                                    (get d1 atm-tname timer-type))]
+                                [(= timer atm-tname)
+                                 (get d1 ice-tname timer-type)]
+                                [:else 0])}))
+  (for [fmt (, "pdf")]
+    (with [(pl-plot (, 6 6)
+                    (+ "WC-case-pelayout-perf-" pelayout "-" timer-type)
+                    :format fmt)]
+      (sv ax (pl.axes))
+      (for [(, vi vname) (enumerate (, v1-name v2-name))
+            (, ti timer) (enumerate timers)]
+        (draw-box ax (get boxes vname timer)
+                  (nth lss ti)
+                  (if (= timer tot-tname) 3 2)
+                  (nth clrs ti)
+                  (if (= timer tot-tname) "" (nth hatches vi))))
+      (pl.axis "tight")
+      (dont pl.xlim (, 0 6000))
+      (dont pl.ylim (, 0 1)))))
+
 (when-inp ["parse-and-plot-fcase-vs-nodecount"]
   (sv d (parse-timer-summary-file "../fcase-timers1.txt"))
   (plot-fcase-vs-nodecount d))
@@ -290,3 +350,8 @@
   (sv d (parse-timer-summary-file "../wccase-timers1.txt" :case "wc"))
   (for [details (, False True)]
     (plot-wccase-vs-nodecount d :details details)))
+
+(when-inp ["parse-and-plot-wccase-pelayout-perf"]
+  (sv d (parse-timer-summary-file "../wccase-timers1.txt" :case "wc"))
+  (for [tt (, "tavg" "tmax")]
+    (plot-wccase-pelayout-perf d :timer-type tt)))

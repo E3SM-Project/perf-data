@@ -1,5 +1,5 @@
 function greptime () {
-    grep "CPL:RUN_LOOP\"\|CPL:.*_RUN" $1
+    grep "CPL:RUN_LOOP\"\|CPL:.*_RUN\|CPL:RUN\"" $1
     grep "PAT_remap\|a:CAM_run*" $1
 }
 
