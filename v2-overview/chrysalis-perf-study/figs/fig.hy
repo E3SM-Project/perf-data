@@ -285,7 +285,7 @@
       v1-name (:v1-name e)
       v2-name (:v2-name e)
       v-short-names (, "v1" "v2")
-      clrs (, (if sbs "c" "b") "r" "y" (, 0.7 0.5 0) "c" "g" "k")
+      clrs (, (if sbs "c" "b") "r" "y" (, 0.7 0.5 0) (if sbs "m" "c") "g" "k")
       lss (if sbs (, "-" "-" "-" "-" "-" "-" "-") (, "-" ":" "--" "-" "-" "-" "-"))
       hatches (if sbs (, "" "") (, "\\" "//"))
       fs 14 fs1 (+ fs 2)
@@ -348,7 +348,7 @@
             (do
               (pl.yticks (npy.linspace 0 1 11) :fontsize fs)
               (pl.ylabel "Normalized time" :fontsize fs))
-          (pl.yticks []))
+          (pl.yticks (npy.linspace 0 1 11) (* [] 11)))
         (pl.ylim (, 0 1))
         (pl.xlabel "Number of Chrysalis AMD Epyc 7532 cores" :fontsize fs)
         (sv title (+ "Performance of maint-1.0 "
