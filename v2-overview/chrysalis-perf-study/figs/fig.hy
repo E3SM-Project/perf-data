@@ -1,7 +1,7 @@
 (require [amb3 [*]]) (import [amb3 [*]])
 
 ;; todo
-;; - F-case figs: short titles; give res and compset details in caption
+;; - all figs: short titles; give res and compset details in caption
 ;; x WC-case tot sypd vs nodes
 ;; x PE layout fig for one WC-case
 ;; - XS for v2.0.0 WC-case
@@ -62,7 +62,7 @@
       walldays (/ (get t fld) 24 3600))
   (/ simyrs walldays))
 
-(defn make-fcase-title [v1-name v2-name &optional [newline True]]
+(defn make-perf-title [v1-name v2-name &optional [newline True]]
   (+ "Performance of maint-1.0 "
      (slash-underscore v1-name)
      (if newline "\n" " ")
@@ -118,7 +118,7 @@
                    (, r (* r (/ (last ncs) (first ncs)))) "--" :color (, g g g))
       (pl.legend :loc "lower right" :fontsize fs :ncol 2 :framealpha 1)
       (my-grid)
-      (pl.title (make-fcase-title v1-name v2-name) :fontsize fs)
+      (pl.title (make-perf-title v1-name v2-name) :fontsize fs)
       (pl.xticks log-xticks xticks :fontsize fs)
       (pl.yticks yticks yticks :fontsize fs)
       (pl.xlim (npy.log (, 4.3 100)))
@@ -169,7 +169,7 @@
     (pl.xlim (, 0.5 2.5))
     (pl.xticks [1 2] (, "v1" "v2") :fontsize fs)
     (pl.legend :loc "upper right" :fontsize (dec fs) :ncol 1 :framealpha 1)
-    (pl.title (+ (make-fcase-title v1-name v2-name)
+    (pl.title (+ (make-perf-title v1-name v2-name)
                  " on " (str nc) " nodes")
               :fontsize fs)
     (pl.ylabel "Normalized time" :fontsize fs))
@@ -200,7 +200,7 @@
           dy -0.08)
       (pl.text -0.05 dy "(a)" :transform trans :fontsize fs)
       (pl.text 0.58 dy "(b)" :transform trans :fontsize fs)
-      (pl.text 0.5 1.05 (make-fcase-title (:v1-name e) (:v2-name e) :newline False)
+      (pl.text 0.5 1.05 (make-perf-title (:v1-name e) (:v2-name e) :newline False)
                :transform trans :fontsize fs :ha "center"))))
 
 (defn write-wccase-table [d]
@@ -241,7 +241,7 @@
     (.append ncs (int nc)))
   ncs)
 
-(defn plot-wccase-vs-nodecount [d &optional [details False]]
+(defn plot-wccase-vs-nodecount [d &optional [details False] ax]
   (defn text [x y dx fy]
     (for [i (range (len x))]
       (pl.text (+ dx (nth x i)) (* fy (nth y i))
@@ -275,41 +275,44 @@
                              (sypd (get d1 vname (first timers))
                                    (get d1 vname timer)
                                    "tmax")))))
-  (for [fmt (, "pdf" "png")]
-    (with [(pl-plot (, (if details 6.5 6.5) 6)
-                    (+ "WC-case-nodecount" (if details "-detailed" ""))
-                    :format fmt)]
-      (for [(, vi vname) (enumerate (, v1-name v2-name))
-            (, ti timer) (enumerate timers)]
-        (unless (or details (= timer (first timers))) (continue))
-        (sv x (npy.log (get xs vname))
-            y (get ys vname timer))
-        (when (zero? ti) (text x y 0 (if details 0.8 1.1)))
-        (pl.semilogy x y
-                     (+ (nth clrs vi) (nth linestyles vi) (nth markers ti))
-                     :label (+ (nth v-short-names vi) " " (nth timer-names ti))))
-      (sv g 0.5 r (if details 100 40)
-          x (, 28 115))
-      (pl.semilogy (npy.log x)
-                   (, (* r (/ (first x) (last x))) r) "--" :color (, g g g))
-      (pl.legend :loc "lower right" :fontsize fs :ncol 2 :framealpha 1)
-      (my-grid)
-      (pl.title (+ "Performance of maint-1.0 "
-                   (slash-underscore v1-name)
-                   "\nand v2.0.0 "
-                   (slash-underscore v2-name))
-                :fontsize fs)
-      (pl.xticks log-xticks xticks :fontsize fs :rotation -45)
-      (pl.yticks yticks yticks :fontsize fs)
-      (pl.xlim (npy.log (, 25.5 126)))
-      (pl.ylim (if details (, 3 250) (, 7 53)))
-      (pl.xlabel "Number of Chrysalis AMD Epyc 7532 64-core nodes"
-                 :fontsize fs)
-      (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))))
+  (defn plot []
+    (for [(, vi vname) (enumerate (, v1-name v2-name))
+          (, ti timer) (enumerate timers)]
+      (unless (or details (= timer (first timers))) (continue))
+      (sv x (npy.log (get xs vname))
+          y (get ys vname timer))
+      (when (zero? ti) (text x y 0 (if details 0.8 1.1)))
+      (pl.semilogy x y
+                   (+ (nth clrs vi) (nth linestyles vi) (nth markers ti))
+                   :label (+ (nth v-short-names vi) " " (nth timer-names ti))))
+    (sv g 0.5 r (if details 100 40)
+        x (, 28 115))
+    (pl.semilogy (npy.log x)
+                 (, (* r (/ (first x) (last x))) r) "--" :color (, g g g))
+    (pl.legend :loc "lower right" :fontsize fs :ncol 2 :framealpha 1)
+    (my-grid)
+    (pl.title (make-perf-title v1-name v2-name) :fontsize fs)
+    (pl.xticks log-xticks xticks :fontsize fs :rotation -45)
+    (pl.yticks yticks yticks :fontsize fs)
+    (pl.xlim (npy.log (, 25.5 126)))
+    (pl.ylim (if details (, 3 250) (, 7 53)))
+    (pl.xlabel "Number of Chrysalis AMD Epyc 7532 64-core nodes"
+               :fontsize fs)
+    (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))
+  (if (none? ax)
+      (for [fmt (, "pdf" "png")]
+        (with [(pl-plot (, (if details 6.5 6.5) 6)
+                        (+ "WC-case-nodecount" (if details "-detailed" ""))
+                        :format fmt)]
+          (plot)))
+      (plot)))
 
-(defn plot-wccase-pelayout-perf [d &optional pelayout timer-type sbs]
+(defn plot-wccase-pelayout-perf [d &optional pelayout timer-type sbs
+                                 ax-xlim ax-ylim
+                                 [title True]]
   (svifn pelayout "L" timer-type "tavg" sbs False)
-  (sv e (get-wccase-context)
+  (sv compact (not (none? ax-xlim))
+      e (get-wccase-context)
       ice-tname "CPL:ICE_RUN" atm-tname "CPL:ATM_RUN"
       lnd-tname "CPL:LND_RUN" rof-tname "CPL:ROF_RUN"
       tot-tname "CPL:RUN_LOOP" ocn-tname "CPL:OCN_RUN" cpl-tname "CPL:RUN"
@@ -321,7 +324,7 @@
       clrs (, (if sbs "c" "b") "r" "y" (, 0.7 0.5 0) (if sbs "m" "c") "g" "k")
       lss (if sbs (, "-" "-" "-" "-" "-" "-" "-") (, "-" ":" "--" "-" "-" "-" "-"))
       hatches (if sbs (, "" "") (, "\\" "//"))
-      fs 14 fs1 (+ fs 2)
+      fs 15 fs1 (+ fs 2)
       T (get d pelayout v1-name tot-tname timer-type)
       boxes {})
   (defn calc-rank0 [nrank] (* (:ncore e) (math.ceil (/ nrank (:ncore e)))))
@@ -354,55 +357,90 @@
                                 [(= timer atm-tname)
                                  (get d1 ice-tname timer-type)]
                                 [:else 0])}))
-  (for [fmt (, "pdf" "png")]
-    (with [(pl-plot (if sbs (, 10 5) (, 6 6))
-                    (+ "WC-case-pelayout-perf-" pelayout "-" timer-type
-                       (if sbs "-sbs" ""))
-                    :format fmt :tight (not sbs))]
-      (unless sbs (sv ax (pl.axes)))
-      (for [(, vi vname) (enumerate (, v1-name v2-name))]
-        (when sbs
-          (sv ax (pl.axes (, (* 0.5 vi) 0 0.47 1))))
-        (for [(, ti timer) (enumerate timers)]
-          (draw-box ax (get boxes vname timer)
-                    (nth lss ti)
-                    (if (= timer tot-tname) (if sbs 2 3) (if sbs 0 2))
-                    (nth clrs ti)
-                    (if (= timer tot-tname) "" (nth hatches vi))
-                    (and sbs (not (= timer tot-tname)))))
-        (pl.axis "tight")
-        (sv ocn-rank0 (get boxes v1-name ocn-tname :rank0)
-            v1-max-rank (get d pelayout v1-name tot-tname "nrank")
-            v2-max-rank (get d pelayout v2-name tot-tname "nrank")
-            xmax (max v1-max-rank v2-max-rank))
-        (pl.xticks (, 0 ocn-rank0 v1-max-rank v2-max-rank) :fontsize fs)
-        (pl.xlim (, 0 xmax))
-        (if (or (not sbs) (zero? vi))
-            (do
-              (pl.yticks (npy.linspace 0 1 11) :fontsize fs)
-              (pl.ylabel "Normalized time" :fontsize fs))
+  (defn plot []
+    (sv ax0 (first ax-xlim) adx (- (last ax-xlim) ax0)
+        ay0 (first ax-ylim) ady (- (last ax-ylim) ay0))
+    (unless sbs (sv ax (pl.axes (, ax0 ay0 adx ady))))
+    (for [(, vi vname) (enumerate (, v1-name v2-name))]
+      (when sbs
+        (sv ax (pl.axes (, (+ ax0 (* 0.5 adx vi)) ay0 (* 0.47 adx) ady))))
+      (for [(, ti timer) (enumerate timers)]
+        (draw-box ax (get boxes vname timer)
+                  (nth lss ti)
+                  (if (= timer tot-tname) (if sbs 2 3) (if sbs 0 2))
+                  (nth clrs ti)
+                  (if (= timer tot-tname) "" (nth hatches vi))
+                  (and sbs (not (= timer tot-tname)))))
+      (pl.axis "tight")
+      (sv ocn-rank0 (get boxes v1-name ocn-tname :rank0)
+          v1-max-rank (get d pelayout v1-name tot-tname "nrank")
+          v2-max-rank (get d pelayout v2-name tot-tname "nrank")
+          xmax (max v1-max-rank v2-max-rank))
+      (pl.xticks (, 0 ocn-rank0 v1-max-rank v2-max-rank) :fontsize fs
+                 :rotation (if compact -45 0))
+      (pl.xlim (, 0 xmax))
+      (if (or (not sbs) (zero? vi))
+          (do
+            (pl.yticks (npy.linspace 0 1 11) :fontsize fs)
+            (pl.ylabel "Normalized time" :fontsize fs))
           (pl.yticks (npy.linspace 0 1 11) (* [] 11)))
-        (pl.ylim (, 0 1))
-        (pl.xlabel "Number of Chrysalis AMD Epyc 7532 cores" :fontsize fs)
-        (sv title (+ "Performance of maint-1.0 "
-                     (slash-underscore v1-name)
-                     (if sbs "" "\n")
-                     "and v2.0.0 "
-                     (slash-underscore v2-name)))
+      (pl.ylim (, 0 1))
+      (sv xtxt "Number of Chrysalis AMD Epyc 7532 cores")
+      (if (and compact sbs)
+          (when (= vi 1)
+            (pl.text (+ ax0 (* 0.5 adx)) (- ay0 0.14) xtxt
+                     :ha "center" :va "top"
+                     :fontsize fs :transform (. (pl.gcf) transFigure)))
+          (pl.xlabel xtxt :fontsize fs))
+      (when title
+        (sv txt (make-perf-title v1-name v2-name :newline (not sbs)))
         (if sbs
-            (if (zero? vi) (pl.text v1-max-rank 1.05 title :fontsize fs :ha "center"))
-            (pl.title title :fontsize fs))
-        (when (or (not sbs) (zero? vi))
-          (pl.text (* 0.02 xmax) 0.01 "ICE" :fontsize fs1)
-          (pl.text (* 0.89 xmax) 0.9 "OCN" :fontsize fs1)
-          (pl.text (* 0.02 xmax) 0.86 "CPL" :fontsize fs1)
-          (pl.text (* 0.02 xmax) 0.76 "ATM" :fontsize fs1))
-        (when (or (not sbs) (zero? vi))
-          (pl.text v1-max-rank (/ (get d pelayout v1-name tot-tname timer-type) T)
-                   "v1" :fontsize (+ 2 fs1)))
-        (when (or (not sbs) (= vi 1))
-          (pl.text v2-max-rank (/ (get d pelayout v2-name tot-tname timer-type) T)
-                   "v2" :fontsize (+ 2 fs1)))))))
+            (if (zero? vi) (pl.text v1-max-rank 1.05 txt :fontsize fs :ha "center"))
+            (pl.title txt :fontsize fs)))
+      (when (or (not sbs) (zero? vi))
+        (pl.text (* 0.02 xmax) 0.0 "ICE" :fontsize fs1 :va "bottom")
+        (pl.text (* 0.98 xmax) 0.9 "OCN" :fontsize fs1 :va "top" :ha "right")
+        (pl.text (* 0.02 xmax) 0.82 "CPL" :fontsize fs1 :va "top")
+        (pl.text (* 0.02 xmax) 0.72 "ATM" :fontsize fs1 :va "top"))
+      (when (or (not sbs) (zero? vi))
+        (pl.text v1-max-rank (+ 0.02 (/ (get d pelayout v1-name tot-tname timer-type) T))
+                 "v1" :fontsize (+ 2 fs1)))
+      (when (or (not sbs) (= vi 1))
+        (pl.text v2-max-rank (+ 0.02 (/ (get d pelayout v2-name tot-tname timer-type) T))
+                 "v2" :fontsize (+ 2 fs1)))))
+  (if (none? ax-xlim)
+      (do
+        (sv ax-xlim (, 0 1)
+            ax-ylim (, 0 1))
+        (for [fmt (, "pdf" "png")]
+          (with [(pl-plot (if sbs (, 10 5) (, 6 6))
+                          (+ "WC-case-pelayout-perf-" pelayout "-" timer-type
+                             (if sbs "-sbs" ""))
+                          :format fmt :tight (not sbs))]
+            (plot))))
+      (plot)))
+
+(defn plot-wccase [d &optional pelayout]
+  (svifn pelayout "L")
+  (sv e (get-wccase-context)
+      fs 16)
+  (for [fmt (, "pdf" "png")]
+    (with [(pl-plot (, 12 4) "perf-WC-case" :format fmt :tight False)]
+      (sv ax-xlim (, 0.42 1)
+          ax-ylim (, 0.05 0.95)
+          axs (, (pl.axes (, 0 0 0.35 1))))
+      (sv ax (first axs))
+      (pl.axes ax)
+      (plot-wccase-vs-nodecount d :ax ax)
+      (pl.title "")
+      (plot-wccase-pelayout-perf d :pelayout pelayout :sbs True :title False
+                                 :ax-xlim ax-xlim :ax-ylim ax-ylim)
+      (sv trans (. (pl.gcf) transFigure)
+          dy -0.1)
+      (pl.text -0.05 dy "(a)" :transform trans :fontsize fs)
+      (pl.text 0.4 dy "(b)" :transform trans :fontsize fs)
+      (pl.text 0.5 1.05 (make-perf-title (:v1-name e) (:v2-name e) :newline False)
+               :transform trans :fontsize fs :ha "center"))))
 
 (when-inp ["parse-and-plot-fcase-vs-nodecount"]
   (sv d (parse-timer-summary-file "../fcase-timers1.txt"))
@@ -427,5 +465,9 @@
 
 (when-inp ["parse-and-plot-wccase-pelayout-perf"]
   (sv d (parse-timer-summary-file "../wccase-timers1.txt" :case "wc"))
-  (for [tt (, "tmax") sbs (, True False)]
+  (for [tt (, "tmax") sbs (, True)]
     (plot-wccase-pelayout-perf d :timer-type tt :sbs sbs)))
+
+(when-inp ["parse-and-plot-wccase"]
+  (sv d (parse-timer-summary-file "../wccase-timers1.txt" :case "wc"))
+  (plot-wccase d))
