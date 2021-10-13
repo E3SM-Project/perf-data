@@ -194,6 +194,8 @@
       (pl.axes ax)
       (plot-fcase-bar-chart d :nc nc :ax (last axs))
       (pl.title "")
+      (pl.text 2 0.65 (.format "{} Chrysalis nodes" nc)
+               :fontsize fs :va "center" :ha "center")
       (sv trans (. (pl.gcf) transFigure)
           dy -0.08)
       (pl.text -0.05 dy "(a)" :transform trans :fontsize fs)
