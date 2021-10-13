@@ -2,8 +2,9 @@
 
 ;; todo
 ;; - F-case figs: short titles; give res and compset details in caption
-;; - WC-case tot sypd vs nodes
-;; - PE layout fig for one WC-case
+;; x WC-case tot sypd vs nodes
+;; x PE layout fig for one WC-case
+;; - XS for v2.0.0 WC-case
 
 (pl-require-type1-fonts)
 (assoc matplotlib.rcParams "savefig.dpi" 300)
@@ -61,7 +62,14 @@
       walldays (/ (get t fld) 24 3600))
   (/ simyrs walldays))
 
-(defn plot-fcase-vs-nodecount [d]
+(defn make-fcase-title [v1-name v2-name &optional [newline True]]
+  (+ "Performance of maint-1.0 "
+     (slash-underscore v1-name)
+     (if newline "\n" " ")
+     "and v2.0.0 "
+     (slash-underscore v2-name)))
+
+(defn plot-fcase-vs-nodecount [d &optional ax]
   (defn text [x y dx fy]
     (sv subselect (npy.log (, 5 10 20 29 43 85)))
     (for [i (range (len x))]
@@ -94,9 +102,8 @@
                            (sypd (get d1 vname (first timers))
                                  (get d1 vname timer)
                                  "tmax"))))
-  (for [fmt (, "pdf" "png")]
-    (with [(pl-plot (, 8 6) "F-case-nodecount" :format fmt)]
-      (for [(, vi vname) (enumerate (, v1-name v2-name))
+  (defn plot []
+    (for [(, vi vname) (enumerate (, v1-name v2-name))
             (, ti timer) (enumerate timers)]
         (when (or (= timer "CPL:ATM_RUN") (= timer "a:CAM_run1"))
           ;; too close to CPL:RUN_LOOP to be interesting
@@ -111,19 +118,20 @@
                    (, r (* r (/ (last ncs) (first ncs)))) "--" :color (, g g g))
       (pl.legend :loc "lower right" :fontsize fs :ncol 2 :framealpha 1)
       (my-grid)
-      (pl.title (+ "Performance of maint-1.0 "
-                   (slash-underscore v1-name)
-                   "\nand v2.0.0 "
-                   (slash-underscore v2-name))
-                :fontsize fs)
+      (pl.title (make-fcase-title v1-name v2-name) :fontsize fs)
       (pl.xticks log-xticks xticks :fontsize fs)
       (pl.yticks yticks yticks :fontsize fs)
       (pl.xlim (npy.log (, 4.3 100)))
       (pl.ylim (, 0.37 1800))
       (pl.xlabel "Number of Chrysalis AMD Epyc 7532 64-core nodes" :fontsize fs)
-      (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))))
+      (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))
+  (if (none? ax)
+      (for [fmt (, "pdf" "png")]
+        (with [(pl-plot (, 8 6) "F-case-nodecount" :format fmt)]
+          (plot)))
+      (plot)))
 
-(defn plot-fcase-bar-chart [d &optional [nc 85]]
+(defn plot-fcase-bar-chart [d &optional [nc 85] ax]
   (sv npa npy.array
       e (get-fcase-context)
       fs 16
@@ -147,28 +155,51 @@
   (for [i (range (len ds))
         j (range 2)]
     (sv (get ds i j) (/ (get ds i j) tot)))
+  (defn plot []
+    (sv g 0.6)
+    (for [y ys]
+      (pl.plot (, -1 3) [y y] "-" :color (, g g g) :zorder -1 :lw 0.5))
+    (sv acc (npa [0.0 0.0]))
+    (for [i (range (len ds))]
+      (pl.bar [1 2] (get ds i) :bottom acc :label (nth timer-names i)
+              :hatch (nth hatches i) :facecolor (nth clrs i) :edgecolor "k")
+      (+= acc (npa (get ds i))))
+    (pl.yticks ys :fontsize fs)
+    (pl.ylim (, 0 1.01))
+    (pl.xlim (, 0.5 2.5))
+    (pl.xticks [1 2] (, "v1" "v2") :fontsize fs)
+    (pl.legend :loc "upper right" :fontsize (dec fs) :ncol 1 :framealpha 1)
+    (pl.title (+ (make-fcase-title v1-name v2-name)
+                 " on " (str nc) " nodes")
+              :fontsize fs)
+    (pl.ylabel "Normalized time" :fontsize fs))
+  (if (none? ax)
+      (for [fmt (, "pdf" "png")]
+        (with [(pl-plot (, 6 6) "F-case-bar-chart" :format fmt)]
+          (plot)))
+      (plot)))
+
+(defn plot-fcase [d &optional [nc 85]]
+  (sv e (get-fcase-context)
+      fs 16)
   (for [fmt (, "pdf" "png")]
-    (with [(pl-plot (, 6 6) "F-case-bar-chart" :format fmt)]
-      (sv g 0.6)
-      (for [y ys]
-        (pl.plot (, -1 3) [y y] "-" :color (, g g g) :zorder -1 :lw 0.5))
-      (sv acc (npa [0.0 0.0]))
-      (for [i (range (len ds))]
-        (pl.bar [1 2] (get ds i) :bottom acc :label (nth timer-names i)
-                :hatch (nth hatches i) :facecolor (nth clrs i) :edgecolor "k")
-        (+= acc (npa (get ds i))))
-      (pl.yticks ys :fontsize fs)
-      (pl.ylim (, 0 1.01))
-      (pl.xlim (, 0.5 2.5))
-      (pl.xticks [1 2] (, "v1" "v2") :fontsize fs)
-      (pl.legend :loc "upper right" :fontsize (dec fs) :ncol 1 :framealpha 1)
-      (pl.title (+ "Performance of maint-1.0 "
-                   (slash-underscore v1-name)
-                   "\nand v2.0.0 "
-                   (slash-underscore v2-name)
-                   " on " (str nc) " nodes")
-                :fontsize fs)
-      (pl.ylabel "Normalized time" :fontsize fs))))
+    (with [(pl-plot (, 12 5) "perf-F-case" :format fmt :tight False)]
+      (sv axs (, (pl.axes (, 0 0 0.55 1))
+                 (pl.axes (, 0.62 0 0.38 1))))
+      (sv ax (first axs))
+      (pl.axes ax)
+      (plot-fcase-vs-nodecount d :ax ax)
+      (pl.title "")
+      (sv ax (last axs))
+      (pl.axes ax)
+      (plot-fcase-bar-chart d :nc nc :ax (last axs))
+      (pl.title "")
+      (sv trans (. (pl.gcf) transFigure)
+          dy -0.08)
+      (pl.text -0.05 dy "(a)" :transform trans :fontsize fs)
+      (pl.text 0.58 dy "(b)" :transform trans :fontsize fs)
+      (pl.text 0.5 1.05 (make-fcase-title (:v1-name e) (:v2-name e) :newline False)
+               :transform trans :fontsize fs :ha "center"))))
 
 (defn write-wccase-table [d]
   (sv e (get-wccase-context))
@@ -378,6 +409,10 @@
 (when-inp ["parse-and-plot-fcase-bar-chart"]
   (sv d (parse-timer-summary-file "../fcase-timers1.txt"))
   (plot-fcase-bar-chart d 85))
+
+(when-inp ["parse-and-plot-fcase"]
+  (sv d (parse-timer-summary-file "../fcase-timers1.txt"))
+  (plot-fcase d))
 
 (when-inp ["dev-wc"]
   (sv d (parse-timer-summary-file "../wccase-timers1.txt" :case "wc"))
