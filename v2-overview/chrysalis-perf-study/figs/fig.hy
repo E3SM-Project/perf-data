@@ -21,8 +21,8 @@
   (sv prefix "v2-overview-wccase-chrysalis-r0.")
   {:ncore 64
    :nphys-per-day 48
-   :pelayouts (, "S" "M" "L")
-   :xticks (, 28 30 53 60 105 115)
+   :pelayouts (, "5" "10" "XS" "S" "M" "L")
+   :xticks (, 5 10 14 28 30 53 60 105 115)
    :prefix prefix
    :v1-name "A_WCYCL1850S_CMIP6.ne30_oECv3"
    :v2-name "WCYCL1850.ne30pg2_EC30to60E2r2"})
@@ -231,29 +231,26 @@
       (sv sypd-tot-v1 sypd-tot
           nrank-v1 nrank))))
 
-(defn get-node-counts [e d]
-  (sv ncs [])
-  (for [pe (:pelayouts e)
-        compset (, (:v2-name e) (:v1-name e))]
-    (sv nrank (get d pe compset "CPL:RUN_LOOP" "nrank")
-        nc (/ nrank (:ncore e)))
-    (assert (zero? (- nc (int nc))))
-    (.append ncs (int nc)))
-  ncs)
-
 (defn plot-wccase-vs-nodecount [d &optional [details False] ax]
-  (defn text [x y dx fy]
-    (for [i (range (len x))]
-      (pl.text (+ dx (nth x i)) (* fy (nth y i))
-               (.format "{:1.2f}" (nth y i))
-               :fontsize fs :ha "center")))
+  (sv fys (, 0.77 1.13))
+  (defn text [x y pes dx fy]
+    (for-last [i (range (len x))]
+      (pl.text (+ dx (nth x i))
+               (* (cond [(and (> fy 1) (zero? i)) 1.33]
+                        [(and (< fy 1) last?) 0.65]
+                        [:else fy])
+                  (nth y i))
+               (.format "{:1.2f} {:s}" (nth y i) (nth pes i))
+               :fontsize (- fs 2)
+               :ha (cond [(zero? i) "left"]
+                         [last? "right"]
+                         [:else (if (< fy 1) "left" "right")]))))
   (sv e (get-wccase-context)
-      ncs (get-node-counts e d)
       xticks (:xticks e)
       log-xticks (npy.log xticks)
       yticks (if details
                  (, 1 10 100)
-                 (, 6 7 8 9 10 20 30 40 50))
+                 (, 1 2 3 4 5 6 7 8 9 10 20 30 40 50))
       v1-name (:v1-name e)
       v2-name (:v2-name e)
       v-short-names (, "v1" "v2")
@@ -268,40 +265,50 @@
   (for [pe (:pelayouts e)]
     (sv d1 (get d pe))
     (for [vname (, v1-name v2-name)]
-      (assoc-nested-append xs (, vname)
+      (when (none? (geton d1 vname)) (continue))
+      (assoc-nested-append xs (, vname "nnode")
                            (// (get d1 vname "CPL:RUN_LOOP" "nrank") (:ncore e)))
+      (assoc-nested-append xs (, vname "pe")
+                           (case/in pe
+                                    [(, "XS" "S" "M" "L") pe]
+                                    [:else "st"]))
       (for [timer timers]
         (assoc-nested-append ys (, vname timer)
                              (sypd (get d1 vname (first timers))
                                    (get d1 vname timer)
                                    "tmax")))))
   (defn plot []
+    (sv g 0.5 r (if details 100 45.5)
+        x (, 5 115))
+    (pl.semilogy (npy.log x)
+                 (, (* r (/ (first x) (last x))) r) "--" :color (, g g g))
     (for [(, vi vname) (enumerate (, v1-name v2-name))
           (, ti timer) (enumerate timers)]
       (unless (or details (= timer (first timers))) (continue))
-      (sv x (npy.log (get xs vname))
+      (sv x (npy.log (get xs vname "nnode"))
+          pes (get xs vname "pe")
           y (get ys vname timer))
-      (when (zero? ti) (text x y 0 (if details 0.8 1.1)))
+      (when (zero? ti) (text x y pes 0 (if details (first fys) (nth fys vi))))
       (pl.semilogy x y
                    (+ (nth clrs vi) (nth linestyles vi) (nth markers ti))
                    :label (+ (nth v-short-names vi) " " (nth timer-names ti))))
-    (sv g 0.5 r (if details 100 40)
-        x (, 28 115))
-    (pl.semilogy (npy.log x)
-                 (, (* r (/ (first x) (last x))) r) "--" :color (, g g g))
     (pl.legend :loc "lower right" :fontsize fs :ncol 2 :framealpha 1)
     (my-grid)
     (pl.title (make-perf-title v1-name v2-name) :fontsize fs)
-    (pl.xticks log-xticks xticks :fontsize fs :rotation -45)
-    (pl.yticks yticks yticks :fontsize fs)
-    (pl.xlim (npy.log (, 25.5 126)))
-    (pl.ylim (if details (, 3 250) (, 7 53)))
+    (pl.xticks log-xticks xticks :fontsize fs :rotation 0)
+    (sv (, xtv xto) (pl.xticks))
+    (for [(, v t) (zip xtv xto)]
+      (when (in v (npy.log (, 28 53 105))) (.set-ha t "right"))
+      (when (in v (npy.log (, 30 60 115))) (.set-ha t "left")))
+    (pl.yticks yticks yticks :fontsize (- fs 2))
+    (pl.xlim (npy.log (, 4.8 120)))
+    (pl.ylim (if details (, 3 250) (, 1 55)))
     (pl.xlabel "Number of Chrysalis AMD Epyc 7532 64-core nodes"
                :fontsize fs)
     (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))
   (if (none? ax)
       (for [fmt (, "pdf" "png")]
-        (with [(pl-plot (, (if details 6.5 6.5) 6)
+        (with [(pl-plot (, (if details 7 7) 6)
                         (+ "WC-case-nodecount" (if details "-detailed" ""))
                         :format fmt)]
           (plot)))
@@ -426,9 +433,9 @@
       fs 16)
   (for [fmt (, "pdf" "png")]
     (with [(pl-plot (, 12 4) "perf-WC-case" :format fmt :tight False)]
-      (sv ax-xlim (, 0.42 1)
-          ax-ylim (, 0.05 0.95)
-          axs (, (pl.axes (, 0 0 0.35 1))))
+      (sv ax-xlim (, 0.46 1)
+          ax-ylim (, 0.1 0.9)
+          axs (, (pl.axes (, 0 0 0.4 1))))
       (sv ax (first axs))
       (pl.axes ax)
       (plot-wccase-vs-nodecount d :ax ax)
@@ -438,7 +445,7 @@
       (sv trans (. (pl.gcf) transFigure)
           dy -0.1)
       (pl.text -0.05 dy "(a)" :transform trans :fontsize fs)
-      (pl.text 0.4 dy "(b)" :transform trans :fontsize fs)
+      (pl.text 0.42 dy "(b)" :transform trans :fontsize fs)
       (pl.text 0.5 1.05 (make-perf-title (:v1-name e) (:v2-name e) :newline False)
                :transform trans :fontsize fs :ha "center"))))
 
