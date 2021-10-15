@@ -445,7 +445,7 @@
       (sv trans (. (pl.gcf) transFigure)
           dy -0.1)
       (pl.text -0.05 dy "(a)" :transform trans :fontsize fs)
-      (pl.text 0.42 dy "(b)" :transform trans :fontsize fs)
+      (pl.text 0.44 dy "(b)" :transform trans :fontsize fs)
       (pl.text 0.5 1.05 (make-perf-title (:v1-name e) (:v2-name e) :newline False)
                :transform trans :fontsize fs :ha "center"))))
 
