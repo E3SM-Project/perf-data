@@ -19,15 +19,18 @@ else
     exit
 fi
 
-if [[ $pelayout == S ]]; then
+pecountarg="--pecount $pelayout"
+if [[ $pelayout == XS ]]; then
+    walltime='03:00:00'
+elif [[ $pelayout == S ]]; then
     walltime='03:00:00'
 elif [[ $pelayout == M ]]; then
     walltime='02:00:00'
 elif [[ $pelayout == L ]]; then
     walltime='01:00:00'
 else
-    echo "ERROR: Not a valid peylaout:" $pelayout
-    exit
+    pecountarg=
+    walltime='06:00:00'
 fi
 
 case=$prefix.$compset.$res.$pelayout
@@ -38,7 +41,7 @@ $e3sm/cime/scripts/create_newcase \
     -case $case -compset $compset -res $res $casegrouparg \
     --machine chrysalis --compiler intel --project $wcid \
     --handle-preexisting-dirs u \
-    --walltime $walltime --pecount $pelayout
+    --walltime $walltime $pecountarg
 
 cd $case
 
@@ -51,6 +54,14 @@ ncore=64
 ./xmlchange REST_N=3
 ./xmlchange HIST_OPTION=nmonths
 ./xmlchange HIST_N=3
+
+if [[ $pecountarg == "" ]]; then
+    ./xmlchange NTASKS=$(( $pelayout * $ncore ))
+    ./xmlchange NTHRDS=1
+    ./xmlchange ROOTPE=0
+    ./xmlchange MAX_MPITASKS_PER_NODE=$ncore
+    ./xmlchange MAX_TASKS_PER_NODE=$ncore
+fi
 
 ./case.setup
 ./case.build
