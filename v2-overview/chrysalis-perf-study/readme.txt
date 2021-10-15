@@ -47,7 +47,7 @@ wccase-timers1.txt: The model_timing_stats files are saved in the directory
 The PACE dataset corresponding to this run is at the URL
     https://pace.ornl.gov/search/v2-overview-wccase-chrysalis-r0
 with PACE IDs
-    84735 84718 84721 84714 84719 84733
+    84735 84718 84721 84714 84719 84733 84851 84854 84852 84856 84853 
 
 Procedure.
   1. Build and submit the jobs:

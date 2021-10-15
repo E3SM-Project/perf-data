@@ -4,7 +4,7 @@
 ;; - all figs: short titles; give res and compset details in caption
 ;; x WC-case tot sypd vs nodes
 ;; x PE layout fig for one WC-case
-;; - XS for v2.0.0 WC-case
+;; x XS for v2.0.0 WC-case
 
 (pl-require-type1-fonts)
 (assoc matplotlib.rcParams "savefig.dpi" 300)
@@ -302,7 +302,7 @@
       (when (in v (npy.log (, 30 60 115))) (.set-ha t "left")))
     (pl.yticks yticks yticks :fontsize (- fs 2))
     (pl.xlim (npy.log (, 4.8 120)))
-    (pl.ylim (if details (, 3 250) (, 1 55)))
+    (pl.ylim (if details (, 1 250) (, 1 55)))
     (pl.xlabel "Number of Chrysalis AMD Epyc 7532 64-core nodes"
                :fontsize fs)
     (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))
