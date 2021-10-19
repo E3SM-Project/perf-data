@@ -1,0 +1,259 @@
+{
+  "ScorpioIOSummaryStatistics":{
+    "OverallIOStatistics":{
+      "name" : "Scorpio",
+      "avg_wtput" : 2545.353375,
+      "avg_rtput" : 344.887378,
+      "tot_wb" : 19375674084,
+      "tot_rb" : 1209426076,
+      "tot_wtime" : 13.122629
+      }
+    ,
+    "ModelComponentIOStatistics":[
+      {
+        "name" : "tmp_001088tasks000017io00_comp",
+        "avg_wtput" : 2545.353375,
+        "avg_rtput" : 344.887378,
+        "tot_wb" : 19375674084,
+        "tot_rb" : 1209426076,
+        "tot_wtime" : 13.122629
+        }
+      ]
+    ,
+    "FileIOStatistics":[
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/ocn/mpas-o/oEC60to30v3/oEC60to30v3_60layer.170905.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 373.896190,
+        "tot_wb" : 0,
+        "tot_rb" : 1115430716,
+        "tot_wtime" : 3.306833
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/ocn/mpas-o/oEC60to30v3/oEC60to30v3_Atlantic_region_and_southern_transect.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 177.099881,
+        "tot_wb" : 0,
+        "tot_rb" : 93995360,
+        "tot_wtime" : 0.524808
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.globalStats.0001-01-01.nc",
+        "avg_wtput" : 0.527981,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 77076,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.495151
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.globalStats.0001-02-01.nc",
+        "avg_wtput" : 0.673602,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 73428,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.444490
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.globalStats.0001-03-01.nc",
+        "avg_wtput" : 0.676709,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 78900,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.490553
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.globalStats.0001-04-01.nc",
+        "avg_wtput" : 0.578460,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 24180,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.072363
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.highFrequencyOutput.0001-01-01_00.00.00.nc",
+        "avg_wtput" : 1545.392524,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 959463294,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.636059
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.highFrequencyOutput.0001-02-01_00.00.00.nc",
+        "avg_wtput" : 1491.340715,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 895499630,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.590991
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.highFrequencyOutput.0001-03-01_00.00.00.nc",
+        "avg_wtput" : 1555.860787,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 991445126,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.640156
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.highFrequencyOutput.0001-04-01_00.00.00.nc",
+        "avg_wtput" : 481.764435,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 31990166,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.085863
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.meridionalHeatTransport.0001-02-01.nc",
+        "avg_wtput" : 1.632363,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 98756,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.082315
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.meridionalHeatTransport.0001-03-01.nc",
+        "avg_wtput" : 1.512915,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 98756,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.087379
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.meridionalHeatTransport.0001-04-01.nc",
+        "avg_wtput" : 1.113797,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 98756,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.106804
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.timeSeriesStatsMonthly.0001-01-01.nc",
+        "avg_wtput" : 3563.974224,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 4940759266,
+        "tot_rb" : 0,
+        "tot_wtime" : 1.374335
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.timeSeriesStatsMonthly.0001-02-01.nc",
+        "avg_wtput" : 4022.173999,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 4940759266,
+        "tot_rb" : 0,
+        "tot_wtime" : 1.224578
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.timeSeriesStatsMonthly.0001-03-01.nc",
+        "avg_wtput" : 4074.756215,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 4940759266,
+        "tot_rb" : 0,
+        "tot_wtime" : 1.214710
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.timeSeriesStatsMonthlyMax.0001-01-01.nc",
+        "avg_wtput" : 1004.350636,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 56448546,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.077456
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.timeSeriesStatsMonthlyMax.0001-02-01.nc",
+        "avg_wtput" : 277.139468,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 56448546,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.220385
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.timeSeriesStatsMonthlyMax.0001-03-01.nc",
+        "avg_wtput" : 939.583972,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 56448546,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.086559
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.timeSeriesStatsMonthlyMin.0001-01-01.nc",
+        "avg_wtput" : 705.151669,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 56448546,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.093682
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.timeSeriesStatsMonthlyMin.0001-02-01.nc",
+        "avg_wtput" : 893.671552,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 56448546,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.087081
+        }
+      ,
+      {
+        "name" : "mpaso.hist.am.timeSeriesStatsMonthlyMin.0001-03-01.nc",
+        "avg_wtput" : 836.009800,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 56448546,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.091723
+        }
+      ,
+      {
+        "name" : "mpaso.rst.0001-04-01_00000.nc",
+        "avg_wtput" : 1884.350223,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 1222852490,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.719618
+        }
+      ,
+      {
+        "name" : "mpaso.rst.am.timeSeriesStatsMonthly.0001-01-01_00000.nc",
+        "avg_wtput" : 0.233997,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 7360,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.058806
+        }
+      ,
+      {
+        "name" : "mpaso.rst.am.timeSeriesStatsMonthlyMax.0001-01-01_00000.nc",
+        "avg_wtput" : 993.128062,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 56448546,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.091977
+        }
+      ,
+      {
+        "name" : "mpaso.rst.am.timeSeriesStatsMonthlyMin.0001-01-01_00000.nc",
+        "avg_wtput" : 998.170176,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 56448546,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.086000
+        }
+      ]
+    }
+}

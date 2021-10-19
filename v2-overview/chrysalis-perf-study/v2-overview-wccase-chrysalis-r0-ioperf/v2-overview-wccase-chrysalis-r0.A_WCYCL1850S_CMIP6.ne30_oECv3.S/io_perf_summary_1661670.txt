@@ -1,0 +1,197 @@
+"ScorpioIOSummaryStatistics":
+  "OverallIOStatistics":
+    "name" : "Scorpio"
+    "avg_wtput" : 2060.161128
+    "avg_rtput" : 650.556975
+    "tot_wb" : 19375674060
+    "tot_rb" : 1206756316
+    "tot_wtime" : 12.476355
+  "ModelComponentIOStatistics":
+    "name" : "tmp_0512tasks0008io00_comp"
+    "avg_wtput" : 2060.161128
+    "avg_rtput" : 650.556975
+    "tot_wb" : 19375674060
+    "tot_rb" : 1206756316
+    "tot_wtime" : 12.476355
+  "FileIOStatistics":
+    "name" : "/lcrc/group/e3sm/data/inputdata/ocn/mpas-o/oEC60to30v3/oEC60to30v3_60layer.170905.nc"
+    "avg_wtput" : 0.000000
+    "avg_rtput" : 722.631629
+    "tot_wb" : 0
+    "tot_rb" : 1113622652
+    "tot_wtime" : 1.593632
+  "FileIOStatistics":
+    "name" : "/lcrc/group/e3sm/data/inputdata/ocn/mpas-o/oEC60to30v3/oEC60to30v3_Atlantic_region_and_southern_transect.nc"
+    "avg_wtput" : 0.000000
+    "avg_rtput" : 285.023457
+    "tot_wb" : 0
+    "tot_rb" : 93133664
+    "tot_wtime" : 0.320617
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.globalStats.0001-01-01.nc"
+    "avg_wtput" : 0.701285
+    "avg_rtput" : 0.000000
+    "tot_wb" : 77075
+    "tot_rb" : 0
+    "tot_wtime" : 0.401526
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.globalStats.0001-02-01.nc"
+    "avg_wtput" : 0.747304
+    "avg_rtput" : 0.000000
+    "tot_wb" : 73427
+    "tot_rb" : 0
+    "tot_wtime" : 0.360535
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.globalStats.0001-03-01.nc"
+    "avg_wtput" : 0.746615
+    "avg_rtput" : 0.000000
+    "tot_wb" : 78899
+    "tot_rb" : 0
+    "tot_wtime" : 0.388677
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.globalStats.0001-04-01.nc"
+    "avg_wtput" : 0.722099
+    "avg_rtput" : 0.000000
+    "tot_wb" : 24179
+    "tot_rb" : 0
+    "tot_wtime" : 0.059338
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.highFrequencyOutput.0001-01-01_00.00.00.nc"
+    "avg_wtput" : 1409.928599
+    "avg_rtput" : 0.000000
+    "tot_wb" : 959463293
+    "tot_rb" : 0
+    "tot_wtime" : 0.682533
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.highFrequencyOutput.0001-02-01_00.00.00.nc"
+    "avg_wtput" : 1450.196621
+    "avg_rtput" : 0.000000
+    "tot_wb" : 895499629
+    "tot_rb" : 0
+    "tot_wtime" : 0.606190
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.highFrequencyOutput.0001-03-01_00.00.00.nc"
+    "avg_wtput" : 1454.812949
+    "avg_rtput" : 0.000000
+    "tot_wb" : 991445125
+    "tot_rb" : 0
+    "tot_wtime" : 0.676899
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.highFrequencyOutput.0001-04-01_00.00.00.nc"
+    "avg_wtput" : 684.386790
+    "avg_rtput" : 0.000000
+    "tot_wb" : 31990165
+    "tot_rb" : 0
+    "tot_wtime" : 0.065481
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.meridionalHeatTransport.0001-02-01.nc"
+    "avg_wtput" : 4.833393
+    "avg_rtput" : 0.000000
+    "tot_wb" : 98755
+    "tot_rb" : 0
+    "tot_wtime" : 0.043330
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.meridionalHeatTransport.0001-03-01.nc"
+    "avg_wtput" : 4.526296
+    "avg_rtput" : 0.000000
+    "tot_wb" : 98755
+    "tot_rb" : 0
+    "tot_wtime" : 0.040951
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.meridionalHeatTransport.0001-04-01.nc"
+    "avg_wtput" : 4.730230
+    "avg_rtput" : 0.000000
+    "tot_wb" : 98755
+    "tot_rb" : 0
+    "tot_wtime" : 0.038532
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.timeSeriesStatsMonthly.0001-01-01.nc"
+    "avg_wtput" : 2606.867783
+    "avg_rtput" : 0.000000
+    "tot_wb" : 4940759265
+    "tot_rb" : 0
+    "tot_wtime" : 1.857206
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.timeSeriesStatsMonthly.0001-02-01.nc"
+    "avg_wtput" : 2705.235246
+    "avg_rtput" : 0.000000
+    "tot_wb" : 4940759265
+    "tot_rb" : 0
+    "tot_wtime" : 1.790292
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.timeSeriesStatsMonthly.0001-03-01.nc"
+    "avg_wtput" : 2862.637815
+    "avg_rtput" : 0.000000
+    "tot_wb" : 4940759265
+    "tot_rb" : 0
+    "tot_wtime" : 1.702859
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.timeSeriesStatsMonthlyMax.0001-01-01.nc"
+    "avg_wtput" : 195.050798
+    "avg_rtput" : 0.000000
+    "tot_wb" : 56448545
+    "tot_rb" : 0
+    "tot_wtime" : 0.300490
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.timeSeriesStatsMonthlyMax.0001-02-01.nc"
+    "avg_wtput" : 1041.349819
+    "avg_rtput" : 0.000000
+    "tot_wb" : 56448545
+    "tot_rb" : 0
+    "tot_wtime" : 0.073855
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.timeSeriesStatsMonthlyMax.0001-03-01.nc"
+    "avg_wtput" : 1014.771250
+    "avg_rtput" : 0.000000
+    "tot_wb" : 56448545
+    "tot_rb" : 0
+    "tot_wtime" : 0.075495
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.timeSeriesStatsMonthlyMin.0001-01-01.nc"
+    "avg_wtput" : 687.758077
+    "avg_rtput" : 0.000000
+    "tot_wb" : 56448545
+    "tot_rb" : 0
+    "tot_wtime" : 0.092989
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.timeSeriesStatsMonthlyMin.0001-02-01.nc"
+    "avg_wtput" : 249.712715
+    "avg_rtput" : 0.000000
+    "tot_wb" : 56448545
+    "tot_rb" : 0
+    "tot_wtime" : 0.237913
+  "FileIOStatistics":
+    "name" : "mpaso.hist.am.timeSeriesStatsMonthlyMin.0001-03-01.nc"
+    "avg_wtput" : 883.725289
+    "avg_rtput" : 0.000000
+    "tot_wb" : 56448545
+    "tot_rb" : 0
+    "tot_wtime" : 0.082866
+  "FileIOStatistics":
+    "name" : "mpaso.rst.0001-04-01_00000.nc"
+    "avg_wtput" : 2392.501895
+    "avg_rtput" : 0.000000
+    "tot_wb" : 1222852489
+    "tot_rb" : 0
+    "tot_wtime" : 0.593620
+  "FileIOStatistics":
+    "name" : "mpaso.rst.am.timeSeriesStatsMonthly.0001-01-01_00000.nc"
+    "avg_wtput" : 0.099560
+    "avg_rtput" : 0.000000
+    "tot_wb" : 7359
+    "tot_rb" : 0
+    "tot_wtime" : 0.096830
+  "FileIOStatistics":
+    "name" : "mpaso.rst.am.timeSeriesStatsMonthlyMax.0001-01-01_00000.nc"
+    "avg_wtput" : 476.008376
+    "avg_rtput" : 0.000000
+    "tot_wb" : 56448545
+    "tot_rb" : 0
+    "tot_wtime" : 0.142034
+  "FileIOStatistics":
+    "name" : "mpaso.rst.am.timeSeriesStatsMonthlyMin.0001-01-01_00000.nc"
+    "avg_wtput" : 764.977022
+    "avg_rtput" : 0.000000
+    "tot_wb" : 56448545
+    "tot_rb" : 0
+    "tot_wtime" : 0.100607

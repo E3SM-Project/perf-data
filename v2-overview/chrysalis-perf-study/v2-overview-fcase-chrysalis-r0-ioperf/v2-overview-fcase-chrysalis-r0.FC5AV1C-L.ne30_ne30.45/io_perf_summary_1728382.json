@@ -1,0 +1,637 @@
+{
+  "ScorpioIOSummaryStatistics":{
+    "OverallIOStatistics":{
+      "name" : "Scorpio",
+      "avg_wtput" : 2351.164635,
+      "avg_rtput" : 196398.432046,
+      "tot_wb" : 13921880226,
+      "tot_rb" : 6101967577280,
+      "tot_wtime" : 40.466367
+      }
+    ,
+    "ModelComponentIOStatistics":[
+      {
+        "name" : "CPL",
+        "avg_wtput" : 1034.169264,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 230292538,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.432011
+        }
+      ,
+      {
+        "name" : "tmp_002880tasks000045io01_comp",
+        "avg_wtput" : 2681.944333,
+        "avg_rtput" : 228731.713758,
+        "tot_wb" : 12408834969,
+        "tot_rb" : 6099790849024,
+        "tot_wtime" : 33.647079
+        }
+      ,
+      {
+        "name" : "tmp_002880tasks000045io02_comp",
+        "avg_wtput" : 1430.750538,
+        "avg_rtput" : 509.205551,
+        "tot_wb" : 1178143917,
+        "tot_rb" : 2171544256,
+        "tot_wtime" : 5.773067
+        }
+      ,
+      {
+        "name" : "tmp_002880tasks000045io03_comp",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 33.405518,
+        "tot_wb" : 0,
+        "tot_rb" : 2592000,
+        "tot_wtime" : 0.202766
+        }
+      ,
+      {
+        "name" : "tmp_002880tasks000045io04_comp",
+        "avg_wtput" : 421.238998,
+        "avg_rtput" : 43.724530,
+        "tot_wb" : 104608802,
+        "tot_rb" : 2592000,
+        "tot_wtime" : 0.411428
+        }
+      ,
+      {
+        "name" : "tmp_002880tasks000045io05_comp",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.000006
+        }
+      ,
+      {
+        "name" : "tmp_002880tasks000045io06_comp",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.000004
+        }
+      ,
+      {
+        "name" : "tmp_002880tasks000045io07_comp",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.000006
+        }
+      ,
+      {
+        "name" : "tmp_002880tasks000004io08_comp",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.000001
+        }
+      ]
+    ,
+    "FileIOStatistics":[
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.cpl.hi.0001-04-01-00000.nc",
+        "avg_wtput" : 1133.101875,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 147778552,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.183918
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.cpl.r.0001-04-01-00000.nc",
+        "avg_wtput" : 880.655208,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 82513986,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.123351
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mam/atmsrf_ne30np4_110920.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 34.328293,
+        "tot_wb" : 0,
+        "tot_rb" : 4276976,
+        "tot_wtime" : 0.122392
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart/dvel/season_wes.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 1681.347327,
+        "tot_wb" : 0,
+        "tot_rb" : 555724800,
+        "tot_wtime" : 0.328893
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart/phot/exo_coldens.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 6248.996875,
+        "tot_wb" : 0,
+        "tot_rb" : 2338698240,
+        "tot_wtime" : 0.375857
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart/ub/EESC_1850-2100_c090603.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 3.406598,
+        "tot_wb" : 0,
+        "tot_rb" : 2937600,
+        "tot_wtime" : 0.830826
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart/ub/clim_p_trop.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 7860.068945,
+        "tot_wb" : 0,
+        "tot_rb" : 2911357440,
+        "tot_wtime" : 0.366954
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DMSflux.2000.1deg_latlon_conserv.POPmonthlyClimFromACES4BGC_c20160226.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.089494
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/aces4bgc_nvsoa_soag_elev_2000_c160427.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.110866
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam3_bc_elev_2000_c120315.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.145827
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam3_bc_surf_2000_c120315.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.059582
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam3_num_a2_elev_2000_c120315.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.088471
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam3_num_a2_surf_2000_c120315.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.049889
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam3_pom_elev_2000_c130422.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.105750
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam3_pom_surf_2000_c130422.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.073717
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam3_so2_elev_2000_c120315.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.111223
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam3_so2_surf_2000_c120315.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.054350
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam3_so4_a1_elev_2000_c120315.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.137400
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam3_so4_a1_surf_2000_c120315.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.069712
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam3_so4_a2_elev_2000_c120315.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.102548
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam3_so4_a2_surf_2000_c120315.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.055969
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam7_num_a1_elev_2000_c120716.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.102352
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam7_num_a1_surf_2000_c120716.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.061743
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam7_num_a3_elev_2000_c120716.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.103585
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/ar5_mam7_num_a3_surf_2000_c120716.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 0,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.086337
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/inic/homme/cami_mam3_Linoz_ne30np4_L72_c160214.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 241.438620,
+        "tot_wb" : 0,
+        "tot_rb" : 818918224,
+        "tot_wtime" : 3.260106
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/bcpho_rrtmg_c100508.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 13.026292,
+        "tot_wb" : 0,
+        "tot_rb" : 3018240,
+        "tot_wtime" : 0.227143
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/dust4_rrtmg_c090521.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 15.405284,
+        "tot_wb" : 0,
+        "tot_rb" : 3018240,
+        "tot_wtime" : 0.195770
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/mam4_mode1_rrtmg_c130628.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 2097.523295,
+        "tot_wb" : 0,
+        "tot_rb" : 479692800,
+        "tot_wtime" : 0.243778
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/mam4_mode2_rrtmg_c130628.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 2438.671198,
+        "tot_wb" : 0,
+        "tot_rb" : 479692800,
+        "tot_wtime" : 0.192137
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/mam4_mode3_rrtmg_c130628.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 1727.188163,
+        "tot_wb" : 0,
+        "tot_rb" : 479692800,
+        "tot_wtime" : 0.269371
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/mam4_mode4_rrtmg_c130628.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 2297.548935,
+        "tot_wb" : 0,
+        "tot_rb" : 479692800,
+        "tot_wtime" : 0.204729
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/ocphi_rrtmg_c100508.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 62.080395,
+        "tot_wb" : 0,
+        "tot_rb" : 12556800,
+        "tot_wtime" : 0.198322
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/ocpho_rrtmg_c130709.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 13.811106,
+        "tot_wb" : 0,
+        "tot_rb" : 3018240,
+        "tot_wtime" : 0.213679
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/poly_rrtmg_c130816.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 61.690846,
+        "tot_wb" : 0,
+        "tot_rb" : 12556800,
+        "tot_wtime" : 0.201284
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/ssam_rrtmg_c100508.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 53.157554,
+        "tot_wb" : 0,
+        "tot_rb" : 12556800,
+        "tot_wtime" : 0.231709
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/sulfate_rrtmg_c080918.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 54.819861,
+        "tot_wb" : 0,
+        "tot_rb" : 12556800,
+        "tot_wtime" : 0.227173
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/water_refindex_rrtmg_c080910.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 6.898907,
+        "tot_wb" : 0,
+        "tot_rb" : 1382400,
+        "tot_wtime" : 0.198896
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/topo/USGS-gtopo30_ne30np4_16xdel2-PFC-consistentSGH.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 12.243174,
+        "tot_wb" : 0,
+        "tot_rb" : 1555264,
+        "tot_wtime" : 0.144658
+        }
+      ,
+      {
+        "name" : "SEMapping.nc",
+        "avg_wtput" : 14.067867,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 777600,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.053220
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.cam.h0.0001-01.nc",
+        "avg_wtput" : 3564.438257,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 1889281456,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.558459
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.cam.h0.0001-02.nc",
+        "avg_wtput" : 3562.596396,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 1889281456,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.565336
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.cam.h0.0001-03.nc",
+        "avg_wtput" : 3627.848086,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 1889281456,
+        "tot_rb" : 0,
+        "tot_wtime" : 1.668098
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.cam.r.0001-04-01-00000.nc",
+        "avg_wtput" : 2368.266448,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 6714939441,
+        "tot_rb" : 0,
+        "tot_wtime" : 2.998088
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.cam.rs.0001-04-01-00000.nc",
+        "avg_wtput" : 118.577992,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 25273560,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.211352
+        }
+      ,
+      {
+        "name" : "./v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.clm2.h0.0001-01.nc",
+        "avg_wtput" : 1055.249411,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 158648682,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.198932
+        }
+      ,
+      {
+        "name" : "./v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.clm2.h0.0001-02.nc",
+        "avg_wtput" : 1097.266133,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 115878748,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.149746
+        }
+      ,
+      {
+        "name" : "./v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.clm2.h0.0001-03.nc",
+        "avg_wtput" : 835.768192,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 115878748,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.184602
+        }
+      ,
+      {
+        "name" : "./v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.clm2.r.0001-04-01-00000.nc",
+        "avg_wtput" : 2121.662533,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 787283088,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.524553
+        }
+      ,
+      {
+        "name" : "./v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.clm2.rh0.0001-04-01-00000.nc",
+        "avg_wtput" : 7.295735,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 454651,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.064503
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/paramdata/CNP_parameters_c131108.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 28.227132,
+        "tot_wb" : 0,
+        "tot_rb" : 5529600,
+        "tot_wtime" : 0.189531
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/paramdata/clm_params_c180301.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 242.784256,
+        "tot_wb" : 0,
+        "tot_rb" : 72887040,
+        "tot_wtime" : 0.303725
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/snicardata/snicar_drdt_bst_fit_60_c070416.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 979.688464,
+        "tot_wb" : 0,
+        "tot_rb" : 188559360,
+        "tot_wtime" : 0.191572
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/snicardata/snicar_optics_5bnd_mam_c160322.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 4109.877322,
+        "tot_wb" : 0,
+        "tot_rb" : 1034956800,
+        "tot_wtime" : 0.253283
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/surfdata_map/surfdata_ne30np4_simyr2000_c180306.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 103.886015,
+        "tot_wb" : 0,
+        "tot_rb" : 302315960,
+        "tot_wtime" : 2.958950
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/share/domains/domain.lnd.ne30np4_gx1v6.110905.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 2210.463597,
+        "tot_wb" : 0,
+        "tot_rb" : 561644712,
+        "tot_wtime" : 0.260244
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.cice.h.0001-01.nc",
+        "avg_wtput" : 471.604383,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 30333402,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.074670
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.cice.h.0001-02.nc",
+        "avg_wtput" : 469.574684,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 30333402,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.074308
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.cice.h.0001-03.nc",
+        "avg_wtput" : 474.143876,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 30333402,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.073286
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.FC5AV1C-L.ne30_ne30.45.cice.r.0001-04-01-00000.nc",
+        "avg_wtput" : 227.875460,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 13608596,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.062731
+        }
+      ]
+    }
+}

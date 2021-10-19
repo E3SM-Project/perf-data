@@ -1,0 +1,777 @@
+{
+  "ScorpioIOSummaryStatistics":{
+    "OverallIOStatistics":{
+      "name" : "Scorpio",
+      "avg_wtput(MB/s)" : 1453.255032,
+      "avg_rtput(MB/s)" : 147859.932787,
+      "tot_wb(bytes)" : 5277485461,
+      "tot_rb(bytes)" : 3803833084128,
+      "tot_wtime(s)" : 3.463262,
+      "tot_rtime(s)" : 24.534151,
+      "tot_time(s)" : 32.016150
+      }
+    ,
+    "ModelComponentIOStatistics":[
+      {
+        "name" : "COMP_CPL: CPL",
+        "avg_wtput(MB/s)" : 788.977217,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 111406297,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.134662,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.290757
+        }
+      ,
+      {
+        "name" : "COMP_ATM: EAM",
+        "avg_wtput(MB/s)" : 1796.981144,
+        "avg_rtput(MB/s)" : 163563.074816,
+        "tot_wb(bytes)" : 4667674979,
+        "tot_rb(bytes)" : 3802695042912,
+        "tot_wtime(s)" : 2.477178,
+        "tot_rtime(s)" : 22.172074,
+        "tot_time(s)" : 27.748969
+        }
+      ,
+      {
+        "name" : "COMP_LND: ELM",
+        "avg_wtput(MB/s)" : 627.638269,
+        "avg_rtput(MB/s)" : 471.489826,
+        "tot_wb(bytes)" : 472121266,
+        "tot_rb(bytes)" : 1135449216,
+        "tot_wtime(s)" : 0.717372,
+        "tot_rtime(s)" : 2.296653,
+        "tot_time(s)" : 3.612596
+        }
+      ,
+      {
+        "name" : "UNKNOWN:SPIO_COMP_002051id001856tasks000029io03_tmp_name",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 24.686252,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 1296000,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.050067,
+        "tot_time(s)" : 0.137405
+        }
+      ,
+      {
+        "name" : "UNKNOWN:SPIO_COMP_002052id001856tasks000029io04_tmp_name",
+        "avg_wtput(MB/s)" : 186.984986,
+        "avg_rtput(MB/s)" : 80.483546,
+        "tot_wb(bytes)" : 26282919,
+        "tot_rb(bytes)" : 1296000,
+        "tot_wtime(s)" : 0.134050,
+        "tot_rtime(s)" : 0.015357,
+        "tot_time(s)" : 0.226418
+        }
+      ,
+      {
+        "name" : "UNKNOWN:SPIO_COMP_002053id001856tasks000029io05_tmp_name",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.000000
+        }
+      ,
+      {
+        "name" : "UNKNOWN:SPIO_COMP_002054id001856tasks000029io06_tmp_name",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.000001
+        }
+      ,
+      {
+        "name" : "UNKNOWN:SPIO_COMP_002055id001856tasks000029io07_tmp_name",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.000001
+        }
+      ,
+      {
+        "name" : "UNKNOWN:SPIO_COMP_002056id001856tasks000029io08_tmp_name",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.000000
+        }
+      ,
+      {
+        "name" : "UNKNOWN:SPIO_COMP_002057id001856tasks000004io09_tmp_name",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.000001
+        }
+      ]
+    ,
+    "FileIOStatistics":[
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.cpl.hi.0001-04-01-00000.nc",
+        "avg_wtput(MB/s)" : 803.966557,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 71224716,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.084488,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.138299
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.cpl.r.0001-04-01-00000.nc",
+        "avg_wtput(MB/s)" : 740.456514,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 40181581,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.051752,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.090523
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mam/atmsrf_ne30pg2_200129.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 23.685589,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 1900800,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.076534,
+        "tot_time(s)" : 0.080123
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart/dvel/season_wes.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 2084.550312,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 358133760,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.163845,
+        "tot_time(s)" : 0.169510
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart/phot/exo_coldens.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 8411.973534,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 1507161088,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.170868,
+        "tot_time(s)" : 0.175267
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart/ub/Linoz_Chlorine_Loading_CMIP6_0003-2017_c20171114.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 27.889331,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 29948416,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 1.024085,
+        "tot_time(s)" : 1.310206
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart/ub/clim_p_trop.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 5295.339246,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 1876208128,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.337899,
+        "tot_time(s)" : 0.341114
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_bc_a4_elev_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.026378,
+        "tot_time(s)" : 0.029215
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_bc_a4_surf_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.040159,
+        "tot_time(s)" : 0.041938
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_num_a1_elev_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.025163,
+        "tot_time(s)" : 0.028163
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_num_a1_surf_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.046563,
+        "tot_time(s)" : 0.049609
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_num_a2_elev_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.062712,
+        "tot_time(s)" : 0.064861
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_num_a2_surf_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.034848,
+        "tot_time(s)" : 0.037192
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_num_a4_elev_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.026683,
+        "tot_time(s)" : 0.030440
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_num_a4_surf_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.070155,
+        "tot_time(s)" : 0.071375
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_pom_a4_elev_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.078198,
+        "tot_time(s)" : 0.080792
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_pom_a4_surf_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.022779,
+        "tot_time(s)" : 0.026228
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_so2_elev_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.025813,
+        "tot_time(s)" : 0.028070
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_so2_surf_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.093750,
+        "tot_time(s)" : 0.096155
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_so4_a1_elev_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.023022,
+        "tot_time(s)" : 0.026020
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_so4_a1_surf_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.019373,
+        "tot_time(s)" : 0.021342
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_so4_a2_elev_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.077031,
+        "tot_time(s)" : 0.079153
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_so4_a2_surf_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.021755,
+        "tot_time(s)" : 0.024115
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_soag_elev_1x1_2010_clim_c20190821.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.023429,
+        "tot_time(s)" : 0.030003
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/chem/trop_mozart_aero/emis/DMSflux.2010.1deg_latlon_conserv.POPmonthlyClimFromACES4BGC_c20190220.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.066414,
+        "tot_time(s)" : 0.069479
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/inic/homme/20180716.DECKv1b_A3.ne30_oEC.edison.cam.i.2010-01-01-00000.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 265.420334,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 1208469072,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 4.342116,
+        "tot_time(s)" : 4.401404
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/bcpho_rrtmg_c100508.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 18.412499,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 1945088,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.100746,
+        "tot_time(s)" : 0.106024
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/dust_aeronet_rrtmg_c141106.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 17.468162,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 1945088,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.106192,
+        "tot_time(s)" : 0.110015
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/mam4_mode1_rrtmg_aeronetdust_c141106.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 2614.293384,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 309135360,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.112770,
+        "tot_time(s)" : 0.120729
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/mam4_mode2_rrtmg_c130628.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 2390.039268,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 309135360,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.123351,
+        "tot_time(s)" : 0.131865
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/mam4_mode3_rrtmg_aeronetdust_c141106.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 2825.979636,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 309135360,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.104323,
+        "tot_time(s)" : 0.108360
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/mam4_mode4_rrtmg_c130628.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 2814.135753,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 309135360,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.104762,
+        "tot_time(s)" : 0.109768
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/ocphi_rrtmg_c100508.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 66.925806,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 8092160,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.115311,
+        "tot_time(s)" : 0.122181
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/ocpho_rrtmg_c130709.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 17.855772,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 1945088,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.103887,
+        "tot_time(s)" : 0.110558
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/poly_rrtmg_c130816.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 75.747978,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 8092160,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.101881,
+        "tot_time(s)" : 0.106530
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/ssam_rrtmg_c100508.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 71.805804,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 8092160,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.107474,
+        "tot_time(s)" : 0.113964
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/sulfate_rrtmg_c080918.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 72.584194,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 8092160,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.106322,
+        "tot_time(s)" : 0.112278
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/physprops/water_refindex_rrtmg_c080910.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 1.046435,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 890880,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.811908,
+        "tot_time(s)" : 0.821109
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/atm/cam/topo/USGS-gtopo30_ne30np4pg2_16xdel2.c20200108.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 11.392404,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 734416,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.061479,
+        "tot_time(s)" : 0.133059
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.eam.h0.0001-01.nc",
+        "avg_wtput(MB/s)" : 1670.636771,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 420362677,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.239962,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.285448
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.eam.h0.0001-02.nc",
+        "avg_wtput(MB/s)" : 1710.580434,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 420362677,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.234359,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.280614
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.eam.h0.0001-03.nc",
+        "avg_wtput(MB/s)" : 811.801344,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 420362677,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.493827,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.811252
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.eam.r.0001-04-01-00000.nc",
+        "avg_wtput(MB/s)" : 2185.481442,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 3395008812,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 1.481473,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 1.779791
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.eam.rs.0001-04-01-00000.nc",
+        "avg_wtput(MB/s)" : 282.725878,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 11578136,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.039055,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.045725
+        }
+      ,
+      {
+        "name" : "./v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.elm.h0.0001-01.nc",
+        "avg_wtput(MB/s)" : 395.419154,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 38720206,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.093386,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.144157
+        }
+      ,
+      {
+        "name" : "./v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.elm.h0.0001-02.nc",
+        "avg_wtput(MB/s)" : 412.676342,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 29216052,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.067517,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.111907
+        }
+      ,
+      {
+        "name" : "./v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.elm.h0.0001-03.nc",
+        "avg_wtput(MB/s)" : 389.341256,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 29216052,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.071563,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.114758
+        }
+      ,
+      {
+        "name" : "./v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.elm.r.0001-04-01-00000.nc",
+        "avg_wtput(MB/s)" : 1825.736112,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 374503708,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.195622,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.252458
+        }
+      ,
+      {
+        "name" : "./v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.elm.rh0.0001-04-01-00000.nc",
+        "avg_wtput(MB/s)" : 1.521234,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 465248,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.291668,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.296732
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/paramdata/CNP_parameters_c131108.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 28.712798,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 3563520,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.118360,
+        "tot_time(s)" : 0.123988
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/paramdata/clm_params_c180301.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 262.369408,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 44744448,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.162640,
+        "tot_time(s)" : 0.186878
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/snicardata/snicar_drdt_bst_fit_60_c070416.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 1044.957414,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 121516032,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.110901,
+        "tot_time(s)" : 0.111929
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/snicardata/snicar_optics_5bnd_mam_c160322.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 6315.961766,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 666972160,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.100709,
+        "tot_time(s)" : 0.113896
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/surfdata_map/surfdata_ne30pg2_simyr2010_c210402.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 80.205894,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 134964224,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 1.604769,
+        "tot_time(s)" : 1.725358
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/share/domains/domain.lnd.ne30pg2_gx1v6.190806.nc",
+        "avg_wtput(MB/s)" : 0.000000,
+        "avg_rtput(MB/s)" : 1086.031547,
+        "tot_wb(bytes)" : 0,
+        "tot_rb(bytes)" : 161136000,
+        "tot_wtime(s)" : 0.000000,
+        "tot_rtime(s)" : 0.141498,
+        "tot_time(s)" : 0.159802
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.cice.h.0001-01.nc",
+        "avg_wtput(MB/s)" : 156.167982,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 6744961,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.041190,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.056538
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.cice.h.0001-02.nc",
+        "avg_wtput(MB/s)" : 202.866014,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 6744961,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.031708,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.042582
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.cice.h.0001-03.nc",
+        "avg_wtput(MB/s)" : 183.230904,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 6744961,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.035106,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.047216
+        }
+      ,
+      {
+        "name" : "v2-overview-fcase-chrysalis-r0.F2010-CICE.ne30pg2_ne30pg2.29.cice.r.0001-04-01-00000.nc",
+        "avg_wtput(MB/s)" : 202.944428,
+        "avg_rtput(MB/s)" : 0.000000,
+        "tot_wb(bytes)" : 6048036,
+        "tot_rb(bytes)" : 0,
+        "tot_wtime(s)" : 0.028421,
+        "tot_rtime(s)" : 0.000000,
+        "tot_time(s)" : 0.034632
+        }
+      ]
+    }
+}
