@@ -1,0 +1,196 @@
+{
+  "ScorpioIOSummaryStatistics":{
+    "OverallIOStatistics":{
+      "name" : "Scorpio",
+      "avg_wtput" : 536.646699,
+      "avg_rtput" : 1102.141005,
+      "tot_wb" : 1368167480,
+      "tot_rb" : 2260372016,
+      "tot_wtime" : 4.962225
+      }
+    ,
+    "ModelComponentIOStatistics":[
+      {
+        "name" : "tmp_0128tasks0002io02_comp",
+        "avg_wtput" : 567.818387,
+        "avg_rtput" : 623.479757,
+        "tot_wb" : 1205248872,
+        "tot_rb" : 1164474416,
+        "tot_wtime" : 4.336807
+        }
+      ,
+      {
+        "name" : "MOSART",
+        "avg_wtput" : 381.650071,
+        "avg_rtput" : 5982.306337,
+        "tot_wb" : 162918608,
+        "tot_rb" : 1095897600,
+        "tot_wtime" : 0.625418
+        }
+      ]
+    ,
+    "FileIOStatistics":[
+      {
+        "name" : "./v2-overview-wccase-chrysalis-r0.A_WCYCL1850S_CMIP6.ne30_oECv3.S.clm2.h0.0001-01.nc",
+        "avg_wtput" : 381.096640,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 158648752,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.435492
+        }
+      ,
+      {
+        "name" : "./v2-overview-wccase-chrysalis-r0.A_WCYCL1850S_CMIP6.ne30_oECv3.S.clm2.h0.0001-02.nc",
+        "avg_wtput" : 323.700184,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 115878828,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.375150
+        }
+      ,
+      {
+        "name" : "./v2-overview-wccase-chrysalis-r0.A_WCYCL1850S_CMIP6.ne30_oECv3.S.clm2.h0.0001-03.nc",
+        "avg_wtput" : 388.741499,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 115878828,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.317852
+        }
+      ,
+      {
+        "name" : "./v2-overview-wccase-chrysalis-r0.A_WCYCL1850S_CMIP6.ne30_oECv3.S.clm2.r.0001-04-01-00000.nc",
+        "avg_wtput" : 782.753420,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 814387743,
+        "tot_rb" : 0,
+        "tot_wtime" : 1.136508
+        }
+      ,
+      {
+        "name" : "./v2-overview-wccase-chrysalis-r0.A_WCYCL1850S_CMIP6.ne30_oECv3.S.clm2.rh0.0001-04-01-00000.nc",
+        "avg_wtput" : 31.844059,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 454721,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.018872
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/initdata_map/I1850CLM45.ne30_oECv3.edison.intel.36b43c9.clm2.r.0001-01-06-00000_c20171023.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 1159.798044,
+        "tot_wb" : 0,
+        "tot_rb" : 772219248,
+        "tot_wtime" : 0.659247
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/paramdata/CNP_parameters_c131108.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 24.468032,
+        "tot_wb" : 0,
+        "tot_rb" : 245760,
+        "tot_wtime" : 0.010400
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/paramdata/clm_params_c180301.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 165.236766,
+        "tot_wb" : 0,
+        "tot_rb" : 3239424,
+        "tot_wtime" : 0.026928
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/snicardata/snicar_drdt_bst_fit_60_c070416.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 850.795233,
+        "tot_wb" : 0,
+        "tot_rb" : 8380416,
+        "tot_wtime" : 0.010856
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/snicardata/snicar_optics_5bnd_mam_c160322.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 3529.059245,
+        "tot_wb" : 0,
+        "tot_rb" : 45998080,
+        "tot_wtime" : 0.015447
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/lnd/clm2/surfdata_map/surfdata_ne30np4_simyr1850_2015_c171018.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 285.871970,
+        "tot_wb" : 0,
+        "tot_rb" : 302304952,
+        "tot_wtime" : 1.196128
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/share/domains/domain.lnd.ne30np4_oEC60to30v3.161222.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 332.672294,
+        "tot_wb" : 0,
+        "tot_rb" : 26633896,
+        "tot_wtime" : 0.080560
+        }
+      ,
+      {
+        "name" : "./v2-overview-wccase-chrysalis-r0.A_WCYCL1850S_CMIP6.ne30_oECv3.S.mosart.h0.0001-01.nc",
+        "avg_wtput" : 388.735465,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 44592793,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.117391
+        }
+      ,
+      {
+        "name" : "./v2-overview-wccase-chrysalis-r0.A_WCYCL1850S_CMIP6.ne30_oECv3.S.mosart.h0.0001-02.nc",
+        "avg_wtput" : 446.841403,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 44592793,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.102040
+        }
+      ,
+      {
+        "name" : "./v2-overview-wccase-chrysalis-r0.A_WCYCL1850S_CMIP6.ne30_oECv3.S.mosart.h0.0001-03.nc",
+        "avg_wtput" : 399.972599,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 44592793,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.113559
+        }
+      ,
+      {
+        "name" : "./v2-overview-wccase-chrysalis-r0.A_WCYCL1850S_CMIP6.ne30_oECv3.S.mosart.r.0001-04-01-00000.nc",
+        "avg_wtput" : 341.912385,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 29031920,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.086173
+        }
+      ,
+      {
+        "name" : "./v2-overview-wccase-chrysalis-r0.A_WCYCL1850S_CMIP6.ne30_oECv3.S.mosart.rh0.0001-04-01-00000.nc",
+        "avg_wtput" : 8.375733,
+        "avg_rtput" : 0.000000,
+        "tot_wb" : 108309,
+        "tot_rb" : 0,
+        "tot_wtime" : 0.019921
+        }
+      ,
+      {
+        "name" : "/lcrc/group/e3sm/data/inputdata/rof/mosart/MOSART_Global_half_20161014c.nc",
+        "avg_wtput" : 0.000000,
+        "avg_rtput" : 6112.472188,
+        "tot_wb" : 0,
+        "tot_rb" : 1095897600,
+        "tot_wtime" : 0.178251
+        }
+      ]
+    }
+}

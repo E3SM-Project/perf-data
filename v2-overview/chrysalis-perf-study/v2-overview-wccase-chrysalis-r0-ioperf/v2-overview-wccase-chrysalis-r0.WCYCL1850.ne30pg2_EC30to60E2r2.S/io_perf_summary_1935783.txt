@@ -1,0 +1,307 @@
+"ScorpioIOSummaryStatistics":
+  "OverallIOStatistics":
+    "name" : "Scorpio"
+    "avg_wtput(MB/s)" : 2093.186506
+    "avg_rtput(MB/s)" : 427.978223
+    "tot_wb(bytes)" : 15733698213
+    "tot_rb(bytes)" : 1161964592
+    "tot_wtime(s)" : 7.168412
+    "tot_rtime(s)" : 2.589234
+    "tot_time(s)" : 11.958774
+  "ModelComponentIOStatistics":
+    "name" : "COMP_OCN: MPASO"
+    "avg_wtput(MB/s)" : 2093.186506
+    "avg_rtput(MB/s)" : 427.978223
+    "tot_wb(bytes)" : 15733698213
+    "tot_rb(bytes)" : 1161964592
+    "tot_wtime(s)" : 7.168412
+    "tot_rtime(s)" : 2.589234
+    "tot_time(s)" : 11.958774
+  "FileIOStatistics":
+    "name" : "/lcrc/group/e3sm/data/inputdata/ocn/mpas-o/EC30to60E2r2/EC30to60E2r2_mocBasinsAndTransects20210623.nc"
+    "avg_wtput(MB/s)" : 0.000000
+    "avg_rtput(MB/s)" : 85.426646
+    "tot_wb(bytes)" : 0
+    "tot_rb(bytes)" : 33898228
+    "tot_wtime(s)" : 0.000000
+    "tot_rtime(s)" : 0.378428
+    "tot_time(s)" : 0.390637
+  "FileIOStatistics":
+    "name" : "/lcrc/group/e3sm/data/inputdata/ocn/mpas-o/EC30to60E2r2/mpaso.EC30to60E2r2.rstFromG-anvil.201001.nc"
+    "avg_wtput(MB/s)" : 0.000000
+    "avg_rtput(MB/s)" : 486.794733
+    "tot_wb(bytes)" : 0
+    "tot_rb(bytes)" : 1128066364
+    "tot_wtime(s)" : 0.000000
+    "tot_rtime(s)" : 2.209983
+    "tot_time(s)" : 2.629538
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.eddyProductVariables.0001-02-01.nc"
+    "avg_wtput(MB/s)" : 2227.897803
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 573695616
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.245576
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.265230
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.eddyProductVariables.0001-03-01.nc"
+    "avg_wtput(MB/s)" : 2702.551077
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 573695616
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.202445
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.215827
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.eddyProductVariables.0001-04-01.nc"
+    "avg_wtput(MB/s)" : 2186.597921
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 573695616
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.250215
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.266436
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.globalStats.0001-01-01.nc"
+    "avg_wtput(MB/s)" : 0.705958
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 79300
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.107126
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.454953
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.globalStats.0001-02-01.nc"
+    "avg_wtput(MB/s)" : 0.688927
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 75492
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.104503
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.430854
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.globalStats.0001-03-01.nc"
+    "avg_wtput(MB/s)" : 0.746512
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 81204
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.103739
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.442805
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.globalStats.0001-04-01.nc"
+    "avg_wtput(MB/s)" : 0.886256
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 24084
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.025916
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.057330
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.highFrequencyOutput.0001-01-01_00.00.00.nc"
+    "avg_wtput(MB/s)" : 825.037602
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 96643194
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.111711
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.134693
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.highFrequencyOutput.0001-02-01_00.00.00.nc"
+    "avg_wtput(MB/s)" : 847.238683
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 80537122
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.090655
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.100483
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.highFrequencyOutput.0001-03-01_00.00.00.nc"
+    "avg_wtput(MB/s)" : 875.122340
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 96643194
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.105318
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.121795
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.highFrequencyOutput.0001-04-01_00.00.00.nc"
+    "avg_wtput(MB/s)" : 502.930444
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 16112834
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.030554
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.044922
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.meridionalHeatTransport.0001-02-01.nc"
+    "avg_wtput(MB/s)" : 4.975541
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 97817
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.018749
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.049484
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.meridionalHeatTransport.0001-03-01.nc"
+    "avg_wtput(MB/s)" : 5.317740
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 97817
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.017542
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.030455
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.meridionalHeatTransport.0001-04-01.nc"
+    "avg_wtput(MB/s)" : 4.267895
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 97817
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.021858
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.035612
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.oceanHeatContent.0001-02-01.nc"
+    "avg_wtput(MB/s)" : 96.913115
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 3795746
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.037352
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.043956
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.oceanHeatContent.0001-03-01.nc"
+    "avg_wtput(MB/s)" : 159.542601
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 3795746
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.022689
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.037967
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.oceanHeatContent.0001-04-01.nc"
+    "avg_wtput(MB/s)" : 145.915766
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 3795746
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.024808
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.038758
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.timeSeriesStatsMonthly.0001-01-01.nc"
+    "avg_wtput(MB/s)" : 2678.590132
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 4066479312
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 1.447813
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 1.506686
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.timeSeriesStatsMonthly.0001-02-01.nc"
+    "avg_wtput(MB/s)" : 2807.684648
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 4066479312
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 1.381244
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 1.439369
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.timeSeriesStatsMonthly.0001-03-01.nc"
+    "avg_wtput(MB/s)" : 2292.084558
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 4066479312
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 1.691952
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 1.742291
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.timeSeriesStatsMonthlyMax.0001-01-01.nc"
+    "avg_wtput(MB/s)" : 813.731680
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 45485424
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.053308
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.074940
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.timeSeriesStatsMonthlyMax.0001-02-01.nc"
+    "avg_wtput(MB/s)" : 712.982987
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 45485424
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.060841
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.079113
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.timeSeriesStatsMonthlyMax.0001-03-01.nc"
+    "avg_wtput(MB/s)" : 211.257631
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 45485424
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.205334
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.218179
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.timeSeriesStatsMonthlyMin.0001-01-01.nc"
+    "avg_wtput(MB/s)" : 577.837668
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 45485424
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.075070
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.088209
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.timeSeriesStatsMonthlyMin.0001-02-01.nc"
+    "avg_wtput(MB/s)" : 732.763371
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 45485424
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.059198
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.078487
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.hist.am.timeSeriesStatsMonthlyMin.0001-03-01.nc"
+    "avg_wtput(MB/s)" : 616.605480
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 45485424
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.070350
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.090413
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.rst.0001-04-01_00000.nc"
+    "avg_wtput(MB/s)" : 2146.678606
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 1238364509
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.550151
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.579292
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.rst.am.timeSeriesStatsMonthly.0001-01-01_00000.nc"
+    "avg_wtput(MB/s)" : 0.300120
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 6421
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.020404
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.039080
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.rst.am.timeSeriesStatsMonthlyMax.0001-01-01_00000.nc"
+    "avg_wtput(MB/s)" : 0.284908
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 6421
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.021493
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.028862
+  "FileIOStatistics":
+    "name" : "v2-overview-wccase-chrysalis-r0.WCYCL1850.ne30pg2_EC30to60E2r2.S.mpaso.rst.am.timeSeriesStatsMonthlyMin.0001-01-01_00000.nc"
+    "avg_wtput(MB/s)" : 0.348058
+    "avg_rtput(MB/s)" : 0.000000
+    "tot_wb(bytes)" : 6421
+    "tot_rb(bytes)" : 0
+    "tot_wtime(s)" : 0.017593
+    "tot_rtime(s)" : 0.000000
+    "tot_time(s)" : 0.044279
