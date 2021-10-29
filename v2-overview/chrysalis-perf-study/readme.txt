@@ -58,3 +58,24 @@ Procedure.
     done
   2. Use untar-wccase-timers.sh and grep-wccase-timers.sh to make
      wccase-timers1.txt.
+
+I/O Performance:
+
+io_perf.py: A utility script to parse the I/O performance summary
+files (io_perf_summary*.json) and output the average I/O write 
+throughputs for the different PE layouts. The script parses and
+outputs the I/O write throughputs for the F-case and WC-case
+studies mentioned above
+
+io_perf_out.txt: This text file contains the output from io_perf.py
+with some extra information obtained from PACE that was used for
+the I/O performance evaluation of the F and WC cases.
+
+Procedure.
+ 1. The I/O output summary files from the F and WC case experiments
+    are available in the repository (look for io_perf_summary*.json).
+    To calculate the average I/O throughput for the above cases run
+    the io_perf.py script.
+    
+    cd v2-overview/chrysalis-perf-study
+    python io_perf.py
