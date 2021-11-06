@@ -317,7 +317,7 @@
 (defn plot-wccase-pelayout-perf [d &optional pelayout timer-type sbs
                                  ax-xlim ax-ylim
                                  [title True]]
-  (svifn pelayout "L" timer-type "tavg" sbs False)
+  (svifn pelayout "L" timer-type "tmax" sbs False)
   (sv compact (not (none? ax-xlim))
       e (get-wccase-context)
       ice-tname "CPL:ICE_RUN" atm-tname "CPL:ATM_RUN"
