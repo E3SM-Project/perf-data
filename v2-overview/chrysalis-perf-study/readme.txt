@@ -79,3 +79,43 @@ Procedure.
     
     cd v2-overview/chrysalis-perf-study
     python io_perf.py
+
+grep-spio-timers.sh: A utility bash script to parse the timing files
+(model_timing_stats) to calculate the I/O write throughput. The
+script prints out the total (adding max timings for multiple PIO
+APIs) read/write times for the run, the write throughput & the
+total size of the data (adding the file sizes in the run directory)
+written out.
+
+grep-spio-timers_out.txt: This text file contains the output from
+the grep-spio-timers.sh script.
+
+Procedure.
+ Since the grep-spio-timers.sh script analyzes timing files, it
+assumes the timing files are available in the specified directory.
+For E3SM runs this requires the user to explicitly extract the
+timing files (timing.*.gz) in the run directory. Also since the
+script calculates the amount of data written out it assumes that
+the directory specified by the user is the case run directory
+(containing the *.nc model output files) and that the timing
+files are available inside the run directory in a directory
+named "timing*" (i.e., ensure that the timing files are
+extracted in the run directory)
+
+ 1. The grep-spio-timers.sh script by default reads the timing
+    files in
+
+/lcrc/group/e3sm/jayesh/scratch/chrys/
+ v2-overview-wccase-chrysalis-r1-spio.A_WCYCL1850S_CMIP6.ne30_oECv3*
+
+    To analyze all timing files in these directories,
+
+    cd v2-overview/chrysalis-perf-study
+    ./grep-spio-timers.sh
+
+ 2. The grep-spio-timers.sh script also can analyze timing files
+    in a user-specified directory. To analyze timings files in
+    a user-specified directory,
+
+    cd v2-overview/chrysalis-perf-study
+    ./grep-spio-timers.sh [MYCASEDIR]/run
