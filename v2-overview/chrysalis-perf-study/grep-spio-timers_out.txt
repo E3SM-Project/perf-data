@@ -1,0 +1,106 @@
+# Analyze timing files in a single directory
+[jayesh@chrlogin2 chrysalis-perf-study]$ ./grep-spio-timers.sh /lcrc/group/e3sm/jayesh/scratch/chrys/v2-overview-wccase-chrysalis-r1-spio.A_WCYCL1850S_CMIP6.ne30_oECv3.S.2/run
+===========================================================
+DEBUG: LND+RIVER, write time = 2.877000 s
+DEBUG: ICE, write time = 2.009000 s
+DEBUG: ((LND+RIVER) | ICE), write time = 2.877000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), write time = 8.725000 s
+DEBUG: OCN, write time = 8.961000 s
+DEBUG: OCN : write_time (MAX) = 8.961000 s
+DEBUG: LND+RIVER, read time = 4.652000 s
+DEBUG: ICE, read time = 1.058000 s
+DEBUG: ((LND+RIVER) | ICE), read time = 4.652000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), read time = 54.151000 s
+DEBUG: OCN, read time = 3.168000 s
+DEBUG: (ATM+CPL+ (LND+RIVER)) : read_time (MAX) = 54.151000 s
+/lcrc/group/e3sm/jayesh/scratch/chrys/v2-overview-wccase-chrysalis-r1-spio.A_WCYCL1850S_CMIP6.ne30_oECv3.S.2/run : write time = 8.961000 s : write throughput = 3465 MB/s: read time = 54.151000 s: tot_sz = 31052 MB
+===========================================================
+# Analyze all files in /lcrc/group/e3sm/jayesh/scratch/chrys/v2-overview-wccase-chrysalis-r1-spio.A_WCYCL1850S_CMIP6.ne30_oECv3.[S|M|L].[1|2]
+[jayesh@chrlogin2 chrysalis-perf-study]$ ./grep-spio-timers.sh 
+===========================================================
+-----------------------------------------------------------
+DEBUG: LND+RIVER, write time = 2.442000 s
+DEBUG: ICE, write time = 4.126000 s
+DEBUG: ((LND+RIVER) | ICE), write time = 4.126000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), write time = 15.734000 s
+DEBUG: OCN, write time = 10.638000 s
+DEBUG: (ATM+CPL+ (ICE)) : write_time (MAX) = 15.734000 s
+DEBUG: LND+RIVER, read time = 2.990000 s
+DEBUG: ICE, read time = 1.063000 s
+DEBUG: ((LND+RIVER) | ICE), read time = 2.990000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), read time = 76.622000 s
+DEBUG: OCN, read time = 3.219000 s
+DEBUG: (ATM+CPL+ (LND+RIVER)) : read_time (MAX) = 76.622000 s
+S.1 : write time = 15.734000 s : write throughput = 1973 MB/s: read time = 76.622000 s: tot_sz = 31051 MB
+-----------------------------------------------------------
+DEBUG: LND+RIVER, write time = 2.877000 s
+DEBUG: ICE, write time = 2.009000 s
+DEBUG: ((LND+RIVER) | ICE), write time = 2.877000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), write time = 8.725000 s
+DEBUG: OCN, write time = 8.961000 s
+DEBUG: OCN : write_time (MAX) = 8.961000 s
+DEBUG: LND+RIVER, read time = 4.652000 s
+DEBUG: ICE, read time = 1.058000 s
+DEBUG: ((LND+RIVER) | ICE), read time = 4.652000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), read time = 54.151000 s
+DEBUG: OCN, read time = 3.168000 s
+DEBUG: (ATM+CPL+ (LND+RIVER)) : read_time (MAX) = 54.151000 s
+S.2 : write time = 8.961000 s : write throughput = 3465 MB/s: read time = 54.151000 s: tot_sz = 31052 MB
+-----------------------------------------------------------
+DEBUG: LND+RIVER, write time = 1.399000 s
+DEBUG: ICE, write time = 8.660000 s
+DEBUG: ((LND+RIVER) | ICE), write time = 8.660000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), write time = 24.653000 s
+DEBUG: OCN, write time = 14.660000 s
+DEBUG: (ATM+CPL+ (ICE)) : write_time (MAX) = 24.653000 s
+DEBUG: LND+RIVER, read time = 2.412000 s
+DEBUG: ICE, read time = 1.227000 s
+DEBUG: ((LND+RIVER) | ICE), read time = 2.412000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), read time = 93.396000 s
+DEBUG: OCN, read time = 2.803000 s
+DEBUG: (ATM+CPL+ (LND+RIVER)) : read_time (MAX) = 93.396000 s
+M.1 : write time = 24.653000 s : write throughput = 1259 MB/s: read time = 93.396000 s: tot_sz = 31051 MB
+-----------------------------------------------------------
+DEBUG: LND+RIVER, write time = 1.499000 s
+DEBUG: ICE, write time = 2.073000 s
+DEBUG: ((LND+RIVER) | ICE), write time = 2.073000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), write time = 7.162000 s
+DEBUG: OCN, write time = 9.282000 s
+DEBUG: OCN : write_time (MAX) = 9.282000 s
+DEBUG: LND+RIVER, read time = 3.807000 s
+DEBUG: ICE, read time = 1.539000 s
+DEBUG: ((LND+RIVER) | ICE), read time = 3.807000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), read time = 67.487000 s
+DEBUG: OCN, read time = 3.810000 s
+DEBUG: (ATM+CPL+ (LND+RIVER)) : read_time (MAX) = 67.487000 s
+M.2 : write time = 9.282000 s : write throughput = 3345 MB/s: read time = 67.487000 s: tot_sz = 31052 MB
+-----------------------------------------------------------
+DEBUG: LND+RIVER, write time = 3.169000 s
+DEBUG: ICE, write time = 49.272000 s
+DEBUG: ((LND+RIVER) | ICE), write time = 49.272000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), write time = 87.172000 s
+DEBUG: OCN, write time = 54.509000 s
+DEBUG: (ATM+CPL+ (ICE)) : write_time (MAX) = 87.172000 s
+DEBUG: LND+RIVER, read time = 4.651000 s
+DEBUG: ICE, read time = 1.598000 s
+DEBUG: ((LND+RIVER) | ICE), read time = 4.651000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), read time = 235.144000 s
+DEBUG: OCN, read time = 3.237000 s
+DEBUG: (ATM+CPL+ (LND+RIVER)) : read_time (MAX) = 235.144000 s
+L.1 : write time = 87.172000 s : write throughput = 356 MB/s: read time = 235.144000 s: tot_sz = 31051 MB
+-----------------------------------------------------------
+DEBUG: LND+RIVER, write time = 1.560000 s
+DEBUG: ICE, write time = 3.352000 s
+DEBUG: ((LND+RIVER) | ICE), write time = 3.352000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), write time = 10.597000 s
+DEBUG: OCN, write time = 8.894000 s
+DEBUG: (ATM+CPL+ (ICE)) : write_time (MAX) = 10.597000 s
+DEBUG: LND+RIVER, read time = 2.889000 s
+DEBUG: ICE, read time = 1.525000 s
+DEBUG: ((LND+RIVER) | ICE), read time = 2.889000 s
+DEBUG: (ATM+CPL+ ((LND+RIVER) | ICE)), read time = 70.823000 s
+DEBUG: OCN, read time = 3.009000 s
+DEBUG: (ATM+CPL+ (LND+RIVER)) : read_time (MAX) = 70.823000 s
+L.2 : write time = 10.597000 s : write throughput = 2930 MB/s: read time = 70.823000 s: tot_sz = 31052 MB
+===========================================================
+
