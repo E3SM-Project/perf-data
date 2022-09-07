@@ -6,14 +6,28 @@
  (assoc matplotlib.rcParams "savefig.dpi" 300))
 
 (defn get-wccase-context []
-  (sv prefix "v2-overview-wccase-chrysalis-r0.")
   {:ncore 64
    :nphys-per-day 48
    :pelayouts (, "T" "XS" "S" "M" "L")
    :xticks (, 5 10 14 28 30 53 60 105 115)
-   :prefix prefix
+   :prefix "v2-overview-wccase-chrysalis-r0."
    :lr-name "WCYCL20TR.ne30pg2_EC30to60E2r2"
-   :rrm-name "WCYCL20TR.northamericax4v1pg2_WC14to60E2r3"})
+   :narrm-name "WCYCL20TR.northamericax4v1pg2_WC14to60E2r3"
+   :lr-atm-nelem (* 6 (** 30 2))
+   ;; /lcrc/group/e3sm/public_html/inputdata/atm/cam/inic/homme/northamericax4v1.g
+   :narrm-atm-nelem 14454
+   ;; /lcrc/group/acme/public_html/inputdata/ocn/mpas-o/EC30to60E2r2/ocean.EC30to60E2r2.200908.nc
+   :lr-ocn-ncell 236853
+   ;; /lcrc/group/acme/public_html/inputdata/ocn/mpas-o/WC14to60E2r3/ocean.WC14to60E2r3.210210.nc
+   :narrm-ocn-ncell 407420
+   ;; atm_in dtime and se_tstep
+   :lr-atm-physics-dt 1800
+   :lr-atm-dycore-dt 300
+   :narrm-atm-physics-dt 1800
+   :narrm-atm-dycore-dt 75
+   ;; mpaso_in config_dt
+   :lr-ocn-dt (* 30 60)
+   :narrm-ocn-dt (* 10 60)})
 
 (defn slash-underscore [s] (.replace s "_" "\_"))
 
@@ -49,10 +63,10 @@
   (/ simyrs walldays))
 
 (defn make-perf-title [lr-name rrm-name &optional [newline True]]
-  (+ "Performance of maint-1.0 "
+  (+ "Performance of "
      (slash-underscore lr-name)
      (if newline "\n" " ")
-     "and v2.0.0 "
+     "and "
      (slash-underscore rrm-name)))
 
 (defn write-wccase-table [d]
@@ -63,7 +77,7 @@
             "Case #node  Total |    ATM    ICE |    OCN | Factor"))
   (sv sypd-tot-lr None)
   (for [pe (:pelayouts e)
-        (, ci compset) (enumerate (, (:lr-name e) (:rrm-name e)))]
+        (, ci compset) (enumerate (, (:lr-name e) (:narrm-name e)))]
     (sv d1 (geton d pe compset))
     (when (none? d1) (continue))
     (sv ttot (get d1 "CPL:RUN_LOOP")
@@ -83,7 +97,7 @@
          (sypd ttot tocn "tmax")
          (if (or (in "ne30pg2" compset) (none? sypd-tot-lr))
            ""
-           (.format "{:5.2f}"
+           (.format "{:4.2f}"
                     (* (/ sypd-tot-lr sypd-tot)
                        (/ nrank nrank-lr)))))))
 
@@ -108,8 +122,8 @@
                  (, 1 10 100)
                  (, 1 2 3 4 5 6 7 8 9 10 20 30 40 50))
       lr-name (:lr-name e)
-      rrm-name (:rrm-name e)
-      v-short-names (, "v1" "v2")
+      rrm-name (:narrm-name e)
+      v-short-names (, "LR" "NARRM")
       timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "CPL:ICE_RUN" "CPL:OCN_RUN")
       timer-names (, "Total" "Atmosphere" "Sea ice" "Ocean")
       clrs (, "b" "r")
@@ -182,8 +196,8 @@
       timers (, atm-tname cpl-tname ice-tname lnd-tname rof-tname ocn-tname
                 tot-tname)
       lr-name (:lr-name e)
-      rrm-name (:rrm-name e)
-      v-short-names (, "v1" "v2")
+      rrm-name (:narrm-name e)
+      v-short-names (, "LR" "NARRM")
       clrs (, (if sbs "c" "b") "r" "y" (, 0.7 0.5 0) (if sbs "m" "c") "g" "k")
       lss (if sbs (, "-" "-" "-" "-" "-" "-" "-") (, "-" ":" "--" "-" "-" "-" "-"))
       hatches (if sbs (, "" "") (, "\\" "//"))
@@ -236,10 +250,10 @@
                   (and sbs (not (= timer tot-tname)))))
       (pl.axis "tight")
       (sv ocn-rank0 (get boxes lr-name ocn-tname :rank0)
-          v1-max-rank (get d pelayout lr-name tot-tname "nrank")
-          v2-max-rank (get d pelayout rrm-name tot-tname "nrank")
-          xmax (max v1-max-rank v2-max-rank))
-      (pl.xticks (, 0 ocn-rank0 v1-max-rank v2-max-rank) :fontsize fs
+          lr-max-rank (get d pelayout lr-name tot-tname "nrank")
+          narrm-max-rank (get d pelayout rrm-name tot-tname "nrank")
+          xmax (max lr-max-rank narrm-max-rank))
+      (pl.xticks (, 0 ocn-rank0 lr-max-rank narrm-max-rank) :fontsize fs
                  :rotation (if compact -45 0))
       (pl.xlim (, 0 xmax))
       (if (or (not sbs) (zero? vi))
@@ -258,7 +272,7 @@
       (when title
         (sv txt (make-perf-title lr-name rrm-name :newline (not sbs)))
         (if sbs
-            (if (zero? vi) (pl.text v1-max-rank 1.05 txt :fontsize fs :ha "center"))
+            (if (zero? vi) (pl.text lr-max-rank 1.05 txt :fontsize fs :ha "center"))
             (pl.title txt :fontsize fs)))
       (when (or (not sbs) (zero? vi))
         (pl.text (* 0.02 xmax) 0.0 "ICE" :fontsize fs1 :va "bottom")
@@ -266,11 +280,11 @@
         (pl.text (* 0.02 xmax) 0.9 "CPL" :fontsize fs1 :va "top")
         (pl.text (* 0.02 xmax) 0.78 "ATM" :fontsize fs1 :va "top"))
       (when (or (not sbs) (zero? vi))
-        (pl.text v1-max-rank (+ 0.02 (/ (get d pelayout lr-name tot-tname timer-type) T))
-                 "v1" :fontsize (+ 2 fs1)))
+        (pl.text lr-max-rank (+ 0.02 (/ (get d pelayout lr-name tot-tname timer-type) T))
+                 "lr" :fontsize (+ 2 fs1)))
       (when (or (not sbs) (= vi 1))
-        (pl.text v2-max-rank (+ 0.02 (/ (get d pelayout rrm-name tot-tname timer-type) T))
-                 "v2" :fontsize (+ 2 fs1)))))
+        (pl.text narrm-max-rank (+ 0.02 (/ (get d pelayout rrm-name tot-tname timer-type) T))
+                 "narrm" :fontsize (+ 2 fs1)))))
   (if (none? ax-xlim)
       (do
         (sv ax-xlim (, 0 1)
@@ -302,13 +316,14 @@
           dy -0.1)
       (pl.text -0.05 dy "(a)" :transform trans :fontsize fs)
       (pl.text 0.44 dy "(b)" :transform trans :fontsize fs)
-      (pl.text 0.5 1.05 (make-perf-title (:lr-name e) (:rrm-name e) :newline False)
+      (pl.text 0.5 1.05 (make-perf-title (:lr-name e) (:narrm-name e)
+                                         :newline False)
                :transform trans :fontsize fs :ha "center"))))
 
 (sv *timers-summary-file*
     "../chrysalis-perf-study/v2-narrm-wccase-chrysalis-r1-timers.txt")
 
-(when-inp ["dev-wc"]
+(when-inp ["table"]
   (sv d (parse-timer-summary-file *timers-summary-file* :case "wc"))
   (write-wccase-table d))
 
