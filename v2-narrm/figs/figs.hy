@@ -202,15 +202,16 @@
       lss (if sbs (, "-" "-" "-" "-" "-" "-" "-") (, "-" ":" "--" "-" "-" "-" "-"))
       hatches (if sbs (, "" "") (, "\\" "//"))
       fs 15 fs1 (+ fs 2)
-      T (get d pelayout lr-name tot-tname timer-type)
+      T (get d pelayout rrm-name tot-tname timer-type)
       boxes {})
   (defn calc-rank0 [nrank] (* (:ncore e) (math.ceil (/ nrank (:ncore e)))))
   (defn draw-box [ax b ls lw color hatch fill]
-    (.add-patch ax
-      (matplotlib.patches.Rectangle (, (:rank0 b) (/ (:time0 b) T))
-                                    (:nrank b) (/ (:time b) T)
-                                    :fill fill :linestyle ls :lw lw
-                                    :color color :hatch hatch)))
+    (.add-patch
+     ax
+     (matplotlib.patches.Rectangle (, (inc (:rank0 b)) (/ (:time0 b) T))
+                                   (:nrank b) (/ (:time b) T)
+                                   :fill fill :linestyle ls :lw lw
+                                   :color color :hatch hatch)))
   (for [vname (, lr-name rrm-name)
         timer timers]
     (sv d1 (get d pelayout vname))
@@ -221,7 +222,9 @@
                                  (calc-rank0 (get d1 atm-tname "nrank"))]
                                 [:else (get d1 timer "nrank")])
                    :time (get d1 timer timer-type)
-                   :rank0 (cond [(in timer (, rof-tname lnd-tname))
+                   :rank0 (cond [(and (= vname rrm-name) (= timer rof-tname))
+                                 0]
+                                [(in timer (, rof-tname lnd-tname))
                                  (calc-rank0 (get d1 ice-tname "nrank"))]
                                 [(= timer ocn-tname)
                                  (calc-rank0 (get d1 atm-tname "nrank"))]
@@ -229,8 +232,13 @@
                    :time0 (cond [(= timer cpl-tname)
                                  (+ (get d1 ice-tname timer-type)
                                     (get d1 atm-tname timer-type))]
+                                [(and (= vname rrm-name) (= timer rof-tname))
+                                 (get d1 ice-tname timer-type)]
                                 [(= timer rof-tname)
                                  (get d1 lnd-tname timer-type)]
+                                [(and (= vname rrm-name) (= timer atm-tname))
+                                 (+ (get d1 ice-tname timer-type)
+                                    (get d1 rof-tname timer-type))]
                                 [(= timer atm-tname)
                                  (get d1 ice-tname timer-type)]
                                 [:else 0])}))
@@ -253,9 +261,13 @@
           lr-max-rank (get d pelayout lr-name tot-tname "nrank")
           narrm-max-rank (get d pelayout rrm-name tot-tname "nrank")
           xmax (max lr-max-rank narrm-max-rank))
-      (pl.xticks (, 0 ocn-rank0 lr-max-rank narrm-max-rank) :fontsize fs
+      (pl.xticks (, ocn-rank0 lr-max-rank narrm-max-rank) :fontsize fs
                  :rotation (if compact -45 0))
-      (pl.xlim (, 0 xmax))
+      (sv (, xtv xto) (pl.xticks))
+      (for [(, v t) (zip xtv xto)]
+        (when (in v (, 6720)) (.set-ha t "left")))
+      (sv delta 10)
+      (pl.xlim (, (- delta) (+ xmax delta)))
       (if (or (not sbs) (zero? vi))
           (do
             (pl.yticks (npy.linspace 0 1 11) :fontsize fs)
@@ -274,17 +286,21 @@
         (if sbs
             (if (zero? vi) (pl.text lr-max-rank 1.05 txt :fontsize fs :ha "center"))
             (pl.title txt :fontsize fs)))
-      (when (or (not sbs) (zero? vi))
+      (when (or (not sbs) (= vi 1))
         (pl.text (* 0.02 xmax) 0.0 "ICE" :fontsize fs1 :va "bottom")
-        (pl.text (* 0.98 xmax) 0.9 "OCN" :fontsize fs1 :va "top" :ha "right")
+        (pl.text (* 0.89 xmax) 0.9 "OCN" :fontsize fs1 :va "top" :ha "right")
         (pl.text (* 0.02 xmax) 0.9 "CPL" :fontsize fs1 :va "top")
         (pl.text (* 0.02 xmax) 0.78 "ATM" :fontsize fs1 :va "top"))
       (when (or (not sbs) (zero? vi))
-        (pl.text lr-max-rank (+ 0.02 (/ (get d pelayout lr-name tot-tname timer-type) T))
-                 "lr" :fontsize (+ 2 fs1)))
+        (pl.text lr-max-rank
+                 (+ 0.02 (/ (get d pelayout lr-name tot-tname timer-type) T))
+                 "LR" :fontsize (+ 2 fs1) :ha "right"))
       (when (or (not sbs) (= vi 1))
-        (pl.text narrm-max-rank (+ 0.02 (/ (get d pelayout rrm-name tot-tname timer-type) T))
-                 "narrm" :fontsize (+ 2 fs1)))))
+        (pl.text narrm-max-rank
+                 (+ 0.02 (/ (get d pelayout rrm-name tot-tname timer-type) T))
+                 "NARRM" :fontsize (+ 2 fs1) :ha "right"))
+      (for [s (, "top" "right")]
+        (.set-visible (get ax.spines s) False))))
   (if (none? ax-xlim)
       (do
         (sv ax-xlim (, 0 1)
