@@ -27,7 +27,10 @@
    :narrm-atm-dycore-dt 75
    ;; mpaso_in config_dt
    :lr-ocn-dt (* 30 60)
-   :narrm-ocn-dt (* 10 60)})
+   :narrm-ocn-dt (* 10 60)
+   ;; mpassi_in config_dt
+   :lr-ice-dt (* 30 60)
+   :narrm-ice-dt (* 30 60)})
 
 (defn slash-underscore [s] (.replace s "_" "\_"))
 
@@ -55,19 +58,15 @@
                           "tavg" (/ tsum nthr) "tmax" tmax})]))
   d)
 
-(defn sypd [ttot t fld]
+(defn sypd-sec [ttot tsec]
   (sv e (get-wccase-context)
       nphys-per-day (:nphys-per-day e)
       simyrs (/ (get ttot "callcnt") (get ttot "nthr") nphys-per-day 365)
-      walldays (/ (get t fld) 24 3600))
+      walldays (/ tsec 24 3600))
   (/ simyrs walldays))
 
-(defn make-perf-title [lr-name rrm-name &optional [newline True]]
-  (+ "Performance of "
-     (slash-underscore lr-name)
-     (if newline "\n" " ")
-     "and "
-     (slash-underscore rrm-name)))
+(defn sypd [ttot t fld]
+  (sypd-sec ttot (get t fld)))
 
 (defn write-wccase-table [d]
   (sv e (get-wccase-context))
@@ -100,6 +99,68 @@
            (.format "{:4.2f}"
                     (* (/ sypd-tot-lr sypd-tot)
                        (/ nrank nrank-lr)))))))
+
+(defn sum-timers [d timers fld]
+  (reduce (fn [a x] (+ a (get d x fld)))
+          timers 0))
+
+(defn model-rrm-performance [d]
+  (sv e (get-wccase-context)
+      atm-params-timers (, "a:CAM_run1" "a:CAM_run2" "a:CAM_run3")
+      atm-dycore-timers (, "a:CAM_run3")
+      d-lr (get d "XS" (:lr-name e))
+      ttot-lr (get d-lr "CPL:RUN_LOOP")
+      nrank-atm-lr (get d-lr "CPL:ATM_RUN" "nrank")
+      nrank-ocn-lr (get d-lr "CPL:OCN_RUN" "nrank")
+      nrank-ice-lr (get d-lr "CPL:ICE_RUN" "nrank")
+      p {})
+  (for [pe (:pelayouts e)]
+    (sv d-rrm (get d pe (:narrm-name e))
+        ttot-rrm (get d-rrm "CPL:RUN_LOOP")
+        nrank-atm-rrm (get d-rrm "CPL:ATM_RUN" "nrank")
+        nrank-ocn-rrm (get d-rrm "CPL:OCN_RUN" "nrank")
+        nrank-ice-rrm (get d-rrm "CPL:ICE_RUN" "nrank")
+        sypd-atm-true (sypd ttot-rrm (get d-rrm "CPL:ATM_RUN") "tmax")
+        sypd-ocn-true (sypd ttot-rrm (get d-rrm "CPL:OCN_RUN") "tmax")
+        sypd-ice-true (sypd ttot-rrm (get d-rrm "CPL:ICE_RUN") "tmax"))
+    (sv sypd-atm-predict
+        (* (/ nrank-atm-rrm nrank-atm-lr)
+           (sypd-sec ttot-lr
+                     (+ (* (/ (:narrm-atm-nelem e)
+                              (:lr-atm-nelem e))
+                           (+ (* (/ (:lr-atm-physics-dt e)
+                                    (:narrm-atm-physics-dt e))
+                                 (sum-timers d-lr atm-params-timers "tmax"))
+                              (* (/ (:lr-atm-dycore-dt e)
+                                    (:narrm-atm-dycore-dt e))
+                                 (sum-timers d-lr atm-dycore-timers "tmax"))))))))
+    (sv sypd-ocn-predict
+        (* (/ nrank-ocn-rrm nrank-ocn-lr)
+           (sypd-sec ttot-lr
+                     (* (/ (:narrm-ocn-ncell e)
+                           (:lr-ocn-ncell e))
+                        (/ (:lr-ocn-dt e)
+                           (:narrm-ocn-dt e))
+                        (get d-lr "CPL:OCN_RUN" "tmax")))))
+    (sv sypd-ice-predict
+        (* (/ nrank-ice-rrm nrank-ice-lr)
+           (sypd-sec ttot-lr
+                     (* (/ (:narrm-ocn-ncell e)
+                           (:lr-ocn-ncell e)) 
+                        (/ (:lr-ice-dt e)
+                           (:narrm-ice-dt e))
+                        (get d-lr "CPL:ICE_RUN" "tmax")))))
+    (assoc p pe {:atm-true sypd-atm-true :atm-modeled sypd-atm-predict
+                 :ocn-true sypd-ocn-true :ocn-modeled sypd-ocn-predict
+                 :ice-true sypd-ice-true :ice-modeled sypd-ice-predict}))
+  p)
+
+(defn make-perf-title [lr-name rrm-name &optional [newline True]]
+  (+ "Performance of "
+     (slash-underscore lr-name)
+     (if newline "\n" " ")
+     "and "
+     (slash-underscore rrm-name)))
 
 (defn plot-wccase-vs-nodecount [d &optional [details False] ax]
   (sv fys (, 0.77 1.13))
@@ -342,6 +403,12 @@
 (when-inp ["table"]
   (sv d (parse-timer-summary-file *timers-summary-file* :case "wc"))
   (write-wccase-table d))
+
+(when-inp ["analysis"]
+  (sv d (parse-timer-summary-file *timers-summary-file* :case "wc")
+      p (model-rrm-performance d))
+  (for [(, k v) (.items p)]
+    (print k v)))
 
 (when-inp ["parse-and-plot-wccase-vs-nodecount"]
   (sv d (parse-timer-summary-file *timers-summary-file* :case "wc"))
