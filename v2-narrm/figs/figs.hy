@@ -1,7 +1,7 @@
 (require [amb3 [*]])
 (import [amb3 [*]])
 
-(dont
+(do
  (pl-require-type1-fonts)
  (assoc matplotlib.rcParams "savefig.dpi" 300))
 
@@ -9,7 +9,7 @@
   {:ncore 64
    :nphys-per-day 48
    :pelayouts (, "T" "XS" "S" "M" "L")
-   :xticks (, 5 10 14 28 30 53 60 105 115)
+   :xticks (, 14 16 28 40 53 59 80 100 105)
    :prefix "v2-overview-wccase-chrysalis-r0."
    :lr-name "WCYCL20TR.ne30pg2_EC30to60E2r2"
    :narrm-name "WCYCL20TR.northamericax4v1pg2_WC14to60E2r3"
@@ -107,7 +107,7 @@
     (for-last [i (range (len x))]
       (pl.text (+ dx (nth x i))
                (* (cond [(and (> fy 1) (zero? i)) 1.33]
-                        [(and (< fy 1) last?) 0.65]
+                        [(and (< fy 1) last?) 0.7]
                         [:else fy])
                   (nth y i))
                (.format "{:1.2f} {:s}" (nth y i) (nth pes i))
@@ -120,7 +120,7 @@
       log-xticks (npy.log xticks)
       yticks (if details
                  (, 1 10 100)
-                 (, 1 2 3 4 5 6 7 8 9 10 20 30 40 50))
+                 (, 1 2 3 4 5 6 8 10 15 20 30 40 50))
       lr-name (:lr-name e)
       rrm-name (:narrm-name e)
       v-short-names (, "LR" "NARRM")
@@ -140,7 +140,7 @@
                            (// (get d1 vname "CPL:RUN_LOOP" "nrank") (:ncore e)))
       (assoc-nested-append xs (, vname "pe")
                            (case/in pe
-                                    [(, "XS" "S" "M" "L") pe]
+                                    [(, "T" "XS" "S" "M" "L") pe]
                                     [:else "st"]))
       (for [timer timers]
         (assoc-nested-append ys (, vname timer)
@@ -148,7 +148,7 @@
                                    (get d1 vname timer)
                                    "tmax")))))
   (defn plot []
-    (sv g 0.5 r (if details 100 45.5)
+    (sv g 0.5 r (if details 100 28)
         x (, 5 115))
     (pl.semilogy (npy.log x)
                  (, (* r (/ (first x) (last x))) r) "--" :color (, g g g))
@@ -162,24 +162,24 @@
       (pl.semilogy x y
                    (+ (nth clrs vi) (nth linestyles vi) (nth markers ti))
                    :label (+ (nth v-short-names vi) " " (nth timer-names ti))))
-    (pl.legend :loc "lower right" :fontsize fs :ncol 2 :framealpha 1)
+    (pl.legend :loc "best" :fontsize fs :ncol 2 :framealpha 1)
     (my-grid)
     (pl.title (make-perf-title lr-name rrm-name) :fontsize fs)
     (pl.xticks log-xticks xticks :fontsize fs :rotation 0)
     (sv (, xtv xto) (pl.xticks))
     (for [(, v t) (zip xtv xto)]
-      (when (in v (npy.log (, 28 53 105))) (.set-ha t "right"))
-      (when (in v (npy.log (, 30 60 115))) (.set-ha t "left")))
+      (when (in v (npy.log (, 14 53 80 100))) (.set-ha t "right"))
+      (when (in v (npy.log (, 16 59 105))) (.set-ha t "left")))
     (pl.yticks yticks yticks :fontsize (- fs 2))
-    (pl.xlim (npy.log (, 4.8 120)))
-    (pl.ylim (if details (, 1 250) (, 1 55)))
+    (pl.xlim (npy.log (, 13 110)))
+    (pl.ylim (if details (, 1 250) (, 2 50)))
     (pl.xlabel "Number of Chrysalis AMD Epyc 7532 64-core nodes"
                :fontsize fs)
     (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))
   (if (none? ax)
       (for [fmt (, "pdf" "png")]
         (with [(pl-plot (, (if details 7 7) 6)
-                        (+ "WC-case-nodecount" (if details "-detailed" ""))
+                        (+ "NARRM-nodecount" (if details "-detailed" ""))
                         :format fmt)]
           (plot)))
       (plot)))
@@ -291,7 +291,7 @@
             ax-ylim (, 0 1))
         (for [fmt (, "pdf" "png")]
           (with [(pl-plot (if sbs (, 10 5) (, 6 6))
-                          (+ "WC-case-pelayout-perf-" pelayout "-" timer-type
+                          (+ "NARRM-pelayout-perf-" pelayout "-" timer-type
                              (if sbs "-sbs" ""))
                           :format fmt :tight (not sbs))]
             (plot))))
