@@ -113,14 +113,14 @@
   (defn atm-model [d-rrm top-timer]
     (* (/ (get d-rrm top-timer "nrank") (get d-lr top-timer "nrank"))
        (sypd-sec ttot-lr
-                 (+ (* (/ (:narrm-atm-nelem e)
-                          (:lr-atm-nelem e))
-                       (+ (* (/ (:lr-atm-physics-dt e)
-                                (:narrm-atm-physics-dt e))
-                             (sum-timers d-lr atm-params-timers "tmax"))
-                          (* (/ (:lr-atm-dycore-dt e)
-                                (:narrm-atm-dycore-dt e))
-                             (sum-timers d-lr atm-dycore-timers "tmax"))))))))
+                 (* (/ (:narrm-atm-nelem e)
+                       (:lr-atm-nelem e))
+                    (+ (* (/ (:lr-atm-physics-dt e)
+                             (:narrm-atm-physics-dt e))
+                          (sum-timers d-lr atm-params-timers "tmax"))
+                       (* (/ (:lr-atm-dycore-dt e)
+                             (:narrm-atm-dycore-dt e))
+                          (sum-timers d-lr atm-dycore-timers "tmax")))))))
   (defn ocn-model [d-rrm top-timer]
     (* (/ (get d-rrm top-timer "nrank") (get d-lr top-timer "nrank"))
        (sypd-sec ttot-lr
@@ -375,7 +375,7 @@
   (sv e (get-wccase-context)
       fs 16)
   (for [fmt (, "pdf" "png")]
-    (with [(pl-plot (, 12 4) "perf-WC-case" :format fmt :tight False)]
+    (with [(pl-plot (, 12 4) "NARRM-performance-summary" :format fmt :tight False)]
       (sv ax-xlim (, 0.46 1)
           ax-ylim (, 0.1 0.9)
           axs (, (pl.axes (, 0 0 0.4 1))))
@@ -399,7 +399,7 @@
       xticks (, 300 400 600 800 1000 2000 3000 4000 5000)
       yticks (, 1 2 3 4 5 6 7 8 9 10 12 14 16 18 20)
       rrm-name (:narrm-name e)
-      fs 15
+      fs 16
       curves (, {:x "atm-nrank" :y "atm-true" :line "-" :mark "o" :clr "b"
                  :lbl "Atm." :fillstyle "full"}
                 {:x "atm-nrank" :y "atm-modeled" :line "--" :mark "o" :clr "b"
@@ -417,19 +417,19 @@
       (pl.loglog x y
                  (+ (:clr c) (:mark c) (:line c)) :fillstyle (:fillstyle c)
                  :label (:lbl c)))
-    (pl.legend :loc "lower left" :fontsize fs :ncol 2 :framealpha 1)
+    (pl.legend :loc "lower left" :fontsize (- fs 1) :ncol 2 :framealpha 1)
     (my-grid)
-    (pl.title (+ "True and predicted performance of\n" rrm-name) :fontsize fs)
-    (pl.xticks xticks xticks :fontsize (- fs 2) :rotation -45)
-    (pl.yticks yticks yticks :fontsize (- fs 2))
+    (pl.title (+ "Measured and predicted performance of\n" rrm-name) :fontsize fs)
+    (pl.xticks xticks xticks :fontsize (- fs 1) :rotation -45)
+    (pl.yticks yticks yticks :fontsize (- fs 1))
     (pl.xlim (, 230 5400))
-    (pl.ylim (, 1 20))
+    (pl.ylim (, 1.3 20))
     (pl.xlabel "Number of Chrysalis AMD Epyc 7532 cores"
                :fontsize fs)
     (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))
   (for [fmt (, "pdf" "png")]
     (with [(pl-plot (, 6 6)
-                    "NARRM-modeled-performance"
+                    "NARRM-performance-model"
                     :format fmt)]
       (plot))))
 
