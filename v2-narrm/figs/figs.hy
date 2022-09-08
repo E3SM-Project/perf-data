@@ -398,16 +398,23 @@
       p (model-rrm-performance d)
       xticks (, 300 400 600 800 1000 2000 3000 4000 5000)
       yticks (, 1 2 3 4 5 6 7 8 9 10 12 14 16 18 20)
+      yticks-ice (, 1 2 3 4 5 6 8 10 12 16 20 30 40 50 60 80 100 150 200)
       rrm-name (:narrm-name e)
       fs 16
-      curves (, {:x "atm-nrank" :y "atm-true" :line "-" :mark "o" :clr "b"
-                 :lbl "Atm." :fillstyle "full"}
-                {:x "atm-nrank" :y "atm-modeled" :line "--" :mark "o" :clr "b"
-                 :lbl "Atm. (predicted)" :fillstyle "none"}
+      curves (, {:x "ocn-nrank" :y "ocn-modeled" :line "--" :mark "v" :clr "r"
+                 :lbl "Ocean (predicted)" :fillstyle "none"}
                 {:x "ocn-nrank" :y "ocn-true" :line "-" :mark "v" :clr "r"
                  :lbl "Ocean" :fillstyle "full"}
-                {:x "ocn-nrank" :y "ocn-modeled" :line "--" :mark "v" :clr "r"
-                 :lbl "Ocean (predicted)" :fillstyle "none"}))
+                {:x "atm-nrank" :y "atm-modeled" :line "--" :mark "o" :clr "b"
+                 :lbl "Atm. (predicted)" :fillstyle "none"}
+                {:x "atm-nrank" :y "atm-true" :line "-" :mark "o" :clr "b"
+                 :lbl "Atm." :fillstyle "full"}
+                {:x "ice-nrank" :y "ice-modeled" :line "--" :mark "s" :clr "g"
+                 :lbl "Ice (predicted)" :fillstyle "none"}
+                {:x "ice-nrank" :y "ice-true" :line "-" :mark "s" :clr "g"
+                 :lbl "Ice" :fillstyle "full"})
+      curves (cut curves 0 4)
+      use-ice (= (len curves) 6))
   (defn plot []
     (for [c curves]
       (sv x [] y [])
@@ -421,9 +428,12 @@
     (my-grid)
     (pl.title (+ "Measured and predicted performance of\n" rrm-name) :fontsize fs)
     (pl.xticks xticks xticks :fontsize (- fs 1) :rotation -45)
-    (pl.yticks yticks yticks :fontsize (- fs 1))
+    (sv yt (if use-ice yticks-ice yticks))
+    (pl.yticks yt yt :fontsize (- fs 1))
     (pl.xlim (, 230 5400))
-    (pl.ylim (, 1.3 20))
+    (if use-ice
+      (pl.ylim (, 0.5 170))
+      (pl.ylim (, 1.3 20)))
     (pl.xlabel "Number of Chrysalis AMD Epyc 7532 cores"
                :fontsize fs)
     (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))
