@@ -109,50 +109,48 @@
       atm-params-timers (, "a:CAM_run1" "a:CAM_run2" "a:CAM_run3")
       atm-dycore-timers (, "a:CAM_run3")
       d-lr (get d "XS" (:lr-name e))
-      ttot-lr (get d-lr "CPL:RUN_LOOP")
-      nrank-atm-lr (get d-lr "CPL:ATM_RUN" "nrank")
-      nrank-ocn-lr (get d-lr "CPL:OCN_RUN" "nrank")
-      nrank-ice-lr (get d-lr "CPL:ICE_RUN" "nrank")
+      ttot-lr (get d-lr "CPL:RUN_LOOP"))
+  (defn atm-model [d-rrm top-timer]
+    (* (/ (get d-rrm top-timer "nrank") (get d-lr top-timer "nrank"))
+       (sypd-sec ttot-lr
+                 (+ (* (/ (:narrm-atm-nelem e)
+                          (:lr-atm-nelem e))
+                       (+ (* (/ (:lr-atm-physics-dt e)
+                                (:narrm-atm-physics-dt e))
+                             (sum-timers d-lr atm-params-timers "tmax"))
+                          (* (/ (:lr-atm-dycore-dt e)
+                                (:narrm-atm-dycore-dt e))
+                             (sum-timers d-lr atm-dycore-timers "tmax"))))))))
+  (defn ocn-model [d-rrm top-timer]
+    (* (/ (get d-rrm top-timer "nrank") (get d-lr top-timer "nrank"))
+       (sypd-sec ttot-lr
+                 (* (/ (:narrm-ocn-ncell e)
+                       (:lr-ocn-ncell e))
+                    (/ (:lr-ocn-dt e)
+                       (:narrm-ocn-dt e))
+                    (get d-lr top-timer "tmax")))))
+  (defn ice-model [d-rrm top-timer]
+    (* (/ (get d-rrm top-timer "nrank") (get d-lr top-timer "nrank"))
+       (sypd-sec ttot-lr
+                 (* (/ (:narrm-ocn-ncell e)
+                       (:lr-ocn-ncell e))
+                    (/ (:lr-ice-dt e)
+                       (:narrm-ice-dt e))
+                    (get d-lr top-timer "tmax")))))
+  (sv comps (, {:timer "CPL:ATM_RUN" :fn atm-model :name "atm"}
+               {:timer "CPL:OCN_RUN" :fn ocn-model :name "ocn"}
+               {:timer "CPL:ICE_RUN" :fn ice-model :name "ice"})
       p {})
   (for [pe (:pelayouts e)]
     (sv d-rrm (get d pe (:narrm-name e))
-        ttot-rrm (get d-rrm "CPL:RUN_LOOP")
-        nrank-atm-rrm (get d-rrm "CPL:ATM_RUN" "nrank")
-        nrank-ocn-rrm (get d-rrm "CPL:OCN_RUN" "nrank")
-        nrank-ice-rrm (get d-rrm "CPL:ICE_RUN" "nrank")
-        sypd-atm-true (sypd ttot-rrm (get d-rrm "CPL:ATM_RUN") "tmax")
-        sypd-ocn-true (sypd ttot-rrm (get d-rrm "CPL:OCN_RUN") "tmax")
-        sypd-ice-true (sypd ttot-rrm (get d-rrm "CPL:ICE_RUN") "tmax"))
-    (sv sypd-atm-predict
-        (* (/ nrank-atm-rrm nrank-atm-lr)
-           (sypd-sec ttot-lr
-                     (+ (* (/ (:narrm-atm-nelem e)
-                              (:lr-atm-nelem e))
-                           (+ (* (/ (:lr-atm-physics-dt e)
-                                    (:narrm-atm-physics-dt e))
-                                 (sum-timers d-lr atm-params-timers "tmax"))
-                              (* (/ (:lr-atm-dycore-dt e)
-                                    (:narrm-atm-dycore-dt e))
-                                 (sum-timers d-lr atm-dycore-timers "tmax"))))))))
-    (sv sypd-ocn-predict
-        (* (/ nrank-ocn-rrm nrank-ocn-lr)
-           (sypd-sec ttot-lr
-                     (* (/ (:narrm-ocn-ncell e)
-                           (:lr-ocn-ncell e))
-                        (/ (:lr-ocn-dt e)
-                           (:narrm-ocn-dt e))
-                        (get d-lr "CPL:OCN_RUN" "tmax")))))
-    (sv sypd-ice-predict
-        (* (/ nrank-ice-rrm nrank-ice-lr)
-           (sypd-sec ttot-lr
-                     (* (/ (:narrm-ocn-ncell e)
-                           (:lr-ocn-ncell e)) 
-                        (/ (:lr-ice-dt e)
-                           (:narrm-ice-dt e))
-                        (get d-lr "CPL:ICE_RUN" "tmax")))))
-    (assoc p pe {:atm-true sypd-atm-true :atm-modeled sypd-atm-predict
-                 :ocn-true sypd-ocn-true :ocn-modeled sypd-ocn-predict
-                 :ice-true sypd-ice-true :ice-modeled sypd-ice-predict}))
+        ttot-rrm (get d-rrm "CPL:RUN_LOOP"))
+    (for [c comps]
+      (sv sypd-predict ((:fn c) d-rrm (:timer c))
+          sypd-true (sypd ttot-rrm (get d-rrm (:timer c)) "tmax")
+          n (:name c))
+      (assoc-nested p (, pe (+ n "-true")) sypd-true)
+      (assoc-nested p (, pe (+ n "-modeled")) sypd-predict)
+      (assoc-nested p (, pe (+ n "-nrank")) (get d-rrm (:timer c) "nrank"))))
   p)
 
 (defn make-perf-title [lr-name rrm-name &optional [newline True]]
@@ -162,7 +160,7 @@
      "and "
      (slash-underscore rrm-name)))
 
-(defn plot-wccase-vs-nodecount [d &optional [details False] ax]
+(defn plot-wccase-vs-nodecount [d &optional ax]
   (sv fys (, 0.77 1.13))
   (defn text [x y pes dx fy]
     (for-last [i (range (len x))]
@@ -179,9 +177,7 @@
   (sv e (get-wccase-context)
       xticks (:xticks e)
       log-xticks (npy.log xticks)
-      yticks (if details
-                 (, 1 10 100)
-                 (, 1 2 3 4 5 6 8 10 15 20 30 40 50))
+      yticks (, 1 2 3 4 5 6 8 10 15 20 30 40 50)
       lr-name (:lr-name e)
       rrm-name (:narrm-name e)
       v-short-names (, "LR" "NARRM")
@@ -209,17 +205,17 @@
                                    (get d1 vname timer)
                                    "tmax")))))
   (defn plot []
-    (sv g 0.5 r (if details 100 28)
+    (sv g 0.5 r 28
         x (, 5 115))
     (pl.semilogy (npy.log x)
                  (, (* r (/ (first x) (last x))) r) "--" :color (, g g g))
     (for [(, vi vname) (enumerate (, lr-name rrm-name))
           (, ti timer) (enumerate timers)]
-      (unless (or details (= timer (first timers))) (continue))
+      (unless (= timer (first timers)) (continue))
       (sv x (npy.log (get xs vname "nnode"))
           pes (get xs vname "pe")
           y (get ys vname timer))
-      (when (zero? ti) (text x y pes 0 (if details (first fys) (nth fys vi))))
+      (when (zero? ti) (text x y pes 0 (nth fys vi)))
       (pl.semilogy x y
                    (+ (nth clrs vi) (nth linestyles vi) (nth markers ti))
                    :label (+ (nth v-short-names vi) " " (nth timer-names ti))))
@@ -233,14 +229,14 @@
       (when (in v (npy.log (, 16 59 105))) (.set-ha t "left")))
     (pl.yticks yticks yticks :fontsize (- fs 2))
     (pl.xlim (npy.log (, 13 110)))
-    (pl.ylim (if details (, 1 250) (, 2 50)))
+    (pl.ylim (, 2 50))
     (pl.xlabel "Number of Chrysalis AMD Epyc 7532 64-core nodes"
                :fontsize fs)
     (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))
   (if (none? ax)
       (for [fmt (, "pdf" "png")]
-        (with [(pl-plot (, (if details 7 7) 6)
-                        (+ "NARRM-nodecount" (if details "-detailed" ""))
+        (with [(pl-plot (, 7 6)
+                        "NARRM-nodecount"
                         :format fmt)]
           (plot)))
       (plot)))
@@ -397,6 +393,46 @@
                                          :newline False)
                :transform trans :fontsize fs :ha "center"))))
 
+(defn plot-rrm-details [d]
+  (sv e (get-wccase-context)
+      p (model-rrm-performance d)
+      xticks (, 300 400 600 800 1000 2000 3000 4000 5000)
+      yticks (, 1 2 3 4 5 6 7 8 9 10 12 14 16 18 20)
+      rrm-name (:narrm-name e)
+      fs 15
+      curves (, {:x "atm-nrank" :y "atm-true" :line "-" :mark "o" :clr "b"
+                 :lbl "Atm." :fillstyle "full"}
+                {:x "atm-nrank" :y "atm-modeled" :line "--" :mark "o" :clr "b"
+                 :lbl "Atm. (predicted)" :fillstyle "none"}
+                {:x "ocn-nrank" :y "ocn-true" :line "-" :mark "v" :clr "r"
+                 :lbl "Ocean" :fillstyle "full"}
+                {:x "ocn-nrank" :y "ocn-modeled" :line "--" :mark "v" :clr "r"
+                 :lbl "Ocean (predicted)" :fillstyle "none"}))
+  (defn plot []
+    (for [c curves]
+      (sv x [] y [])
+      (for [pe (:pelayouts e)]
+        (.append x (get p pe (:x c)))
+        (.append y (get p pe (:y c))))
+      (pl.loglog x y
+                 (+ (:clr c) (:mark c) (:line c)) :fillstyle (:fillstyle c)
+                 :label (:lbl c)))
+    (pl.legend :loc "lower left" :fontsize fs :ncol 2 :framealpha 1)
+    (my-grid)
+    (pl.title (+ "True and predicted performance of\n" rrm-name) :fontsize fs)
+    (pl.xticks xticks xticks :fontsize (- fs 2) :rotation -45)
+    (pl.yticks yticks yticks :fontsize (- fs 2))
+    (pl.xlim (, 230 5400))
+    (pl.ylim (, 1 20))
+    (pl.xlabel "Number of Chrysalis AMD Epyc 7532 cores"
+               :fontsize fs)
+    (pl.ylabel "Simulated Years Per Day (SYPD)" :fontsize fs))
+  (for [fmt (, "pdf" "png")]
+    (with [(pl-plot (, 6 6)
+                    "NARRM-modeled-performance"
+                    :format fmt)]
+      (plot))))
+
 (sv *timers-summary-file*
     "../chrysalis-perf-study/v2-narrm-wccase-chrysalis-r1-timers.txt")
 
@@ -423,3 +459,7 @@
 (when-inp ["parse-and-plot-wccase"]
   (sv d (parse-timer-summary-file *timers-summary-file* :case "wc"))
   (plot-wccase d))
+
+(when-inp ["parse-and-plot-rrm-details"]
+  (sv d (parse-timer-summary-file *timers-summary-file* :case "wc"))
+  (plot-rrm-details d))
