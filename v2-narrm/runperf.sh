@@ -8,7 +8,7 @@ e3sm=/home/ac.ambradl/v2/rrm/e3sm-maint-2.0
 wcid=e3sm
 
 # r2 uses a mod'ed L
-prefix=v2-narrm-wccase-chrysalis-r2
+prefix=v2-narrm-wccase-chrysalis-r1
 casegrouparg="--case-group $prefix"
 
 compset=WCYCL20TR
