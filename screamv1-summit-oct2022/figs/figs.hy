@@ -17,14 +17,22 @@
                  "-model_timing_stats")
    :timers0 (cut timers 0 1)
    :timers1 (cut timers 0 2)
-   :timers2 timers
+   :timers2 (cut timers 0 5)
+   :timers3 timers
+   :linepats (dfor (, t p)
+                   (zip timers
+                        (, "ko-" "rv-" "bp--" "gs--" "bs:" "b*:"))
+                   [t p])
    :timer-aliases (dfor (, t a)
                         (zip timers
                              (, "Model" "Atmosphere" "Dycore" "Physics"
                                 "Dycore::DIRK" "Dycore::SL"))
                         [t a])
    :re-timer-ln (re.compile
-                 "\"(.*)\"\s+-\s+(\d+)\s+(\d+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)")})
+                 "\"(.*)\"\s+-\s+(\d+)\s+(\d+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)")
+   :nnodes (, 1024 3072 4096 4608)
+   :ngpu-per-node 6
+   :dt_physics 100})
 
 (defn parse-timer-line [c ln]
   (sv m (re.findall (:re-timer-ln c) ln))
@@ -34,6 +42,9 @@
     (dfor (, i k)
           (enumerate (, :name :nproc :nthread :count :total :max))
           [k (nth m i)])))
+
+(defn calc-calls-per-sec [t]
+  (/ (:count t) (:nthread t) (:max t)))
 
 (defn parse-timer-file [c fname]
   (sv txt (.split (readall fname) "\n")
@@ -48,8 +59,51 @@
                    [k (coerce (get t k))]))))
   d)
 
-(defn calc-calls-per-sec [t]
-  (/ (:count t) (:nthread t) (:max t)))
+(defn parse-timer-files [c fnames]
+  (sv d {})
+  (for [fname fnames]
+    (sv d1 (parse-timer-file c fname))
+    (sv nnode (// (:nproc (get d1 "CPL:RUN_LOOP")) (:ngpu-per-node c)))
+    (assoc-nested-append d (, nnode) d1))
+  d)
+
+(defn plot-sdpd-vs-nnode [c d &optional timer-set plot-extra-points]
+  (svifn timer-set :timers2 plot-extra-points False)
+  (sv xform (fn [x] (npy.log x))
+      yform (fn [sim-sec y] (/ sim-sec (npy.array y)))
+      plot pl.semilogy)
+  (sv timers (get c timer-set)
+      fs 14)
+  (for [format (, "pdf" "png")]
+    (with [(pl-plot (, 6 6) "screamv1-summit" :format format)]
+      (sv g 0.2
+          x [(first (:nnodes c)) (last (:nnodes c))]
+          y 90)
+      (plot (xform x) [y (* (/ (second x) (first x)) y)] "-"
+            :color (, g g g) :lw 1)
+      (sv t (get (first (get d (first (:nnodes c)))) "CPL:RUN_LOOP")
+          sim-sec (* (:dt_physics c) (/ (:count t) (:nthread t))))
+      (for [timer timers]
+        (sv pat (get (:linepats c) timer)
+            y [])
+        (for [nnode (:nnodes c)]
+          (sv max-times (sort (lfor d1 (get d nnode) (:max (get d1 timer)))))
+          (.append y (min max-times))
+          (when plot-extra-points
+            (for [mt (cut max-times 1)]
+              (plot (xform nnode) (yform sim-sec mt) (cut pat 0 -1)))))
+        (plot (xform (:nnodes c)) (yform sim-sec y) pat
+              :lw 2 :markersize 10 :fillstyle "none"
+              :label (get (:timer-aliases c) timer)))
+      (my-grid)
+      (pl.xticks (xform (:nnodes c)) (:nnodes c) :fontsize fs :rotation -45)
+      (sv y [50 100 150 200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800])
+      (pl.yticks y y :fontsize (dec fs))
+      (pl.ylim (, 30 1800))
+      (pl.legend :loc "lower right" :fontsize fs :ncol 2)
+      (pl.xlabel "Number of Summit nodes" :fontsize (inc fs))
+      (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs))
+      (pl.title "SCREAMv1 Summit performance, Oct 2022" :fontsize (inc fs)))))
 
 (when-inp ["summary"]
   (sv c (get-context)
@@ -62,3 +116,9 @@
       (prf "{:>15s}     {:6.2f}    {:6.2f}"
            (get (:timer-aliases c) k) (:max (get t k))
            (calc-calls-per-sec (get t k))))))
+
+(when-inp ["plot"]
+  (sv c (get-context)
+      fnames (glob.glob (:glob-data c))
+      d (parse-timer-files c fnames))
+  (plot-sdpd-vs-nnode c d))

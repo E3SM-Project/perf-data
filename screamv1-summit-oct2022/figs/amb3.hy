@@ -665,7 +665,8 @@
   (import matplotlib [matplotlib.pyplot :as pl])
 
   (defn my-grid []
-    (pl.grid True :lw 0.5 :ls "-" :color (, 0.8 0.8 0.8) :zorder -1
+    (sv g 0.7)
+    (pl.grid True :lw 0.5 :ls "-" :color (, g g g) :zorder -1
              :which "both")
     (.set_axisbelow (pl.gca) True))
 
