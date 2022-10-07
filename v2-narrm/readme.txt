@@ -1,7 +1,8 @@
 This directory contains scripts and data for the North America RRM coupled-model
 performance study.
 
-runperf.sh is the run script.
+runperf.sh is the run script. It uses the E3SM repo with tag
+    archive/v2-narrm-perf-study
 
 Full timer data are in chrysalis-perf-study/v2-narrm-wccase-chrysalis-r1-timers.
 

@@ -2,6 +2,7 @@ config=$1
 pelayout=$2
 
 e3sm=/home/ac.ambradl/v2/rrm/e3sm-maint-2.0
+# tag archive/v2-narrm-perf-study
 # $ git log -n 1 --oneline
 # cdf65368ba (HEAD -> maint-2.0, origin/maint-2.0) Merge branch 'azamat/maint-2.0/sync-pgi-master' into maint-2.0 (PR #5101)
 
