@@ -12,6 +12,7 @@
                 "a:EAMxx::physics::run" "a:compute_stage_value_dirk"
                 "a:compose_transport"))
   {:prefix prefix
+   :compset "ne1024pg2_ne1024pg2.F2010-SCREAMv1"
    :glob-data (+ "../data/" prefix
                  "nnodes*.ne1024pg2_ne1024pg2.F2010-SCREAMv1-timing.*"
                  "-model_timing_stats")
@@ -47,6 +48,7 @@
   (/ (:count t) (:nthread t) (:max t)))
 
 (defn parse-timer-file [c fname]
+  (assert (in (:compset c) fname))
   (sv txt (.split (readall fname) "\n")
       d {})
   (for [ln txt]
@@ -82,7 +84,7 @@
                (.format "{:1.1f}" (nth y i))
                :fontsize (- fs 2) :ha "center")))
   (for [format (, "pdf" "png")]
-    (with [(pl-plot (, 6 6)
+    (with [(pl-plot (, 6 6.2)
                     (+ "screamv1-summit-tlvl" (last (str timer-set)))
                     :format format)]
       (sv g 0.2
@@ -119,7 +121,8 @@
       (pl.legend :loc "lower right" :fontsize fs :ncol 2)
       (pl.xlabel "Number of Summit nodes" :fontsize (inc fs))
       (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs))
-      (pl.title "SCREAMv1 Summit performance, Oct 2022" :fontsize (inc fs)))))
+      (pl.title (+ (:compset c) "\nSummit performance, Oct 2022")
+                :fontsize (inc fs)))))
 
 (when-inp ["summary"]
   (sv c (get-context)
@@ -128,7 +131,7 @@
     (print fname)
     (sv t (parse-timer-file c fname))
     (prf "          Timer    Max (s) calls/sec")
-    (for [k (:timers2 c)]
+    (for [k (:timers3 c)]
       (prf "{:>15s}     {:6.2f}    {:6.2f}"
            (get (:timer-aliases c) k) (:max (get t k))
            (calc-calls-per-sec (get t k))))))
