@@ -7,7 +7,7 @@
  (assoc matplotlib.rcParams "savefig.dpi" 300))
 
 (defn get-context []
-  (sv prefix "scream-v1-scaling1-"
+  (sv prefix "scream-v1-scaling2-"
       timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "a:tl-sc prim_run_subcycle_c"
                 "a:EAMxx::physics::run" "a:compute_stage_value_dirk"
                 "a:compose_transport"))
@@ -21,7 +21,7 @@
    :timers3 timers
    :linepats (dfor (, t p)
                    (zip timers
-                        (, "ko-" "rv-" "bp--" "gs--" "bs:" "b*:"))
+                        (, "ko-" "rv-" "bs--" "g.--" "b.:" "b*:"))
                    [t p])
    :timer-aliases (dfor (, t a)
                         (zip timers
@@ -68,6 +68,7 @@
   d)
 
 (defn plot-sdpd-vs-nnode [c d &optional timer-set plot-extra-points]
+  (print "TODO: Annotate CPL:RUN_LOOP points.")
   (svifn timer-set :timers2 plot-extra-points False)
   (sv xform (fn [x] (npy.log x))
       yform (fn [sim-sec y] (/ sim-sec (npy.array y)))
@@ -97,9 +98,14 @@
               :label (get (:timer-aliases c) timer)))
       (my-grid)
       (pl.xticks (xform (:nnodes c)) (:nnodes c) :fontsize fs :rotation -45)
-      (sv y [50 100 150 200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800])
-      (pl.yticks y y :fontsize (dec fs))
-      (pl.ylim (, 30 1800))
+      (cond [(= timer-set :timers2)
+             (sv y [50 100 150 200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800])
+             (pl.yticks y y :fontsize (dec fs))
+             (pl.ylim (, 30 1800))]
+            [(= timer-set :timers1)
+             (sv y [60 100 125 150 175 200 250])
+             (pl.yticks y y :fontsize (dec fs))
+             (pl.ylim (, 50 250))])
       (pl.legend :loc "lower right" :fontsize fs :ncol 2)
       (pl.xlabel "Number of Summit nodes" :fontsize (inc fs))
       (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs))
