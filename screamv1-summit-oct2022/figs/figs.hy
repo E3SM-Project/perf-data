@@ -7,7 +7,7 @@
  (assoc matplotlib.rcParams "savefig.dpi" 300))
 
 (defn get-context []
-  (sv prefix "scream-v1-scaling2-"
+  (sv prefix "scream-v1-scaling1-"
       timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "a:tl-sc prim_run_subcycle_c"
                 "a:EAMxx::physics::run" "a:compute_stage_value_dirk"
                 "a:compose_transport"))
@@ -68,15 +68,23 @@
   d)
 
 (defn plot-sdpd-vs-nnode [c d &optional timer-set plot-extra-points]
-  (print "TODO: Annotate CPL:RUN_LOOP points.")
   (svifn timer-set :timers2 plot-extra-points False)
   (sv xform (fn [x] (npy.log x))
       yform (fn [sim-sec y] (/ sim-sec (npy.array y)))
       plot pl.semilogy)
   (sv timers (get c timer-set)
-      fs 14)
+      fs 14
+      xval (xform (:nnodes c)))
+  (defn annotate [x y]
+    (for [i (range (len x))]
+      (pl.text (nth x i) (* (nth y i)
+                            (case/eq timer-set [:timers2 0.8] [:timers1 0.9]))
+               (.format "{:1.1f}" (nth y i))
+               :fontsize (- fs 2) :ha "center")))
   (for [format (, "pdf" "png")]
-    (with [(pl-plot (, 6 6) "screamv1-summit" :format format)]
+    (with [(pl-plot (, 6 6)
+                    (+ "screamv1-summit-tlvl" (last (str timer-set)))
+                    :format format)]
       (sv g 0.2
           x [(first (:nnodes c)) (last (:nnodes c))]
           y 90)
@@ -84,7 +92,7 @@
             :color (, g g g) :lw 1)
       (sv t (get (first (get d (first (:nnodes c)))) "CPL:RUN_LOOP")
           sim-sec (* (:dt_physics c) (/ (:count t) (:nthread t))))
-      (for [timer timers]
+      (for-first-last [timer timers]
         (sv pat (get (:linepats c) timer)
             y [])
         (for [nnode (:nnodes c)]
@@ -93,11 +101,13 @@
           (when plot-extra-points
             (for [mt (cut max-times 1)]
               (plot (xform nnode) (yform sim-sec mt) (cut pat 0 -1)))))
-        (plot (xform (:nnodes c)) (yform sim-sec y) pat
+        (plot xval (yform sim-sec y) pat
               :lw 2 :markersize 10 :fillstyle "none"
-              :label (get (:timer-aliases c) timer)))
+              :label (get (:timer-aliases c) timer))
+        (when first?
+          (annotate xval (yform sim-sec y))))
       (my-grid)
-      (pl.xticks (xform (:nnodes c)) (:nnodes c) :fontsize fs :rotation -45)
+      (pl.xticks xval (:nnodes c) :fontsize fs :rotation -45)
       (cond [(= timer-set :timers2)
              (sv y [50 100 150 200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800])
              (pl.yticks y y :fontsize (dec fs))
@@ -127,4 +137,5 @@
   (sv c (get-context)
       fnames (glob.glob (:glob-data c))
       d (parse-timer-files c fnames))
-  (plot-sdpd-vs-nnode c d))
+  (for [timer-set (, :timers1 :timers2)]
+    (plot-sdpd-vs-nnode c d :timer-set timer-set)))

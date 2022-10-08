@@ -29,8 +29,8 @@ cd $cname
 ./xmlchange STOP_OPTION=nhours
 ./xmlchange STOP_N=12
 
-./xmlchange HIST_N=9999999; ./xmlchange HIST_OPTION=nyears ;
-./xmlchange REST_N=9999999; ./xmlchange REST_OPTION=nyears ;
+./xmlchange HIST_N=9999999; ./xmlchange HIST_OPTION=nyears
+./xmlchange REST_N=9999999; ./xmlchange REST_OPTION=nyears
 ./xmlchange NTASKS=$ntask
 ./xmlchange MAX_TASKS_PER_NODE=84
 ./xmlchange MAX_MPITASKS_PER_NODE=6
