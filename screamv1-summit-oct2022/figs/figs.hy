@@ -10,7 +10,7 @@
   (sv prefix "scream-v1-scaling2-"
       timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "a:tl-sc prim_run_subcycle_c"
                 "a:EAMxx::physics::run" "a:compute_stage_value_dirk"
-                "a:compose_transport" "CPL:LND_RUN"))
+                "a:compose_transport" "CPL:LND_RUN" "l:interpMonthlyVeg"))
   {:prefix prefix
    :compset "ne1024pg2_ne1024pg2.F2010-SCREAMv1"
    :glob-data (+ "../data/" prefix
@@ -27,7 +27,7 @@
    :timer-aliases (dfor (, t a)
                         (zip timers
                              (, "Model" "Atmosphere" "Dycore" "Physics"
-                                "Dycore::DIRK" "Dycore::SL" "Land"))
+                                "Dycore::DIRK" "Dycore::SL" "Land" "Land::interpMonthlyVeg"))
                         [t a])
    :re-timer-ln (re.compile
                  "\"(.*)\"\s+-\s+(\d+)\s+(\d+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)")
@@ -132,9 +132,9 @@
     (sv t (parse-timer-file c fname)
         trl (get t "CPL:RUN_LOOP")
         sim-sec (* (:dt_physics c) (/ (:count trl) (:nthread trl))))
-    (prf "          Timer    Max (s) calls/sec   SDPD")
+    (prf "                  Timer    Max (s) calls/sec   SDPD")
     (for [k (:timers3 c)]
-      (prf "{:>15s}     {:6.2f}    {:6.2f} {:6.1f}"
+      (prf "{:>23s}     {:6.2f}    {:6.2f} {:6.1f}"
            (get (:timer-aliases c) k) (:max (get t k))
            (calc-calls-per-sec (get t k))
            (/ sim-sec (:max (get t k)))))))
