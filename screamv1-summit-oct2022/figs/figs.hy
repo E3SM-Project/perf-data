@@ -7,10 +7,10 @@
  (assoc matplotlib.rcParams "savefig.dpi" 300))
 
 (defn get-context []
-  (sv prefix "scream-v1-scaling1-"
+  (sv prefix "scream-v1-scaling2-"
       timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "a:tl-sc prim_run_subcycle_c"
                 "a:EAMxx::physics::run" "a:compute_stage_value_dirk"
-                "a:compose_transport"))
+                "a:compose_transport" "CPL:LND_RUN"))
   {:prefix prefix
    :compset "ne1024pg2_ne1024pg2.F2010-SCREAMv1"
    :glob-data (+ "../data/" prefix
@@ -27,11 +27,11 @@
    :timer-aliases (dfor (, t a)
                         (zip timers
                              (, "Model" "Atmosphere" "Dycore" "Physics"
-                                "Dycore::DIRK" "Dycore::SL"))
+                                "Dycore::DIRK" "Dycore::SL" "Land"))
                         [t a])
    :re-timer-ln (re.compile
                  "\"(.*)\"\s+-\s+(\d+)\s+(\d+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)")
-   :nnodes (, 1024 3072 4096 4608)
+   :nnodes (, 1024 3072) ;(, 1024 2048 3072 4096 4608)
    :ngpu-per-node 6
    :dt_physics 100})
 
@@ -113,11 +113,11 @@
       (cond [(= timer-set :timers2)
              (sv y [50 100 150 200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800])
              (pl.yticks y y :fontsize (dec fs))
-             (pl.ylim (, 30 1800))]
+             (pl.ylim (, 35 1800))]
             [(= timer-set :timers1)
              (sv y [60 100 125 150 175 200 250])
              (pl.yticks y y :fontsize (dec fs))
-             (pl.ylim (, 50 250))])
+             (pl.ylim (, 60 250))])
       (pl.legend :loc "lower right" :fontsize fs :ncol 2)
       (pl.xlabel "Number of Summit nodes" :fontsize (inc fs))
       (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs))
@@ -129,12 +129,15 @@
       fnames (glob.glob (:glob-data c)))
   (for [fname fnames]
     (print fname)
-    (sv t (parse-timer-file c fname))
-    (prf "          Timer    Max (s) calls/sec")
+    (sv t (parse-timer-file c fname)
+        trl (get t "CPL:RUN_LOOP")
+        sim-sec (* (:dt_physics c) (/ (:count trl) (:nthread trl))))
+    (prf "          Timer    Max (s) calls/sec   SDPD")
     (for [k (:timers3 c)]
-      (prf "{:>15s}     {:6.2f}    {:6.2f}"
+      (prf "{:>15s}     {:6.2f}    {:6.2f} {:6.1f}"
            (get (:timer-aliases c) k) (:max (get t k))
-           (calc-calls-per-sec (get t k))))))
+           (calc-calls-per-sec (get t k))
+           (/ sim-sec (:max (get t k)))))))
 
 (when-inp ["plot"]
   (sv c (get-context)
