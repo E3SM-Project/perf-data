@@ -6,7 +6,6 @@ scream=~/repo/SCREAM
 
 nnodes=$1
 pernode=6
-ntask=$(($pernode * $nnodes))
 
 compset=F2010-SCREAMv1
 res=ne1024pg2_ne1024pg2
@@ -31,11 +30,12 @@ cd $cname
 
 ./xmlchange HIST_N=9999999; ./xmlchange HIST_OPTION=nyears
 ./xmlchange REST_N=9999999; ./xmlchange REST_OPTION=nyears
-./xmlchange NTASKS=$ntask
+./xmlchange PIO_NETCDF_FORMAT="64bit_data"
+
+./xmlchange NTASKS=$(($pernode * $nnodes))
 ./xmlchange MAX_TASKS_PER_NODE=84
 ./xmlchange MAX_MPITASKS_PER_NODE=6
 ./xmlchange LND_NTHRDS=14
-./xmlchange PIO_NETCDF_FORMAT="64bit_data"
 
 ./xmlchange SCREAM_CMAKE_OPTIONS="SCREAM_NUM_VERTICAL_LEV 128 SCREAM_NUM_TRACERS 10 HOMMEXX_MPI_ON_DEVICE Off"
 
