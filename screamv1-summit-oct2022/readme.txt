@@ -28,5 +28,7 @@ There are three series of runs. They differ in how LND is parallelized:
     ./xmlchange LND_NTASKS=$((42 * $nnodes))
     ./xmlchange LND_PSTRID=1
 
+Series 2 is used in the figures.
+
 figs.hy parses the timer files and makes figures. We run figs.hy with
     hy 0.20.0 using CPython(main) 3.9.12 on Linux
