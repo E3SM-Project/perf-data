@@ -31,7 +31,7 @@
                         [t a])
    :re-timer-ln (re.compile
                  "\"(.*)\"\s+-\s+(\d+)\s+(\d+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)")
-   :nnodes (, 1024 3072) ;(, 1024 2048 3072 4096 4608)
+   :nnodes (, 1024 2048 3072 4096 4608)
    :ngpu-per-node 6
    :dt_physics 100})
 
@@ -77,10 +77,12 @@
   (sv timers (get c timer-set)
       fs 14
       xval (xform (:nnodes c)))
-  (defn annotate [x y]
+  (defn annotate [x y &optional [above False]]
     (for [i (range (len x))]
       (pl.text (nth x i) (* (nth y i)
-                            (case/eq timer-set [:timers2 0.8] [:timers1 0.9]))
+                            (cond [(= timer-set :timers2) 0.8]
+                                  [(and above (= timer-set :timers1)) 1.05]
+                                  [(= timer-set :timers1) 0.92]))
                (.format "{:1.1f}" (nth y i))
                :fontsize (- fs 2) :ha "center")))
   (for [format (, "pdf" "png")]
@@ -94,7 +96,7 @@
             :color (, g g g) :lw 1)
       (sv t (get (first (get d (first (:nnodes c)))) "CPL:RUN_LOOP")
           sim-sec (* (:dt_physics c) (/ (:count t) (:nthread t))))
-      (for-first-last [timer timers]
+      (for [timer timers]
         (sv pat (get (:linepats c) timer)
             y [])
         (for [nnode (:nnodes c)]
@@ -106,8 +108,9 @@
         (plot xval (yform sim-sec y) pat
               :lw 2 :markersize 10 :fillstyle "none"
               :label (get (:timer-aliases c) timer))
-        (when first?
-          (annotate xval (yform sim-sec y))))
+        (sv annotate-atm (and (= timer-set :timers1) (= timer "CPL:ATM_RUN")))
+        (when (or (= timer "CPL:RUN_LOOP") annotate-atm)
+          (annotate xval (yform sim-sec y) :above annotate-atm)))
       (my-grid)
       (pl.xticks xval (:nnodes c) :fontsize fs :rotation -45)
       (cond [(= timer-set :timers2)
