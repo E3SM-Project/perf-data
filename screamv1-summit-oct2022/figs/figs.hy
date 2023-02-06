@@ -20,6 +20,8 @@
    :timers1 (cut timers 0 2)
    :timers2 (cut timers 0 5)
    :timers3 timers
+   :timersa (cut timers 0 3)
+   :timersb (cut timers 3 5)
    :linepats (dfor (, t p)
                    (zip timers
                         (, "ko-" "rv-" "bs--" "g.--" "b.:" "b*:"))
@@ -69,7 +71,8 @@
     (assoc-nested-append d (, nnode) d1))
   d)
 
-(defn plot-sdpd-vs-nnode [c d timer-set plot-extra-points]
+(defn plot-sdpd-vs-nnode [c d timer-set plot-extra-points &optional ylabel]
+  (svifn ylabel True)
   (sv xform (fn [x] (npy.log x))
       yform (fn [sim-sec y] (/ sim-sec (npy.array y)))
       plot pl.semilogy)
@@ -81,14 +84,13 @@
       (pl.text (nth x i) (* (nth y i)
                             (cond [(= timer-set :timers2) 0.8]
                                   [(and above (= timer-set :timers1)) 1.05]
-                                  [(= timer-set :timers1) 0.92]))
+                                  [(= timer-set :timers1) 0.92]
+                                  [(= timer-set :timersa) 0.9]
+                                  [(and above (= timer-set :timersa)) 1.05]))
                (.format "{:1.1f}" (nth y i))
                :fontsize (- fs 2) :ha "center")))
   (sv g 0.2
-      x [(first (:nnodes c)) (last (:nnodes c))]
-      y 90)
-  (plot (xform x) [y (* (/ (second x) (first x)) y)] "-"
-        :color (, g g g) :lw 1)
+      x [(first (:nnodes c)) (last (:nnodes c))])
   (sv t (get (first (get d (first (:nnodes c)))) "CPL:RUN_LOOP")
       sim-sec (* (:dt_physics c) (/ (:count t) (:nthread t))))
   (for [timer timers]
@@ -108,17 +110,32 @@
       (annotate xval (yform sim-sec y) :above annotate-atm)))
   (my-grid)
   (pl.xticks xval (:nnodes c) :fontsize fs :rotation -45)
+  (sv yscale None)
   (cond [(= timer-set :timers2)
-         (sv y [50 100 150 200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800])
-         (pl.yticks y y :fontsize (dec fs))
+         (sv y [50 100 150 200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800]
+             yscale 150)
          (pl.ylim (, 35 1800))]
         [(= timer-set :timers1)
-         (sv y [60 100 125 150 175 200 250])
-         (pl.yticks y y :fontsize (dec fs))
-         (pl.ylim (, 60 250))])
-  (pl.legend :loc "lower right" :fontsize fs :ncol 2)
+         (sv y [60 100 125 150 175 200 250]
+             yscale 90)
+         (pl.ylim (, 60 250))]
+        [(= timer-set :timersa)
+         (sv y [50 60 100 125 150 175 200 250 300]
+             yscale 110)
+         (pl.ylim (, 50 300))]
+        [(= timer-set :timersb)
+         (sv y [400 500 600 700 800 900 1000 1200 1400 1600 1800]
+             yscale 420)
+         (pl.ylim (, 350 1950))])
+  (when (none? yscale)
+    (sv yscale (* 1.1 (first (pl.ylim)))))
+  (plot (xform x) [yscale (* (/ (second x) (first x)) yscale)] "-"
+        :color (, g g g) :lw 1)
+  (pl.yticks y y :fontsize (dec fs))
+  (pl.legend :loc "lower right" :fontsize fs :ncol (if (= timer-set :timers2) 2 3))
   (pl.xlabel "Number of Summit nodes" :fontsize (inc fs))
-  (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs))
+  (when ylabel
+    (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs)))
   (pl.title (+ (:compset c) "\nSummit performance, Oct 2022")
             :fontsize (inc fs)))
 
@@ -129,6 +146,19 @@
                     (+ "screamv1-summit-tlvl" (last (str timer-set)))
                     :format format)]
       (plot-sdpd-vs-nnode c d timer-set plot-extra-points))))
+
+(defn fig-sdpd-vs-nnode-ab [c d timer-sets]
+  (sv n (len timer-sets))
+  (for [format (, "pdf" "png")]
+    (with [(pl-plot (, (* 6 n) 6.2)
+                    "screamv1overview-summit-sdpd-vs-nnode"
+                    :format format)]
+      (sv fig (pl.gcf))
+      (for [i (range n)]
+        (pl.subplot 1 n (inc i))
+        (plot-sdpd-vs-nnode c d (nth timer-sets i) False :ylabel True)
+        (fig.text (+ (/ i n) 0.03) 0.04 (+ "(" (nth "abcde" i) ")")
+                  :fontsize 16)))))
 
 (when-inp ["summary"]
   (sv c (get-context)
@@ -145,9 +175,15 @@
            (calc-calls-per-sec (get t k))
            (/ sim-sec (:max (get t k)))))))
 
-(when-inp ["plot"]
+(when-inp ["plot-separate"]
   (sv c (get-context)
       fnames (glob.glob (:glob-data c))
       d (parse-timer-files c fnames))
   (for [timer-set (, :timers1 :timers2)]
     (fig-sdpd-vs-nnode c d :timer-set timer-set)))
+
+(when-inp ["plot-throughput-ab"]
+  (sv c (get-context)
+      fnames (glob.glob (:glob-data c))
+      d (parse-timer-files c fnames))
+  (fig-sdpd-vs-nnode-ab c d (, :timersa :timersb)))
