@@ -69,8 +69,7 @@
     (assoc-nested-append d (, nnode) d1))
   d)
 
-(defn plot-sdpd-vs-nnode [c d &optional timer-set plot-extra-points]
-  (svifn timer-set :timers2 plot-extra-points False)
+(defn plot-sdpd-vs-nnode [c d timer-set plot-extra-points]
   (sv xform (fn [x] (npy.log x))
       yform (fn [sim-sec y] (/ sim-sec (npy.array y)))
       plot pl.semilogy)
@@ -85,47 +84,51 @@
                                   [(= timer-set :timers1) 0.92]))
                (.format "{:1.1f}" (nth y i))
                :fontsize (- fs 2) :ha "center")))
+  (sv g 0.2
+      x [(first (:nnodes c)) (last (:nnodes c))]
+      y 90)
+  (plot (xform x) [y (* (/ (second x) (first x)) y)] "-"
+        :color (, g g g) :lw 1)
+  (sv t (get (first (get d (first (:nnodes c)))) "CPL:RUN_LOOP")
+      sim-sec (* (:dt_physics c) (/ (:count t) (:nthread t))))
+  (for [timer timers]
+    (sv pat (get (:linepats c) timer)
+        y [])
+    (for [nnode (:nnodes c)]
+      (sv max-times (sort (lfor d1 (get d nnode) (:max (get d1 timer)))))
+      (.append y (min max-times))
+      (when plot-extra-points
+        (for [mt (cut max-times 1)]
+          (plot (xform nnode) (yform sim-sec mt) (cut pat 0 -1)))))
+    (plot xval (yform sim-sec y) pat
+          :lw 2 :markersize 10 :fillstyle "none"
+          :label (get (:timer-aliases c) timer))
+    (sv annotate-atm (and (= timer-set :timers1) (= timer "CPL:ATM_RUN")))
+    (when (or (= timer "CPL:RUN_LOOP") annotate-atm)
+      (annotate xval (yform sim-sec y) :above annotate-atm)))
+  (my-grid)
+  (pl.xticks xval (:nnodes c) :fontsize fs :rotation -45)
+  (cond [(= timer-set :timers2)
+         (sv y [50 100 150 200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800])
+         (pl.yticks y y :fontsize (dec fs))
+         (pl.ylim (, 35 1800))]
+        [(= timer-set :timers1)
+         (sv y [60 100 125 150 175 200 250])
+         (pl.yticks y y :fontsize (dec fs))
+         (pl.ylim (, 60 250))])
+  (pl.legend :loc "lower right" :fontsize fs :ncol 2)
+  (pl.xlabel "Number of Summit nodes" :fontsize (inc fs))
+  (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs))
+  (pl.title (+ (:compset c) "\nSummit performance, Oct 2022")
+            :fontsize (inc fs)))
+
+(defn fig-sdpd-vs-nnode [c d &optional timer-set plot-extra-points]
+  (svifn timer-set :timers2 plot-extra-points False)
   (for [format (, "pdf" "png")]
     (with [(pl-plot (, 6 6.2)
                     (+ "screamv1-summit-tlvl" (last (str timer-set)))
                     :format format)]
-      (sv g 0.2
-          x [(first (:nnodes c)) (last (:nnodes c))]
-          y 90)
-      (plot (xform x) [y (* (/ (second x) (first x)) y)] "-"
-            :color (, g g g) :lw 1)
-      (sv t (get (first (get d (first (:nnodes c)))) "CPL:RUN_LOOP")
-          sim-sec (* (:dt_physics c) (/ (:count t) (:nthread t))))
-      (for [timer timers]
-        (sv pat (get (:linepats c) timer)
-            y [])
-        (for [nnode (:nnodes c)]
-          (sv max-times (sort (lfor d1 (get d nnode) (:max (get d1 timer)))))
-          (.append y (min max-times))
-          (when plot-extra-points
-            (for [mt (cut max-times 1)]
-              (plot (xform nnode) (yform sim-sec mt) (cut pat 0 -1)))))
-        (plot xval (yform sim-sec y) pat
-              :lw 2 :markersize 10 :fillstyle "none"
-              :label (get (:timer-aliases c) timer))
-        (sv annotate-atm (and (= timer-set :timers1) (= timer "CPL:ATM_RUN")))
-        (when (or (= timer "CPL:RUN_LOOP") annotate-atm)
-          (annotate xval (yform sim-sec y) :above annotate-atm)))
-      (my-grid)
-      (pl.xticks xval (:nnodes c) :fontsize fs :rotation -45)
-      (cond [(= timer-set :timers2)
-             (sv y [50 100 150 200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800])
-             (pl.yticks y y :fontsize (dec fs))
-             (pl.ylim (, 35 1800))]
-            [(= timer-set :timers1)
-             (sv y [60 100 125 150 175 200 250])
-             (pl.yticks y y :fontsize (dec fs))
-             (pl.ylim (, 60 250))])
-      (pl.legend :loc "lower right" :fontsize fs :ncol 2)
-      (pl.xlabel "Number of Summit nodes" :fontsize (inc fs))
-      (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs))
-      (pl.title (+ (:compset c) "\nSummit performance, Oct 2022")
-                :fontsize (inc fs)))))
+      (plot-sdpd-vs-nnode c d timer-set plot-extra-points))))
 
 (when-inp ["summary"]
   (sv c (get-context)
@@ -147,4 +150,4 @@
       fnames (glob.glob (:glob-data c))
       d (parse-timer-files c fnames))
   (for [timer-set (, :timers1 :timers2)]
-    (plot-sdpd-vs-nnode c d :timer-set timer-set)))
+    (fig-sdpd-vs-nnode c d :timer-set timer-set)))
