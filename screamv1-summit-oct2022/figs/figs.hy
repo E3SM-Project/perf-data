@@ -6,16 +6,14 @@
  (pl-require-type1-fonts)
  (assoc matplotlib.rcParams "savefig.dpi" 300))
 
-(defn get-context []
-  (sv prefix "scream-v1-scaling2-"
-      timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "a:tl-sc prim_run_subcycle_c"
+(defn get-context [&optional prefix]
+  (svifn prefix "scream-v1-scaling2-")
+  (sv timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "a:tl-sc prim_run_subcycle_c"
                 "a:EAMxx::physics::run" "a:compute_stage_value_dirk"
                 "a:compose_transport" "CPL:LND_RUN" "l:interpMonthlyVeg"))
   {:prefix prefix
    :compset "ne1024pg2_ne1024pg2.F2010-SCREAMv1"
-   :glob-data (+ "../data/" prefix
-                 "nnodes*.ne1024pg2_ne1024pg2.F2010-SCREAMv1-timing.*"
-                 "-model_timing_stats")
+   :glob-data (+ "../data/" prefix "*-model_timing_stats")
    :timers0 (cut timers 0 1)
    :timers1 (cut timers 0 2)
    :timers2 (cut timers 0 5)
@@ -50,7 +48,6 @@
   (/ (:count t) (:nthread t) (:max t)))
 
 (defn parse-timer-file [c fname]
-  (assert (in (:compset c) fname))
   (sv txt (.split (readall fname) "\n")
       d {})
   (for [ln txt]
@@ -71,8 +68,9 @@
     (assoc-nested-append d (, nnode) d1))
   d)
 
-(defn plot-sdpd-vs-nnode [c d timer-set plot-extra-points &optional ylabel]
-  (svifn ylabel True)
+(defn plot-sdpd-vs-nnode [c d timer-set plot-extra-points
+                          &optional ylabel title]
+  (svifn ylabel True title True)
   (sv xform (fn [x] (npy.log x))
       yform (fn [sim-sec y] (/ sim-sec (npy.array y)))
       plot pl.semilogy)
@@ -136,8 +134,9 @@
   (pl.xlabel "Number of Summit nodes" :fontsize (inc fs))
   (when ylabel
     (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs)))
-  (pl.title (+ (:compset c) "\nSummit performance, Oct 2022")
-            :fontsize (inc fs)))
+  (when title
+    (pl.title (+ (:compset c) "\nSummit performance, Oct 2022")
+              :fontsize (inc fs))))
 
 (defn fig-sdpd-vs-nnode [c d &optional timer-set plot-extra-points]
   (svifn timer-set :timers2 plot-extra-points False)
@@ -156,21 +155,24 @@
       (sv fig (pl.gcf))
       (for [i (range n)]
         (pl.subplot 1 n (inc i))
-        (plot-sdpd-vs-nnode c d (nth timer-sets i) False :ylabel True)
+        (plot-sdpd-vs-nnode c d (nth timer-sets i) False
+                            :ylabel True :title False)
         (fig.text (+ (/ i n) 0.03) 0.04 (+ "(" (nth "abcde" i) ")")
                   :fontsize 16)))))
 
-(when-inp ["summary"]
-  (sv c (get-context)
+(when-inp ["summary" {:set str}]
+  ;; set is performance or production
+  (sv c (get-context (if (= set "production") "scream-v1-production"))
       fnames (glob.glob (:glob-data c)))
+  (prf "Prefix: {}" (:prefix c))
   (for [fname fnames]
     (print fname)
     (sv t (parse-timer-file c fname)
         trl (get t "CPL:RUN_LOOP")
         sim-sec (* (:dt_physics c) (/ (:count trl) (:nthread trl))))
-    (prf "                  Timer    Max (s) calls/sec   SDPD")
+    (prf "                  Timer      Max (s)  calls/sec     SDPD")
     (for [k (:timers3 c)]
-      (prf "{:>23s}     {:6.2f}    {:6.2f} {:6.1f}"
+      (prf "{:>23s}     {:8.2f}    {:7.2f} {:8.1f}"
            (get (:timer-aliases c) k) (:max (get t k))
            (calc-calls-per-sec (get t k))
            (/ sim-sec (:max (get t k)))))))
@@ -187,3 +189,9 @@
       fnames (glob.glob (:glob-data c))
       d (parse-timer-files c fnames))
   (fig-sdpd-vs-nnode-ab c d (, :timersa :timersb)))
+
+(when-inp ["plot-proportions"]
+  (sv cperf (get-context)
+      cprod (get-context "scream-v1-production")
+      dperf (parse-timer-files cperf (glob.glob (:glob-data cperf)))
+      dprod (parse-timer-files cprod (glob.glob (:glob-data cprod)))))
