@@ -60,6 +60,8 @@
                    [k (coerce (get t k))]))))
   d)
 
+;;   key: nnode, timer
+;; value: dict with keys :nproc, :nthread, :count, :total, :max
 (defn parse-timer-files [c fnames]
   (sv d {})
   (for [fname fnames]
@@ -130,7 +132,8 @@
   (plot (xform x) [yscale (* (/ (second x) (first x)) yscale)] "-"
         :color (, g g g) :lw 1)
   (pl.yticks y y :fontsize (dec fs))
-  (pl.legend :loc "lower right" :fontsize fs :ncol (if (= timer-set :timers2) 2 3))
+  (pl.legend :loc "lower right" :fontsize fs
+             :ncol (if (= timer-set :timers2) 2 3))
   (pl.xlabel "Number of Summit nodes" :fontsize (inc fs))
   (when ylabel
     (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs)))
@@ -159,6 +162,18 @@
                             :ylabel True :title False)
         (fig.text (+ (/ i n) 0.03) 0.04 (+ "(" (nth "abcde" i) ")")
                   :fontsize 16)))))
+
+(defn plot-proportions [de dr]
+  (sv de1 (get de 1024)
+      de2 (get de 4096)
+      drs (get dr 1024)
+      run-loop "CPL:RUN_LOOP")
+  (.sort drs :key (fn [d] (:max (get d run-loop))))
+  (assert (= (% (len drs) 2) 1))
+  (assert (= (max (len de1) (len de2)) 1))
+  (sv de1 (first de1) de2 (first de2) dr1 (nth drs (// (len drs) 2)))
+  (for [d (, de1 dr1 de2)]
+    (print (get d run-loop))))
 
 (when-inp ["summary" {:set str}]
   ;; set is performance or production
@@ -194,4 +209,5 @@
   (sv cperf (get-context)
       cprod (get-context "scream-v1-production")
       dperf (parse-timer-files cperf (glob.glob (:glob-data cperf)))
-      dprod (parse-timer-files cprod (glob.glob (:glob-data cprod)))))
+      dprod (parse-timer-files cprod (glob.glob (:glob-data cprod))))
+  (plot-proportions dperf dprod))
