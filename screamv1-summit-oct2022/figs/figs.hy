@@ -71,13 +71,13 @@
   d)
 
 (defn plot-sdpd-vs-nnode [c d timer-set plot-extra-points
-                          &optional ylabel title]
-  (svifn ylabel True title True)
+                          &optional ylabel title fontsize]
+  (svifn ylabel True title True fontsize 14)
   (sv xform (fn [x] (npy.log x))
       yform (fn [sim-sec y] (/ sim-sec (npy.array y)))
       plot pl.semilogy)
   (sv timers (get c timer-set)
-      fs 14
+      fs fontsize
       xval (xform (:nnodes c)))
   (defn annotate [x y &optional [above False]]
     (for [i (range (len x))]
@@ -88,7 +88,7 @@
                                   [(= timer-set :timersa) 0.9]
                                   [(and above (= timer-set :timersa)) 1.05]))
                (.format "{:1.1f}" (nth y i))
-               :fontsize (- fs 2) :ha "center")))
+               :fontsize (- fs 0) :ha "center")))
   (sv g 0.2
       x [(first (:nnodes c)) (last (:nnodes c))])
   (sv t (get (first (get d (first (:nnodes c)))) "CPL:RUN_LOOP")
@@ -107,7 +107,8 @@
           :label (get (:timer-aliases c) timer))
     (sv annotate-atm (and (= timer-set :timers1) (= timer "CPL:ATM_RUN")))
     (when (or (= timer "CPL:RUN_LOOP") annotate-atm)
-      (annotate xval (yform sim-sec y) :above annotate-atm)))
+      (annotate (cut xval 0 -1) (cut (yform sim-sec y) 0 -1)
+                :above annotate-atm)))
   (my-grid)
   (pl.xticks xval (:nnodes c) :fontsize fs :rotation -45)
   (sv yscale None)
@@ -120,9 +121,9 @@
              yscale 90)
          (pl.ylim (, 60 250))]
         [(= timer-set :timersa)
-         (sv y [50 60 100 125 150 175 200 250 300]
+         (sv y [60 100 125 150 175 200 250 300]
              yscale 110)
-         (pl.ylim (, 50 300))]
+         (pl.ylim (, 60 300))]
         [(= timer-set :timersb)
          (sv y [400 500 600 700 800 900 1000 1200 1400 1600 1800]
              yscale 420)
@@ -133,7 +134,7 @@
         :color (, g g g) :lw 1)
   (pl.yticks y y :fontsize (dec fs))
   (pl.legend :loc "lower right" :fontsize fs
-             :ncol (if (= timer-set :timers2) 2 3))
+             :ncol 2)
   (pl.xlabel "Number of Summit nodes" :fontsize (inc fs))
   (when ylabel
     (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs)))
@@ -152,16 +153,16 @@
 (defn fig-sdpd-vs-nnode-ab [c d timer-sets]
   (sv n (len timer-sets))
   (for [format (, "pdf" "png")]
-    (with [(pl-plot (, (* 6 n) 6.2)
+    (with [(pl-plot (, (* 4.5 n) 5)
                     "screamv1overview-summit-sdpd-vs-nnode"
                     :format format)]
       (sv fig (pl.gcf))
       (for [i (range n)]
         (pl.subplot 1 n (inc i))
         (plot-sdpd-vs-nnode c d (nth timer-sets i) False
-                            :ylabel True :title False)
+                            :ylabel True :title False :fontsize 13)
         (fig.text (+ (/ i n) 0.03) 0.04 (+ "(" (nth "abcde" i) ")")
-                  :fontsize 16)))))
+                  :fontsize 13)))))
 
 (defn get-three-runs-of-interest [de dr &optional verbose]
   (svifn verbose False)
@@ -190,9 +191,9 @@
     (sv d1 (get d tmr-total))
     (/ (:max d1) (/ (:count d1) (:nthread d1))))
   (sv t-tot-ref (sec-per-step dr1)
-      clrs "brgy"
+      clrs "grby"
       hatches (, "o" "////" "" "x"))
-  (with [(pl-plot (, 7 6.2) "screamv1overview-summit-bar")]
+  (with [(pl-plot (, 6.6 5) "screamv1overview-summit-bar")]
     (for [(, i d) (enumerate (, de1 dr1 de2))]
       (defn calc-p [tmr]
         (/ (get d tmr :max) (get d tmr-total :max)))
@@ -213,7 +214,7 @@
                 :hatch (nth hatches j) :edgecolor "k"
                 :label (if (zero? i) (nth lbls j)))
         (+= acc (get ps j))))
-    (pl.legend :loc "upper right" :fontsize fs :ncol 1 :framealpha 1)
+    (pl.legend :loc "upper right" :fontsize (dec fs) :ncol 1 :framealpha 1)
     (defn nnode [d] (// (get d tmr-total :nproc) (:ngpu-per-node c)))
     (pl.xticks [0 1 2]
                (, (.format "Performance\n{} nodes" (nnode de1))
