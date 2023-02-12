@@ -1,6 +1,6 @@
 import sys, argparse, os, textwrap, time, glob, subprocess, datetime
 
-TESTING = False # If true, use test.txt to act as bjobs.
+TESTING = False # If true, use test.txt to act as squeue.
 
 class Struct:
     pass
@@ -160,7 +160,7 @@ def main():
     ${path_to_run_dir1} is something like
        /gpfs/alpine/cli115/proj-shared/username/e3sm_scratch/ne4pg2_ne4pg2.F2010-SCREAMv1/run
     and ${jobid} is printed at ./case.submit and is also available from
-       bjobs -u username
+       squeue -u username
     """)
 
     p = argparse.ArgumentParser(description=help, formatter_class=argparse.RawTextHelpFormatter)
