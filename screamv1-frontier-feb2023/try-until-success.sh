@@ -1,9 +1,15 @@
 casedir=$1
 rundir=$2
 nnode=$3
+filter=$4
 echo "Case dir: $casedir"
 echo "Run dir: $rundir"
 echo "nnode: $nnode"
+echo "filter: $filter"
+
+function qread() {
+    squeue -o "%.8i %.4D %.6P %.80j %.16u %.2t %.10M %.10l" -u ambradl | grep " $nnode " | grep $filter
+}
 
 job_monitor_started=false
 while true; do
@@ -15,12 +21,14 @@ while true; do
         echo "Got one; exiting."
         exit
     fi
-    squeue -u ambradl | grep " $nnode "
+    qread
     if [ $? == 0 ]; then
         if ! $job_monitor_started; then
-            ln=`squeue -u ambradl | grep " $nnode "`
+            ln=`qread`
+            echo $ln
             toks=( $ln )
             jobid=${toks[0]}
+            echo "jobid $jobid"
             python jobmonitor.py $rundir $jobid
             job_monitor_started=true
         fi
@@ -30,5 +38,5 @@ while true; do
         cd ..
         job_monitor_started=false
     fi
-    sleep 180
+    sleep 60
 done
