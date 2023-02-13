@@ -121,7 +121,7 @@ def monitor(rundir, jobid, sleep=300):
             if e3sm_log_state == E3smLogReader.failed:
                 print(f'Job {jobid:s} failed; evidence: "{evidence:s}"')
                 kill_job = True
-        elif job_state == JobState.none:
+        elif job_state in (JobState.none, JobState.unknown):
             print(f'Job {jobid:s} is not in the list of jobs.')
             break
         elif job_state in (JobState.done, JobState.exited):

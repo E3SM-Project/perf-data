@@ -21,7 +21,7 @@ $scream/cime/scripts/create_newcase --case ${cname} --compset ${compset} --res $
 cd $cname
 
 ./xmlchange JOB_QUEUE=$queue
-./xmlchange JOB_WALLCLOCK_TIME=1:00:00
+./xmlchange JOB_WALLCLOCK_TIME=1:30:00
 ./xmlchange STOP_OPTION=nhours
 ./xmlchange STOP_N=12
 
