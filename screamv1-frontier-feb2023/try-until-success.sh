@@ -7,6 +7,10 @@ echo "nnode: $nnode"
 
 job_monitor_started=false
 while true; do
+    if [ -e stop.${nnode} ]; then
+        echo "Stopping at user request."
+        exit
+    fi
     if [ -e $rundir/timing*gz ]; then
         echo "Got one; exiting."
         exit
