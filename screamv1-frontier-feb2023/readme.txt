@@ -2,8 +2,8 @@ This directory contains data and code for the Frontier window 10-20 Feb 2023.
 
 The run*sh scripts are one-off run scripts. They take as an argument the number
 of nodes to run on. run-rocm54.sh and run-rocm54-eul.sh produce the data used in
-the final results. These use the branch
-    https://github.com/ambrad/scream/tree/ambrad/eamxx/frontier1-rocm54
+the final results. These use the tag
+    https://github.com/E3SM-Project/scream/releases/tag/archive%2Fscreamv1-frontier-feb2023
 
 jobmonitor.py is a tool to monitor a single job. If e3sm.exe terminates but the
 job hangs, jobmonitor.py will kill it, thus minimizing hanging time.
