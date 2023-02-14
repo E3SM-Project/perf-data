@@ -196,71 +196,6 @@
         (fig.text (+ (/ i n) 0.03) 0.04 (+ "(" (nth "abcde" i) ")")
                   :fontsize 13)))))
 
-(defn get-three-runs-of-interest [de dr &optional verbose]
-  (svifn verbose False)
-  (sv de1 (get de 1024) ; perf 1024
-      de2 (get de 4096) ; perf 4096
-      drs (get dr 1024) ; production 1024 median
-      run-loop "CPL:RUN_LOOP")
-  (.sort drs :key (fn [d] (:max (get d run-loop))))
-  (assert (= (% (len drs) 2) 1))
-  (assert (= (max (len de1) (len de2)) 1))
-  (sv de1 (first de1) de2 (first de2) dr1 (nth drs (// (len drs) 2)))
-  (when verbose
-    (for [d (, de1 dr1 de2)]
-      (print (get d run-loop))))
-  (, de1 de2 dr1))
-
-(defn fig-proportions [c de dr]
-  (sv (, de1 de2 dr1) (get-three-runs-of-interest de dr :verbose True)
-      tmr-dycore "a:tl-sc prim_run_subcycle_c"
-      tmr-physics "a:EAMxx::physics::run"
-      tmr-atm "CPL:ATM_RUN"
-      tmr-total "CPL:RUN_LOOP"
-      lbls (, "Dycore" "Physics" "Rest of Atm" "Rest of Model")
-      fs 16)
-  (defn sec-per-step [d]
-    (sv d1 (get d tmr-total))
-    (/ (:max d1) (/ (:count d1) (:nthread d1))))
-  (sv t-tot-ref (sec-per-step dr1)
-      clrs "grby"
-      hatches (, "o" "////" "" "x"))
-  (with [(pl-plot (, 6.6 5) "screamv1-frontier-bar")]
-    (for [(, i d) (enumerate (, de1 dr1 de2))]
-      (defn calc-p [tmr]
-        (/ (get d tmr :max) (get d tmr-total :max)))
-      (sv fac (/ (sec-per-step d) t-tot-ref)
-          - (print fac)
-          ps (* fac (npy.array [(calc-p tmr-dycore)
-                                (calc-p tmr-physics)
-                                (calc-p tmr-atm)
-                                (calc-p tmr-total)]))
-          ;; tot - atm
-          (get ps 3) (- (get ps 3) (get ps 2))
-          ;; atm - (dycore + physics)
-          (get ps 2) (- (get ps 2) (get ps 1) (get ps 0))
-          acc 0)
-      (print ps)
-      (for [j (range 4)]
-        (pl.bar i (get ps j) :bottom acc :facecolor (nth clrs j)
-                :hatch (nth hatches j) :edgecolor "k"
-                :label (if (zero? i) (nth lbls j)))
-        (+= acc (get ps j))))
-    (pl.legend :loc "upper right" :fontsize (dec fs) :ncol 1 :framealpha 1)
-    (defn nnode [d] (// (get d tmr-total :nproc) (:ngpu-per-node c)))
-    (pl.xticks [0 1 2]
-               (, (.format "Performance\n{} nodes" (nnode de1))
-                  (.format "Production\n{} nodes" (nnode dr1))
-                  (.format "Performance\n{} nodes" (nnode de2)))
-               :fontsize fs)
-    (sv y (/ (npy.array (range 11)) 10))
-    (pl.yticks y y :fontsize fs)
-    (pl.ylabel "Wall clock proportion" :fontsize fs)
-    (sv g 0.7)
-    (pl.grid True :lw 0.5 :ls "-" :color (, g g g) :zorder -1
-             :which "both" :axis "y")
-    (.set_axisbelow (pl.gca) True)))
-
 (when-inp ["summary" {:eul int}]
   (sv c (get-context eul)
       fnames (glob.glob (:glob-data c)))
@@ -278,6 +213,7 @@
            (/ sim-sec (:max (get t k)))))))
 
 (when-inp ["plot-separate"]
+  (print "WARNING: Not specialized to Frontier yet.")
   (sv c (get-context)
       fnames (glob.glob (:glob-data c))
       d (parse-timer-files c fnames))
