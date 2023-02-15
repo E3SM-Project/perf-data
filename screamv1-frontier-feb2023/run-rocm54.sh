@@ -1,5 +1,5 @@
 scream=~/repo/SCREAMref
-# branch ambrad/eamxx/frontier1-rocm54
+# tag https://github.com/E3SM-Project/scream/releases/tag/archive%2Fscreamv1-frontier-feb2023
 
 nnodes=$1
 pernode=8
