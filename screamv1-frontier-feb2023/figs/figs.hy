@@ -6,9 +6,10 @@
  (pl-require-type1-fonts)
  (assoc matplotlib.rcParams "savefig.dpi" 300))
 
-(defn get-context [&optional [eul False]]
+(defn get-context [&optional [eul False] [threaded True]]
   (sv prefix (+ "frontier-v1-scaling1-rocm54-"
-                (if eul "eul-" ""))
+                (if eul "eul-" "")
+                (if threaded "" "nothrd-"))
       timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "a:tl-sc prim_run_subcycle_c"
                 "a:EAMxx::physics::run" "a:compute_stage_value_dirk"
                 (if eul
@@ -196,8 +197,8 @@
         (fig.text (+ (/ i n) 0.03) 0.04 (+ "(" (nth "abcde" i) ")")
                   :fontsize 13)))))
 
-(when-inp ["summary" {:eul int}]
-  (sv c (get-context eul)
+(when-inp ["summary"]
+  (sv c (get-context)
       fnames (glob.glob (:glob-data c)))
   (prf "Prefix: {}" (:prefix c))
   (for [fname fnames]
