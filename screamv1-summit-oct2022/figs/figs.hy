@@ -223,7 +223,7 @@
                :fontsize fs)
     (sv y (/ (npy.array (range 11)) 10))
     (pl.yticks y y :fontsize fs)
-    (pl.ylabel "Wall clock proportion" :fontsize fs)
+    (pl.ylabel "Wallclock proportion" :fontsize fs)
     (sv g 0.7)
     (pl.grid True :lw 0.5 :ls "-" :color (, g g g) :zorder -1
              :which "both" :axis "y")
