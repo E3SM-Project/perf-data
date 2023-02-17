@@ -49,7 +49,7 @@
 
 (defn parse-timer-file [c fname]
   (sv txt (.split (readall fname) "\n")
-      d {})
+      d {:fname fname})
   (for [ln txt]
     (sv t (parse-timer-line c ln))
     (unless (none? t)
@@ -92,16 +92,26 @@
   (sv g 0.2
       x [(first (:nnodes c)) (last (:nnodes c))])
   (sv t (get (first (get d (first (:nnodes c)))) "CPL:RUN_LOOP")
-      sim-sec (* (:dt_physics c) (/ (:count t) (:nthread t))))
-  (for [timer timers]
+      sim-sec (* (:dt_physics c) (/ (:count t) (:nthread t)))
+      fnames [])
+  (for [(, itimer timer) (enumerate timers)]
     (sv pat (get (:linepats c) timer)
         y [])
-    (for [nnode (:nnodes c)]
-      (sv max-times (sort (lfor d1 (get d nnode) (:max (get d1 timer)))))
-      (.append y (min max-times))
+    (for [(, inode nnode) (enumerate (:nnodes c))]
+      ;; Sort redundantly since the nnode loop is inside the timer one.
+      (sv (, top-times p) (sort-with-p (lfor d1 (get d nnode)
+                                             (:max (get d1 "CPL:RUN_LOOP"))))
+          d1 (nth (get d nnode) (first p)))
+      (if (zero? itimer)
+        (do (.append fnames (:fname d1))
+            (prf "Using {} for nnode {}" (:fname d1) nnode))
+        (assert (= (:fname d1) (nth fnames inode))))
+      (.append y (:max (get d1 timer)))
       (when plot-extra-points
-        (for [mt (cut max-times 1)]
-          (plot (xform nnode) (yform sim-sec mt) (cut pat 0 -1)))))
+        (for [idx (cut p 1)]
+          (plot (xform nnode)
+                (yform sim-sec (get (nth (get d nnode) idx) timer :max))
+                (cut pat 0 -1)))))
     (plot xval (yform sim-sec y) pat
           :lw 2 :markersize 10 :fillstyle "none"
           :label (get (:timer-aliases c) timer))
