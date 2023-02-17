@@ -7,7 +7,7 @@
  (assoc matplotlib.rcParams "savefig.dpi" 300))
 
 (defn get-context [&optional [eul False] [threaded True]]
-  (sv prefix (+ "frontier-v1-scaling1-rocm54-"
+  (sv prefix (+ "frontier-v1-scaling1-rocm5?-"
                 (if eul "eul-" "")
                 (if threaded "" "nothrd-"))
       timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "a:tl-sc prim_run_subcycle_c"
@@ -36,11 +36,21 @@
                         [t a])
    :re-timer-ln (re.compile
                  "\"(.*)\"\s+-\s+(\d+)\s+(\d+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)")
-   :nnodes (if eul
-               (, 512 1024 2048 4096 8192)
-               (, 512 1024 4096 8192))
+   :nnodes (, 512 1024 2048 4096 8192)
    :ngpu-per-node 8
    :dt_physics 100})
+
+(defn parse-timer-line [c ln]
+  (sv m (re.findall (:re-timer-ln c) ln))
+  (unless (empty? m)
+    (assert (= (len m) 1))
+    (sv m (first m))
+    (dfor (, i k)
+          (enumerate (, :name :nproc :nthread :count :total :max))
+          [k (nth m i)])))
+
+(defn calc-calls-per-sec [t]
+  (/ (:count t) (:nthread t) (:max t)))
 
 (defn parse-timer-line [c ln]
   (sv m (re.findall (:re-timer-ln c) ln))
@@ -57,32 +67,7 @@
 (defn parse-timer-file [c fname]
   (assert (in (:compset c) fname))
   (sv txt (.split (readall fname) "\n")
-      d {})
-  (for [ln txt]
-    (sv t (parse-timer-line c ln))
-    (unless (none? t)
-      (assoc d (:name t)
-             (dfor (, k coerce)
-                   (, [:nproc int] [:nthread int] [:count float]
-                      [:total float] [:max float])
-                   [k (coerce (get t k))]))))
-  d)
-
-(defn parse-timer-line [c ln]
-  (sv m (re.findall (:re-timer-ln c) ln))
-  (unless (empty? m)
-    (assert (= (len m) 1))
-    (sv m (first m))
-    (dfor (, i k)
-          (enumerate (, :name :nproc :nthread :count :total :max))
-          [k (nth m i)])))
-
-(defn calc-calls-per-sec [t]
-  (/ (:count t) (:nthread t) (:max t)))
-
-(defn parse-timer-file [c fname]
-  (sv txt (.split (readall fname) "\n")
-      d {})
+      d {:fname fname})
   (for [ln txt]
     (sv t (parse-timer-line c ln))
     (unless (none? t)
@@ -125,13 +110,21 @@
   (sv g 0.2
       x [(first (:nnodes c)) (last (:nnodes c))])
   (sv t (get (first (get d (first (:nnodes c)))) "CPL:RUN_LOOP")
-      sim-sec (* (:dt_physics c) (/ (:count t) (:nthread t))))
-  (for [timer timers]
+      sim-sec (* (:dt_physics c) (/ (:count t) (:nthread t)))
+      fnames [])
+  (for [(, itimer timer) (enumerate timers)]
     (sv pat (get (:linepats c) timer)
         y [])
-    (for [nnode (:nnodes c)]
-      (sv max-times (sort (lfor d1 (get d nnode) (:max (get d1 timer)))))
-      (.append y (min max-times))
+    (for [(, inode nnode) (enumerate (:nnodes c))]
+      ;; Sort redundantly since the nnode loop is inside the timer one.
+      (sv (, top-times p) (sort-with-p (lfor d1 (get d nnode)
+                                             (:max (get d1 "CPL:RUN_LOOP"))))
+          d1 (first (get d nnode)))
+      (if (zero? itimer)
+        (do (.append fnames (:fname d1))
+            (prf "Using {} for nnode {}" (:fname d1) nnode))
+        (assert (= (:fname d1) (nth fnames inode))))
+      (.append y (:max (get d1 timer)))
       (when plot-extra-points
         (for [mt (cut max-times 1)]
           (plot (xform nnode) (yform sim-sec mt) (cut pat 0 -1)))))
