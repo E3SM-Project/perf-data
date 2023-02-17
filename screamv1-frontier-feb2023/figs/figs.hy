@@ -126,8 +126,10 @@
         (assert (= (:fname d1) (nth fnames inode))))
       (.append y (:max (get d1 timer)))
       (when plot-extra-points
-        (for [mt (cut max-times 1)]
-          (plot (xform nnode) (yform sim-sec mt) (cut pat 0 -1)))))
+        (for [idx (cut p 1)]
+          (plot (xform nnode)
+                (yform sim-sec (get (nth (get d nnode) idx) timer :max))
+                (cut pat 0 -1)))))
     (plot xval (yform sim-sec y) pat
           :lw 2 :markersize 10 :fillstyle "none"
           :label (get (:timer-aliases c) timer))
