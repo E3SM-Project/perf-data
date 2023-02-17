@@ -119,10 +119,11 @@
       ;; Sort redundantly since the nnode loop is inside the timer one.
       (sv (, top-times p) (sort-with-p (lfor d1 (get d nnode)
                                              (:max (get d1 "CPL:RUN_LOOP"))))
-          d1 (first (get d nnode)))
+          d1 (nth (get d nnode) (first p)))
       (if (zero? itimer)
         (do (.append fnames (:fname d1))
-            (prf "Using {} for nnode {}" (:fname d1) nnode))
+            (prf "Using {} for nnode {} with max {}"
+                 (:fname d1) nnode (:max (get d1 "CPL:RUN_LOOP"))))
         (assert (= (:fname d1) (nth fnames inode))))
       (.append y (:max (get d1 timer)))
       (when plot-extra-points
