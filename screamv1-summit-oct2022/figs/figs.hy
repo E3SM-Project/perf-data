@@ -131,7 +131,7 @@
              yscale 90)
          (pl.ylim (, 60 250))]
         [(= timer-set :timersa)
-         (sv y [60 100 125 150 175 200 250 300]
+         (sv y [60 70 80 90 100 125 150 175 200 250 300]
              yscale 110)
          (pl.ylim (, 60 300))]
         [(= timer-set :timersb)
