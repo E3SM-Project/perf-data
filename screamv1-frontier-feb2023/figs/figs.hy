@@ -11,7 +11,8 @@
                 (if eul "eul-" "")
                 (if threaded "" "nothrd-"))
       timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "a:tl-sc prim_run_subcycle_c"
-                "a:EAMxx::physics::run" "a:compute_stage_value_dirk"
+                "a:compute_stage_value_dirk" "a:caar compute"
+                "a:EAMxx::physics::run"
                 (if eul
                     "a:tl-at prim_advec_tracers_remap_RK2"
                     "a:compose_transport")
@@ -24,15 +25,16 @@
    :timers2 (cut timers 0 5)
    :timers3 timers
    :timersa (cut timers 0 3)
-   :timersb (cut timers 3 5)
+   :timersb (cut timers 3 6)
    :linepats (dfor (, t p)
                    (zip timers
-                        (, "ko-" "rv-" "bs--" "g.--" "b.:" "b*:"))
+                        (, "ko-" "rv-" "bs-" "ko-" "rv-" "bs-"))
                    [t p])
    :timer-aliases (dfor (, t a)
                         (zip timers
-                             (, "Model" "Atmosphere" "Dycore" "Physics"
-                                "Dycore::DIRK" "Dycore::SL" "Land" "Land::interpMonthlyVeg"))
+                             (, "Model" "Atmosphere" "Dycore" "Dycore::DIRK"
+                                "Dycore::CAAR" "Physics" "Dycore::SL" "Land"
+                                "Land::interpMonthlyVeg"))
                         [t a])
    :re-timer-ln (re.compile
                  "\"(.*)\"\s+-\s+(\d+)\s+(\d+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)")
@@ -153,9 +155,9 @@
              yscale 90)
          (pl.ylim (, 45 600))]
         [(= timer-set :timersb)
-         (sv y [250 300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000 2400 2800 3200 3600]
+         (sv y [200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000 2400 2800 3200 3600]
              yscale 400)
-         (pl.ylim (, 250 3600))])
+         (pl.ylim (, 170 3600))])
   (pl.xlim (, (xform 430) (xform 10000)))
   (when (none? yscale)
     (sv yscale (* 1.1 (first (pl.ylim)))))
