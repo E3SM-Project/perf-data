@@ -129,13 +129,14 @@
              yscale 90)
          (pl.ylim (, 60 250))]
         [(= timer-set :timersa)
-         (sv y [60 70 80 90 100 125 150 175 200 250 300]
+         (sv y [60 70 80 90 100 120 140 160 180 200 220 240 260 280]
              yscale 110)
-         (pl.ylim (, 60 300))]
+         (pl.ylim (, 60 280))]
         [(= timer-set :timersb)
          (sv y [300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000]
              yscale 500)
          (pl.ylim (, 250 2000))])
+  (pl.xlim (xform (, 940 5000)))
   (when (none? yscale)
     (sv yscale (* 1.1 (first (pl.ylim)))))
   (plot (xform x) [yscale (* (/ (second x) (first x)) yscale)] "-"
