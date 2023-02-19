@@ -134,7 +134,7 @@
          (pl.ylim (, 60 300))]
         [(= timer-set :timersb)
          (sv y [300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000]
-             yscale 420)
+             yscale 500)
          (pl.ylim (, 250 2000))])
   (when (none? yscale)
     (sv yscale (* 1.1 (first (pl.ylim)))))
