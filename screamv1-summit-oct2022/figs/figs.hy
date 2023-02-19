@@ -9,25 +9,23 @@
 (defn get-context [&optional prefix]
   (svifn prefix "scream-v1-scaling2-")
   (sv timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "a:tl-sc prim_run_subcycle_c"
-                "a:EAMxx::physics::run" "a:compute_stage_value_dirk"
+                "a:compute_stage_value_dirk" "a:caar compute" "a:EAMxx::physics::run"
                 "a:compose_transport" "CPL:LND_RUN" "l:interpMonthlyVeg"))
   {:prefix prefix
    :compset "ne1024pg2_ne1024pg2.F2010-SCREAMv1"
    :glob-data (+ "../data/" prefix "*-model_timing_stats")
-   :timers0 (cut timers 0 1)
-   :timers1 (cut timers 0 2)
-   :timers2 (cut timers 0 5)
    :timers3 timers
    :timersa (cut timers 0 3)
-   :timersb (cut timers 3 5)
+   :timersb (cut timers 3 6)
    :linepats (dfor (, t p)
                    (zip timers
-                        (, "ko-" "rv-" "bs--" "g.--" "b.:" "b*:"))
+                        (, "ko-" "rv-" "bs--" "ko-" "rv-" "bs--"))
                    [t p])
    :timer-aliases (dfor (, t a)
                         (zip timers
-                             (, "Model" "Atmosphere" "Dycore" "Physics"
-                                "Dycore::DIRK" "Dycore::SL" "Land" "Land::interpMonthlyVeg"))
+                             (, "Model" "Atmosphere" "Dycore"
+                                "Dycore::DIRK" "Dynamics::CAAR" "Physics"
+                                "Dycore::SL" "Land" "Land::interpMonthlyVeg"))
                         [t a])
    :re-timer-ln (re.compile
                  "\"(.*)\"\s+-\s+(\d+)\s+(\d+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)")
@@ -135,9 +133,9 @@
              yscale 110)
          (pl.ylim (, 60 300))]
         [(= timer-set :timersb)
-         (sv y [400 500 600 700 800 900 1000 1200 1400 1600 1800]
+         (sv y [300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000]
              yscale 420)
-         (pl.ylim (, 350 1950))])
+         (pl.ylim (, 250 2000))])
   (when (none? yscale)
     (sv yscale (* 1.1 (first (pl.ylim)))))
   (plot (xform x) [yscale (* (/ (second x) (first x)) yscale)] "-"
@@ -255,13 +253,6 @@
            (get (:timer-aliases c) k) (:max (get t k))
            (calc-calls-per-sec (get t k))
            (/ sim-sec (:max (get t k)))))))
-
-(when-inp ["plot-separate"]
-  (sv c (get-context)
-      fnames (glob.glob (:glob-data c))
-      d (parse-timer-files c fnames))
-  (for [timer-set (, :timers1 :timers2)]
-    (fig-sdpd-vs-nnode c d :timer-set timer-set)))
 
 (when-inp ["plot-throughput-ab"]
   (sv c (get-context)
