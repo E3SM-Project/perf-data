@@ -19,7 +19,7 @@
    :timersb (cut timers 3 6)
    :linepats (dfor (, t p)
                    (zip timers
-                        (, "ko-" "rv-" "bs--" "ko-" "rv-" "bs--"))
+                        (, "ko-" "rv-" "bs-" "ko-" "rv-" "bs-"))
                    [t p])
    :timer-aliases (dfor (, t a)
                         (zip timers
