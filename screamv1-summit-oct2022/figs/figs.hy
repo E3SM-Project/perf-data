@@ -24,7 +24,7 @@
    :timer-aliases (dfor (, t a)
                         (zip timers
                              (, "Model" "Atmosphere" "Dycore"
-                                "Dycore::DIRK" "Dynamics::CAAR" "Physics"
+                                "Dycore::DIRK" "Dycore::CAAR" "Physics"
                                 "Dycore::SL" "Land" "Land::interpMonthlyVeg"))
                         [t a])
    :re-timer-ln (re.compile
@@ -135,7 +135,7 @@
         [(= timer-set :timersb)
          (sv y [300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000]
              yscale 500)
-         (pl.ylim (, 250 2000))])
+         (pl.ylim (, 300 2000))])
   (pl.xlim (xform (, 940 5000)))
   (when (none? yscale)
     (sv yscale (* 1.1 (first (pl.ylim)))))
