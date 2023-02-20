@@ -157,7 +157,7 @@
         [(= timer-set :timersb)
          (sv y [200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000 2400 2800 3200 3600]
              yscale 400)
-         (pl.ylim (, 170 3600))])
+         (pl.ylim (, 200 3600))])
   (pl.xlim (, (xform 430) (xform 10000)))
   (when (none? yscale)
     (sv yscale (* 1.1 (first (pl.ylim)))))
