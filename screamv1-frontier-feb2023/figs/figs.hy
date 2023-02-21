@@ -200,7 +200,8 @@
       sim-sec (* (:dt_physics cf) (/ (:count t) (:nthread t)))
       timers ["CPL:RUN_LOOP" "CPL:ATM_RUN"])
   (when show-dycore (.append timers "a:tl-sc prim_run_subcycle_c"))
-  (defn annotate [x y &optional [above False] [drop-middle False]]
+  (defn annotate [x y &optional [above False] [drop-middle False]
+                  [tweak-x False]]
     (sv nx (len x))
     (for [i (range (len x))]
       (when (and drop-middle
@@ -210,6 +211,7 @@
           yi (nth (yform y) i))
       (pl.text (cond [(zero? i) xi]
                      [(= i (dec nx)) xi]
+                     [tweak-x (- xi 0.08)]
                      [:else xi])
                (cond [(zero? i) (+ yi
                                    (cond [above 0.14]
@@ -257,21 +259,23 @@
       (unless (none? lbl)
         (.append hs (first h)))
       (unless (zero? mi)
-        (sv annotate-atm (= timer "CPL:ATM_RUN")
+        (sv annotate-mdl (= timer "CPL:RUN_LOOP")
+            annotate-atm (= timer "CPL:ATM_RUN")
             annotate-dycore (= timer "a:tl-sc prim_run_subcycle_c"))
-        (when (or (= timer "CPL:RUN_LOOP") annotate-atm annotate-dycore)
+        (when (or annotate-mdl annotate-atm annotate-dycore)
           (annotate (:nnodes cf) (yfn sim-sec y)
-                    :above (or annotate-atm annotate-dycore)
+                    :above (or annotate-atm annotate-dycore)                    
                     :drop-middle (or (and show-dycore annotate-atm)
                                      (and show-dycore show-summit
-                                          (not annotate-dycore))))))))
+                                          (not annotate-dycore)))
+                    :tweak-x (and show-summit annotate-mdl))))))
   (my-grid)
   (pl.xticks (xform (:nnodes cf)) (:nnodes cf) :fontsize fs)
   (sv y [50 60 70 80 90 100 125 150 175 200 250 300 350 400 450 500 550 600]
       yscale (if show-dycore 125 100))
   (pl.yticks (yform y) y :fontsize (dec fs))
   (pl.ylim (yform (, (if show-dycore (if show-summit 47 50) 50)
-                     (if show-dycore 650 450))))
+                     (if show-dycore 630 450))))
   (pl.xlim (, (xform 430) (xform 10000)))
   (when (none? yscale)
     (sv yscale (* 1.1 (first (pl.ylim)))))
