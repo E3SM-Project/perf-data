@@ -155,7 +155,8 @@
   (pl.xticks xval (:nnodes c) :fontsize fs)
   (sv yscale None)
   (cond [(= timer-set :timers2)
-         (sv y [50 100 150 200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800]
+         (sv y [50 100 150 200 300 400 500 600 700 800 900 1000
+                1200 1400 1600 1800]
              yscale 150)
          (pl.ylim (, 35 1800))]
         [(= timer-set :timers1)
@@ -163,12 +164,13 @@
              yscale 90)
          (pl.ylim (, 60 250))]
         [(= timer-set :timersa)
-         (sv y [50 60 70 80 90 100 125 150 175 200 250 300 350 400 450 500 550 600]
+         (sv y [50 60 70 80 90 100 125 150 175 200 250 300 350
+                400 450 500 550 600]
              yscale 90)
          (pl.ylim (, 45 600))]
         [(= timer-set :timersb)
-         (sv y [200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000
-                2250 2500 2750 3000 3400]
+         (sv y [200 300 400 500 600 700 800 900 1000 1200 1400
+                1600 1800 2000 2250 2500 2750 3000 3400]
              yscale 400)
          (pl.ylim (, 200 3400))])
   (pl.xlim (, (xform 430) (xform 10000)))
@@ -348,7 +350,6 @@
       df (parse-timer-files cf (glob.glob (:glob-data cf)))
       ds (parse-timer-files cs (glob.glob (:glob-data cs))))
   (for [format (, "pdf" "png") sd (, 0 1) ss (, 0 1)]
-    ;;[format (, "pdf") sd (, 0) ss (, 0)]
     (with [(pl-plot (, 5 6)
                     (+ "screamv1-frontier-onepanel-sd" (str sd) "-ss" (str ss))
                     :format format)]
