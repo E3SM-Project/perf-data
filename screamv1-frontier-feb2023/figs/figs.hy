@@ -28,7 +28,7 @@
    :timersb (cut timers 3 6)
    :linepats (dfor (, t p)
                    (zip timers
-                        (, "ko-" "rv-" "bs-" "ko-" "rv-" "bs-"))
+                        (, "ko-" "rv-" "gs-" "ko-" "rv-" "gs-"))
                    [t p])
    :timer-aliases (dfor (, t a)
                         (zip timers
@@ -155,9 +155,9 @@
              yscale 90)
          (pl.ylim (, 45 600))]
         [(= timer-set :timersb)
-         (sv y [200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000 2400 2800 3200 3600]
+         (sv y [200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000 2250 2500 2750 3000 3400]
              yscale 400)
-         (pl.ylim (, 200 3600))])
+         (pl.ylim (, 200 3400))])
   (pl.xlim (, (xform 430) (xform 10000)))
   (when (none? yscale)
     (sv yscale (* 1.1 (first (pl.ylim)))))
