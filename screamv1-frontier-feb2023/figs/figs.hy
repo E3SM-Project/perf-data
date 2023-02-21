@@ -42,6 +42,18 @@
    :ngpu-per-node 8
    :dt_physics 100})
 
+(defn get-context-summit []
+  (sv c (get-context)
+      timers (:timers3 c)
+      prefix "scream-v1-scaling2-")
+  {:prefix prefix
+   :compset "ne1024pg2_ne1024pg2.F2010-SCREAMv1"
+   :glob-data (+ "../../screamv1-summit-oct2022/data/" prefix
+                 "*-model_timing_stats")
+   :nnodes (, 1024 2048 3072 4096 4608)
+   :re-timer-ln (:re-timer-ln c)
+   :ngpu-per-node 6})
+
 (defn parse-timer-line [c ln]
   (sv m (re.findall (:re-timer-ln c) ln))
   (unless (empty? m)
@@ -155,7 +167,8 @@
              yscale 90)
          (pl.ylim (, 45 600))]
         [(= timer-set :timersb)
-         (sv y [200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000 2250 2500 2750 3000 3400]
+         (sv y [200 300 400 500 600 700 800 900 1000 1200 1400 1600 1800 2000
+                2250 2500 2750 3000 3400]
              yscale 400)
          (pl.ylim (, 200 3400))])
   (pl.xlim (, (xform 430) (xform 10000)))
@@ -170,7 +183,65 @@
   (when ylabel
     (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs)))
   (when title
-    (pl.title (+ (:compset c) "\nFrontier performance, Oct 2022")
+    (pl.title (+ (:compset c) "\nFrontier performance, Feb 2023")
+              :fontsize (inc fs))))
+
+(defn plot-one-panel [cf cs df ds show-dycore show-summit]
+  (sv fs 14
+      xform (fn [x] (npy.log x))
+      yform (fn [y] (npy.log y))
+      yfn (fn [sim-sec y] (/ sim-sec (npy.array y)))
+      plot pl.plot
+      g 0.2
+      x [(first (:nnodes cf)) (last (:nnodes cf))]
+      t (get (first (get df (first (:nnodes cf)))) "CPL:RUN_LOOP")
+      sim-sec (* (:dt_physics cf) (/ (:count t) (:nthread t)))
+      timers ["CPL:RUN_LOOP" "CPL:ATM_RUN"])
+  (when show-dycore (.append timers "a:tl-sc prim_run_subcycle_c"))
+  (for [(, mi (, d c)) (enumerate (, (, ds cs) (, df cf)))]
+    (unless (or (> mi 0) show-summit) (continue))
+    (sv fnames [])
+    (for [(, itimer timer) (enumerate timers)]
+      (sv pat (+ (get (:linepats cf) timer)
+                 (if (zero? mi) "-" ""))
+          y [])
+      (for [(, inode nnode) (enumerate (:nnodes c))]
+        ;; Sort redundantly since the nnode loop is inside the timer one.
+        (sv (, top-times p) (sort-with-p (lfor d1 (get d nnode)
+                                               (:max (get d1 "CPL:RUN_LOOP"))))
+            d1 (nth (get d nnode) (first p)))
+        (if (zero? itimer)
+          (do (.append fnames (:fname d1))
+              (prf "Using {} for nnode {} with max {}"
+                   (:fname d1) nnode (:max (get d1 "CPL:RUN_LOOP"))))
+          (assert (= (:fname d1) (nth fnames inode))))
+        (.append y (:max (get d1 timer))))
+      (plot (xform (:nnodes c)) (yform (yfn sim-sec y)) pat
+            :lw 2 :markersize 10 :fillstyle "none"
+            :label (if-not (zero? mi) (get (:timer-aliases cf) timer)))
+      (dont
+       (sv annotate-atm (and (= timer-set :timers1) (= timer "CPL:ATM_RUN")))
+       (when (or (= timer "CPL:RUN_LOOP") annotate-atm)
+         (annotate (xform (:nnodes cf)) (yform (yval sim-sec y))
+                   :above annotate-atm)))))
+  (my-grid)
+  (pl.xticks (xform (:nnodes cf)) (:nnodes cf) :fontsize fs)
+  (sv y [50 60 70 80 90 100 125 150 175 200 250 300 350 400 450 500 550 600]
+      yscale 90)
+  (pl.yticks (yform y) y :fontsize (dec fs))
+  (pl.ylim (yform (, (if show-dycore 45 50)
+                     (if show-dycore 600 420))))
+  (pl.xlim (, (xform 430) (xform 10000)))
+  (when (none? yscale)
+    (sv yscale (* 1.1 (first (pl.ylim)))))
+  (plot (xform x)
+        (yform [yscale (* (/ (second x) (first x)) yscale)]) "-"
+        :color (, g g g) :lw 1)
+  (pl.legend :loc "lower right" :fontsize fs :ncol 2)
+  (pl.xlabel "Number of nodes" :fontsize (inc fs))
+  (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs))
+  (when False
+    (pl.title (+ (:compset c) "\nFrontier performance, Feb 2023")
               :fontsize (inc fs))))
 
 (defn fig-sdpd-vs-nnode [c d &optional timer-set plot-extra-points]
@@ -225,3 +296,13 @@
       d (parse-timer-files c fnames))
   (fig-sdpd-vs-nnode-ab c d (, :timersa :timersb)))
 
+(when-inp ["plot-one-panel"]
+  (sv cf (get-context)
+      cs (get-context-summit)
+      df (parse-timer-files cf (glob.glob (:glob-data cf)))
+      ds (parse-timer-files cs (glob.glob (:glob-data cs))))
+  (for [format (, "pdf" "png") sd (, 0 1) ss (, 0 1)]
+    (with [(pl-plot (, 5 6)
+                    (+ "screamv1-frontier-onepanel-sd" (str sd) "-ss" (str ss))
+                    :format format)]
+      (plot-one-panel cf cs df ds sd ss))))
