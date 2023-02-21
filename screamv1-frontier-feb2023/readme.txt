@@ -26,3 +26,10 @@ The data/ directory contains model_timing_stats files for a number of runs.
 
 The figs/ directory contains hy (version 0.20 running on any python3) code to
 summarize and plot the data.
+
+The figures use the following subset of the data:
+  frontier-v1-scaling1-rocm51-nnodes512.ne1024pg2_ne1024pg2.F2010-SCREAMv1-timing.1271946.230210-212030-model_timing_stats
+  frontier-v1-scaling1-rocm51-nnodes1024.ne1024pg2_ne1024pg2.F2010-SCREAMv1-timing.1273705.230216-000516-model_timing_stats
+  frontier-v1-scaling1-rocm51-nnodes2048.ne1024pg2_ne1024pg2.F2010-SCREAMv1-timing.1273525.230215-230716-model_timing_stats
+  frontier-v1-scaling1-rocm54-nnodes4096.ne1024pg2_ne1024pg2.F2010-SCREAMv1-timing.1272650.230213-074922-model_timing_stats
+  frontier-v1-scaling1-rocm54-nnodes8192.ne1024pg2_ne1024pg2.F2010-SCREAMv1-timing.1272541.230212-204538-model_timing_stats

@@ -32,3 +32,10 @@ Series 2 is used in the figures.
 
 figs.hy parses the timer files and makes figures. We run figs.hy with
     hy 0.20.0 using CPython(main) 3.9.12 on Linux
+
+The figures use the following subset of the data:
+  scream-v1-scaling2-nnodes1024.ne1024pg2_ne1024pg2.F2010-SCREAMv1-timing.2495303.221008-023937-model_timing_stats
+  scream-v1-scaling2-nnodes2048.ne1024pg2_ne1024pg2.F2010-SCREAMv1-timing.2495304.221009-093803-model_timing_stats
+  scream-v1-scaling2-nnodes3072.ne1024pg2_ne1024pg2.F2010-SCREAMv1-timing.2495590.221008-072336-model_timing_stats
+  scream-v1-scaling2-nnodes4096.ne1024pg2_ne1024pg2.F2010-SCREAMv1-timing.2497059.221010-173053-model_timing_stats
+  scream-v1-scaling2-nnodes4608.ne1024pg2_ne1024pg2.F2010-SCREAMv1-timing.2495935.221009-090433-model_timing_stats
