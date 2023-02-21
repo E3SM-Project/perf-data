@@ -198,12 +198,36 @@
       sim-sec (* (:dt_physics cf) (/ (:count t) (:nthread t)))
       timers ["CPL:RUN_LOOP" "CPL:ATM_RUN"])
   (when show-dycore (.append timers "a:tl-sc prim_run_subcycle_c"))
+  (defn annotate [x y &optional [above False]]
+    (sv nx (len x))
+    (for [i (range (len x))]
+      (sv xi (xform (nth x i))
+          yi (nth (yform y) i))
+      (pl.text (cond [(zero? i) xi]
+                     [(= i (dec nx)) xi]
+                     [:else xi])
+               (cond [(zero? i) (+ yi
+                                   (cond [above 0.14]
+                                         [:else -0.1]))]
+                     [(= i (dec nx)) (+ yi
+                                        (cond [above 0.08]
+                                              [:else -0.13]))]
+                     [:else (+ yi
+                               (cond [above 0.1]
+                                     [:else -0.1]))])
+               (.format "{:1.1f}" (nth y i))
+               :fontsize (- fs 0)
+               :va "center"
+               :ha (cond [(zero? i) "center"]
+                         [(= i (dec nx)) "center"]
+                         [:else (if above "right" "left")]))))
   (for [(, mi (, d c)) (enumerate (, (, ds cs) (, df cf)))]
     (unless (or (> mi 0) show-summit) (continue))
     (sv fnames [])
     (for [(, itimer timer) (enumerate timers)]
       (sv pat (+ (get (:linepats cf) timer)
                  (if (zero? mi) "-" ""))
+          pat (.replace pat "g" "b")
           y [])
       (for [(, inode nnode) (enumerate (:nnodes c))]
         ;; Sort redundantly since the nnode loop is inside the timer one.
@@ -219,18 +243,19 @@
       (plot (xform (:nnodes c)) (yform (yfn sim-sec y)) pat
             :lw 2 :markersize 10 :fillstyle "none"
             :label (if-not (zero? mi) (get (:timer-aliases cf) timer)))
-      (dont
-       (sv annotate-atm (and (= timer-set :timers1) (= timer "CPL:ATM_RUN")))
-       (when (or (= timer "CPL:RUN_LOOP") annotate-atm)
-         (annotate (xform (:nnodes cf)) (yform (yval sim-sec y))
-                   :above annotate-atm)))))
+      (unless (zero? mi)
+        (sv annotate-atm (= timer "CPL:ATM_RUN")
+            annotate-dycore (= timer "a:tl-sc prim_run_subcycle_c"))
+        (when (or (= timer "CPL:RUN_LOOP") annotate-atm annotate-dycore)
+          (annotate (:nnodes cf) (yfn sim-sec y)
+                    :above (or annotate-atm annotate-dycore))))))
   (my-grid)
   (pl.xticks (xform (:nnodes cf)) (:nnodes cf) :fontsize fs)
   (sv y [50 60 70 80 90 100 125 150 175 200 250 300 350 400 450 500 550 600]
-      yscale 90)
+      yscale (if show-dycore 125 100))
   (pl.yticks (yform y) y :fontsize (dec fs))
-  (pl.ylim (yform (, (if show-dycore 45 50)
-                     (if show-dycore 600 420))))
+  (pl.ylim (yform (, (if show-dycore 50 50)
+                     (if show-dycore 650 450))))
   (pl.xlim (, (xform 430) (xform 10000)))
   (when (none? yscale)
     (sv yscale (* 1.1 (first (pl.ylim)))))
@@ -238,7 +263,8 @@
         (yform [yscale (* (/ (second x) (first x)) yscale)]) "-"
         :color (, g g g) :lw 1)
   (pl.legend :loc "lower right" :fontsize fs :ncol 2)
-  (pl.xlabel "Number of nodes" :fontsize (inc fs))
+  (pl.xlabel (if show-summit "Number of nodes" "Number of Frontier nodes")
+             :fontsize (inc fs))
   (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs))
   (when False
     (pl.title (+ (:compset c) "\nFrontier performance, Feb 2023")
@@ -302,6 +328,7 @@
       df (parse-timer-files cf (glob.glob (:glob-data cf)))
       ds (parse-timer-files cs (glob.glob (:glob-data cs))))
   (for [format (, "pdf" "png") sd (, 0 1) ss (, 0 1)]
+    ;;[format (, "pdf") sd (, 0) ss (, 0)]
     (with [(pl-plot (, 5 6)
                     (+ "screamv1-frontier-onepanel-sd" (str sd) "-ss" (str ss))
                     :format format)]
