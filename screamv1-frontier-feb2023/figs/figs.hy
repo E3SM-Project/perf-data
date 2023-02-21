@@ -191,16 +191,21 @@
       xform (fn [x] (npy.log x))
       yform (fn [y] (npy.log y))
       yfn (fn [sim-sec y] (/ sim-sec (npy.array y)))
-      plot pl.plot
+      ax (pl.gca)
+      hs []
+      plot ax.plot
       g 0.2
       x [(first (:nnodes cf)) (last (:nnodes cf))]
       t (get (first (get df (first (:nnodes cf)))) "CPL:RUN_LOOP")
       sim-sec (* (:dt_physics cf) (/ (:count t) (:nthread t)))
       timers ["CPL:RUN_LOOP" "CPL:ATM_RUN"])
   (when show-dycore (.append timers "a:tl-sc prim_run_subcycle_c"))
-  (defn annotate [x y &optional [above False]]
+  (defn annotate [x y &optional [above False] [drop-middle False]]
     (sv nx (len x))
     (for [i (range (len x))]
+      (when (and drop-middle
+                 (and (> i 0) (< i (dec nx))))
+        (continue))
       (sv xi (xform (nth x i))
           yi (nth (yform y) i))
       (pl.text (cond [(zero? i) xi]
@@ -221,6 +226,11 @@
                :ha (cond [(zero? i) "center"]
                          [(= i (dec nx)) "center"]
                          [:else (if above "right" "left")]))))
+  (when show-summit
+    (pl.plot 0 0 "k-" :label "Frontier")
+    (pl.plot 0 0 "k--" :label "Summit")
+    (sv l1 (pl.legend :loc "upper left" :fontsize fs :ncol 1))
+    (ax.add-artist l1))
   (for [(, mi (, d c)) (enumerate (, (, ds cs) (, df cf)))]
     (unless (or (> mi 0) show-summit) (continue))
     (sv fnames [])
@@ -240,21 +250,27 @@
                    (:fname d1) nnode (:max (get d1 "CPL:RUN_LOOP"))))
           (assert (= (:fname d1) (nth fnames inode))))
         (.append y (:max (get d1 timer))))
-      (plot (xform (:nnodes c)) (yform (yfn sim-sec y)) pat
-            :lw 2 :markersize 10 :fillstyle "none"
-            :label (if-not (zero? mi) (get (:timer-aliases cf) timer)))
+      (sv lbl (if-not (zero? mi) (get (:timer-aliases cf) timer))
+          h (plot (xform (:nnodes c)) (yform (yfn sim-sec y)) pat
+                  :lw 2 :markersize 10 :fillstyle "none"
+                  :label lbl))
+      (unless (none? lbl)
+        (.append hs (first h)))
       (unless (zero? mi)
         (sv annotate-atm (= timer "CPL:ATM_RUN")
             annotate-dycore (= timer "a:tl-sc prim_run_subcycle_c"))
         (when (or (= timer "CPL:RUN_LOOP") annotate-atm annotate-dycore)
           (annotate (:nnodes cf) (yfn sim-sec y)
-                    :above (or annotate-atm annotate-dycore))))))
+                    :above (or annotate-atm annotate-dycore)
+                    :drop-middle (or (and show-dycore annotate-atm)
+                                     (and show-dycore show-summit
+                                          (not annotate-dycore))))))))
   (my-grid)
   (pl.xticks (xform (:nnodes cf)) (:nnodes cf) :fontsize fs)
   (sv y [50 60 70 80 90 100 125 150 175 200 250 300 350 400 450 500 550 600]
       yscale (if show-dycore 125 100))
   (pl.yticks (yform y) y :fontsize (dec fs))
-  (pl.ylim (yform (, (if show-dycore 50 50)
+  (pl.ylim (yform (, (if show-dycore (if show-summit 47 50) 50)
                      (if show-dycore 650 450))))
   (pl.xlim (, (xform 430) (xform 10000)))
   (when (none? yscale)
@@ -262,7 +278,7 @@
   (plot (xform x)
         (yform [yscale (* (/ (second x) (first x)) yscale)]) "-"
         :color (, g g g) :lw 1)
-  (pl.legend :loc "lower right" :fontsize fs :ncol 2)
+  (pl.legend :loc "lower right" :fontsize fs :ncol 2 :handles hs)
   (pl.xlabel (if show-summit "Number of nodes" "Number of Frontier nodes")
              :fontsize (inc fs))
   (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs))
