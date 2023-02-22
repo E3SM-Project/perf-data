@@ -66,18 +66,6 @@
 (defn calc-calls-per-sec [t]
   (/ (:count t) (:nthread t) (:max t)))
 
-(defn parse-timer-line [c ln]
-  (sv m (re.findall (:re-timer-ln c) ln))
-  (unless (empty? m)
-    (assert (= (len m) 1))
-    (sv m (first m))
-    (dfor (, i k)
-          (enumerate (, :name :nproc :nthread :count :total :max))
-          [k (nth m i)])))
-
-(defn calc-calls-per-sec [t]
-  (/ (:count t) (:nthread t) (:max t)))
-
 (defn parse-timer-file [c fname]
   (assert (in (:compset c) fname))
   (sv txt (.split (readall fname) "\n")
