@@ -18,3 +18,10 @@ The two cases noted here:
 
 This is a 512-node case that does not have the minor module version update to show perf is about the same
 /pscratch/sd/n/ndk/e3sm_scratch/pm-gpu/se58-mar9/f1024.F2010-SCREAMv1.ne1024pg2_ne1024pg2.se58-mar9.gnugpu.1d.n0512a4xX.nor
+
+
+These cases were run March 9,10,11 -- and I think shortly after this, NERSC made a change that drastically affects
+performance, but was meant to ward off frequent NODE_FAILS.  I have a 384 node case as well, but it hit NODE_FAIL
+at the end of the run and does not have detailed timing data. More recent 384-node runs did complete without
+NODE_FAIL, but were much slower -- just helping NERSC debug the issue.  NERSC hopes to have the CACHE MONITOR
+env variable back to normal after next machine maintenance which should be soon. 
