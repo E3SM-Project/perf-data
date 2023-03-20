@@ -6,6 +6,9 @@ https://github.com/E3SM-Project/E3SM/pull/5533
 /global/cfs/cdirs/e3sm/ndk/repos/se59-mar13-pm-module-updateMar2023
 The git hash: 4934926240
 
+Also summarizing these runs here:
+https://acme-climate.atlassian.net/wiki/spaces/EPG/pages/3552935978/Performance+of+SCREAM+ne1024+cases+on+pm-gpu
+
 The two cases noted here:
 
 /pscratch/sd/n/ndk/e3sm_scratch/pm-gpu/se58-mar9/f1024.F2010-SCREAMv1.ne1024pg2_ne1024pg2.se58-mar9.gnugpu.1d.n0512a4xX.nor.ctk117.mpich8124
