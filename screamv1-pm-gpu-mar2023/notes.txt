@@ -1,0 +1,15 @@
+The pm-gpu runs in se58-mar9 are from a scream repo of March9th, but do have some minor changes in the module versions on the machine (that are going into E3SM).
+
+It effectively has these changes:
+https://github.com/E3SM-Project/E3SM/pull/5533
+
+/global/cfs/cdirs/e3sm/ndk/repos/se59-mar13-pm-module-updateMar2023
+The git hash: 4934926240
+
+The two cases noted here:
+
+/pscratch/sd/n/ndk/e3sm_scratch/pm-gpu/se58-mar9/f1024.F2010-SCREAMv1.ne1024pg2_ne1024pg2.se58-mar9.gnugpu.1d.n0512a4xX.nor.ctk117.mpich8124
+
+/pscratch/sd/n/ndk/e3sm_scratch/pm-gpu/se58-mar9/f1024.F2010-SCREAMv1.ne1024pg2_ne1024pg2.se58-mar9.gnugpu.1d.n1024a4xX.nor.ctk117.mpich8124
+
+
