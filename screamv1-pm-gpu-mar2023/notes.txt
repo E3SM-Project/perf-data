@@ -11,6 +11,9 @@ https://acme-climate.atlassian.net/wiki/spaces/EPG/pages/3552935978/Performance+
 
 On pm-gpu, it makes the most sense to use 4 MPI's per node, corresponding to 4 A100's per node.
 
+The pm-gpu cases are using CUDA-aware MPI: 
+setenv MPICH_GPU_SUPPORT_ENABLED 1
+
 The two cases noted here:
 
 /pscratch/sd/n/ndk/e3sm_scratch/pm-gpu/se58-mar9/f1024.F2010-SCREAMv1.ne1024pg2_ne1024pg2.se58-mar9.gnugpu.1d.n0512a4xX.nor.ctk117.mpich8124
