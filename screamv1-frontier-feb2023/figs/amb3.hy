@@ -82,11 +82,6 @@
 (defmacro prc [sym]
   `(print ~sym "|" (eval (read-str ~sym))))
 
-(defmacro mapply [func &rest args]
-  "Apply func. Works for keyword args, unlike apply. (Probably broken in many
-  ways compared with apply, however.)"
-  `(~func ~@args))
-
 (defmacro dispatch-dict [d m]
   "Function object dispatch helper."
   `(try (get ~d ~m)
@@ -147,47 +142,6 @@
        (setv first? (= ~g!i ~g!first))
        (setv last? (= ~g!i ~g!last))
        ~@body)))
-
-;; Use this instead of macroexpand to get output stripped of the Hy object
-;; ctors.
-(defn ppme [quoted-form]
-  (sv sym-dict {} b (Box) b.sym-num 0
-      b.after-open True)
-  (defn sym [e]
-    (unless (in e sym-dict)
-      (assoc sym-dict e (.format "sym-{:d}" b.sym-num))
-      (inc! b.sym-num))
-    (get sym-dict e))
-  (defn prl [e ldelim rdelim]
-    (prfno "{:s}" (+ (if b.after-open "" " ") ldelim))
-    (sv b.after-open True)
-    (for [li e] (rec li))
-    (prfno "{:s}" rdelim))
-  (defn atom? [e]
-    (in "quote" (first e)))
-  (defn rec [e]
-    (setv t (type e))
-    (case/in t
-             [[hy.models.HyFloat HyInteger] (print (+ " " (str e)) :end "")]
-             [[HyExpression]
-              (if (atom? e)
-                (for [li e] (rec li))
-                (prl e "(" ")"))]
-             [[HyList] (prl e "[" "]")]
-             [[HyString] (print (.format " \"{:s}\"" e) :end "")]
-             [:else
-              (unless b.after-open (print " " :end ""))
-              (sv b.after-open False)
-              (cond [(in "keyform" e)
-                     (print (sym e) :end "")]
-                    [(in "quote" e)
-                     (print "'" :end "")
-                     (sv b.after-open True)]
-                    [:else (print e :end "")])]))
-  (setv h (macroexpand quoted-form))
-  (print h)
-  (rec h)
-  (print))
 
 (defclass Box []
   "A box to hold values to be written in closures."
