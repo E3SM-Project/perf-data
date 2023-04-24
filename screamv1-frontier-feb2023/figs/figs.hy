@@ -406,7 +406,7 @@
   (sv n (len timer-sets)
       order (, "Perlmutter-CPU" "Perlmutter-GPU" "Summit" "Frontier")
       use-384 True)
-  (for [format (, "pdf")]
+  (for [format (, "pdf" "png")]
     (with [(pl-plot (, (* 4.5 n) 5)
                     "v1paper-sdpd-vs-nnode"
                     :format format)]
