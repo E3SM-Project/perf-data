@@ -75,7 +75,7 @@
          :machine-name "Perlmutter-GPU"
          :glob-data (+ "../../screamv1-pm-gpu-mar2023/data/" prefix
                        "*-model_timing_stats")
-         :nnodes (, 384 512 1024)
+         :nnodes (, 384 512 1024 1536)
          :ngpu-per-node 4
          :machpat ":")
   c)
@@ -379,7 +379,7 @@
   d1)
 
 (defn v1paper-table [cs ds timer-sets &optional out-fname]
-  (svifn out-fname "tablecontents.tex")
+  (svifn out-fname "perf-table.tex")
   (with [fh (open out-fname "w")]
     (sv c (first cs)
         timers [])
