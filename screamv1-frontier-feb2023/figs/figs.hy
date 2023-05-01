@@ -231,7 +231,8 @@
   (pl.yticks y y :fontsize (dec fs))
   (when legend
     (pl.legend :loc "lower right" :fontsize (if smaller-legend (dec fs) fs)
-               :handles hs :ncol (if cpu-sizing 1 2)))
+               :handles hs :ncol (if cpu-sizing 1 2)
+               :framealpha 1))
   (pl.xlabel "Number of nodes" :fontsize (inc fs))
   (when ylabel
     (pl.ylabel "Simulated days per wallclock day (SDPD)" :fontsize (inc fs)))
