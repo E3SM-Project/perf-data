@@ -428,7 +428,7 @@
                               :legend decorate :annotations False
                               :cpu-sizing True :ref-line decorate
                               :machpat True :smaller-legend use-384)
-          (when (and (= 1 i) (zero? j))
+          (when (and (zero? i) (zero? j))
             (sv hs [])
             (for [c cs]
               (sv h (pl.plot 0 0 (+ "k" (:machpat c)) :label (:machine-name c)))
