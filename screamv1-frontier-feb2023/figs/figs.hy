@@ -7,7 +7,7 @@
  (assoc matplotlib.rcParams "savefig.dpi" 300))
 
 (defn get-context [&optional [eul False] [threaded True]]
-  (sv prefix (+ "frontier-v1-scaling1-rocm5?-"
+  (sv prefix (+ "frontier-v1-*-nnodes"
                 (if eul "eul-" "")
                 (if threaded "" "nothrd-"))
       timers (, "CPL:RUN_LOOP" "CPL:ATM_RUN" "a:tl-sc prim_run_subcycle_c"
@@ -20,7 +20,7 @@
   {:prefix prefix
    :machine-name "Frontier"
    :compset "ne1024pg2_ne1024pg2.F2010-SCREAMv1"
-   :glob-data (+ "../data/" prefix "nnodes*-model_timing_stats")
+   :glob-data (+ "../data/" prefix "*-model_timing_stats")
    :timers0 (cut timers 0 1)
    :timers1 (cut timers 0 2)
    :timers2 (cut timers 0 5)
@@ -195,14 +195,14 @@
   (if cpu-sizing
     (cond [(= timer-set :timersa)
            (sv y [20 30 40 50 60 70 80 90 100 125 150 175 200 250 300 350
-                  400 450 500 550 600]
+                  400 450 500 550 600 700]
                yscale 90)
-           (pl.ylim (, 20 600))]
+           (pl.ylim (, 20 750))]
           [(= timer-set :timersbcut)
            (sv y [80 90 100 125 150 175 200 250 300 350 400 450 500 600 700 800 900
                   1000 1200 1400 1600 1800 2000 2500 3000 3500]
                yscale 500)
-           (pl.ylim (, 80 3500))])
+           (pl.ylim (, 80 3800))])
     (cond [(= timer-set :timers2)
            (sv y [50 100 150 200 300 400 500 600 700 800 900 1000
                   1200 1400 1600 1800]
