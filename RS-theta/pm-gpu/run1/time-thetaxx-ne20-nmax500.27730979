@@ -1,0 +1,142 @@
+&ctl_nl
+NThreads=1
+partmethod    = 4
+topology      = "cube"
+test_case     = "jw_baroclinic"
+u_perturb = 1
+rotate_grid = 0
+
+ne = 20
+nmax         = 500
+
+statefreq=999999
+disable_diagnostics = .true.
+restartfreq   = 43200
+restartfile   = "./R0001"
+runtype       = 0
+mesh_file='/dev/null'
+integration   = "explicit"
+
+qsize=10
+cubed_sphere_map = 2
+dt_remap_factor = 2
+dt_tracer_factor = 6
+hv_ref_profiles = 6
+hypervis_order = 2
+hypervis_scaling = 3.0
+hypervis_subcycle = 1
+hypervis_subcycle_tom = 1
+hypervis_subcycle_q = 6
+nu = 3.4e-08
+nu_top = 10000.0
+pgrad_correction = 1
+se_ftype = 0
+limiter_option = 9
+tstep = 1
+theta_advect_form = 1
+theta_hydrostatic_mode = .false.
+tstep_type = 9
+vert_remap_q_alg = 10
+transport_alg = 12
+vtheta_thresh = 180
+internal_diagnostics_level = 0
+/
+
+&vert_nl
+vfile_mid = './sabm-128.ascii'
+vfile_int = './sabi-128.ascii'
+/
+&prof_inparm
+profile_outpe_num = 100
+profile_single_file             = .true.
+/
+
+&analysis_nl
+! disabled
+ output_timeunits=1,1
+ output_frequency=-1,-1
+ output_start_time=0,0
+ output_end_time=30000,30000
+ output_varnames1='ps','zeta','T','geo'
+ output_varnames2='Q','Q2','Q3','Q4','Q5'
+! output_prefix='xx-ne20-'
+ io_stride=8
+ output_type = 'netcdf'
+/
+
+
+
+
+
+
+
+
+
+
+
+***** GLOBAL STATISTICS (     1 MPI TASKS) *****
+
+$Id: gptl.c,v 1.157 2011-03-28 20:55:18 rosinski Exp $
+'count' is cumulative. All other stats are max/min
+'on' indicates whether the timer was active during output, and so stats are lower or upper bounds.
+
+name                               on  processes  threads        count      walltotal   wallmax (proc   thrd  )   wallmin (proc   thrd  )
+"Total"                             -          1        1 1.000000e+00   1.180804e+02   118.080 (     0      0)   118.080 (     0      0)
+"prim_init1"                        -          1        1 1.000000e+00   1.612405e+00     1.612 (     0      0)     1.612 (     0      0)
+"PartitioningTime"                  -          1        1 1.000000e+00   8.219999e-07     0.000 (     0      0)     0.000 (     0      0)
+"repro_sum_int"                     -          1        1 9.900000e+01   2.145975e-01     0.215 (     0      0)     0.215 (     0      0)
+"compose_init"                      -          1        1 1.000000e+00   9.273366e-02     0.093 (     0      0)     0.093 (     0      0)
+"sl_init1"                          -          1        1 1.000000e+00   8.768085e-01     0.877 (     0      0)     0.877 (     0      0)
+"prim_init2"                        -          1        1 1.000000e+00   7.975124e+01    79.751 (     0      0)    79.751 (     0      0)
+"prim_printstate"                   -          1        1 1.000000e+00   5.814790e-01     0.581 (     0      0)     0.581 (     0      0)
+"tl-sc dp3d-from-ps"                -          1        1 1.000000e+00   7.911200e-05     0.000 (     0      0)     0.000 (     0      0)
+"prim_io_init"                      -          1        1 1.000000e+00   5.210004e-07     0.000 (     0      0)     0.000 (     0      0)
+"prim_main_loop"                    -          1        1 1.000000e+00   3.644787e+01    36.448 (     0      0)    36.448 (     0      0)
+"prim_run"                          -          1        1 8.400000e+01   3.644784e+01    36.448 (     0      0)    36.448 (     0      0)
+"tl-sc prim_run_subcycle_c"         -          1        1 8.400000e+01   3.644777e+01    36.448 (     0      0)    36.448 (     0      0)
+"tl-s prim_step_flexible"           -          1        1 8.400000e+01   3.644754e+01    36.448 (     0      0)    36.448 (     0      0)
+"ApplyCAMForcing_tracers"           -          1        1 8.400000e+01   1.638720e-01     0.164 (     0      0)     0.164 (     0      0)
+"tl-s deep_copy+derived_dp"         -          1        1 8.400000e+01   2.914010e-02     0.029 (     0      0)     0.029 (     0      0)
+"ApplyCAMForcing_dynamics"          -          1        1 2.520000e+02   1.092192e-01     0.109 (     0      0)     0.109 (     0      0)
+"tl-ae prim_advance_exp"            -          1        1 5.040000e+02   2.978187e+01    29.782 (     0      0)    29.782 (     0      0)
+"ttype9_imex_timestep"              -          1        1 5.040000e+02   2.610683e+01    26.107 (     0      0)    26.107 (     0      0)
+"caar compute"                      -          1        1 5.040000e+03   1.301663e+01    13.017 (     0      0)    13.017 (     0      0)
+"caar_bexchV"                       -          1        1 2.520000e+03   3.170308e+00     3.170 (     0      0)     3.170 (     0      0)
+"caar limiter"                      -          1        1 3.024000e+03   3.914062e-01     0.391 (     0      0)     0.391 (     0      0)
+"compute_stage_value_dirk"          -          1        1 2.520000e+03   9.228553e+00     9.229 (     0      0)     9.229 (     0      0)
+"tl-ae advance_hypervis_dp"         -          1        1 5.040000e+02   3.662947e+00     3.663 (     0      0)     3.663 (     0      0)
+"hvf-bhwk"                          -          1        1 5.040000e+02   2.003877e+00     2.004 (     0      0)     2.004 (     0      0)
+"hvf-bexch"                         -          1        1 1.512000e+03   1.123981e+00     1.124 (     0      0)     1.124 (     0      0)
+"Remap Thickness Functor"           -          1        1 2.520000e+02   1.121642e-01     0.112 (     0      0)     0.112 (     0      0)
+"Remap Scale States Functor"        -          1        1 2.520000e+02   3.569625e-02     0.036 (     0      0)     0.036 (     0      0)
+"Remap Compute Grids Functor"       -          1        1 2.520000e+02   1.504486e-01     0.150 (     0      0)     0.150 (     0      0)
+"Remap Compute Remap Functor"       -          1        1 2.520000e+02   2.222276e+00     2.222 (     0      0)     2.222 (     0      0)
+"Remap Rescale States Functor"      -          1        1 2.520000e+02   3.740031e-02     0.037 (     0      0)     0.037 (     0      0)
+"tl-at prim_advec_tracers_compose"  -          1        1 8.400000e+01   2.886413e+00     2.886 (     0      0)     2.886 (     0      0)
+"compose_transport"                 -          1        1 8.400000e+01   2.886034e+00     2.886 (     0      0)     2.886 (     0      0)
+"compose_calc_trajectory"           -          1        1 8.400000e+01   4.779887e-01     0.478 (     0      0)     0.478 (     0      0)
+"compose_3d_levels"                 -          1        1 8.400000e+01   3.223802e-01     0.322 (     0      0)     0.322 (     0      0)
+"compose_v_bexchv"                  -          1        1 8.400000e+01   1.149891e-01     0.115 (     0      0)     0.115 (     0      0)
+"compose_v2x"                       -          1        1 8.400000e+01   4.040191e-02     0.040 (     0      0)     0.040 (     0      0)
+"compose_isl"                       -          1        1 8.400000e+01   1.293732e-01     0.129 (     0      0)     0.129 (     0      0)
+"compose_hypervis_scalar"           -          1        1 8.400000e+01   1.422834e+00     1.423 (     0      0)     1.423 (     0      0)
+"compose_cedr_global"               -          1        1 8.400000e+01   4.799771e-01     0.480 (     0      0)     0.480 (     0      0)
+"compose_cedr_local"                -          1        1 8.400000e+01   1.402292e-01     0.140 (     0      0)     0.140 (     0      0)
+"compose_dss_q"                     -          1        1 8.400000e+01   2.354009e-01     0.235 (     0      0)     0.235 (     0      0)
+# CMAKE generated file: DO NOT EDIT!
+# Generated by "Unix Makefiles" Generator, CMake Version 3.24
+
+# compile CXX with /opt/cray/pe/craype/2.7.20/bin/CC
+# compile Fortran with /opt/cray/pe/craype/2.7.20/bin/ftn
+CXX_DEFINES = -DCPRGNU -DHAVE_CONFIG_H -DHOMMEXX_BENCHMARK_NOFORCING -DHOMMEXX_CONFIG_IS_CMAKE -DHOMME_WITHOUT_PIOLIBRARY -DINCLUDE_CMAKE_FCI -DKOKKOS_DEPENDENCE -DLINUX -DSPMD -D_NO_MPI_RSEND
+
+CXX_INCLUDES = -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/test_execs/theta-nlev128-kokkos -I/global/homes/o/onguba/acme-master/components/homme/src/theta-l_kokkos/cxx -I/global/homes/o/onguba/acme-master/components/homme/utils/cime/CIME/non_py/src/timing -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/utils/cime/CIME/non_py/src/timing -I/global/homes/o/onguba/acme-master/components/homme/src/share/cxx -I/global/homes/o/onguba/acme-master/components/homme/src/share/compose -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/src/share/cxx -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/test_execs/theta-nlev128-kokkos/theta-nlev128-kokkos_modules -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/utils/csm_share/modules -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/externals/kokkos -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/externals/kokkos/core/src -I/global/homes/o/onguba/acme-master/externals/ekat/extern/kokkos/core/src -I/global/homes/o/onguba/acme-master/externals/ekat/extern/kokkos/core/src/../../tpls/desul/include -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/externals/kokkos/containers/src -I/global/homes/o/onguba/acme-master/externals/ekat/extern/kokkos/containers/src -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/externals/kokkos/algorithms/src -I/global/homes/o/onguba/acme-master/externals/ekat/extern/kokkos/algorithms/src -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/externals/kokkos/simd/src -I/global/homes/o/onguba/acme-master/externals/ekat/extern/kokkos/simd/src -isystem /opt/nvidia/hpc_sdk/Linux_x86_64/22.7/cuda/11.7/include
+
+CXX_FLAGS =  -g -O3 -DNDEBUG -g -DCPRGNU -extended-lambda -Wext-lambda-captures-this -arch=sm_80 --expt-extended-lambda
+
+Fortran_DEFINES = -DCPRGNU -DHAVE_CONFIG_H -DHOMMEXX_BENCHMARK_NOFORCING -DHOMMEXX_CONFIG_IS_CMAKE -DHOMME_WITHOUT_PIOLIBRARY -DINCLUDE_CMAKE_FCI -DLINUX -DSPMD -D_NO_MPI_RSEND
+
+Fortran_INCLUDES = -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/test_execs/theta-nlev128-kokkos -I/global/homes/o/onguba/acme-master/components/homme/src/theta-l_kokkos/cxx -I/global/homes/o/onguba/acme-master/components/homme/utils/cime/CIME/non_py/src/timing -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/utils/cime/CIME/non_py/src/timing -I/global/homes/o/onguba/acme-master/components/homme/src/share/cxx -I/global/homes/o/onguba/acme-master/components/homme/src/share/compose -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/src/share/cxx -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/test_execs/theta-nlev128-kokkos/theta-nlev128-kokkos_modules -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/utils/csm_share/modules -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/externals/kokkos -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/externals/kokkos/core/src -I/global/homes/o/onguba/acme-master/externals/ekat/extern/kokkos/core/src -I/global/homes/o/onguba/acme-master/externals/ekat/extern/kokkos/core/src/../../tpls/desul/include -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/externals/kokkos/containers/src -I/global/homes/o/onguba/acme-master/externals/ekat/extern/kokkos/containers/src -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/externals/kokkos/algorithms/src -I/global/homes/o/onguba/acme-master/externals/ekat/extern/kokkos/algorithms/src -I/global/homes/o/onguba/runhomme/july06-2024-rs/bldxx/externals/kokkos/simd/src -I/global/homes/o/onguba/acme-master/externals/ekat/extern/kokkos/simd/src -I/opt/nvidia/hpc_sdk/Linux_x86_64/22.7/cuda/11.7/include
+
+Fortran_FLAGS =  -w -fallow-argument-mismatch -ffree-line-length-none -O3 -g -DCPRGNU -Jtheta-nlev128-kokkos_modules
+

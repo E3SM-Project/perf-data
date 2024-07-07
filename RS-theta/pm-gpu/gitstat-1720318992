@@ -1,0 +1,48 @@
+ status is ------------- 
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+	modified:   ../../cime (untracked content)
+	modified:   ../../externals/YAKL (untracked content)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../cam/
+	../clm/
+	cmake/machineFiles/cori-knl-nopio.cmake
+	cmake/machineFiles/cori-knl-nopnetcdf.cmake
+	cmake/machineFiles/cp-gnu.cmake
+	cmake/machineFiles/cp.cmake
+	cmake/machineFiles/edison-serial.cmake
+	cmake/machineFiles/perlmutter-my.cmake
+	cmake/machineFiles/pm-cpu-copy.cmake
+	gitstat
+	../mpas-source/
+	../../externals/diffs-check-oneapi-bug-booleans-june2024
+	../../externals/kokkos/
+	../../old-patch-for-RS-performance-maybe
+	../../that-commit
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ branch is ------------- 
+* master
+  next
+  oksanaguba/eam/rr-diagnostics
+  oksanaguba/homme/add-noio-test
+  oksanaguba/homme/sycl
+ diffs are ------------- 
+ last 10 commits are ------------- 
+58efb0cb3f87294c07bf8983c0a9b6577ad7e2a7 Merge 'TREY/trey/caar_ut/pgrad_correction' (PR #6444)
+37fc15a63c17ee0e7f8d23fe41fa711b422f38a2 Merge  branch 'whannah/docs/add-grid-support-guide' (PR #6417)
+1fb279e59d0d4d9fcae708fdba80615d0c516319 Merge branch 'cwhicker/elm/use_extrasnowlayers_tuning_20240521' (PR #6439)
+5ac436a08de81948155f6d1ba60f56a85d5fc3fc Merge branch 'YuyingZhang/atm/4histMODIS' (PR #6407)
+2b86904badee2a20cc2328aaac4187b967c40fa9 Merge branch 'jonbob/machines/update-chrys-gnu' (PR #6495)
+c7d7998ab483f09bd17b8c399345df8fd247c6f4 Merge branch 'jgfouca/eamxx_downstream_merge_2024_06_26' into master (PR #6489)
+41bd0cbe6238e2e5aefb06338faf93f965f303ce Merge branch 'jayeshkrishna/externals/scorpio_v1.6.4' (PR #6492)
+adc81b27b3fc5a2eba5612401a0ab4a4609422f1 Merge branch 'jayeshkrishna/add_pio_config_opts' (PR #6491)
+115ad3c3f5a597ffc6701c3136f2b254653853bc Merge branch 'xylar/ocn/fix-coriolis-shared-constants' (PR #6481)
+07f842adb92c83f0c1760c5dbf2c828a5d97cd5b Merge branch E3SM-Project/ndk/machinefiles/pm-cpu-pelayout-minor-adjustment (PR #6484)
