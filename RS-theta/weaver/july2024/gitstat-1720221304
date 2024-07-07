@@ -1,0 +1,37 @@
+ status is ------------- 
+On branch next
+Your branch is up to date with 'origin/next'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+	modified:   ../../cime (untracked content)
+	modified:   ../../externals/YAKL (untracked content)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	cmake/machineFiles/weaver-my-performance.cmake
+	cmake/machineFiles/weaver-my.cmake
+	cmake/machineFiles/weaver-perf-july2024.cmake
+	gitstat
+	../../externals/kokkos/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ branch is ------------- 
+  master
+* next
+  oksanaguba/homme/diagn-compare
+  oksanaguba/homme/xx-ttype9
+ diffs are ------------- 
+ last 10 commits are ------------- 
+1d38f35c20ee2f14d2424f6114711cc219e9784f Merge 'TREY/trey/caar_ut/pgrad_correction' (PR #6444)
+42d44de4a32d0f35a055a3173cd7b90f7ae86ff8 Merge branch 'azamat/perftests/lores-v3-config' into next (PR #6488)
+bf6ea292b959936b510477566d8633c0f49a12e2 Merge branch 'azamat/perftests/lores-v3-config' into next (PR #6488)
+62584427244d76f16c589cfb18135c5f1405b924 Merge branch 'jonbob/machines/update-chrys-gnu' into next (PR #6495)
+d83670df441007e090a73d29230cffa2c181790e Merge branch 'jgfouca/eamxx_downstream_merge_2024_06_26' into next (PR #6489)
+5f1c125094f4c2557a2c2a978a0cb8fbdeb27e8d Merge branch 'YuyingZhang/atm/4histMODIS' into next (PR #6407)
+7ea2b100a32f80dcdb3741bb72aa300207ac6fc3 Merge branch 'jayeshkrishna/add_pio_config_opts' into next (PR #6491)
+6f9492fd6ed5551ba5de5ab76be6254897f1f0ab Merge branch 'jayeshkrishna/externals/scorpio_v1.6.4' into next (PR #6492)
+5c8bd8f0ac8cd149357d51e5b10753a7cfe2dacf Merge branch 'xylar/ocn/fix-coriolis-shared-constants' into next (PR #6481)
+7ef072369126f99363be3f1ad19eb33001ff5cc7 Merge branch 'jgfouca/eamxx_downstream_merge_2024_06_26' into next (PR #6489)
