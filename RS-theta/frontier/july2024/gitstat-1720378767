@@ -1,0 +1,62 @@
+ status is ------------- 
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+	modified:   ../../cime (untracked content)
+	modified:   ../mpas-ocean/src/FFTW (modified content)
+	modified:   ../mpas-ocean/src/ppr (modified content)
+	modified:   ../../externals/YAKL (untracked content)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	cmake/machineFiles/frontier-my.cmake
+	cmake/machineFiles/frontierNOTCOMMITED.cmake
+	cmake/machineFiles/summit-gpumpi-asserts.cmake
+	cmake/machineFiles/summit-new.cmake
+	gitstat
+	src/share/cxx/ExecSpaceDefs.cpp_printTP
+	src/theta-l_kokkos/cxx/Diagnostics-hpp
+	ut-changes-diffs
+	../../debug-caar-parallel4-insteadof-parallelreduce
+	../../diffs-with-debug-info-in-reprosums
+	../../externals/kokkos/
+	../../gitdiffsMASTER
+	../../gitlog
+	../../gitstatusMASTER
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ branch is ------------- 
+  azamat/crusher/add-gpu-compilers
+* master
+  oksanaguba/homme/frontier
+  oksanaguba/homme/move-limiter
+  oksanaguba/homme/sycl
+  oksanaguba/homme/ut
+ diffs are ------------- 
+diff --git a/components/mpas-ocean/src/FFTW b/components/mpas-ocean/src/FFTW
+--- a/components/mpas-ocean/src/FFTW
++++ b/components/mpas-ocean/src/FFTW
+@@ -1 +1 @@
+-Subproject commit 5a12c1ab5f66a8d719482f80c72ccb9f6f5daca8
++Subproject commit 5a12c1ab5f66a8d719482f80c72ccb9f6f5daca8-dirty
+diff --git a/components/mpas-ocean/src/ppr b/components/mpas-ocean/src/ppr
+--- a/components/mpas-ocean/src/ppr
++++ b/components/mpas-ocean/src/ppr
+@@ -1 +1 @@
+-Subproject commit 3c2246463d5de14f492139987bd84978b84e86ea
++Subproject commit 3c2246463d5de14f492139987bd84978b84e86ea-dirty
+ last 10 commits are ------------- 
+58efb0cb3f87294c07bf8983c0a9b6577ad7e2a7 Merge 'TREY/trey/caar_ut/pgrad_correction' (PR #6444)
+37fc15a63c17ee0e7f8d23fe41fa711b422f38a2 Merge  branch 'whannah/docs/add-grid-support-guide' (PR #6417)
+1fb279e59d0d4d9fcae708fdba80615d0c516319 Merge branch 'cwhicker/elm/use_extrasnowlayers_tuning_20240521' (PR #6439)
+5ac436a08de81948155f6d1ba60f56a85d5fc3fc Merge branch 'YuyingZhang/atm/4histMODIS' (PR #6407)
+2b86904badee2a20cc2328aaac4187b967c40fa9 Merge branch 'jonbob/machines/update-chrys-gnu' (PR #6495)
+c7d7998ab483f09bd17b8c399345df8fd247c6f4 Merge branch 'jgfouca/eamxx_downstream_merge_2024_06_26' into master (PR #6489)
+41bd0cbe6238e2e5aefb06338faf93f965f303ce Merge branch 'jayeshkrishna/externals/scorpio_v1.6.4' (PR #6492)
+adc81b27b3fc5a2eba5612401a0ab4a4609422f1 Merge branch 'jayeshkrishna/add_pio_config_opts' (PR #6491)
+115ad3c3f5a597ffc6701c3136f2b254653853bc Merge branch 'xylar/ocn/fix-coriolis-shared-constants' (PR #6481)
+07f842adb92c83f0c1760c5dbf2c828a5d97cd5b Merge branch E3SM-Project/ndk/machinefiles/pm-cpu-pelayout-minor-adjustment (PR #6484)

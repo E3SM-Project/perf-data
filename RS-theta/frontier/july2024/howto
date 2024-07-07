@@ -1,0 +1,3 @@
+salloc -N 1 --time 01:00:00  -p batch --account cli115
+
+
