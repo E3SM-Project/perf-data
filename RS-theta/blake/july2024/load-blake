@@ -1,0 +1,6 @@
+module load gcc/11.3.0 openblas/0.3.23 openmpi/4.1.5         netlib-lapack/3.11.0  curl/8.1.2      parallel-netcdf/1.12.3
+module load cmake/3.27.4  cuda/11.8.0    netcdf-fortran/4.6.0   git/2.41.0       netcdf-c/4.9.2
+
+
+
+

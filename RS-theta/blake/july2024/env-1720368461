@@ -1,0 +1,182 @@
+LD_LIBRARY_PATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/lib:/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/lib:/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6/lib64:/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/lib:/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/lib:/projects/x86-64-icelake-rocky8/tpls/netlib-lapack/3.11.0/gcc/11.3.0/base/b2zy4ka/lib64:/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/lib:/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom/lib:/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/lib64:/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/lib:/home/onguba/local/blake/netcdf-fortran/lib64
+LS_COLORS=rs=0:di=38;5;33:ln=38;5;51:mh=00:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=01;05;37;41:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;40:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.zst=38;5;9:*.tzst=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.wim=38;5;9:*.swm=38;5;9:*.dwm=38;5;9:*.esd=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.mjpg=38;5;13:*.mjpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.m4a=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.oga=38;5;45:*.opus=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:
+__LMOD_REF_COUNT_HDF5_PLUGIN_PATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/plugins:1
+__LMOD_REF_COUNT_PATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/bin:1;/projects/x86-64-icelake-rocky8/utilities/git/2.41.0/gcc/8.5.0/base/gsocuix/bin:1;/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/bin:1;/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6/bin:1;/projects/x86-64-icelake-rocky8/utilities/cmake/3.27.4/gcc/8.5.0/base/x67p75m/bin:1;/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/bin:1;/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/bin:1;/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/bin:1;/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom/bin:1;/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/bin:1;/ascldap/users/projects/e3sm/scream/libs/netcdf-fortran/install/weaver/bin:1;/usr/local/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1
+_ModuleTable002_=MDAyNy4wMDAwMDAwMDQuKnpmaW5hbCIsCn0sCmN1ZGEgPSB7CmZuID0gIi9wcm9qZWN0cy94ODYtNjQtaWNlbGFrZS1yb2NreTgvbW9kdWxlZmlsZXMvbG1vZC9saW51eC1yb2NreTgteDg2XzY0L2djYy8xMS4zLjAvY3VkYS8xMS44LjAubHVhIiwKZnVsbE5hbWUgPSAiY3VkYS8xMS44LjAiLApsb2FkT3JkZXIgPSA4LApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImN1ZGEvMTEuOC4wIiwKd1YgPSAiMDAwMDAwMDExLjAwMDAwMDAwOC4qemZpbmFsIiwKfSwKY3VybCA9IHsKZm4gPSAiL3Byb2plY3RzL3g4Ni02NC1pY2VsYWtlLXJvY2t5OC9tb2R1bGVmaWxlcy9sbW9kL3V0aWxpdGllcy9saW51eC1yb2NreTgteDg2
+SSH_CONNECTION=10.251.2.8 34320 132.175.51.34 22
+OPENBLAS_LIB=/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom/lib
+TESTBED=blake
+LMOD_FAMILY_MPI_VERSION=4.1.5
+NETCDF_C_INC=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/include
+CMAKE_LIB=/projects/x86-64-icelake-rocky8/utilities/cmake/3.27.4/gcc/8.5.0/base/x67p75m/lib
+LANG=en_US.UTF-8
+HISTCONTROL=ignoredups
+_ModuleTable008_=MDAwMDAwMDAzLjAwMDAwMDAyMy4qemZpbmFsIiwKfSwKb3Blbm1waSA9IHsKZm4gPSAiL3Byb2plY3RzL3g4Ni02NC1pY2VsYWtlLXJvY2t5OC9tb2R1bGVmaWxlcy9sbW9kL2xpbnV4LXJvY2t5OC14ODZfNjQvZ2NjLzExLjMuMC9vcGVubXBpLzQuMS41Lmx1YSIsCmZ1bGxOYW1lID0gIm9wZW5tcGkvNC4xLjUiLApsb2FkT3JkZXIgPSAzLApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gIm9wZW5tcGkvNC4xLjUiLAp3ViA9ICIwMDAwMDAwMDQuMDAwMDAwMDAxLjAwMDAwMDAwNS4qemZpbmFsIiwKfSwKWyJwYXJhbGxlbC1uZXRjZGYiXSA9IHsKZm4gPSAiL3Byb2plY3RzL3g4Ni02NC1pY2VsYWtlLXJvY2t5OC9tb2R1
+HOSTNAME=blake
+OLDPWD=/home/onguba/acme-master/components/homme
+OPENBLAS_BIN=/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom/bin
+NETCDF_FORTRAN_INC=/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/include
+CURL_VERSION=8.1.2
+CMAKE_BIN=/projects/x86-64-icelake-rocky8/utilities/cmake/3.27.4/gcc/8.5.0/base/x67p75m/bin
+_ModuleTable007_=IDQsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAibmV0bGliLWxhcGFjay8zLjExLjAiLAp3ViA9ICIwMDAwMDAwMDMuMDAwMDAwMDExLip6ZmluYWwiLAp9LApvcGVuYmxhcyA9IHsKZm4gPSAiL3Byb2plY3RzL3g4Ni02NC1pY2VsYWtlLXJvY2t5OC9tb2R1bGVmaWxlcy9sbW9kL2xpbnV4LXJvY2t5OC14ODZfNjQvZ2NjLzExLjMuMC9vcGVuYmxhcy8wLjMuMjMubHVhIiwKZnVsbE5hbWUgPSAib3BlbmJsYXMvMC4zLjIzIiwKbG9hZE9yZGVyID0gMiwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJvcGVuYmxhcy8wLjMuMjMiLAp3ViA9ICIwMDAwMDAwMDAu
+FORT=ifort
+NETLIB_LAPACK_INC=/projects/x86-64-icelake-rocky8/tpls/netlib-lapack/3.11.0/gcc/11.3.0/base/b2zy4ka/include
+__LMOD_REF_COUNT_LD_LIBRARY_PATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/lib:1;/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/lib:1;/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6/lib64:1;/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/lib:1;/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/lib:1;/projects/x86-64-icelake-rocky8/tpls/netlib-lapack/3.11.0/gcc/11.3.0/base/b2zy4ka/lib64:1;/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/lib:1;/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom/lib:1;/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/lib64:1;/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/lib:1;/home/onguba/local/blake/netcdf-fortran/lib64:1
+__LMOD_REF_COUNT_PKG_CONFIG_PATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/lib/pkgconfig:1;/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/lib/pkgconfig:1;/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/lib/pkgconfig:1;/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/lib/pkgconfig:1;/projects/x86-64-icelake-rocky8/tpls/netlib-lapack/3.11.0/gcc/11.3.0/base/b2zy4ka/lib64/pkgconfig:1;/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/lib/pkgconfig:1;/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom/lib/pkgconfig:1
+OPENBLAS_INC=/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom/include
+NETCDF_FORTRAN_LIB=/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/lib
+_ModuleTable004_=YW1lID0gImdjYy8xMS4zLjAiLAp3ViA9ICIwMDAwMDAwMTEuMDAwMDAwMDAzLip6ZmluYWwiLAp9LApnaXQgPSB7CmZuID0gIi9wcm9qZWN0cy94ODYtNjQtaWNlbGFrZS1yb2NreTgvbW9kdWxlZmlsZXMvbG1vZC91dGlsaXRpZXMvbGludXgtcm9ja3k4LXg4Nl82NC9Db3JlL2dpdC8yLjQxLjAubHVhIiwKZnVsbE5hbWUgPSAiZ2l0LzIuNDEuMCIsCmxvYWRPcmRlciA9IDEwLApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImdpdC8yLjQxLjAiLAp3ViA9ICIwMDAwMDAwMDIuMDAwMDAwMDQxLip6ZmluYWwiLAp9LApbIm5ldGNkZi1jIl0gPSB7CmZuID0gIi9wcm9qZWN0cy94ODYtNjQtaWNlbGFrZS1yb2NreTgvbW9k
+which_declare=declare -f
+HDF5_PLUGIN_PATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/plugins
+OPENMPI_BIN=/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/bin
+CC=/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/bin/gcc
+MPIF90=/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/bin/mpif90
+XDG_SESSION_ID=3041
+GIT_ROOT=/projects/x86-64-icelake-rocky8/utilities/git/2.41.0/gcc/8.5.0/base/gsocuix
+USER=onguba
+CUDA_LIB=/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6/lib
+GCC_INC=/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/include
+CURL_LIB=/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/lib
+MPICXX=/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/bin/mpic++
+SELINUX_ROLE_REQUESTED=
+__LMOD_REF_COUNT_MODULEPATH=/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/openmpi/4.1.5-x4b2gww/gcc/11.3.0:1;/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/gcc/11.3.0:1;/etc/scl/modulefiles:1;/opt/ohpc/pub/modulefiles:1;/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/Core:1;/projects/x86-64-icelake-rocky8/modulefiles/lmod/utilities/linux-rocky8-x86_64/Core:1
+NETCDF_C_ROOT=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2
+OPENMPI_LIB=/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/lib
+GCC_VERSION=11.3.0
+PWD=/home/onguba/runhomme-blake/rs-july07-2024
+GCC_ROOT=/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg
+HOME=/home/onguba
+CMAKE_PREFIX_PATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2:/projects/x86-64-icelake-rocky8/utilities/git/2.41.0/gcc/8.5.0/base/gsocuix:/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4:/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6:/projects/x86-64-icelake-rocky8/utilities/cmake/3.27.4/gcc/8.5.0/base/x67p75m:/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll:/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq:/projects/x86-64-icelake-rocky8/tpls/netlib-lapack/3.11.0/gcc/11.3.0/base/b2zy4ka:/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0:/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom:/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg
+LMOD_COLORIZE=no
+SSH_CLIENT=10.251.2.8 34320 22
+LMOD_VERSION=8.7.32
+CUDA_BIN=/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6/bin
+CUDA_HOME=/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6
+OPENMPI_ROOT=$prefix .. 
+LMOD_SETTARG_CMD=:
+CMAKE_VERSION=3.27.4
+F77=/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/bin/gfortran
+SELINUX_LEVEL_REQUESTED=
+KRB5CCNAME=FILE:/tmp/krb5cc_69618_TBaEqC
+OPENMPI_VERSION=4.1.5
+BASH_ENV=/opt/ohpc/admin/lmod/lmod/init/bash
+GIT_VERSION=2.41.0
+CMAKE_INC=/projects/x86-64-icelake-rocky8/utilities/cmake/3.27.4/gcc/8.5.0/base/x67p75m/include
+NETLIB_LAPACK_BIN=/projects/x86-64-icelake-rocky8/tpls/netlib-lapack/3.11.0/gcc/11.3.0/base/b2zy4ka/bin
+__LMOD_REF_COUNT_LIBRARY_PATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/lib:1;/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/lib:1;/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6/lib64:1;/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/lib:1;/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/lib:1;/projects/x86-64-icelake-rocky8/tpls/netlib-lapack/3.11.0/gcc/11.3.0/base/b2zy4ka/lib64:1;/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/lib:1;/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom/lib:1;/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/lib64:1;/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/lib:1
+CUDA_ROOT=/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6
+LIBRARY_PATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/lib:/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/lib:/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6/lib64:/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/lib:/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/lib:/projects/x86-64-icelake-rocky8/tpls/netlib-lapack/3.11.0/gcc/11.3.0/base/b2zy4ka/lib64:/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/lib:/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom/lib:/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/lib64:/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/lib
+__LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2:1;/projects/x86-64-icelake-rocky8/utilities/git/2.41.0/gcc/8.5.0/base/gsocuix:1;/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4:1;/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6:1;/projects/x86-64-icelake-rocky8/utilities/cmake/3.27.4/gcc/8.5.0/base/x67p75m:1;/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll:1;/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq:1;/projects/x86-64-icelake-rocky8/tpls/netlib-lapack/3.11.0/gcc/11.3.0/base/b2zy4ka:1;/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0:1;/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom:1;/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg:1
+_ModuleTable010_=dy9nY2MvMTEuMy4wIgosICIvcHJvamVjdHMveDg2LTY0LWljZWxha2Utcm9ja3k4L21vZHVsZWZpbGVzL2xtb2QvbGludXgtcm9ja3k4LXg4Nl82NC9nY2MvMTEuMy4wIiwgIi9ldGMvc2NsL21vZHVsZWZpbGVzIiwgIi9vcHQvb2hwYy9wdWIvbW9kdWxlZmlsZXMiCiwgIi9wcm9qZWN0cy94ODYtNjQtaWNlbGFrZS1yb2NreTgvbW9kdWxlZmlsZXMvbG1vZC9saW51eC1yb2NreTgteDg2XzY0L0NvcmUiLCAiL3Byb2plY3RzL3g4Ni02NC1pY2VsYWtlLXJvY2t5OC9tb2R1bGVmaWxlcy9sbW9kL3V0aWxpdGllcy9saW51eC1yb2NreTgteDg2XzY0L0NvcmUiLAp9LApzeXN0ZW1CYXNlTVBBVEggPSAiL29wdC9vaHBjL3B1Yi9tb2R1bGVmaWxlcyIsCn0K
+_ModuleTable001_=X01vZHVsZVRhYmxlXyA9IHsKTVR2ZXJzaW9uID0gMywKY19yZWJ1aWxkVGltZSA9IGZhbHNlLApjX3Nob3J0VGltZSA9IGZhbHNlLApkZXB0aFQgPSB7fSwKZmFtaWx5ID0gewptcGkgPSAib3Blbm1waSIsCn0sCm1UID0gewpjbWFrZSA9IHsKZm4gPSAiL3Byb2plY3RzL3g4Ni02NC1pY2VsYWtlLXJvY2t5OC9tb2R1bGVmaWxlcy9sbW9kL3V0aWxpdGllcy9saW51eC1yb2NreTgteDg2XzY0L0NvcmUvY21ha2UvMy4yNy40Lmx1YSIsCmZ1bGxOYW1lID0gImNtYWtlLzMuMjcuNCIsCmxvYWRPcmRlciA9IDcsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiY21ha2UvMy4yNy40IiwKd1YgPSAiMDAwMDAwMDAzLjAwMDAw
+LOADEDMODULES=gcc/11.3.0:openblas/0.3.23:openmpi/4.1.5:netlib-lapack/3.11.0:curl/8.1.2:parallel-netcdf/1.12.3:cmake/3.27.4:cuda/11.8.0:netcdf-fortran/4.6.0:git/2.41.0:netcdf-c/4.9.2
+PARALLEL_NETCDF_VERSION=1.12.3
+FC=/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/bin/gfortran
+__LMOD_REF_COUNT_ACLOCAL_PATH=/projects/x86-64-icelake-rocky8/utilities/cmake/3.27.4/gcc/8.5.0/base/x67p75m/share/aclocal:1;/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/share/aclocal:1
+_ModuleTable006_=LjMuMC9uZXRjZGYtZm9ydHJhbi80LjYuMC5sdWEiLApmdWxsTmFtZSA9ICJuZXRjZGYtZm9ydHJhbi80LjYuMCIsCmxvYWRPcmRlciA9IDksCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAibmV0Y2RmLWZvcnRyYW4vNC42LjAiLAp3ViA9ICIwMDAwMDAwMDQuMDAwMDAwMDA2Lip6ZmluYWwiLAp9LApbIm5ldGxpYi1sYXBhY2siXSA9IHsKZm4gPSAiL3Byb2plY3RzL3g4Ni02NC1pY2VsYWtlLXJvY2t5OC9tb2R1bGVmaWxlcy9sbW9kL2xpbnV4LXJvY2t5OC14ODZfNjQvZ2NjLzExLjMuMC9uZXRsaWItbGFwYWNrLzMuMTEuMC5sdWEiLApmdWxsTmFtZSA9ICJuZXRsaWItbGFwYWNrLzMuMTEuMCIsCmxvYWRPcmRlciA9
+__LMOD_REF_COUNT_MANPATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/share/man:1;/projects/x86-64-icelake-rocky8/utilities/git/2.41.0/gcc/8.5.0/base/gsocuix/share/man:1;/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/share/man:1;/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/share/man:1;/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/share/man:1;/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/share/man:1;/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/share/man:1;:7
+NETLIB_LAPACK_LIB=/projects/x86-64-icelake-rocky8/tpls/netlib-lapack/3.11.0/gcc/11.3.0/base/b2zy4ka/lib
+_ModuleTable003_=XzY0L0NvcmUvY3VybC84LjEuMi5sdWEiLApmdWxsTmFtZSA9ICJjdXJsLzguMS4yIiwKbG9hZE9yZGVyID0gNSwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjdXJsLzguMS4yIiwKd1YgPSAiMDAwMDAwMDA4LjAwMDAwMDAwMS4wMDAwMDAwMDIuKnpmaW5hbCIsCn0sCmdjYyA9IHsKZm4gPSAiL3Byb2plY3RzL3g4Ni02NC1pY2VsYWtlLXJvY2t5OC9tb2R1bGVmaWxlcy9sbW9kL2xpbnV4LXJvY2t5OC14ODZfNjQvQ29yZS9nY2MvMTEuMy4wLmx1YSIsCmZ1bGxOYW1lID0gImdjYy8xMS4zLjAiLApsb2FkT3JkZXIgPSAxLApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJO
+NETCDF_C_LIB=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/lib
+MPICC=/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/bin/mpicc
+LMOD_ROOT=/opt/ohpc/admin/lmod
+SSH_TTY=/dev/pts/5
+OPENBLAS_ROOT=/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom
+NETCDF_FORTRAN_ROOT=/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4
+MAIL=/var/spool/mail/onguba
+CTEST_PARALLEL_LEVEL=2
+CXX=/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/bin/g++
+GCC_LIB=/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/lib
+_ModuleTable009_=bGVmaWxlcy9sbW9kL2xpbnV4LXJvY2t5OC14ODZfNjQvb3Blbm1waS80LjEuNS14NGIyZ3d3L2djYy8xMS4zLjAvcGFyYWxsZWwtbmV0Y2RmLzEuMTIuMy5sdWEiLApmdWxsTmFtZSA9ICJwYXJhbGxlbC1uZXRjZGYvMS4xMi4zIiwKbG9hZE9yZGVyID0gNiwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJwYXJhbGxlbC1uZXRjZGYvMS4xMi4zIiwKd1YgPSAiMDAwMDAwMDAxLjAwMDAwMDAxMi4wMDAwMDAwMDMuKnpmaW5hbCIsCn0sCn0sCm1wYXRoQSA9IHsKIi9wcm9qZWN0cy94ODYtNjQtaWNlbGFrZS1yb2NreTgvbW9kdWxlZmlsZXMvbG1vZC9saW51eC1yb2NreTgteDg2XzY0L29wZW5tcGkvNC4xLjUteDRiMmd3
+TERM=xterm-256color
+SHELL=/bin/bash
+NETCDF_C_VERSION=4.9.2
+OPENBLAS_VERSION=0.3.23
+_ModuleTable_Sz_=10
+CUDA_VERSION=11.8.0
+GIT_LIB=/projects/x86-64-icelake-rocky8/utilities/git/2.41.0/gcc/8.5.0/base/gsocuix/lib
+GIT_BIN=/projects/x86-64-icelake-rocky8/utilities/git/2.41.0/gcc/8.5.0/base/gsocuix/bin
+SELINUX_USE_CURRENT_RANGE=
+TESTBED_ROOT=/home/onguba/local/blake
+CUDA_INC=/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6/include
+GCC_BIN=/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/bin
+CURL_ROOT=/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq
+icpc_OPTIMIZATIONS=-xCORE_AVX512
+PARALLEL_NETCDF_LIB=/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/lib
+ON_NODE=
+SHLVL=1
+MPIF77=/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/bin/mpif77
+OPENMPI_INC=/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/include
+ACLOCAL_PATH=/projects/x86-64-icelake-rocky8/utilities/cmake/3.27.4/gcc/8.5.0/base/x67p75m/share/aclocal:/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/share/aclocal
+PARALLEL_NETCDF_INC=/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/include
+CMAKE_ROOT=/projects/x86-64-icelake-rocky8/utilities/cmake/3.27.4/gcc/8.5.0/base/x67p75m
+MANPATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/share/man:/projects/x86-64-icelake-rocky8/utilities/git/2.41.0/gcc/8.5.0/base/gsocuix/share/man:/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/share/man:/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/share/man:/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/share/man:/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/share/man:/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/share/man::
+icc_OPTIMIZATIONS=-xCORE_AVX512
+PARALLEL_NETCDF_BIN=/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/bin
+LMOD_PREPEND_BLOCK=normal
+PARALLEL_NETCDF_ROOT=/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll
+MODULEPATH=/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/openmpi/4.1.5-x4b2gww/gcc/11.3.0:/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/gcc/11.3.0:/etc/scl/modulefiles:/opt/ohpc/pub/modulefiles:/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/Core:/projects/x86-64-icelake-rocky8/modulefiles/lmod/utilities/linux-rocky8-x86_64/Core
+NETCDF_C_BIN=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/bin
+NETCDF_FORTRAN_BIN=/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/bin
+LOGNAME=onguba
+GIT_INC=/projects/x86-64-icelake-rocky8/utilities/git/2.41.0/gcc/8.5.0/base/gsocuix/include
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/69618/bus
+XDG_RUNTIME_DIR=/run/user/69618
+NETCDF_FORTRAN_VERSION=4.6.0
+CURL_INC=/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/include
+PATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/bin:/projects/x86-64-icelake-rocky8/utilities/git/2.41.0/gcc/8.5.0/base/gsocuix/bin:/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/bin:/projects/x86-64-icelake-rocky8/tpls/cuda/11.8.0/gcc/11.3.0/base/xg4ixk6/bin:/projects/x86-64-icelake-rocky8/utilities/cmake/3.27.4/gcc/8.5.0/base/x67p75m/bin:/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/bin:/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/bin:/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/bin:/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom/bin:/projects/x86-64-icelake-rocky8/compilers/gcc/11.3.0/gcc/8.5.0/base/3kidadg/bin:/ascldap/users/projects/e3sm/scream/libs/netcdf-fortran/install/weaver/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+_LMFILES_=/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/Core/gcc/11.3.0.lua:/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/gcc/11.3.0/openblas/0.3.23.lua:/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/gcc/11.3.0/openmpi/4.1.5.lua:/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/gcc/11.3.0/netlib-lapack/3.11.0.lua:/projects/x86-64-icelake-rocky8/modulefiles/lmod/utilities/linux-rocky8-x86_64/Core/curl/8.1.2.lua:/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/openmpi/4.1.5-x4b2gww/gcc/11.3.0/parallel-netcdf/1.12.3.lua:/projects/x86-64-icelake-rocky8/modulefiles/lmod/utilities/linux-rocky8-x86_64/Core/cmake/3.27.4.lua:/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/gcc/11.3.0/cuda/11.8.0.lua:/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/openmpi/4.1.5-x4b2gww/gcc/11.3.0/netcdf-fortran/4.6.0.lua:/projects/x86-64-icelake-rocky8/modulefiles/lmod/utilities/linux-rocky8-x86_64/Core/git/2.41.0.lua:/projects/x86-64-icelake-rocky8/modulefiles/lmod/linux-rocky8-x86_64/openmpi/4.1.5-x4b2gww/gcc/11.3.0/netcdf-c/4.9.2.lua
+DEBUGINFOD_URLS=https://debuginfod.centos.org/ 
+NETLIB_LAPACK_VERSION=3.11.0
+CURL_BIN=/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/bin
+MODULESHOME=/usr/share/Modules
+PKG_CONFIG_PATH=/projects/x86-64-icelake-rocky8/tpls/netcdf-c/4.9.2/gcc/11.3.0/openmpi/4.1.5/pisruz2/lib/pkgconfig:/projects/x86-64-icelake-rocky8/tpls/netcdf-fortran/4.6.0/gcc/11.3.0/openmpi/4.1.5/636yen4/lib/pkgconfig:/projects/x86-64-icelake-rocky8/tpls/parallel-netcdf/1.12.3/gcc/11.3.0/openmpi/4.1.5/3a4qbll/lib/pkgconfig:/projects/x86-64-icelake-rocky8/utilities/curl/8.1.2/gcc/8.5.0/base/727dgzq/lib/pkgconfig:/projects/x86-64-icelake-rocky8/tpls/netlib-lapack/3.11.0/gcc/11.3.0/base/b2zy4ka/lib64/pkgconfig:/projects/x86-64-icelake-rocky8/external-packages/openmpi/4.1.5/gcc/11.3.0/lib/pkgconfig:/projects/x86-64-icelake-rocky8/tpls/openblas/0.3.23/gcc/11.3.0/base/ucufbom/lib/pkgconfig
+LMOD_SETTARG_FULL_SUPPORT=no
+HISTSIZE=1000
+NETLIB_LAPACK_ROOT=/projects/x86-64-icelake-rocky8/tpls/netlib-lapack/3.11.0/gcc/11.3.0/base/b2zy4ka
+LMOD_PKG=/opt/ohpc/admin/lmod/lmod
+_ModuleTable005_=dWxlZmlsZXMvbG1vZC9saW51eC1yb2NreTgteDg2XzY0L29wZW5tcGkvNC4xLjUteDRiMmd3dy9nY2MvMTEuMy4wL25ldGNkZi1jLzQuOS4yLmx1YSIsCmZ1bGxOYW1lID0gIm5ldGNkZi1jLzQuOS4yIiwKbG9hZE9yZGVyID0gMTEsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAibmV0Y2RmLWMvNC45LjIiLAp3ViA9ICIwMDAwMDAwMDQuMDAwMDAwMDA5LjAwMDAwMDAwMi4qemZpbmFsIiwKfSwKWyJuZXRjZGYtZm9ydHJhbiJdID0gewpmbiA9ICIvcHJvamVjdHMveDg2LTY0LWljZWxha2Utcm9ja3k4L21vZHVsZWZpbGVzL2xtb2QvbGludXgtcm9ja3k4LXg4Nl82NC9vcGVubXBpLzQuMS41LXg0YjJnd3cvZ2NjLzEx
+LMOD_CMD=/opt/ohpc/admin/lmod/lmod/libexec/lmod
+ifort_OPTIMIZATIONS=-xCORE_AVX512
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LMOD_FULL_SETTARG_SUPPORT=no
+LMOD_DIR=/opt/ohpc/admin/lmod/lmod/libexec
+LMOD_FAMILY_MPI=openmpi
+BASH_FUNC_which%%=() {  ( alias;
+ eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+}
+BASH_FUNC_module%%=() {  if [ -z "${LMOD_SH_DBG_ON+x}" ]; then
+ case "$-" in 
+ *v*x*)
+ __lmod_sh_dbg='vx'
+ ;;
+ *v*)
+ __lmod_sh_dbg='v'
+ ;;
+ *x*)
+ __lmod_sh_dbg='x'
+ ;;
+ esac;
+ fi;
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ set +$__lmod_sh_dbg;
+ echo "Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output" 1>&2;
+ fi;
+ eval "$($LMOD_CMD shell "$@")" && eval "$(${LMOD_SETTARG_CMD:-:} -s sh)";
+ __lmod_my_status=$?;
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ echo "Shell debugging restarted" 1>&2;
+ set -$__lmod_sh_dbg;
+ fi;
+ unset __lmod_sh_dbg;
+ return $__lmod_my_status
+}
+BASH_FUNC_scl%%=() {  if [ "$1" = "load" -o "$1" = "unload" ]; then
+ eval "module $@";
+ else
+ /usr/bin/scl "$@";
+ fi
+}
+BASH_FUNC_ml%%=() {  eval "$($LMOD_DIR/ml_cmd "$@")"
+}
+_=/usr/bin/env

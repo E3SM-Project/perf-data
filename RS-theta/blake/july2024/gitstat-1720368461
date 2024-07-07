@@ -1,0 +1,133 @@
+ status is ------------- 
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+	modified:   ../../cime (new commits, untracked content)
+	modified:   ../eam/src/physics/rrtmgp/external (new commits)
+	modified:   ../elm/src/external_models/fates (new commits)
+	modified:   ../../externals/YAKL (new commits, untracked content)
+	modified:   ../../externals/ekat (new commits)
+	modified:   ../../externals/haero (new commits)
+	modified:   ../../externals/mam4xx (new commits)
+	modified:   ../../externals/scorpio (new commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../../bldkokkos/
+	../cam/
+	../clm/
+	cmake/machineFiles/blake.cmake
+	cmake/machineFiles/ino-temp.cmake
+	cmake/machineFiles/inouye-gcc-asm.cmake
+	cmake/machineFiles/make-weaver-run-again
+	cmake/machineFiles/weaver-bfb.cmake_backup
+	cmake/machineFiles/weaver-diffs
+	cmake/machineFiles/weaver-my-performance.cmake
+	cmake/machineFiles/weaver-my.cmake
+	cmake/machineFiles/weaver-perf-june2024.cmake
+	cmake/machineFiles/weaver-perf.cmake
+	cmake/machineFiles/weaver2.cmake
+	gitstat
+	src/share/compose_test_mod.F90_blas
+	src/share/gllfvremap_mod.F90_
+	src/share/gllfvremap_util_mod.F90_
+	src/test_src/dcmip16_wrapper.F90_blas
+	src/test_src/dcmip2016-supercell.F90_blas
+	src/theta-l_kokkos/cxx/diff-jan04
+	src/theta-l_kokkos/diffs-before-cleanup
+	test_execs/thetal_kokkos_ut/debug-folder/
+	test_execs/thetal_kokkos_ut/hv_ut.cpp2_
+	test_execs/thetal_kokkos_ut/hv_ut.cpp3_
+	test_execs/thetal_kokkos_ut/hv_ut.cpp__
+	../mpas-source/
+	../../externals/build-kokkos/
+	../../externals/kokkos/
+	../../gitdiff-feb02
+	../../kokkos_compiler_id.cmake-to-run
+	../../lb-kokkos-diffs
+
+no changes added to commit (use "git add" and/or "git commit -a")
+ branch is ------------- 
+  bartgol/hommexx-forcing-functor-fixes
+* master
+  oksanaguba/homme/cprnc-build
+  oksanaguba/homme/diagn-compare
+  oksanaguba/homme/fix-gpu-define
+  oksanaguba/homme/hvprof-test
+  oksanaguba/homme/inouye
+  oksanaguba/homme/move-limiter
+  oksanaguba/homme/spock
+  oksanaguba/homme/weaver
+  oksanaguba/homme/xx-nutop
+ diffs are ------------- 
+diff --git a/cime b/cime
+index f903115718..4388509869 160000
+--- a/cime
++++ b/cime
+@@ -1 +1 @@
+-Subproject commit f903115718ebc30669ce557f511abaef231a1d88
++Subproject commit 4388509869bd5988d6315e2da65b1a2fbfa604fa
+diff --git a/components/eam/src/physics/rrtmgp/external b/components/eam/src/physics/rrtmgp/external
+index 4641dc245b..ddf82a25a3 160000
+--- a/components/eam/src/physics/rrtmgp/external
++++ b/components/eam/src/physics/rrtmgp/external
+@@ -1 +1 @@
+-Subproject commit 4641dc245ba00cb230c740f4ab3fd0d5a7543a6b
++Subproject commit ddf82a25a3a59a8f0fe904b69181cb7bd99881fb
+diff --git a/components/elm/src/external_models/fates b/components/elm/src/external_models/fates
+index b8e4eee5ed..42d804ba54 160000
+--- a/components/elm/src/external_models/fates
++++ b/components/elm/src/external_models/fates
+@@ -1 +1 @@
+-Subproject commit b8e4eee5ed46daf5c9e710e9ebbe6d20464adbc8
++Subproject commit 42d804ba54d0cf013a9737018ff9920e0c9808ea
+diff --git a/externals/YAKL b/externals/YAKL
+index e3757faedf..4109dc02fe 160000
+--- a/externals/YAKL
++++ b/externals/YAKL
+@@ -1 +1 @@
+-Subproject commit e3757faedffd41c6ae68cf4dbd1324e628a48ddd
++Subproject commit 4109dc02fe1e951a95f401719587e981ea4f4fe4
+diff --git a/externals/ekat b/externals/ekat
+index b39fd9fbd8..fb4babcf3a 160000
+--- a/externals/ekat
++++ b/externals/ekat
+@@ -1 +1 @@
+-Subproject commit b39fd9fbd81439470e146d7915ed9a22c688ac6a
++Subproject commit fb4babcf3a24c14e9e94d71df152a7f097805c14
+diff --git a/externals/haero b/externals/haero
+index 8e4c96ded3..77c4a45584 160000
+--- a/externals/haero
++++ b/externals/haero
+@@ -1 +1 @@
+-Subproject commit 8e4c96ded375bf03bb5e83b0779e45a3aec9659e
++Subproject commit 77c4a45584f2bd3bf38a18ea5bc24ef9ce3776a2
+diff --git a/externals/mam4xx b/externals/mam4xx
+index a8aa56ba91..a19bc75891 160000
+--- a/externals/mam4xx
++++ b/externals/mam4xx
+@@ -1 +1 @@
+-Subproject commit a8aa56ba915c83c22edc54ce5fd8ae4a23e6173e
++Subproject commit a19bc75891e235071426840742a2c530bbea9e52
+diff --git a/externals/scorpio b/externals/scorpio
+index 34422f362e..cdd541e0cd 160000
+--- a/externals/scorpio
++++ b/externals/scorpio
+@@ -1 +1 @@
+-Subproject commit 34422f362e9e83b5bc5e013b5992fc2555d02ece
++Subproject commit cdd541e0cd708bece13b1f3ee42f66dfd6440aa7
+ last 10 commits are ------------- 
+58efb0cb3f87294c07bf8983c0a9b6577ad7e2a7 Merge 'TREY/trey/caar_ut/pgrad_correction' (PR #6444)
+37fc15a63c17ee0e7f8d23fe41fa711b422f38a2 Merge  branch 'whannah/docs/add-grid-support-guide' (PR #6417)
+1fb279e59d0d4d9fcae708fdba80615d0c516319 Merge branch 'cwhicker/elm/use_extrasnowlayers_tuning_20240521' (PR #6439)
+5ac436a08de81948155f6d1ba60f56a85d5fc3fc Merge branch 'YuyingZhang/atm/4histMODIS' (PR #6407)
+2b86904badee2a20cc2328aaac4187b967c40fa9 Merge branch 'jonbob/machines/update-chrys-gnu' (PR #6495)
+c7d7998ab483f09bd17b8c399345df8fd247c6f4 Merge branch 'jgfouca/eamxx_downstream_merge_2024_06_26' into master (PR #6489)
+41bd0cbe6238e2e5aefb06338faf93f965f303ce Merge branch 'jayeshkrishna/externals/scorpio_v1.6.4' (PR #6492)
+adc81b27b3fc5a2eba5612401a0ab4a4609422f1 Merge branch 'jayeshkrishna/add_pio_config_opts' (PR #6491)
+115ad3c3f5a597ffc6701c3136f2b254653853bc Merge branch 'xylar/ocn/fix-coriolis-shared-constants' (PR #6481)
+07f842adb92c83f0c1760c5dbf2c828a5d97cd5b Merge branch E3SM-Project/ndk/machinefiles/pm-cpu-pelayout-minor-adjustment (PR #6484)
