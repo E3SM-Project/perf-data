@@ -92,6 +92,20 @@
          :nnodes (, 1536 2048)
          ;; 128 cores gives correct nnodes; of course, there are 0 GPUs/node
          :ngpu-per-node 128
+         :machpat ":")
+  c)
+
+(defn get-context-aurora []
+  (sv c (get-context)
+      timers (:timers3 c)
+      prefix "aurora-v1-scaling-no-threading")
+  (assoc c
+         :prefix prefix
+         :machine-name "Aurora"
+         :glob-data (+ "../../screamv1-aurora-apr2025/data/" prefix
+                       "*-model_timing_stats")
+         :nnodes (, 256 512 1024)
+         :ngpu-per-node 12
          :machpat "-.")
   c)
 
@@ -138,9 +152,11 @@
 
 (defn plot-sdpd-vs-nnode [c d timer-set plot-extra-points
                           &optional ylabel title fontsize legend annotations
-                          cpu-sizing ref-line machpat smaller-legend]
+                          cpu-sizing ref-line machpat smaller-legend
+                          mrksz lw cpu-lim]
   (svifn ylabel True title True fontsize 14 legend True annotations True
-         cpu-sizing False ref-line True machpat False smaller-legend False)
+         cpu-sizing False ref-line True machpat False smaller-legend False
+         mrksz 10 lw 2)
   (sv xform (fn [x] (npy.log x))
       plot pl.semilogy
       timers (get c timer-set)
@@ -178,11 +194,11 @@
         (for [idx (cut p 1)]
           (plot (xform nnode)
                 (calc-sypd c (nth (get d nnode) idx) timer)
-                (cut pat 0 -1)))))
+                (cut pat 0 -1) :markersize mrksz))))
     (when machpat
       (sv pat (+ (cut pat 0 -1) (:machpat c))))
     (sv h (plot xval y pat
-                :lw 2 :markersize 10 :fillstyle "none"
+                :lw lw :markersize mrksz :fillstyle "none"
                 :label (if legend (get (:timer-aliases c) timer))))
     (.append hs (first h))
     (when annotations
@@ -230,7 +246,7 @@
           :color (, g g g) :lw 1))
   (pl.yticks y y :fontsize (dec fs))
   (when legend
-    (pl.legend :loc "lower right" :fontsize (if smaller-legend (dec fs) fs)
+    (pl.legend :loc "lower right" :fontsize (if smaller-legend (- fs 2) fs)
                :handles hs :ncol (if cpu-sizing 1 2)
                :framealpha 1))
   (pl.xlabel "Number of nodes" :fontsize (inc fs))
@@ -405,7 +421,7 @@
 
 (defn v1paper-fig-sdpd-vs-nnode [cs ds timer-sets]
   (sv n (len timer-sets)
-      order (, "Perlmutter-CPU" "Perlmutter-GPU" "Summit" "Frontier")
+      order (, "Perlmutter-CPU" "Perlmutter-GPU" "Summit" "Frontier" "Aurora")
       use-384 True)
   (for [format (, "pdf" "png")]
     (with [(pl-plot (, (* 4.5 n) 5)
@@ -427,7 +443,8 @@
                               :ylabel True :title False :fontsize 12
                               :legend decorate :annotations False
                               :cpu-sizing True :ref-line decorate
-                              :machpat True :smaller-legend use-384)
+                              :machpat True :smaller-legend use-384
+                              :mrksz 6 :lw 1.5)
           (when (and (zero? i) (zero? j))
             (sv hs [])
             (for [c cs]
@@ -438,9 +455,10 @@
                 ax (pl.gca))
             (ax.add-artist l1))
           (when use-384
-            (sv nnodes (, 384 512 1024 2048 4096 8192))
+            (sv nnodes (, 256 384 512 1024 2048 4096 8192))
             (pl.xticks (npy.log nnodes) nnodes :fontsize 13)
-            (pl.xlim (, (npy.log 330) (npy.log 9500)))))
+            (pl.xlim (, (npy.log (if (in "Aurora" order) 220 330))
+                        (npy.log 9500)))))
         (fig.text (+ (/ i n) 0.03) 0.04 (+ "(" (nth "abcde" i) ")")
                   :fontsize 13)))))
 
@@ -489,7 +507,8 @@
   (sv cs [(get-context)
           (get-context-summit)
           (get-context-pmgpu)
-          (get-context-pmcpu)]
+          (get-context-pmcpu)
+          (get-context-aurora)]
       ds [])
   (for [c cs]
     (.append ds (select-best-at-each-nnode
