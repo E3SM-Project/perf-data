@@ -1,0 +1,34 @@
+# This file is for user convenience only and is not used by the model
+# Changes to this file will be ignored and overwritten
+# Changes to the environment should be made in env_mach_specific.xml
+# Run ./case.setup --reset to regenerate this file
+. /usr/share/lmod/lmod/init/sh
+module load cmake/3.30.5 oneapi/release/2025.0.5 mpich-config/collective-tuning/1024
+export NETCDF_PATH=/lus/flare/projects/E3SM_Dec/soft/netcdf/4.9.2c-4.6.1f/oneapi.eng.2024.07.30.002
+export PNETCDF_PATH=/lus/flare/projects/E3SM_Dec/soft/pnetcdf/1.14.0/oneapi.eng.2024.07.30.002
+export LD_LIBRARY_PATH=/lus/flare/projects/E3SM_Dec/soft/pnetcdf/1.14.0/oneapi.eng.2024.07.30.002/lib:/lus/flare/projects/E3SM_Dec/soft/netcdf/4.9.2c-4.6.1f/oneapi.eng.2024.07.30.002/lib:/lus/flare/projects/E3SM_Dec/soft/pnetcdf/1.14.0/oneapi.eng.2024.07.30.002/lib:/lus/flare/projects/E3SM_Dec/soft/netcdf/4.9.2c-4.6.1f/oneapi.eng.2024.07.30.002/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/python-3.10.14-c4ipjly/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/sqlite-3.46.0-w5wc5lh/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gdbm-1.23-cxbw4jn/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/expat-2.6.4-7j6nhb6/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/libbsd-0.12.2-wxndujc/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/libmd-1.0.4-q6tzwyj/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/bzip2-1.0.8-i5o442p/lib:/opt/cray/libfabric/1.22.0/lib64:/opt/cray/libfabric/1.22.0/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/oneapi-2025.0.5/mpich-develop-git.6037a7a-sxnhr7p/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/oneapi-2025.0.5/yaksa-0.3-7ks5f26/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/oneapi-2025.0.5/hwloc-2.11.3-mpich-g7c7dzn/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/libxml2-2.13.5-jxhkqdj/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/libiconv-1.17-jjpb4sl/lib:/opt/aurora/24.347.0/support/libraries/khronos/default/lib64:/opt/aurora/24.347.0/oneapi/pti/latest/lib:/opt/aurora/24.347.0/oneapi/tcm/latest/lib:/opt/aurora/24.347.0/oneapi/umf/latest/lib:/opt/aurora/24.347.0/oneapi/ipp/latest/lib:/opt/aurora/24.347.0/oneapi/ippcp/latest/lib:/opt/aurora/24.347.0/oneapi/debugger/latest/opt/debugger/lib:/opt/aurora/24.347.0/oneapi/ccl/latest/lib:/opt/aurora/24.347.0/oneapi/dal/latest/lib:/opt/aurora/24.347.0/oneapi/dnnl/latest/lib:/opt/aurora/24.347.0/oneapi/tbb/latest/lib/intel64/gcc4.8:/opt/aurora/24.347.0/oneapi/mkl/latest/lib:/opt/aurora/24.347.0/oneapi/compiler/latest/opt/compiler/lib:/opt/aurora/24.347.0/oneapi/compiler/latest/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-13.3.0-4enwbrb/lib64:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-13.3.0-4enwbrb/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/mpc-1.3.1-rdrlvsl/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/mpfr-4.2.1-gkcdl5w/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gmp-6.3.0-mtokfaw/lib:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-runtime-13.3.0-ghotoln/lib:/opt/cray/pals/1.4/lib
+export PATH=/lus/flare/projects/E3SM_Dec/soft/pnetcdf/1.14.0/oneapi.eng.2024.07.30.002/bin:/lus/flare/projects/E3SM_Dec/soft/netcdf/4.9.2c-4.6.1f/oneapi.eng.2024.07.30.002/bin:/lus/flare/projects/E3SM_Dec/soft/pnetcdf/1.14.0/oneapi.eng.2024.07.30.002/bin:/lus/flare/projects/E3SM_Dec/soft/netcdf/4.9.2c-4.6.1f/oneapi.eng.2024.07.30.002/bin:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/cmake-3.30.5-igar7ts/bin:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gmake-4.4.1-wza7sk4/bin:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/python-3.10.14-c4ipjly/bin:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/sqlite-3.46.0-w5wc5lh/bin:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gdbm-1.23-cxbw4jn/bin:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/expat-2.6.4-7j6nhb6/bin:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/bzip2-1.0.8-i5o442p/bin:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/oneapi-2025.0.5/mpich-develop-git.6037a7a-sxnhr7p/bin:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/oneapi-2025.0.5/hwloc-2.11.3-mpich-g7c7dzn/bin:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/libxml2-2.13.5-jxhkqdj/bin:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/libiconv-1.17-jjpb4sl/bin:/opt/aurora/24.347.0/support/tools/gpu_validation:/opt/aurora/24.347.0/support/tools/mpi_wrapper_utils:/opt/aurora/24.347.0/oneapi/dpcpp-ct/latest/bin:/opt/aurora/24.347.0/oneapi/advisor/latest/bin64:/opt/aurora/24.347.0/oneapi/vtune/latest/bin64:/opt/aurora/24.347.0/oneapi/debugger/latest/opt/debugger/bin:/opt/aurora/24.347.0/oneapi/mkl/latest/bin:/opt/aurora/24.347.0/oneapi/compiler/latest/bin:/opt/aurora/24.347.0/spack/unified/0.9.2/install/linux-sles15-x86_64/gcc-13.3.0/gcc-13.3.0-4enwbrb/bin:/opt/cray/pals/1.4/bin:/opt/cray/libfabric/1.22.0/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/home/tccleve/.local/bin:/usr/local/bin:/usr/bin:/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/pbs/bin:/sbin
+export FI_CXI_DEFAULT_CQ_SIZE=131072
+export FI_CXI_CQ_FILL_PERCENT=20
+export RLIMITS= 
+export ONEAPI_DEVICE_SELECTOR=level_zero:gpu
+export UR_L0_USE_DRIVER_INORDER_LISTS=1
+export UR_L0_ENABLE_RELAXED_ALLOCATION_LIMITS=1
+export UR_L0_USE_COPY_ENGINE_FOR_IN_ORDER_QUEUE=1
+export FI_MR_CACHE_MONITOR=disabled
+export FI_CXI_OVFLOW_BUF_SIZE=8388608
+export PALS_PING_PERIOD=240
+export PALS_RPC_TIMEOUT=240
+export SYCL_PI_LEVEL_ZERO_SINGLE_THREAD_MODE=1
+export SYCL_PI_LEVEL_ZERO_DISABLE_USM_ALLOCATOR=1
+export SYCL_PI_LEVEL_ZERO_USM_RESIDENT=0x001
+export UR_L0_USE_DRIVER_INORDER_LISTS=1
+export UR_L0_USE_COPY_ENGINE_FOR_IN_ORDER_QUEUE=1
+export MPIR_CVAR_ENABLE_GPU=1
+export romio_cb_read=disable
+export romio_cb_write=disable
+export GATOR_INITIAL_MB=4000MB
+export GATOR_DISABLE=0
+export GPU_TILE_COMPACT=/lus/flare/projects/E3SM_Dec/tools/mpi_wrapper_utils/gpu_tile_compact.sh
+export RANKS_BIND=list:1-8:9-16:17-24:25-32:33-40:41-48:53-60:61-68:69-76:77-84:85-92:93-100 --gpu-bind list:0.0:0.1:1.0:1.1:2.0:2.1:3.0:3.1:4.0:4.1:5.0:5.1 --mem-bind list:0:0:0:0:0:0:1:1:1:1:1:1
+export ZES_ENABLE_SYSMAN=1
