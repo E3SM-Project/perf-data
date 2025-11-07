@@ -2,23 +2,24 @@
 
 # Full Model plot
 # python gen-plot.py \
-#   --aurora_files=aurora_scaling_v3/aurora-nnodes512,aurora_scaling_v3/aurora-nnodes1024,aurora_scaling_v3/aurora-nnodes2048 \
+#   --aurora_files=aurora_scaling_v6/nnodes512,aurora_scaling_v6/nnodes1024,aurora_scaling_v6/nnodes2048 \
 #   --frontier_files=frontier_old/frontier-nnodes512,frontier_old/frontier-nnodes1024,frontier_old/frontier-nnodes2048,frontier_old/frontier-nnodes4096,frontier_old/frontier-nnodes8192 \
 #   --pm_gpu_files=pm-gpu_old/pm-gpu-nnodes384,pm-gpu_old/pm-gpu-nnodes512,pm-gpu_old/pm-gpu-nnodes1024,pm-gpu_old/pm-gpu-nnodes1536 \
 #   --pm_cpu_files=pm-cpu_old/pm-cpu-nnodes1536,pm-cpu_old/pm-cpu-nnodes2048 \
 #   --timers="CPL:RUN_LOOP","CPL:ATM_RUN","a:EAMxx::homme::run" \
 #   --no_title=True \
-#   --plot_type=sdpd
+#   --plot_type=sypd
 
 # DYCORE only
-python gen-plot.py \
-  --aurora_files=aurora_scaling_v3/aurora-nnodes512,aurora_scaling_v3/aurora-nnodes1024,aurora_scaling_v3/aurora-nnodes2048 \
-  --frontier_files=frontier_old/frontier-nnodes512,frontier_old/frontier-nnodes1024,frontier_old/frontier-nnodes2048,frontier_old/frontier-nnodes4096,frontier_old/frontier-nnodes8192 \
-  --pm_gpu_files=pm-gpu_old/pm-gpu-nnodes384,pm-gpu_old/pm-gpu-nnodes512,pm-gpu_old/pm-gpu-nnodes1024,pm-gpu_old/pm-gpu-nnodes1536 \
-  --pm_cpu_files=pm-cpu_old/pm-cpu-nnodes1536,pm-cpu_old/pm-cpu-nnodes2048 \
-  --timers="a:EAMxx::homme::run" \
-  --no_title=True \
-  --plot_type=sdpd
+# python gen-plot.py \
+#   --aurora_files=aurora_scaling_v6/nnodes512,aurora_scaling_v6/nnodes1024,aurora_scaling_v6/nnodes2048 \
+#   --aurora_files2=aurora_scaling_v3/aurora-nnodes512,aurora_scaling_v3/aurora-nnodes1024,aurora_scaling_v3/aurora-nnodes2048 \
+#   --frontier_files=frontier_old/frontier-nnodes512,frontier_old/frontier-nnodes1024,frontier_old/frontier-nnodes2048,frontier_old/frontier-nnodes4096,frontier_old/frontier-nnodes8192 \
+#   --pm_gpu_files=pm-gpu_old/pm-gpu-nnodes384,pm-gpu_old/pm-gpu-nnodes512,pm-gpu_old/pm-gpu-nnodes1024,pm-gpu_old/pm-gpu-nnodes1536 \
+#   --pm_cpu_files=pm-cpu_old/pm-cpu-nnodes1536,pm-cpu_old/pm-cpu-nnodes2048 \
+#   --timers="a:EAMxx::homme::run" \
+#   --no_title=True \
+#   --plot_type=sypd
 
 # Full model plot 2
 # python gen-plot.py \
@@ -26,15 +27,16 @@ python gen-plot.py \
 #   --frontier_files=frontier_new/frontier-nnodes512,frontier_new/frontier-nnodes1024,frontier_new/frontier-nnodes2048 \
 #   --timers="CPL:RUN_LOOP","a:EAMxx::physics::run","a:EAMxx::homme::run" \
 #   --no_title=True \
-#   --plot_type=sdpd \
+#   --plot_type=sypd \
 
 # Dycore comp plot
-# python gen-plot.py \
-#   --aurora_files=aurora_scaling_v5-noSK/aurora-nnodes512,aurora_scaling_v5-noSK/aurora-nnodes1024,aurora_scaling_v5-noSK/aurora-nnodes2048 \
-#   --frontier_files=frontier_new/frontier-nnodes512,frontier_new/frontier-nnodes1024,frontier_new/frontier-nnodes2048 \
-#   --timers="a:caar compute","a:caar_bexchV","a:compute_stage_value_dirk" \
-#   --no_title=True \
-#   --plot_type=sdpd
+python gen-plot.py \
+  --aurora_files=timing-files/aurora_scaling_v6/mpich1024-nnodes512,timing-files/aurora_scaling_v6/mpich1024-nnodes1024,timing-files/aurora_scaling_v6/mpich1024-nnodes2048 \
+  --timers="a:EAMxx::homme::run","a:caar_bexchV","a:hvf-bhwk","a:hvf-bexch" \
+  --plot_type=sypd \
+  --frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048 \
+#  --aurora_files2=aurora_scaling_v6/mpich1024-nnodes512,aurora_scaling_v6/mpich1024-nnodes1024,aurora_scaling_v6/mpich1024-nnodes2048 \
+#   --timers="a:EAMxx::homme::run","a:caar compute","a:caar_bexchV","a:compute_stage_value_dirk","a:caar limiter","a:tl-ae advance_hypervis_dp","a:tl-at prim_advec_tracers_compose","a:hvf-bhwk","a:hvf-bexch" \
 
 # Efficiency plot
 # python gen-plot.py \
@@ -47,11 +49,11 @@ python gen-plot.py \
 
 # NE30 test
 # python gen-plot.py \
-#   --aurora_files=aurora_scaling_v4/aurora-nnodes1,aurora_scaling_v4/aurora-nnodes2,aurora_scaling_v4/aurora-nnodes4 \
+#   --aurora_files=aurora_scaling_v6/nnodes1,aurora_scaling_v6/nnodes4 \
 #   --frontier_files=frontier_scaling_v4/frontier-nnodes1,frontier_scaling_v4/frontier-nnodes2,frontier_scaling_v4/frontier-nnodes4 \
 #   --timers="a:EAMxx::physics::run","a:caar compute","a:caar_bexchV","a:compute_stage_value_dirk" \
 #   --no_title=True \
-#   --plot_type=sdpd
+#   --plot_type=time
 
   # phys: [34.128, 27.669, 24.698]
 
@@ -60,13 +62,13 @@ python gen-plot.py \
 #   --frontier_files=frontier_scaling_v4/frontier-nnodes1,frontier_scaling_v4/frontier-nnodes2,frontier_scaling_v4/frontier-nnodes4 \
 #   --timers="a:EAMxx::physics::run","a:caar compute","a:caar_bexchV","a:compute_stage_value_dirk" \
 #   --no_title=True \
-#   --plot_type=sdpd
+#   --plot_type=sypd
 
 # python gen-plot.py \
 #   --aurora_files=aurora_scaling_v5/aurora-nnodes512,aurora_scaling_v5/aurora-nnodes1024,aurora_scaling_v5/aurora-nnodes2048 \
 #   --timers="CPL:RUN_LOOP","a:EAMxx::physics::run","a:EAMxx::homme::run" \
 #   --no_title=True \
-#   --plot_type=sdpd \
+#   --plot_type=sypd \
 #   --aurora_files2=aurora_scaling_v5-noSK/aurora-nnodes512,aurora_scaling_v5-noSK/aurora-nnodes1024,aurora_scaling_v5-noSK/aurora-nnodes2048 \
 #   --frontier_files=frontier_old/frontier-nnodes512,frontier_old/frontier-nnodes1024,frontier_old/frontier-nnodes2048 \
 
