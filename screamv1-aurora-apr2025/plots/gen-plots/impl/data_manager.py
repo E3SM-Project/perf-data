@@ -74,13 +74,12 @@ def convert_to_sypd(timer_data, simulation_length_in_days):
         }
     return sypd_data
 
-def convert_to_efficiency(timer_data, nsteps, gpus_per_node):
-    # Convert runtime to "thousands of element timesteps per GPU" and
-    # convert nodes to "spectral elements per processing unit"
-    eff_data = {}
-    for time, data in timer_data.items():
-        eff_data[time] = {
-            "nodes": [6*1024*1024/(node*gpus_per_node) for node in data["nodes"]],
-            "values": [1e-3*(6*1024*1024)*nsteps[time]/(node*gpus_per_node)/value for node, value in zip(data["nodes"], data["values"])]
+def convert_to_sdpd(timer_data, simulation_length_in_days):
+    # Convert runtime to simulated days per day
+    sypd_data = {}
+    for timer, data in timer_data.items():
+        sypd_data[timer] = {
+            "nodes": data["nodes"],
+            "values": [((simulation_length_in_days)/value)*60*60*24 for value in data["values"]]
         }
-    return eff_data
+    return sypd_data
