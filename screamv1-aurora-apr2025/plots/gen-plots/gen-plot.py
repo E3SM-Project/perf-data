@@ -16,7 +16,7 @@ if __name__ == "__main__":
     parser.add_argument("--force_machine_labels", required=False, help="Comma-separated list of machine labels to use.")
     parser.add_argument("--timing_column", type=str, default="wallmax", help="Name of column to select timing data from.")
     parser.add_argument("--plot_type", type=str, choices=["sypd", "sdpd", "time"], default="sypd", help="Y-axis on plot. Default is \"sypd\".")
-    parser.add_argument("--plot_title", required=False, type=str, help="Plot title.")
+    parser.add_argument("--plot_title", required=False, default="", type=str, help="Plot title.")
     args = parser.parse_args()
 
     if not args.aurora_files and args.aurora_files2 and not args.frontier_files and not args.pm_gpu_files and not args.pm_cpu_files:
