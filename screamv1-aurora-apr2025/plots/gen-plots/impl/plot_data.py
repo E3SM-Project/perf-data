@@ -135,9 +135,9 @@ def plot_data(plot_data, plot_type, plot_title):
         y_label = "Simulated years per wallclock day (SYPD)"
     elif plot_type == "sdpd":
         y_label = "Simulated days per wallclock day (SDPD)"
+    ax.set_ylabel(y_label, fontsize=ax_label_size)
 
     if not auto_y_axis:
-        ax.set_ylabel(y_label, fontsize=ax_label_size)
         ax.set_ylim(ymin,ymax)
         ax.set_yticks(yticks)
         ax.set_yticklabels(yticks, fontsize=tick_font_size)
