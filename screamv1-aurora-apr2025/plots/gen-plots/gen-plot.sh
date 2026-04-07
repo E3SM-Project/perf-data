@@ -4,22 +4,32 @@
 # python gen-plot.py \
 #   --aurora_files=timing-files/aurora_scaling_v6/mpich1024-nnodes512,timing-files/aurora_scaling_v6/mpich1024-nnodes1024,timing-files/aurora_scaling_v6/mpich1024-nnodes2048 \
 #   --frontier_files=timing-files/frontier_old/frontier-nnodes512,timing-files/frontier_old/frontier-nnodes1024,timing-files/frontier_old/frontier-nnodes2048,timing-files/frontier_old/frontier-nnodes4096,timing-files/frontier_old/frontier-nnodes8192 \
-#   --timers="CPL:ATM_RUN" \
 #   --pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
 #   --pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
-#   --no_title=True \
-#   --plot_type=sdpd \
-  #--pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
-  #--pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
-#   --aurora_files=aurora_scaling_v6/nnodes512,aurora_scaling_v6/nnodes1024,aurora_scaling_v6/nnodes2048 \
+#   --pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
+#   --pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
+#   --plot_type="sdpd" \
+#   --timers="CPL:RUN_LOOP","a:EAMxx::run","a:EAMxx::homme::run" \
+#   --force_timer_labels="Model","Atmosphere","Dycore" \
+
+# python gen-plot.py \
+#   --aurora_files=timing-files/aurora_scaling_v7/mpich1024-nnodes512,timing-files/aurora_scaling_v7/mpich1024-nnodes1024,timing-files/aurora_scaling_v7/mpich1024-nnodes2048,timing-files/aurora_scaling_v7/mpich1024-nnodes4096 \
+#   --frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048,timing-files/frontier_scaling_v6/nnodes4096 \
+#   --pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
+#   --pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
+#   --pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
+#   --pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
+#   --plot_type="sdpd" \
+#   --timers="a:EAMxx::run" \
+#   --force_timer_labels="Atmosphere" \
 
 #TESTING
 python gen-plot.py \
-  --aurora_files=timing-files/aurora_scaling_v6/mpich1024-nnodes512,timing-files/aurora_scaling_v6/mpich1024-nnodes1024,timing-files/aurora_scaling_v6/mpich1024-nnodes2048,timing-files/aurora_scaling_v6/mpich1024-nnodes4096 \
-  --timers="a:EAMxx::homme::run","a:caar_bexchV"+"a:hvf-bexch","a:caar compute"+"a:compute_stage_value_dirk"+"a:compose_transport","a:caar limiter","a:EAMxx::physics::run" \
+  --aurora_files=timing-files/aurora_scaling_v7/mpich1024-nnodes512,timing-files/aurora_scaling_v7/mpich1024-nnodes1024,timing-files/aurora_scaling_v7/mpich1024-nnodes2048,timing-files/aurora_scaling_v7/mpich1024-nnodes4096 \
+  --timers="a:caar_bexchV"+"a:hvf-bexch","a:caar compute"+"a:compute_stage_value_dirk"+"a:compose_transport","a:caar limiter","a:EAMxx::physics::run" \
   --plot_type="sdpd" \
-  --force_timer_labels="Dycore-total","Dycore-MPI","Dycore-compute","Dycore-limiter","Physics" \
-  #--frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048 \
+  --force_timer_labels="Dycore-MPI","Dycore-compute (device-only)","Dycore-limiter (device-only)","Physics (device-only)" \
+  --frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048,timing-files/frontier_scaling_v6/nnodes4096 \
   #--pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
   #--pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
 

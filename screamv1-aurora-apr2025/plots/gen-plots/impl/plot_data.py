@@ -4,7 +4,7 @@ def plot_data(plot_data, plot_type, plot_title):
     fig, ax = plt.subplots(figsize=(12, 9))
 
     linestyles = ['-', ':', '-.', '--']
-    markers = ['s','o', 'v', 'x', 'd', '*', 'p', 'h', '^']
+    markers = ['o', 'v', 'x', 'd', '*', 'p', 'h', '^'] #['s','o', 'v', 'x', 'd', '*', 'p', 'h', '^']
     colors = ['g', 'r', 'purple', 'b', 'c', 'y', 'k']
 
     plot_optimal_scaling = True
@@ -15,9 +15,9 @@ def plot_data(plot_data, plot_type, plot_title):
     xmin = 350
     xmax = 9000
 
-    ymin = 18
-    ymax = 600
-    yticks = [20,30,40,50,60,70,80,90,100,125,150,200,250,300,365,400,450,500,575]
+    ymin = 20
+    ymax = 800
+    yticks = [20,30,40,50,60,70,80,90,100,125,150,200,250,300,365,450,525,600,700]
 
     auto_x_axis = True
     auto_y_axis = True
