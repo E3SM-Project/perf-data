@@ -12,6 +12,11 @@
 #   --timers="CPL:RUN_LOOP","a:EAMxx::run","a:EAMxx::homme::run" \
 #   --force_timer_labels="Model","Atmosphere","Dycore" \
 
+
+  # ,timing-files/aurora_scaling_v7/mpich1024-nnodes4096 \
+   #,timing-files/frontier_scaling_v6/nnodes4096 \
+
+
 # python gen-plot.py \
 #   --aurora_files=timing-files/aurora_scaling_v7/mpich1024-nnodes512,timing-files/aurora_scaling_v7/mpich1024-nnodes1024,timing-files/aurora_scaling_v7/mpich1024-nnodes2048,timing-files/aurora_scaling_v7/mpich1024-nnodes4096 \
 #   --frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048,timing-files/frontier_scaling_v6/nnodes4096 \
@@ -21,7 +26,7 @@
 #   --pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
 #   --plot_type="sdpd" \
 #   --timers="a:EAMxx::run" \
-#   --force_timer_labels="Atmosphere" \
+#   --force_timer_labels="E3SM Atmosphere" \
 
 #TESTING
 python gen-plot.py \
@@ -30,6 +35,7 @@ python gen-plot.py \
   --plot_type="sdpd" \
   --force_timer_labels="Dycore-MPI","Dycore-compute (device-only)","Dycore-limiter (device-only)","Physics (device-only)" \
   --frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048,timing-files/frontier_scaling_v6/nnodes4096 \
+  --plot_type="sdpd" \
   #--pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
   #--pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
 

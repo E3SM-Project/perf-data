@@ -15,12 +15,17 @@ def plot_data(plot_data, plot_type, plot_title):
     xmin = 350
     xmax = 9000
 
-    ymin = 20
-    ymax = 800
-    yticks = [20,30,40,50,60,70,80,90,100,125,150,200,250,300,365,450,525,600,700]
+    #ymin = 20
+    #ymax = 400
+    #yticks = [20,30,40,50,60,70,80,90,100,125,150,200,250,300,365]
+
+    ymin = 50
+    ymax = 37000
+    yticks = []
+
 
     auto_x_axis = True
-    auto_y_axis = True
+    auto_y_axis = False
 
     timer_legend_font_size = 15
     timer_legend_loc = 'lower right'
@@ -139,8 +144,9 @@ def plot_data(plot_data, plot_type, plot_title):
 
     if not auto_y_axis:
         ax.set_ylim(ymin,ymax)
-        ax.set_yticks(yticks)
-        ax.set_yticklabels(yticks, fontsize=tick_font_size)
+        if len(yticks)>0:
+            ax.set_yticks(yticks)
+            ax.set_yticklabels(yticks, fontsize=tick_font_size)
 
     # Create title
     additional_title = ""
