@@ -1,3 +1,4 @@
+filename_prefix: nooutput
 averaging_type: instant
 Fields:
   Physics PG2:
