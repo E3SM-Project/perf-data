@@ -7,7 +7,7 @@ def plot_data(plot_data, plot_type, plot_title):
     markers = ['o', 'v', 'x', 'd', '*', 'p', 'h', '^'] #['s','o', 'v', 'x', 'd', '*', 'p', 'h', '^']
     colors = ['g', 'r', 'purple', 'b', 'c', 'y', 'k']
 
-    plot_optimal_scaling = True
+    plot_optimal_scaling = False
     optimal_scaling_start = 35
 
     plot_1_sypd_line = False
@@ -25,12 +25,12 @@ def plot_data(plot_data, plot_type, plot_title):
 
 
     auto_x_axis = True
-    auto_y_axis = False
+    auto_y_axis = True
 
     timer_legend_font_size = 15
-    timer_legend_loc = 'lower right'
+    timer_legend_loc = 'upper right'
     machine_legend_font_size = 15
-    machine_legend_loc = 'upper left'
+    machine_legend_loc = 'lower left'
 
     title_fontsize=20
     markersize_ = 10

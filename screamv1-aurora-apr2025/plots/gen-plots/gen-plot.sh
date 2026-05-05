@@ -30,14 +30,20 @@
 
 #TESTING
 python gen-plot.py \
-  --aurora_files=timing-files/aurora_scaling_v7/mpich1024-nnodes512,timing-files/aurora_scaling_v7/mpich1024-nnodes1024,timing-files/aurora_scaling_v7/mpich1024-nnodes2048,timing-files/aurora_scaling_v7/mpich1024-nnodes4096 \
-  --timers="a:caar_bexchV"+"a:hvf-bexch","a:caar compute"+"a:compute_stage_value_dirk"+"a:compose_transport","a:caar limiter","a:EAMxx::physics::run" \
-  --plot_type="sdpd" \
-  --force_timer_labels="Dycore-MPI","Dycore-compute (device-only)","Dycore-limiter (device-only)","Physics (device-only)" \
-  --frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048,timing-files/frontier_scaling_v6/nnodes4096 \
-  --plot_type="sdpd" \
+  --aurora_files=timing-files/aurora_scaling_hackathon/baseline/mpich1024-nnodes512,timing-files/aurora_scaling_hackathon/baseline/mpich1024-nnodes1024,timing-files/aurora_scaling_hackathon/baseline/mpich1024-nnodes2048 \
+  --timers="a:caar compute","a:compute_stage_value_dirk","a:caar_bexchV" \
+  --force_machine_labels="Before hackathon","After hackathon" \
+  --plot_type="time" \
+  --aurora_files2=timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes512,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes1024,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes2048 \
+  #--aurora_files2=timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes512,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes1024,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes2048 \
+  #--frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048,timing-files/frontier_scaling_v6/nnodes4096 \
+  # --timers="a:caar_bexchV","a:hvf-bexch","a:caar compute","a:compute_stage_value_dirk","a:compose_transport","a:caar limiter","a:EAMxx::physics::run",a:ttype9_imex_timestep \
+  #--force_timer_labels="Dycore-MPI","Dycore-compute (device-only)","Dycore-limiter (device-only)","Physics (device-only)" \
   #--pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
   #--pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
+  #--aurora_files=timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes1024,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes2048 \
+  #--aurora_files2=timing-files/aurora_scaling_hackathon/team-size-fix/mpich-nnodes1024,timing-files/aurora_scaling_hackathon/team-size-fix/mpich-nnodes2048 \
+  #--aurora_files=timing-files/aurora_scaling_v7/mpich1024-nnodes512,timing-files/aurora_scaling_v7/mpich1024-nnodes1024,timing-files/aurora_scaling_v7/mpich1024-nnodes2048,timing-files/aurora_scaling_v7/mpich1024-nnodes4096 \
 
 # python gen-plot.py \
 #   --aurora_files=timing-files/aurora_scaling_v6/mpich1024-nnodes512,timing-files/aurora_scaling_v6/mpich1024-nnodes1024,timing-files/aurora_scaling_v6/mpich1024-nnodes2048 \
