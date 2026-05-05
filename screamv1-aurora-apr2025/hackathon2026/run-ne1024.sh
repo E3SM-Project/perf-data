@@ -1,19 +1,23 @@
-if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 <nnodes> <case_prefix> <wallclock>"
+if [ "$#" -lt 4 ] || [ "$#" -gt 5 ]; then
+    echo "Usage: $0 <nnodes> <case_prefix> <wallclock> <queue> [mpilib]"
+    echo "  mpilib defaults to mpich"
     exit 1
 fi
+
 nnodes=$1
 prefix=$2
 walltime=$3
+queue=$4
+mpilib=${5:-mpich1024}
 
 e3sm_top_dir=/home/tccleve/E3SM-Project/E3SM_Main/E3SM
-run_script_dir=/home/tccleve/E3SM-Project/E3SM_Main/perf-data/screamv1-aurora-apr2025
-case_dir=/lus/flare/projects/E3SM_Dec/tccleve/scratch/aurora-timings
+run_script_dir=/home/tccleve/E3SM-Project/E3SM_Main/perf-data/screamv1-aurora-apr2025/hackathon2026
+case_dir=/lus/flare/projects/E3SM_Dec/tccleve/scratch/hackathon2026/${mpilib}
 
 compset=F2010-SCREAMv1
 res=ne1024pg2_ne1024pg2
 
-cname=$prefix.nnodes${nnodes}.$res.$compset
+cname=${prefix}-${mpilib}.nnodes${nnodes}.$res.$compset
 
 compiler=oneapi-ifxgpu
 machine=aurora
@@ -22,7 +26,7 @@ cd $case_dir
 rm -rf $cname
 
 $e3sm_top_dir/cime/scripts/create_newcase --case ${cname} --compset ${compset} --res ${res} \
-  --machine ${machine} --compiler ${compiler} --mpilib mpich1024 --output-root $case_dir 
+  --machine ${machine} --compiler ${compiler} --mpilib ${mpilib} --output-root $case_dir 
 cd $cname
 
 ./xmlchange JOB_WALLCLOCK_TIME=$walltime
@@ -40,6 +44,9 @@ pernode=12
 
 ./case.setup
 
+./xmlchange CHARGE_ACCOUNT=gpu_hack
+./xmlchange JOB_QUEUE=${queue} --force
+
 cp $run_script_dir/nooutput.yaml .
 ./atmchange scorpio::output_yaml_files=./nooutput.yaml
 ./xmlchange RUN_STARTDATE="2013-10-01"
@@ -48,5 +55,6 @@ cp $run_script_dir/nooutput.yaml .
 
 ./case.build
 ./case.submit
+
 
 

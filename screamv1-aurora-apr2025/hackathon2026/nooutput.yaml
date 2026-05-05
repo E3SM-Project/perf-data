@@ -1,0 +1,14 @@
+filename_prefix: nooutput
+averaging_type: instant
+Fields:
+  Physics PG2:
+    Field Names:
+    - ps
+    - pseudo_density
+    - omega
+    - horiz_winds
+    - qv
+Max Snapshots Per File: 744
+output_control:
+  frequency: 999
+  frequency_units: nyears
