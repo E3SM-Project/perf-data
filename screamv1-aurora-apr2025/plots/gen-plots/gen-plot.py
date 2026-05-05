@@ -28,23 +28,23 @@ if __name__ == "__main__":
 
     if args.aurora_files:
         aurora_files = args.aurora_files.split(",")
-        file_data_array.append({"files": aurora_files, "timer_data": {}, "procs_per_node": 12, "simulation_length_in_days": 0.5, "label": "Aurora [Intel GPU]"})
+        file_data_array.append({"files": aurora_files, "timer_data": {}, "procs_per_node": 12, "simulation_length_in_days": 0.5, "label": "Aurora"}) #"Aurora [Intel GPU]"})
 
     if args.aurora_files2:
         aurora_files2 = args.aurora_files2.split(",")
-        file_data_array.append({"files": aurora_files2, "timer_data": {}, "procs_per_node": 12, "simulation_length_in_days": 0.5, "label": "Aurora2 [Intel GPU]"})
+        file_data_array.append({"files": aurora_files2, "timer_data": {}, "procs_per_node": 12, "simulation_length_in_days": 0.5, "label": "Aurora2"}) #"Aurora2 [Intel GPU]"})
 
     if args.frontier_files:
         frontier_files = args.frontier_files.split(",")
-        file_data_array.append({"files": frontier_files, "timer_data": {}, "procs_per_node": 8, "simulation_length_in_days": 0.5, "label": "Frontier [AMD GPU]"})
+        file_data_array.append({"files": frontier_files, "timer_data": {}, "procs_per_node": 8, "simulation_length_in_days": 0.5, "label": "Frontier"}) #"Frontier [AMD GPU]"})
 
     if args.pm_gpu_files:
         pm_gpu_files = args.pm_gpu_files.split(",")
-        file_data_array.append({"files": pm_gpu_files, "timer_data": {}, "procs_per_node": 4, "simulation_length_in_days": 1, "label": "Permutter [NVIDIA GPU]"})
+        file_data_array.append({"files": pm_gpu_files, "timer_data": {}, "procs_per_node": 4, "simulation_length_in_days": 1, "label": "PM-GPU"}) #"Permutter [NVIDIA GPU]"})
 
     if args.pm_cpu_files:
         pm_cpu_files = args.pm_cpu_files.split(",")
-        file_data_array.append({"files": pm_cpu_files, "timer_data": {}, "procs_per_node": 128, "simulation_length_in_days": 1, "label": "Perlmutter [AMD CPU]"})
+        file_data_array.append({"files": pm_cpu_files, "timer_data": {}, "procs_per_node": 128, "simulation_length_in_days": 1, "label": "PM-CPU"}) #"Perlmutter [AMD CPU]"})
 
     if len(file_data_array)>4:
         print(f"Error! Currently script only supports up to 4 machines.")

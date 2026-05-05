@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 
 def plot_data(plot_data, plot_type, plot_title):
     fig, ax = plt.subplots(figsize=(12, 9))
+    #fig, ax = plt.subplots(figsize=(6, 4.5))
+    #fig.subplots_adjust(left=0.15, bottom=0.15, right=0.95, top=0.92)
 
     linestyles = ['-', ':', '-.', '--']
     markers = ['o', 'v', 'x', 'd', '*', 'p', 'h', '^'] #['s','o', 'v', 'x', 'd', '*', 'p', 'h', '^']
@@ -14,13 +16,14 @@ def plot_data(plot_data, plot_type, plot_title):
 
     xmin = 350
     xmax = 9000
+    xticks = [512,1024,2048,4096,8192]
 
-    #ymin = 20
-    #ymax = 400
-    #yticks = [20,30,40,50,60,70,80,90,100,125,150,200,250,300,365]
+    # ymin = 20
+    # ymax = 600
+    # yticks = [20,30,40,55,70,100,125,175,225,300,365,450,600] #[20,30,40,50,60,70,85,100,125,150,200,250,300,365,425,500,600]
 
-    ymin = 50
-    ymax = 37000
+    ymin = 90
+    ymax = 5000
     yticks = []
 
 
@@ -30,7 +33,8 @@ def plot_data(plot_data, plot_type, plot_title):
     timer_legend_font_size = 15
     timer_legend_loc = 'upper right'
     machine_legend_font_size = 15
-    machine_legend_loc = 'lower left'
+    machine_legend_loc = 'upper left'
+    machine_legend_delete = False
 
     title_fontsize=20
     markersize_ = 10
@@ -94,7 +98,7 @@ def plot_data(plot_data, plot_type, plot_title):
     if num_timers != 1:
         legend1 = ax.legend(handles=timer_legend, loc=timer_legend_loc, fontsize=timer_legend_font_size, framealpha=1)
         ax.add_artist(legend1)
-    if num_machines != 1:
+    if num_machines != 1 and not machine_legend_delete:
         ax.legend(handles=machine_legend, loc=machine_legend_loc, fontsize=machine_legend_font_size, framealpha=1)
 
     unique_nodes = sorted(set([int(node) for entry in plot_data for timer in entry["timer_data"] for node in entry["timer_data"][timer]["nodes"]]))
@@ -117,7 +121,7 @@ def plot_data(plot_data, plot_type, plot_title):
     # Plot 1 SYPD
     if plot_1_sypd_line:
         sypd_equiv = 1 if plot_type=="sypd" else 365 if plot_type=="sdpd" else 0
-        ax.plot([nodes_for_plotting[0], nodes_for_plotting[-1]], [sypd_equiv]*2, color='y', linewidth=2)
+        ax.plot([0, 100000], [sypd_equiv]*2, color='y', linewidth=1.5)
 
     # Grid and axis options
     ax.grid(True, which="both", linestyle="--", linewidth=0.5)
@@ -125,21 +129,24 @@ def plot_data(plot_data, plot_type, plot_title):
     ax.set_xscale("log")
     ax.set_xlabel("Number of nodes", fontsize=ax_label_size)
 
-    ax.set_xticks(unique_nodes)
-    ax.set_xticklabels(unique_labels, fontsize=tick_font_size)
     ax.xaxis.minorticks_off()
     if not auto_x_axis:
         ax.set_xlim(xmin, xmax)
+        if len(xticks)>0:
+            ax.set_xticks(xticks)
+            ax.set_xticklabels(xticks, fontsize=tick_font_size)
     else:
         ax.set_xlim(unique_nodes[0]*7/8,unique_nodes[-1]*9/8)
+        ax.set_xticks(unique_nodes)
+        ax.set_xticklabels(unique_labels, fontsize=tick_font_size)
 
     ax.set_yscale("log")
     if plot_type=="time":
         y_label = "Elapsed time (s)"
     elif plot_type == "sypd":
-        y_label = "Simulated years per wallclock day (SYPD)"
+        y_label = "SYPD"#"Simulated years per wallclock day (SYPD)"
     elif plot_type == "sdpd":
-        y_label = "Simulated days per wallclock day (SDPD)"
+        y_label = "Simulated days per wall day"#"Simulated days per wallclock day (SDPD)"
     ax.set_ylabel(y_label, fontsize=ax_label_size)
 
     if not auto_y_axis:

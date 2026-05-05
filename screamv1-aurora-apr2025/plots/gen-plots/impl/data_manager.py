@@ -61,7 +61,7 @@ def extract_data(file_path, target_name, procs_per_node, timing_col, simulation_
                     return None
 
                 #HACK: PM-GPU has 2x longer sim length for following runs
-                if machine_name == "Permutter [NVIDIA GPU]":
+                if machine_name == "Permutter [NVIDIA GPU]" or machine_name == "PM-GPU":
                     if number_of_nodes==1024 or number_of_nodes==1536:
                         timing_col_cleaned/=2
 

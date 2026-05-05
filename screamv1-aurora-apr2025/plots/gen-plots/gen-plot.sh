@@ -19,7 +19,7 @@
 
 # python gen-plot.py \
 #   --aurora_files=timing-files/aurora_scaling_v7/mpich1024-nnodes512,timing-files/aurora_scaling_v7/mpich1024-nnodes1024,timing-files/aurora_scaling_v7/mpich1024-nnodes2048,timing-files/aurora_scaling_v7/mpich1024-nnodes4096 \
-#   --frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048,timing-files/frontier_scaling_v6/nnodes4096 \
+#   --frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048,timing-files/frontier_scaling_v6/nnodes4096,timing-files/frontier_old/frontier-nnodes8192 \
 #   --pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
 #   --pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
 #   --pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
