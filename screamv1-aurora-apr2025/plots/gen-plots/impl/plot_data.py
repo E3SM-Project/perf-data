@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 
 def plot_data(plot_data, plot_type, plot_title):
-    fig, ax = plt.subplots(figsize=(12, 9))
-    #fig, ax = plt.subplots(figsize=(6, 4.5))
-    #fig.subplots_adjust(left=0.15, bottom=0.15, right=0.95, top=0.92)
+    #fig, ax = plt.subplots(figsize=(12, 9))
+    fig, ax = plt.subplots(figsize=(6, 4.5))
+    fig.subplots_adjust(left=0.15, bottom=0.15, right=0.95, top=0.92)
 
     linestyles = ['-', ':', '-.', '--']
     markers = ['o', 'v', 'x', 'd', '*', 'p', 'h', '^'] #['s','o', 'v', 'x', 'd', '*', 'p', 'h', '^']
@@ -18,20 +18,20 @@ def plot_data(plot_data, plot_type, plot_title):
     xmax = 9000
     xticks = [512,1024,2048,4096,8192]
 
-    # ymin = 20
-    # ymax = 600
-    # yticks = [20,30,40,55,70,100,125,175,225,300,365,450,600] #[20,30,40,50,60,70,85,100,125,150,200,250,300,365,425,500,600]
+    ymin = 40
+    ymax = 600
+    yticks = [40,55,70,100,125,175,225,300,365,450,600]
 
-    ymin = 90
-    ymax = 5000
-    yticks = []
+    #ymin = 90
+    #ymax = 5000
+    #yticks = []
 
 
     auto_x_axis = True
     auto_y_axis = True
 
     timer_legend_font_size = 15
-    timer_legend_loc = 'upper right'
+    timer_legend_loc = 'lower right'
     machine_legend_font_size = 15
     machine_legend_loc = 'upper left'
     machine_legend_delete = False

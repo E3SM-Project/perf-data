@@ -18,25 +18,36 @@
 
 
 # python gen-plot.py \
-#   --aurora_files=timing-files/aurora_scaling_v7/mpich1024-nnodes512,timing-files/aurora_scaling_v7/mpich1024-nnodes1024,timing-files/aurora_scaling_v7/mpich1024-nnodes2048,timing-files/aurora_scaling_v7/mpich1024-nnodes4096 \
+#   --aurora_files=timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes512,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes1024,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes2048,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes4096 \
+#   --aurora_files2=timing-files/aurora_scaling_v7/mpich1024-nnodes512,timing-files/aurora_scaling_v7/mpich1024-nnodes1024,timing-files/aurora_scaling_v7/mpich1024-nnodes2048,timing-files/aurora_scaling_v7/mpich1024-nnodes4096 \
 #   --frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048,timing-files/frontier_scaling_v6/nnodes4096,timing-files/frontier_old/frontier-nnodes8192 \
 #   --pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
-#   --pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
-#   --pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
-#   --pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
 #   --plot_type="sdpd" \
 #   --timers="a:EAMxx::run" \
 #   --force_timer_labels="E3SM Atmosphere" \
+#   --force_machine_labels="Aurora (current)","Aurora (before)","Frontier","PM-GPU" \
+  #--pm_cpu_files=timing-files/pm-cpu_old/pm-cpu-nnodes1536,timing-files/pm-cpu_old/pm-cpu-nnodes2048 \
+
+python gen-plot.py \
+  --aurora_files=timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes512,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes1024,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes2048,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes4096 \
+  --aurora_files2=timing-files/aurora_scaling_v7/mpich1024-nnodes512,timing-files/aurora_scaling_v7/mpich1024-nnodes1024,timing-files/aurora_scaling_v7/mpich1024-nnodes2048,timing-files/aurora_scaling_v7/mpich1024-nnodes4096 \
+  --plot_type="sdpd" \
+  --timers="a:caar compute","a:compute_stage_value_dirk" \
+  --force_machine_labels="Aurora (current)","Aurora (before)" \
+#   --force_machine_labels="Aurora","Frontier" \
+#   --frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048,timing-files/frontier_scaling_v6/nnodes4096 \
+#  --aurora_files2=timing-files/aurora_scaling_v7/mpich1024-nnodes512,timing-files/aurora_scaling_v7/mpich1024-nnodes1024,timing-files/aurora_scaling_v7/mpich1024-nnodes2048,timing-files/aurora_scaling_v7/mpich1024-nnodes4096 \
+#  --pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
 
 #TESTING
-python gen-plot.py \
-  --aurora_files=timing-files/aurora_scaling_hackathon/baseline/mpich1024-nnodes512,timing-files/aurora_scaling_hackathon/baseline/mpich1024-nnodes1024,timing-files/aurora_scaling_hackathon/baseline/mpich1024-nnodes2048 \
-  --timers="a:caar compute","a:compute_stage_value_dirk","a:caar_bexchV" \
-  --force_machine_labels="Before hackathon","After hackathon" \
-  --plot_type="time" \
-  --aurora_files2=timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes512,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes1024,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes2048 \
+# python gen-plot.py \
+#   --aurora_files=timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes512,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes1024,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes2048,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes4096 \
+#   --timers="a:caar_bexchV"+"a:hvf-bexch"+"a:compose_transport","a:caar compute"+"a:compute_stage_value_dirk"+"a:caar limiter","a:EAMxx::physics::run","a:EAMxx::run" \
+#   --force_timer_labels="Dycore-MPI","Dycore-compute","Physics-compute","ATM-total" \
+#   --plot_type="sdpd" \
+#   --frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048,timing-files/frontier_scaling_v6/nnodes4096 \
+  #--aurora_files2=timing-files/aurora_scaling_v7/mpich1024-nnodes512,timing-files/aurora_scaling_v7/mpich1024-nnodes1024,timing-files/aurora_scaling_v7/mpich1024-nnodes2048,timing-files/aurora_scaling_v7/mpich1024-nnodes4096 \
   #--aurora_files2=timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes512,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes1024,timing-files/aurora_scaling_hackathon/team-size-fix/mpich1024-nnodes2048 \
-  #--frontier_files=timing-files/frontier_scaling_v6/nnodes512,timing-files/frontier_scaling_v6/nnodes1024,timing-files/frontier_scaling_v6/nnodes2048,timing-files/frontier_scaling_v6/nnodes4096 \
   # --timers="a:caar_bexchV","a:hvf-bexch","a:caar compute","a:compute_stage_value_dirk","a:compose_transport","a:caar limiter","a:EAMxx::physics::run",a:ttype9_imex_timestep \
   #--force_timer_labels="Dycore-MPI","Dycore-compute (device-only)","Dycore-limiter (device-only)","Physics (device-only)" \
   #--pm_gpu_files=timing-files/pm-gpu_old/pm-gpu-nnodes384,timing-files/pm-gpu_old/pm-gpu-nnodes512,timing-files/pm-gpu_old/pm-gpu-nnodes1024,timing-files/pm-gpu_old/pm-gpu-nnodes1536 \
